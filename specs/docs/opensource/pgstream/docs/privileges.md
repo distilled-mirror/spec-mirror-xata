@@ -1,0 +1,43 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://xata.io/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Privileges
+
+This document summarizes the privileges required for different pgstream operations in PostgreSQL.
+It is **service-agnostic**, focusing only on what pgstream itself requires.
+
+For cloud-provider-specific instructions and constraints, please see:
+
+* [Xata Onboarding Guide](/docs/opensource/pgstream/docs/xata)
+* [AWS Onboarding Guide](/docs/opensource/pgstream/docs/aws)
+* [Google Cloud (CloudSQL) Onboarding Guide](/docs/opensource/pgstream/docs/gcp_cloudsql)
+* [Neon Onboarding Guide](/docs/opensource/pgstream/docs/neon)
+
+***
+
+## Privileges Matrix
+
+| Mode                                     | Role                                   | Required Privileges                                                                                                                                                                                                                      | Notes                                                                                                        |
+| ---------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Snapshot (Source)**                    | `pgstreamsource`                       | - **Read-only access** to schemas/tables being snapshotted - *(Optional)* Read access to `pg_authid` (if snapshotting roles with passwords)                                                                                              | Example grants: `GRANT pg_read_all_settings TO pgstreamsource; GRANT SELECT ON pg_authid TO pgstreamsource;` |
+| **Snapshot (Target)**                    | `pgstreamtarget`                       | - Ownership of database & schemas - *(Optional)* `CREATEDB` (if creating target databases) - *(Optional)* `CREATEROLE` (if restoring roles) - *(Optional)* Ability to `SET session_replication_role` (if disabling triggers during load) | Role must already hold any privileges it assigns when creating other roles.                                  |
+| **Replication (Source, Initialization)** | Initialization user (e.g., `postgres`) | - Ability to create schemas, event triggers, and functions - Replication privileges (`REPLICATION`)                                                                                                                                      | Requires elevated privileges because event triggers must be created.                                         |
+| **Replication (Source, Streaming)**      | `pgstreamsource`                       | - Ownership of replicated database, schemas, and pgstream objects - Replication privileges (`REPLICATION`)                                                                                                                               | Can be a more restricted role than the initialization user.                                                  |
+| **Replication (Target)**                 | `pgstreamtarget`                       | - Ownership of database & schemas - Ability to apply DML and DDL changes                                                                                                                                                                 | If combined with snapshot, also meet snapshot target requirements.                                           |
+
+ℹ️ **Terminology**:
+
+* `pgstreamsource` → user defined in the **pgstream source URL**
+* `pgstreamtarget` → user defined in the **pgstream target URL**
+
+***
+
+## Security note: DDL replication and the target role
+
+When DDL replication is enabled, DDL statements captured on the source are replayed on the target using the `pgstreamtarget` role. pgstream assumes the source and target are within the same trust domain.
+
+If roles that can run DDL on the source are **less trusted** than `pgstreamtarget`, they can cause SQL to run on the target with the target role's privileges. To limit the impact:
+
+* Grant `pgstreamtarget` only the privileges it needs to apply schema and data changes. Avoid `SUPERUSER`, `CREATEROLE`, and `CREATEDB` unless a feature explicitly requires them.
+* If your source and target roles have different trust levels, disable DDL replication (see [`ignore_ddl`](/docs/opensource/pgstream/docs/configuration)).

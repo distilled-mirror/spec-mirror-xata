@@ -1,0 +1,401 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://xata.io/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Create a new branch
+
+> Creates a new branch within the specified project. Branches can be created from scratch or derived from an existing parent branch.
+
+
+
+## OpenAPI
+
+````yaml https://api.xata.tech/openapi.json post /organizations/{organizationID}/projects/{projectID}/branches
+openapi: 3.0.0
+info:
+  title: Xata API
+  description: Xata API
+  version: '1.0'
+  contact:
+    name: help@xata.io
+servers:
+  - url: https://api.xata.tech
+    description: Xata API
+security: []
+tags:
+  - name: Organizations
+    description: Operations for creating, retrieving, updating, and deleting organizations
+    x-displayName: Organizations
+  - name: Users
+    description: Operations for managing user accounts and profiles
+    x-displayName: Users
+  - name: API Keys
+    description: >-
+      Operations for managing API keys, including creation, listing, and
+      deletion
+    x-displayName: API Keys
+  - name: Marketplace
+    description: Operations for linking user accounts to cloud marketplace subscriptions
+    x-displayName: Marketplace
+  - name: Billing
+    description: Internal organization billing operations
+    x-displayName: Billing
+  - name: Gateway
+    description: >-
+      PostgreSQL connectivity via HTTP SQL, WebSocket wire protocol proxy, and
+      native wire protocol.
+    x-displayName: Gateway
+  - name: MCP
+    description: Model Context Protocol endpoint.
+    x-displayName: MCP
+  - name: Projects Webhooks
+    x-displayName: Projects Webhooks
+  - name: Projects
+    description: >-
+      Operations for creating, retrieving, updating, and deleting projects
+      within an organization
+    x-displayName: Projects
+  - name: Branches
+    description: >-
+      Operations for managing database branches within projects, including
+      creation, configuration, and deletion
+    x-displayName: Branches
+  - name: GitHub App
+    description: Operations for managing GitHub App installation mappings
+    x-displayName: GitHub App
+  - name: Metrics
+    description: Operations for retrieving observability metrics for a branch
+    x-displayName: Metrics
+  - name: Logs
+    description: Operations for retrieving log entries for a branch
+    x-displayName: Logs
+  - name: Vercel
+    x-displayName: Vercel
+  - name: Webhooks
+    x-displayName: Webhooks
+externalDocs:
+  url: https://xata.io/docs/api
+paths:
+  /organizations/{organizationID}/projects/{projectID}/branches:
+    summary: Branch Management
+    description: Endpoints for listing and creating branches within a project.
+    post:
+      tags:
+        - Branches
+      summary: Create a new branch
+      description: >-
+        Creates a new branch within the specified project. Branches can be
+        created from scratch or derived from an existing parent branch.
+      operationId: createBranch
+      parameters:
+        - name: organizationID
+          in: path
+          description: Unique identifier of the organization containing the project
+          required: true
+          schema:
+            $ref: '#/components/schemas/OrganizationID'
+        - name: projectID
+          in: path
+          description: Unique identifier of the project to create the branch in
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BranchCreationDetails'
+      responses:
+        '201':
+          description: Branch successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BranchShortMetadata'
+        '400':
+          $ref: '#/components/responses/GenericError'
+        '401':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/GenericError'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedError'
+        5XX:
+          description: Unexpected Error
+        default:
+          description: Unexpected Error
+      security:
+        - xata:
+            - branch:write
+components:
+  schemas:
+    OrganizationID:
+      title: OrganizationID
+      type: string
+      pattern: '[a-zA-Z0-9_-~:]+'
+      x-oapi-codegen-extra-tags:
+        validate: identifier
+    BranchCreationDetails:
+      description: Details required when creating a new branch
+      type: object
+      properties:
+        name:
+          description: Human-readable name for the new branch
+          type: string
+        description:
+          description: >-
+            Optional description for the branch purpose or contents. An empty
+            string is stored as no description.
+          type: string
+          maxLength: 255
+          pattern: '^([a-zA-Z0-9][a-zA-Z0-9\-_./: ]*)?$'
+        scaleToZero:
+          $ref: '#/components/schemas/ScaleToZeroConfiguration'
+        backupConfiguration:
+          $ref: '#/components/schemas/BackupConfiguration'
+        mode:
+          description: The mode used to discriminate between types of branches.
+          type: string
+          enum:
+            - inherit
+            - custom
+      discriminator:
+        propertyName: mode
+        mapping:
+          inherit:
+            $ref: '#/components/schemas/BranchFromParent'
+          custom:
+            $ref: '#/components/schemas/BranchFromConfiguration'
+      oneOf:
+        - $ref: '#/components/schemas/BranchFromParent'
+        - $ref: '#/components/schemas/BranchFromConfiguration'
+      required:
+        - name
+        - mode
+    BranchShortMetadata:
+      description: >-
+        Basic metadata about a branch, used in response to create/update
+        operations
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the branch
+          type: string
+        name:
+          description: Human-readable name of the branch
+          type: string
+        description:
+          description: Optional description of the branch purpose or contents
+          type: string
+        createdAt:
+          description: Timestamp when the branch was created
+          type: string
+          format: date-time
+        updatedAt:
+          description: Timestamp when the branch was last updated
+          type: string
+          format: date-time
+        parentID:
+          description: >-
+            Identifier of the parent branch if this is a derived branch, null
+            otherwise
+          type: string
+          nullable: true
+        connectionString:
+          description: >-
+            Deprecated: retrieve the connection string from the branch
+            credentials endpoint (GET .../branches/{branchID}/credentials)
+            instead. The hostname in this connection string carries a
+            -deprecated marker in its first DNS label.
+          type: string
+          deprecated: true
+          nullable: true
+        region:
+          description: Geographic region where the branch is deployed
+          type: string
+        publicAccess:
+          description: Whether the branch allows public access without authentication
+          type: boolean
+      required:
+        - id
+        - name
+        - createdAt
+        - updatedAt
+        - region
+        - publicAccess
+    ScaleToZeroConfiguration:
+      description: Configuration for scaling branches to zero when not in use
+      type: object
+      properties:
+        enabled:
+          description: Whether scale to zero is enabled
+          type: boolean
+        inactivityPeriodMinutes:
+          description: >-
+            Duration in minutes after which branches will be hibernated if not
+            accessed
+          type: integer
+          default: 30
+      required:
+        - enabled
+        - inactivityPeriodMinutes
+    BackupConfiguration:
+      description: Details about the branch continuous backup configuration
+      type: object
+      properties:
+        retentionPeriod:
+          description: how long are we keeping the backups around for
+          type: integer
+          format: int32
+          default: 2
+          maximum: 35
+          minimum: 2
+        backupTime:
+          description: time of day/week when we are taking a full backup
+          type: string
+          pattern: ^(\*|[0-6]):(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$
+      x-excluded: true
+      x-internal: true
+    BranchFromParent:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+            - inherit
+        parentID:
+          description: >-
+            If present, the branch will inherit the parent branch configuration
+            and data
+          type: string
+      required:
+        - mode
+        - parentID
+    BranchFromConfiguration:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+            - custom
+        configuration:
+          $ref: '#/components/schemas/ClusterConfiguration'
+      required:
+        - mode
+        - configuration
+    ClusterConfiguration:
+      description: Configuration details for a database cluster backing a branch
+      type: object
+      properties:
+        region:
+          description: Geographic region where the cluster will be deployed
+          type: string
+        storage:
+          description: Branch storage in GiB (gigabytes)
+          type: integer
+          format: int32
+          maximum: 250
+        instanceType:
+          description: The instance type according to the xata instance types available
+          type: string
+        image:
+          description: PostgreSQL image to use for the database instances
+          type: string
+        replicas:
+          description: >-
+            Number of replicas in the branch. Every child branch is created with
+            no replicas. This can be updated.
+          type: integer
+          format: int32
+          maximum: 4
+          minimum: 0
+        postgresConfigurationParameters:
+          description: Arbitrary PostgreSQL configuration parameters for the cluster
+          type: object
+          additionalProperties:
+            type: string
+        preloadLibraries:
+          description: List of PostgreSQL extensions and libraries to preload
+          type: array
+          items:
+            type: string
+      required:
+        - image
+        - region
+        - instanceType
+        - replicas
+  responses:
+    GenericError:
+      description: Generic error response for most error conditions
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                description: Error identifier for tracking and debugging
+                type: string
+              message:
+                description: Human-readable error message explaining the issue
+                type: string
+            required:
+              - message
+    AuthorizationError:
+      description: Error response when authentication or authorization fails
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                description: Error identifier for tracking and debugging
+                type: string
+              message:
+                description: >-
+                  Human-readable error message explaining the authentication or
+                  authorization issue
+                type: string
+            required:
+              - message
+    PreconditionFailedError:
+      description: Error response when a precondition for the request is not met
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                description: Error identifier for tracking and debugging
+                type: string
+              message:
+                description: >-
+                  Human-readable error message explaining the precondition
+                  failure
+                type: string
+            required:
+              - message
+  securitySchemes:
+    xata:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://auth.xata.io/realms/xata/protocol/openid-connect/auth
+          scopes:
+            org:read: Read organization information
+            org:write: Create and modify organizations
+            group:read: Read organization groups and their members
+            group:write: Create, modify, and delete organization groups and their members
+            keys:read: Read API keys
+            keys:write: Create and manage API keys
+            project:read: Read project information
+            project:write: Create and modify projects
+            branch:read: Read branch information
+            branch:write: Create and modify branches
+            metrics:read: Read metrics data
+            logs:read: Read logs data
+            credentials:read: Read credentials
+            credentials:write: Rotate credentials
+            marketplace:write: Register with cloud marketplaces
+
+````

@@ -1,0 +1,234 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://xata.io/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Overview
+
+> Postgres replication with DDL changes
+
+![pgstream logo](https://raw.githubusercontent.com/xataio/pgstream/main/brand-kit/banner/pgstream-banner@2x.png)
+
+`pgstream` is an open source CDC command-line tool and library that offers Postgres replication support with DDL changes to any provided target.
+
+![pg2pg demo with transformers](https://github.com/user-attachments/assets/6f11b326-d8ed-44eb-b743-756910b9fedd)
+
+## Features
+
+* Schema change tracking and replication of DDL changes
+* Support for multiple out of the box targets
+  * Elasticsearch/OpenSearch
+  * Webhooks
+  * PostgreSQL
+* Initial and on demand PostgreSQL snapshots (for when you don't need continuous replication)
+* Column value transformations (anonymise your data on the go!)
+* Modular deployment configuration, only requires Postgres
+* Kafka support with schema based partitioning
+* Extendable support for custom targets
+
+## Usage
+
+`pgstream` can be used via the readily available CLI or as a library. For detailed information about the CLI usage, check out the dedicated [CLI documentation section](/docs/opensource/pgstream/docs/cli).
+
+### CLI Installation
+
+```bash theme={null}
+# Download the latest release
+curl -L https://github.com/xataio/pgstream/releases/latest/download/pgstream.linux.amd64 -o pgstream
+chmod +x pgstream
+sudo mv pgstream /usr/local/bin/
+
+# Or use go install
+go install github.com/xataio/pgstream@latest
+
+# Or build from source
+git clone https://github.com/xataio/pgstream.git
+cd pgstream
+go build -o pgstream ./cmd
+
+# Or install via homebrew on macOS or Linux
+brew tap xataio/pgstream
+brew install pgstream
+```
+
+### Environment setup
+
+If you have an environment available, with at least Postgres and whichever resources you're planning on running, then you can skip this step. Otherwise, a docker setup is available in this repository with profiles that selectively start Postgres, Kafka and OpenSearch.
+
+To run all profiles:
+
+```
+docker-compose -f build/docker/docker-compose.yml up
+```
+
+If you only want to run PostgreSQL to PostgreSQL pgstream replication you can use the `pg2pg` profile:
+
+```
+docker-compose -f build/docker/docker-compose.yml --profile pg2pg up
+```
+
+You can also run multiple profiles. For example to start two PostgreSQL instances and Kafka:
+
+```
+docker-compose -f build/docker/docker-compose.yml --profile pg2pg --profile kafka up
+```
+
+List of supported docker profiles:
+
+* pg2pg
+* pg2os
+* pg2webhook
+* kafka
+
+### Configuration
+
+Pgstream source and target need to be configured appropriately before the commands can be run. This can be done:
+
+* Using the relevant CLI flags for each command
+* Using a yaml configuration file
+* Using environment variables (.env file supported)
+
+Check the [configuration documentation](/docs/opensource/pgstream/docs/configuration) for more information about the configuration options, or check the [CLI documentation](/docs/opensource/pgstream/docs/cli) for details on the available flags. Additionally, you can find sample files for both .env and .yaml [here](https://github.com/xataio/pgstream/tree/main/docs/examples).
+
+If you want to configure column transformations, leveraging [greenmask](https://github.com/GreenmaskIO/greenmask), [neosync](https://github.com/nucleuscloud/neosync) and [go-masker](https://github.com/ggwhite/go-masker) open source integrations, as well as custom transformers, check the [transformation rules](/docs/opensource/pgstream/docs/transformers#transformation-rules) configuration for more details, along with the list of [available transformers](/docs/opensource/pgstream/docs/transformers#supported-transformers).
+
+### Run `pgstream`
+
+#### Replication mode
+
+Run will start streaming data from the configured source into the configured target. By passing the `--init` flag to the run command, pgstream will initialise the pgstream state in the source Postgres database before starting replication. It will:
+
+* Create a `pgstream` schema
+* Create tables/functions/triggers to keep track of schema changes for DDL replication (see [Tracking schema changes](/docs/opensource/pgstream/docs/architecture#tracking-schema-changes) for more details)
+* Create a replication slot
+
+Initialisation is required for pgstream replication. It can alternatively be performed by running the `pgstream init` command separately before `pgstream run`. Check out the [CLI documentation](/docs/opensource/pgstream/docs/cli#init) for more details.
+
+Example running pgstream replication from Postgres -> OpenSearch:
+
+```sh theme={null}
+# using the environment configuration file
+pgstream run -c docs/examples/pg2os.env --init --log-level trace
+# using the yaml configuration file
+pgstream run -c docs/examples/pg2os.yaml --init --log-level info
+# using the CLI flags
+pgstream run --source postgres --source-url "postgres://postgres:postgres@localhost:5432?sslmode=disable" --target opensearch --target-url "http://admin:admin@localhost:9200" --init
+```
+
+Example running pgstream with Postgres -> Kafka, and in a separate terminal, Kafka->OpenSearch:
+
+```sh theme={null}
+# using the environment configuration file
+pgstream run -c docs/examples/pg2kafka.env --init --log-level trace
+# using the yaml configuration file
+pgstream run -c docs/examples/pg2kafka.yaml --init --log-level info
+# using the CLI flags
+pgstream run --source postgres --source-url "postgres://postgres:postgres@localhost:5432?sslmode=disable" --target kafka --target-url "localhost:9092" --init
+```
+
+```sh theme={null}
+# using the environment configuration file
+pgstream run -c docs/examples/kafka2os.env --init --log-level trace
+# using the yaml configuration file
+pgstream run -c docs/examples/kafka2os.yaml --init --log-level info
+# using the CLI flags
+pgstream run --source kafka --source-url "localhost:9092" --target opensearch --target-url "http://admin:admin@localhost:9200" --init
+```
+
+An initial snapshot can be performed before starting replication by providing `--snapshot-tables` flag or by setting the relevant configuration fields (check the [configuration documentation](/docs/opensource/pgstream/docs/configuration) for more details on advanced configuration options).
+
+Example running pgstream with PostgreSQL -> PostgreSQL with initial snapshot enabled:
+
+```sh theme={null}
+# using the CLI flags
+pgstream run --source postgres --source-url "postgres://postgres:postgres@localhost:5432?sslmode=disable" --target postgres --target-url "postgres://postgres:postgres@localhost:7654?sslmode=disable" --snapshot-tables test --init
+```
+
+#### Snapshot mode
+
+pgstream can also be used to perform a point in time snapshot of the source database. This is helpful if you don't require continuous replication, but want to keep the source and target in sync by running nightly snapshots for example.
+
+The `snapshot` command doesn't require any initialisation or pgstream specific state, since it only performs read operations on the source Postgres database.
+
+Example running pgstream to perform a snapshot from PostgreSQL -> PostgreSQL:
+
+```sh theme={null}
+# using the environment configuration file
+pgstream snapshot -c docs/examples/snapshot2pg.env --log-level trace
+# using the yaml configuration file
+pgstream snapshot -c docs/examples/snapshot2pg.yaml --log-level info
+# using the CLI flags
+pgstream snapshot --postgres-url="postgres://postgres:postgres@localhost:5432?sslmode=disable" --target=postgres --target-url="postgres://postgres:postgres@localhost:7654?sslmode=disable" --tables="test" --reset
+```
+
+## Tutorials
+
+* [PostgreSQL replication to PostgreSQL](/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres)
+* [PostgreSQL replication to OpenSearch](/docs/opensource/pgstream/docs/tutorials/postgres_to_opensearch)
+* [PostgreSQL replication to webhooks](/docs/opensource/pgstream/docs/tutorials/postgres_to_webhooks)
+* [PostgreSQL replication using Kafka](/docs/opensource/pgstream/docs/tutorials/postgres_kafka)
+* [PostgreSQL snapshots](/docs/opensource/pgstream/docs/tutorials/postgres_snapshot)
+* [PostgreSQL column transformations](/docs/opensource/pgstream/docs/tutorials/postgres_transformer)
+
+## Documentation
+
+For more advanced usage, implementation details, and detailed configuration settings, please refer to the full documentation below.
+
+1. [Architecture](/docs/opensource/pgstream/docs/architecture)
+2. [Configuration](/docs/opensource/pgstream/docs/configuration)
+   * [Yaml](/docs/opensource/pgstream/docs/configuration#yaml)
+   * [Environment Variables](/docs/opensource/pgstream/docs/configuration#environment-variables)
+   * [Examples](https://github.com/xataio/pgstream/tree/main/docs/examples)
+3. [Snapshots](/docs/opensource/pgstream/docs/snapshots)
+   * [Running from a read replica](/docs/opensource/pgstream/docs/replicas)
+4. [Transformers](/docs/opensource/pgstream/docs/transformers)
+   * [Supported Transformers](/docs/opensource/pgstream/docs/transformers#supported-transformers)
+   * [Transformation Rules](/docs/opensource/pgstream/docs/transformers#transformation-rules)
+5. [Observability](/docs/opensource/pgstream/docs/Observability)
+6. [CLI](/docs/opensource/pgstream/docs/cli)
+7. [Privileges](/docs/opensource/pgstream/docs/privileges)
+   * [Xata](/docs/opensource/pgstream/docs/xata)
+   * [AWS](/docs/opensource/pgstream/docs/aws)
+   * [GCP CloudSQL](/docs/opensource/pgstream/docs/gcp_cloudsql)
+   * [Neon](/docs/opensource/pgstream/docs/neon)
+8. [Container image](/docs/opensource/pgstream/docs/container_image)
+9. [Glossary](/docs/opensource/pgstream/docs/glossary)
+
+## Benchmarks
+
+### Snapshots
+
+![pgstream snapshot benchmarks](https://raw.githubusercontent.com/xataio/pgstream/main/docs/img/pgstream_snapshot_benchmarks.png)
+
+Datasets used: [IMDB database](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/2QYZBT), [MusicBrainz database](https://musicbrainz.org/doc/MusicBrainz_Database), [Firenibble database](https://github.com/PeerDB-io/ab-scale-testing/tree/main).
+
+All benchmarks were run using the same setup, with pgstream `v0.7.2`, pg\_dump/pg\_restore (PostgreSQL) 17.4 and PostgreSQL 17.4, using identical resources to ensure a fair comparison.
+
+For more details into performance benchmarking for snapshots to PostgreSQL with `pgstream`, check out this [blogpost](https://xata.io/blog/behind-the-scenes-speeding-up-pgstream-snapshots-for-postgresql).
+
+## Limitations
+
+Some of the limitations of the initial release include:
+
+* Single Kafka topic support
+* Postgres plugin support limited to `wal2json`
+* No row level filtering support
+* Primary key/unique not null column required for replication
+* Kafka serialisation support limited to JSON
+
+## Releases
+
+You can find below the release notes for major pgstream versions, along with migration guides whenever relevant:
+
+* [v1.0.0](/docs/opensource/pgstream/docs/releases/v1.0.0)
+
+## Contributing
+
+We welcome contributions from the community! If you'd like to contribute to pgstream, please follow [these guidelines](https://github.com/xataio/pgstream/tree/main?tab=contributing-ov-file) and adhere to our [code of conduct](https://github.com/xataio/pgstream?tab=coc-ov-file).
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](https://github.com/xataio/pgstream/blob/main/LICENSE) file for details.
+
+## Support
+
+If you have any questions, encounter issues, or need assistance, open an issue in this repository, and our community will be happy to help.

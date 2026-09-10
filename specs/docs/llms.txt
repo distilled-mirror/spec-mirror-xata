@@ -1,0 +1,160 @@
+# Xata
+
+- [Xata Documentation](https://xata.io/docs/overview.md)
+- [Quickstart](https://xata.io/docs/quickstart.md): Quickstart guide for Xata's PostgreSQL platform
+- [Branching](https://xata.io/docs/core-concepts/branching.md): Create instant, isolated PostgreSQL environments with Copy-on-Write database branches.
+- [Data Anonymization](https://xata.io/docs/core-concepts/anonymization.md): Sensitive data anonymization and masking for PostgreSQL
+- [Schema Changes](https://xata.io/docs/core-concepts/schema-changes.md): Zero-downtime schema migrations with automatic rollback support
+- [Scale to Zero](https://xata.io/docs/core-concepts/scale-to-zero.md): Minimize costs by hibernating inactive database branches
+- [Serverless Proxy](https://xata.io/docs/core-concepts/serverless-proxy.md): Connect to your Xata database via HTTP and WebSocket connections for serverless and edge environments.
+- [Deployment Models](https://xata.io/docs/core-concepts/deployment.md): The various ways you can deploy Xata, whether for staging/dev or production, hosted in our cloud or in your cloud account.
+- [Create Branch](https://xata.io/docs/automations/ga-pr.md): GitHub Actions workflow for creating and managing development branches for pull requests
+- [Create a production clone](https://xata.io/docs/tutorials/create-production-clone.md): Use Xata's clone and branching features to create a safe, anonymized production clone.
+- [Data Anonymization](https://xata.io/docs/core-concepts/anonymization.md): Sensitive data anonymization and masking for PostgreSQL
+- [Create Streaming Replica](https://xata.io/docs/tutorials/streaming-replication.md): Use Xata's streaming replication to keep your database continuously synchronized with real-time changes.
+- [Make Schema Changes](https://xata.io/docs/tutorials/schema-change.md): Learn how to safely apply and roll back schema changes in Xata using the CLI.
+- [Find and fix slow queries on a Xata branch](https://xata.io/docs/tutorials/find-slow-queries.md): Use query insights, branch logs, and instance metrics to find slow PostgreSQL queries, understand why they are slow, and confirm the fix worked.
+- [Use Xata with Drizzle](https://xata.io/docs/quickstarts/drizzle.md): Learn how to connect your Drizzle ORM project to a Xata PostgreSQL database.
+- [Use Xata with Netlify](https://xata.io/docs/quickstarts/netlify.md): Connect a Netlify site to Xata PostgreSQL, and give every deploy preview its own database branch.
+- [Use Xata with Railway](https://xata.io/docs/quickstarts/railway.md): Learn how to connect your Railway project with a Xata PostgreSQL database.
+- [Use Xata with n8n](https://xata.io/docs/quickstarts/n8n.md): Learn how to use Xata as the memory provider for AI agents in n8n.
+- [Account Management](https://xata.io/docs/platform/account.md): Manage your account settings, profile, and authentication preferences
+- [Organizations](https://xata.io/docs/platform/organization.md): Collaborate with your team in a shared organization
+- [API Keys](https://xata.io/docs/platform/api-key.md): Generate and manage API keys for secure access to your Xata database
+- [MCP Server](https://xata.io/docs/platform/mcp.md): Connect Cursor, Claude, VS Code, and other MCP clients to Xata
+- [Projects](https://xata.io/docs/platform/project.md): Create and manage projects that contain your database branches
+- [Branches](https://xata.io/docs/platform/branch.md): Create isolated database environments for development, testing, and staging
+- [Compute](https://xata.io/docs/platform/compute.md): Configure scale-to-zero and hibernation options for projects and branches
+- [Schemas](https://xata.io/docs/platform/schemas.md): Design, manage, and optimize your database schema structure and relationships
+- [Migrations](https://xata.io/docs/platform/migrations.md): Zero-downtime schema migrations with automatic rollback support
+- [Queries](https://xata.io/docs/platform/queries.md): Execute and manage database queries across your branches
+- [Query insights](https://xata.io/docs/platform/query-insights.md): Identify slow and expensive queries on your branch with statistics from pg_stat_statements
+- [Metrics](https://xata.io/docs/platform/metrics.md): Monitor your database performance across instances with real-time metrics
+- [Extensions](https://xata.io/docs/platform/extensions.md): All extensions listed below are currently available for PostgreSQL 14, 15, 16, 17, and 18. These extensions provide additional functionality to enhance your database, from spatial data processing to text search and monitoring tools.
+- [Logs](https://xata.io/docs/platform/logs.md): Inspect PostgreSQL logs from your branch instances
+- [AWS PrivateLink](https://xata.io/docs/platform/privatelink.md): Connect to your Xata Postgres databases privately from your AWS VPC, without traffic leaving the AWS network
+- [AWS RDS](https://xata.io/docs/migrations/aws-rds.md): Learn how to migrate your AWS RDS PostgreSQL database to Xata using xata clone
+- [AWS Aurora](https://xata.io/docs/migrations/aws-aurora.md): Learn how to migrate your AWS Aurora PostgreSQL database to Xata using xata clone
+- [GCP Cloud SQL](https://xata.io/docs/migrations/gcp-cloudsql.md): Learn how to migrate your GCP Cloud SQL PostgreSQL database to Xata using xata clone
+- [Azure Database](https://xata.io/docs/migrations/azure.md): Learn how to migrate your Azure Database for PostgreSQL to Xata using xata clone
+- [Self-Hosted PostgreSQL](https://xata.io/docs/migrations/self-hosted.md): Learn how to migrate your self-hosted PostgreSQL database to Xata using xata clone.
+- [Greenmask (subsets)](https://xata.io/docs/migrations/greenmask.md): Learn how to import a referentially-consistent subset of your PostgreSQL database to Xata using Greenmask.
+- [Neon](https://xata.io/docs/migrations/neon.md): Learn how to migrate your Neon PostgreSQL database to Xata using xata clone
+- [Supabase](https://xata.io/docs/migrations/supabase.md): Learn how to migrate your Supabase PostgreSQL database to Xata using xata clone
+- [Parquet files](https://xata.io/docs/migrations/parquet.md): Learn how to migrate your data to Xata from Parquet files exported to AWS S3
+- [GitHub App](https://xata.io/docs/automations/github-app.md): Create and clean up Xata preview branches from GitHub pull requests
+- [Vercel preview deployments](https://xata.io/docs/automations/vercel-github-app.md): Connect Vercel preview deployments to Xata branches created by the GitHub App
+- [Create Branch](https://xata.io/docs/automations/ga-pr.md): GitHub Actions workflow for creating and managing development branches for pull requests
+- [Scheduled Clone](https://xata.io/docs/automations/ga-clone.md): GitHub Actions workflow for cloning databases on a schedule or on-demand
+- [Merge Readiness](https://xata.io/docs/automations/ga-check.md): GitHub Actions workflow for validating main branch status and migration readiness
+- [Scheduled Clone](https://xata.io/docs/automations/kubernetes-clone.md): Sample Kubernetes cron job to periodically copy the data from production to your production clone.
+- [Bulk Delete Branches](https://xata.io/docs/automations/ga-cleanup.md): GitHub Actions workflow for bulk deleting Xata branches with the Xata CLI, jq, and bash
+- [Xata for Agents](https://xata.io/docs/ai-agents/overview.md): Set up Xata for AI coding agents. Install the CLI, configure MCP, and use agent skills.
+- [Agent onboarding](https://xata.io/docs/ai-agents/onboarding.md): A guide for coding agents to help users get started with Xata, from installing the CLI to a working Postgres branch connected to their app.
+- [Agent Skills](https://xata.io/docs/ai-agents/agent-skills.md): Guided workflows that teach AI coding agents how to operate Xata.
+- [Claude Code](https://xata.io/docs/ai-agents/claude-code.md): Use Claude Code with isolated Xata branches and branch-scoped Postgres connection strings.
+- [Codex](https://xata.io/docs/ai-agents/codex.md): Use Codex with Xata branches for sandboxed coding sessions and database-aware tests.
+- [Cursor](https://xata.io/docs/ai-agents/cursor.md): Use Cursor with Xata branch connection strings for IDE and background-agent workflows.
+- [OpenCode](https://xata.io/docs/ai-agents/opencode.md): Use OpenCode with standard Postgres URLs and Xata CLI workflows.
+- [GitHub Copilot](https://xata.io/docs/ai-agents/github-copilot.md): Use GitHub Copilot with Xata per-PR branches and CI-backed database workflows.
+- [Windsurf](https://xata.io/docs/ai-agents/windsurf.md): Use Windsurf Cascade and Flows with repeatable Xata branch workflows.
+- [Cline](https://xata.io/docs/ai-agents/cline.md): Use Cline with approval-based Xata branch workflows in VS Code.
+- [Devin](https://xata.io/docs/ai-agents/devin.md): Use Devin with temporary Xata branches, scoped credentials, and explicit cleanup.
+- [Changelog](https://xata.io/docs/changelog.md): Stay up to date with the latest Xata features, fixes and changes
+- [Get list of organizations](https://xata.io/docs/api-reference/organizations/get-list-of-organizations.md): Retrieve the list of all organizations the authenticated user belongs to, including their IDs and names. This endpoint allows users to view all organizations they have access to.
+- [Create a new organization](https://xata.io/docs/api-reference/organizations/create-a-new-organization.md): Creates a new organization with the authenticated user as its single owner.
+- [Get organization details](https://xata.io/docs/api-reference/organizations/get-organization-details.md): Retrieve detailed information about a specific organization by its ID.
+- [Update organization details](https://xata.io/docs/api-reference/organizations/update-organization-details.md): Update information for an existing organization, such as its name.
+- [Delete an organization](https://xata.io/docs/api-reference/organizations/delete-an-organization.md): [Not implemented yet] Permanently delete an organization. This action cannot be undone.
+- [List members of an organization](https://xata.io/docs/api-reference/organizations/list-members-of-an-organization.md)
+- [Remove a member from an organization](https://xata.io/docs/api-reference/organizations/remove-a-member-from-an-organization.md)
+- [List invitations for an organization](https://xata.io/docs/api-reference/organizations/list-invitations-for-an-organization.md): Retrieve all invitations for an organization with optional filtering by status, email, and name.
+- [Send an invitation to join an organization](https://xata.io/docs/api-reference/organizations/send-an-invitation-to-join-an-organization.md): Send an invitation email to a user to join an organization.
+- [Get details of a specific invitation](https://xata.io/docs/api-reference/organizations/get-details-of-a-specific-invitation.md): Retrieve detailed information about a specific invitation by its ID.
+- [Delete an invitation](https://xata.io/docs/api-reference/organizations/delete-an-invitation.md): Permanently delete an invitation record.
+- [Resend an invitation](https://xata.io/docs/api-reference/organizations/resend-an-invitation.md): Resend a pending invitation with a fresh expiration time.
+- [Request organization deletion](https://xata.io/docs/api-reference/organizations/request-organization-deletion.md): Flags the organization for deletion. The request is rejected if the organization still has active projects. The subscription is cancelled immediately and any outstanding invoices are collected automatically after a grace period that prevents missing delayed usage reports. Deletion completes asynchro…
+- [Get organization membership limits](https://xata.io/docs/api-reference/organizations/get-organization-membership-limits.md): Retrieves the membership limits for the specified organization (maximum members and invitations).
+- [List API Keys for an organization](https://xata.io/docs/api-reference/api-keys/list-api-keys-for-an-organization.md): Retrieve a list of API keys for a specific organization.
+- [Create an Organization API Key](https://xata.io/docs/api-reference/api-keys/create-an-organization-api-key.md): Create a new API key for an organization.
+- [Bulk delete API Keys for an organization](https://xata.io/docs/api-reference/api-keys/bulk-delete-api-keys-for-an-organization.md): Delete multiple API keys in a single request.
+- [List API Keys for the authenticated user](https://xata.io/docs/api-reference/api-keys/list-api-keys-for-the-authenticated-user.md): Retrieve a list of API keys for the authenticated user.
+- [Create a User API Key](https://xata.io/docs/api-reference/api-keys/create-a-user-api-key.md): Create a new API key for the authenticated user.
+- [Bulk delete API Keys for the authenticated user](https://xata.io/docs/api-reference/api-keys/bulk-delete-api-keys-for-the-authenticated-user.md): Delete multiple API keys in a single request.
+- [Execute SQL query](https://xata.io/docs/api-reference/gateway/execute-sql-query.md): Execute a single SQL query or a batch of queries against a PostgreSQL branch.
+- [WebSocket wire protocol proxy](https://xata.io/docs/api-reference/gateway/websocket-wire-protocol-proxy.md): Upgrade to a WebSocket connection that proxies the PostgreSQL wire protocol. The client sends and receives PostgreSQL protocol messages over binary WebSocket frames.
+- [Send an MCP message](https://xata.io/docs/api-reference/mcp/send-an-mcp-message.md): Handle a single JSON-RPC 2.0 message from an MCP client, per the MCP [Streamable HTTP transport](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports).
+- [Get available regions](https://xata.io/docs/api-reference/projects/get-available-regions.md): Retrieves a list of all regions where new branches can be deployed for the specified organization.
+- [Get available instance types](https://xata.io/docs/api-reference/projects/get-available-instance-types.md): Retrieves a list of all instance types for the specified organization and region
+- [Get available images](https://xata.io/docs/api-reference/projects/get-available-images.md): Retrieves a list of all images for the specified organization and region
+- [Get organization resource limits](https://xata.io/docs/api-reference/projects/get-organization-resource-limits.md): Retrieves the effective org-level limits, including project creation limits and branch configuration defaults. Project-specific overrides are not applied here.
+- [List all projects](https://xata.io/docs/api-reference/projects/list-all-projects.md): Retrieves a list of all projects within the specified organization that the authenticated user has access to.
+- [Create a new project](https://xata.io/docs/api-reference/projects/create-a-new-project.md): Creates a new project within the specified organization. Projects are containers for database branches and resources.
+- [Get project details](https://xata.io/docs/api-reference/projects/get-project-details.md): Retrieves detailed information about a specific project by its ID within the specified organization.
+- [Delete a project](https://xata.io/docs/api-reference/projects/delete-a-project.md): Permanently deletes a specific project by its ID and all associated resources including branches and databases. This action cannot be undone.
+- [Update project details](https://xata.io/docs/api-reference/projects/update-project-details.md): Updates the details of a specific project by its ID, such as changing its name.
+- [Get project resource limits](https://xata.io/docs/api-reference/projects/get-project-resource-limits.md): Retrieves the effective resource limits for the specified project, merging organization-level overrides with any project-specific overrides.
+- [List all branches](https://xata.io/docs/api-reference/branches/list-all-branches.md): Retrieves a list of all branches within the specified project, including their metadata, region, and access settings.
+- [Create a new branch](https://xata.io/docs/api-reference/branches/create-a-new-branch.md): Creates a new branch within the specified project. Branches can be created from scratch or derived from an existing parent branch.
+- [Get branch details](https://xata.io/docs/api-reference/branches/get-branch-details.md): Retrieves detailed information about a specific branch by its ID, including status, connection string, and configuration.
+- [Delete a branch](https://xata.io/docs/api-reference/branches/delete-a-branch.md): Permanently deletes a specific branch by its ID and all associated data. This action cannot be undone.
+- [Update branch details](https://xata.io/docs/api-reference/branches/update-branch-details.md): Updates the configuration of a specific branch by its ID, such as changing its name, description, or resource allocation.
+- [Retrieve branch credentials](https://xata.io/docs/api-reference/branches/retrieve-branch-credentials.md)
+- [Rotate branch credentials](https://xata.io/docs/api-reference/branches/rotate-branch-credentials.md): Triggers a credential rotation for the branch database user. The new credentials can be retrieved via the credentials endpoint after rotation completes.
+- [Retrieve branch metrics](https://xata.io/docs/api-reference/branches/retrieve-branch-metrics.md): Returns time-series data for one or more metrics of a branch.
+- [Retrieve branch logs](https://xata.io/docs/api-reference/branches/retrieve-branch-logs.md)
+- [Get PostgreSQL configuration details](https://xata.io/docs/api-reference/branches/get-postgresql-configuration-details.md): Retrieves detailed information about the current PostgreSQL configuration parameters for a branch, including parameter types, descriptions, acceptable ranges, default values, and current values.
+- [Command-line Interface](https://xata.io/docs/cli/index.md): Complete reference for the Xata CLI
+- [init](https://xata.io/docs/cli/init.md): Link this folder to a project and branch
+- [auth](https://xata.io/docs/cli/auth.md): Authenticate with Xata
+- [organization](https://xata.io/docs/cli/organization.md): Create, list, and manage organizations
+- [project](https://xata.io/docs/cli/project.md): Create, list, and manage projects
+- [branch](https://xata.io/docs/cli/branch.md): Create, list, and manage Xata branches
+- [keys](https://xata.io/docs/cli/keys.md): Create, list, and delete API keys
+- [roll](https://xata.io/docs/cli/roll.md): Run pgroll to manage PostgreSQL schema migrations
+- [clone](https://xata.io/docs/cli/clone.md): Clone another PostgreSQL database with anonymization
+- [stream](https://xata.io/docs/cli/stream.md): Run pgstream to stream PostgreSQL data to another destination
+- [status](https://xata.io/docs/cli/status.md): Show the organization, project, and branch this folder uses
+- [version](https://xata.io/docs/cli/version.md): Get the version of the Xata CLI, pgroll and pgstream
+- [checkout](https://xata.io/docs/cli/checkout.md): Check out a branch in this folder
+- [scratch](https://xata.io/docs/cli/scratch.md): Run SQL or a Postgres client command against a temporary scratch branch
+- [upgrade](https://xata.io/docs/cli/upgrade.md): Upgrade the Xata CLI
+- [completions](https://xata.io/docs/cli/completions.md): Install or uninstall shell completions for the Xata CLI
+- [Overview](https://xata.io/docs/opensource/pgstream/overview.md): Postgres replication with DDL changes
+- [Architecture](https://xata.io/docs/opensource/pgstream/docs/architecture.md)
+- [CLI](https://xata.io/docs/opensource/pgstream/docs/cli.md)
+- [Configuration](https://xata.io/docs/opensource/pgstream/docs/configuration.md)
+- [Observability](https://xata.io/docs/opensource/pgstream/docs/Observability.md)
+- [Privileges](https://xata.io/docs/opensource/pgstream/docs/privileges.md)
+- [Snapshots](https://xata.io/docs/opensource/pgstream/docs/snapshots.md)
+- [Transformers](https://xata.io/docs/opensource/pgstream/docs/transformers.md)
+- [Glossary](https://xata.io/docs/opensource/pgstream/docs/glossary.md)
+- [PostgreSQL anonymization](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_transformer.md)
+- [PostgreSQL snapshots](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_snapshot.md)
+- [Replication to PostgreSQL](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md)
+- [Replication to OpenSearch](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_opensearch.md)
+- [Replication to webhooks](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_webhooks.md)
+- [Replication using Kafka](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_kafka.md)
+- [AWS](https://xata.io/docs/opensource/pgstream/docs/aws.md)
+- [GCP CloudSQL](https://xata.io/docs/opensource/pgstream/docs/gcp_cloudsql.md)
+- [Neon](https://xata.io/docs/opensource/pgstream/docs/neon.md)
+- [Xata](https://xata.io/docs/opensource/pgstream/docs/xata.md)
+- [v1.4.0](https://xata.io/docs/opensource/pgstream/docs/releases/v1.4.0.md): pgstream v1.4.0 release notes
+- [v1.3.1](https://xata.io/docs/opensource/pgstream/docs/releases/v1.3.1.md): pgstream v1.3.1 release notes
+- [v1.3.0](https://xata.io/docs/opensource/pgstream/docs/releases/v1.3.0.md): pgstream v1.3.0 release notes
+- [v1.2.5](https://xata.io/docs/opensource/pgstream/docs/releases/v1.2.5.md): pgstream v1.2.5 release notes
+- [v1.2.4](https://xata.io/docs/opensource/pgstream/docs/releases/v1.2.4.md): pgstream v1.2.4 release notes
+- [v1.2.3](https://xata.io/docs/opensource/pgstream/docs/releases/v1.2.3.md): pgstream v1.2.3 release notes
+- [v1.2.2](https://xata.io/docs/opensource/pgstream/docs/releases/v1.2.2.md): pgstream v1.2.2 release notes
+- [v1.2.1](https://xata.io/docs/opensource/pgstream/docs/releases/v1.2.1.md): pgstream v1.2.1 release notes
+- [v1.2.0](https://xata.io/docs/opensource/pgstream/docs/releases/v1.2.0.md): pgstream v1.2.0 release notes
+- [v1.1.1](https://xata.io/docs/opensource/pgstream/docs/releases/v1.1.1.md)
+- [v1.1.0](https://xata.io/docs/opensource/pgstream/docs/releases/v1.1.0.md): pgstream v1.1.0 release notes
+- [v1.0.3](https://xata.io/docs/opensource/pgstream/docs/releases/v1.0.3.md): pgstream v1.0.3 release notes
+- [v1.0.2](https://xata.io/docs/opensource/pgstream/docs/releases/v1.0.2.md): pgstream v1.0.2 release notes
+- [v1.0.1](https://xata.io/docs/opensource/pgstream/docs/releases/v1.0.1.md): pgstream v1.0.1 release notes
+- [v1.0.0](https://xata.io/docs/opensource/pgstream/docs/releases/v1.0.0.md)
+
+## OpenAPI Specs
+
+- [openapi](https://api.xata.tech/openapi.json)

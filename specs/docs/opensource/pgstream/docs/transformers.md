@@ -1,0 +1,1265 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://xata.io/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Transformers
+
+![transformer diagram](https://raw.githubusercontent.com/xataio/pgstream/main/docs/img/pgstream_transformer_diagram.svg)
+
+pgstream supports column value transformations to anonymize or mask sensitive data during replication and snapshots. This is particularly useful for compliance with data privacy regulations.
+
+pgstream integrates with existing transformer open source libraries, such as [greenmask](https://github.com/GreenmaskIO/greenmask), [neosync](https://github.com/nucleuscloud/neosync) and [go-masker](https://github.com/ggwhite/go-masker), to leverage a large amount of transformation capabilities, as well as having support for custom transformations.
+
+⚠️ Most transformers do **not** preserve uniqueness. Applying one to a column covered by a unique index or primary key produces duplicate key violations. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
+
+## Uniqueness and unique indexes
+
+Anonymization is lossy by design, and that conflicts directly with unique constraints. Masking `609898123456` with `masking` type `id` yields `609898****`: the transformer keeps a 6 character prefix, so **every** source value sharing that prefix becomes the same masked value. On a column covered by a unique index the load then fails with `duplicate key value violates unique constraint`, part way through the data, long after the run started.
+
+Each transformer declares how it behaves with respect to uniqueness:
+
+| Uniqueness       | Meaning                                                                                                                                                               | Validation |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `preserved`      | Distinct inputs always produce distinct outputs. Safe on unique columns.                                                                                              | passes     |
+| `not_guaranteed` | Output is random, hashed, or driven by user supplied logic. Duplicates are possible, at the birthday bound of the output space (which usually depends on parameters). | warns      |
+| `lossy`          | Distinct inputs are mapped to the same output by construction: partial masks, fixed literals, small value sets, name dictionaries.                                    | errors     |
+
+| Transformer                | Uniqueness       |
+| -------------------------- | ---------------- |
+| `encrypted_aes_siv`        | `preserved`      |
+| `email`                    | `not_guaranteed` |
+| `greenmask_date`           | `not_guaranteed` |
+| `greenmask_float`          | `not_guaranteed` |
+| `greenmask_integer`        | `not_guaranteed` |
+| `greenmask_string`         | `not_guaranteed` |
+| `greenmask_unix_timestamp` | `not_guaranteed` |
+| `greenmask_utc_timestamp`  | `not_guaranteed` |
+| `greenmask_uuid`           | `not_guaranteed` |
+| `hstore`                   | `not_guaranteed` |
+| `json`                     | `not_guaranteed` |
+| `neosync_email`            | `not_guaranteed` |
+| `neosync_string`           | `not_guaranteed` |
+| `pg_anonymizer`            | `not_guaranteed` |
+| `phone_number`             | `not_guaranteed` |
+| `string`                   | `not_guaranteed` |
+| `template`                 | `not_guaranteed` |
+| `greenmask_boolean`        | `lossy`          |
+| `greenmask_choice`         | `lossy`          |
+| `greenmask_firstname`      | `lossy`          |
+| `literal_string`           | `lossy`          |
+| `masking`                  | `lossy`          |
+| `neosync_firstname`        | `lossy`          |
+| `neosync_fullname`         | `lossy`          |
+| `neosync_lastname`         | `lossy`          |
+
+When a source Postgres URL is configured, pgstream reads the unique indexes, unique constraints and primary keys of every table in the transformation rules and checks them against the configured transformers. Columns with no rule, or with a `noop` rule, keep their original value and are never flagged. Run the check on its own with:
+
+```sh theme={null}
+pgstream validate rules -c pg2pg.yaml
+```
+
+With a **Postgres target**, a `lossy` transformer on a covered column fails the rules with `transformation rules break a unique index`, because the target recreates the source's indexes and the load would hit a duplicate key. With any **other target** (Kafka, Elasticsearch/OpenSearch, webhooks) there is no unique index to violate, so the same finding is reported as a warning and does not block the pipeline. A `not_guaranteed` transformer is always a warning.
+
+To keep a `lossy` transformer on a covered column anyway — because the target does not enforce that index, or because the values are known not to collide — set `allow_uniqueness_loss` on that column rule:
+
+```yaml theme={null}
+column_transformers:
+  pms_patient_id:
+    name: masking
+    parameters:
+      type: id
+    allow_uniqueness_loss: true
+```
+
+### Keeping a column unique
+
+If you need an anonymized column to stay unique, use `encrypted_aes_siv`: it is deterministic, so equality relationships survive across rows, tables and runs, and no two distinct inputs share a token. Its output is a base64 token rather than a value in the original format.
+
+⚠️ `encrypted_aes_siv` is **pseudonymization, not anonymization**. The output is reversible by anyone holding `key_hex`, so it remains personal data, and because tokens are stable they can be correlated across tables and across successive dumps. Treat `key_hex` as a secret: inject it from a secret store rather than committing it in the rules file, use a different key per environment, and set `associated_data` (for example `schema.table.column`) so tokens cannot be correlated between columns.
+
+### What the check does not cover
+
+* **Expression indexes.** A unique index over an expression, such as `lower(email)`, cannot be resolved to a column, so pgstream reports a warning naming the index and leaves it to you to verify.
+* **Target-only indexes.** The check reads the *source* catalog. A unique index that exists only on the target is not seen.
+* **Indexes created after startup.** Rules are validated once when the pipeline starts. A unique index added to the source later is not re-checked.
+* **Exclusion constraints** with equality semantics (`EXCLUDE (email WITH =)`) are not treated as unique indexes.
+
+If a load fails with `duplicate key value violates unique constraint` on a transformed column, run `pgstream validate rules` against the source to see which rules the check flags.
+
+## Supported transformers
+
+### PostgreSQL Anonymizer
+
+#### pg\_anonymizer
+
+**Description:** Integrates with the [PostgreSQL Anonymizer](https://postgresql-anonymizer.readthedocs.io/en/stable/) extension to provide advanced data anonymization using built-in anonymizer functions.
+
+⚠️ This transformer requires a PostgreSQL database connection to execute transformations, which may impact performance compared to other transformers in this document that generate values locally without database queries.
+
+| Supported PostgreSQL types                                                                                    |
+| ------------------------------------------------------------------------------------------------------------- |
+| Dependent on [anonymizer function](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/) |
+
+| Parameter           | Type   | Default    | Required | Values                                                                                              |
+| ------------------- | ------ | ---------- | -------- | --------------------------------------------------------------------------------------------------- |
+| anon\_function      | string | N/A        | Yes      | Any valid anon.\* function                                                                          |
+| postgres\_url       | string | N/A        | Yes      | PostgreSQL connection URL                                                                           |
+| salt                | string | ""         | No       | Salt for deterministic functions                                                                    |
+| hash\_algorithm     | string | sha256     | No       | Algorithm for anon.digest. One of md5, sha224, sha256, sha384, sha512                               |
+| interval            | string | N/A        | No       | Time interval for anon.dnoise function                                                              |
+| ratio               | float  | N/A        | No       | Noise ratio for anon.noise function                                                                 |
+| sigma               | float  | N/A        | No       | Blur sigma for anon.image\_blur function                                                            |
+| mask                | string | N/A        | No       | Mask character for anon.partial function                                                            |
+| mask\_prefix\_count | int    | 0          | No       | Prefix count for anon.partial function                                                              |
+| mask\_suffix\_count | int    | 0          | No       | Suffix count for anon.partial function                                                              |
+| min                 | string | N/A        | No       | Minimum value for anon.random\_\*\_between functions                                                |
+| max                 | string | N/A        | No       | Maximum value for anon.random\_\*\_between functions                                                |
+| range               | string | ""         | No       | Range for anon.random\_in\_\* functions                                                             |
+| locale              | string | en\_US     | No       | Locale for dummy supported functions. One of ar\_SA, en\_US, fr\_FR, ja\_JP, pt\_BR, zh\_CN, zh\_TW |
+| count               | int    | 0          | No       | Count parameter for functions like anon.random\_string and anon.lorem\_ipsum                        |
+| unit                | string | paragraphs | No       | Unit for anon.lorem\_ipsum function. One of characters, words, paragraphs                           |
+| prefix              | string | ""         | No       | Prefix for anon.random\_phone function                                                              |
+
+Notes:
+
+* The transformer executes functions directly in PostgreSQL, ensuring compatibility with all anonymizer features
+* Deterministic functions (pseudo\_\*, hash, digest) produce consistent output for the same input
+* Functions that don't require parameters (like anon.fake\_\*()) can be used without additional configuration
+
+**Prerequisites:**
+
+* PostgreSQL Anonymizer extension must be installed and enabled on the source (or the configured url)
+* Extension must be loaded in `shared_preload_libraries`
+* Run `SELECT anon.init();`in order to use the faking functions
+
+**Supported Functions:**
+
+* [Adding noise](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#adding-noise)
+* [Randomization](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#randomization)
+* [Faking](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#faking)
+* [Advanced faking](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#advanced-faking)
+* [Pseudoanonymization](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#pseudonymization)
+* [Generic hashing](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#generic-hashing)
+* [Partial scrambling](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#partial-scrambling)
+* [Image blurring](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#image-bluring)
+
+**Unsupported Functions:**
+
+* [Conditional masking](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#conditional-masking)
+* [Generalization](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/#generalization)
+
+**Example Configurations:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        first_name:
+          name: pg_anonymizer
+          parameters:
+            anon_function: anon.fake_first_name()
+        id:
+          name: pg_anonymizer
+          parameters:
+            anon_function: anon.digest
+            salt: salt
+            hash_algorithm: md5
+        phone:
+          name: pg_anonymizer
+          parameters:
+            anon_function: anon.random_phone
+            prefix: "+1-555-"
+        api_key:
+          name: pg_anonymizer
+          parameters:
+            anon_function: anon.random_string
+            count: 32
+        content:
+          name: pg_anonymizer
+          parameters:
+            anon_function: anon.lorem_ipsum
+            unit: "words"
+            count: 50
+        status:
+          name: pg_anonymizer
+          parameters:
+            anon_function: anon.random_in
+            range: "ARRAY['active', 'inactive', 'pending']"
+```
+
+**Input-Output Examples:**
+
+| Input Value        | Function Configuration                                                               | Output Value                          |
+| ------------------ | ------------------------------------------------------------------------------------ | ------------------------------------- |
+| `John`             | `anon_function: anon.fake_first_name()`                                              | `Michael` (random)                    |
+| `john@test.com`    | `anon_function: anon.pseudo_email, salt: "key123"`                                   | `alice@test.com` (deterministic)      |
+| `1234567890`       | `anon_function: anon.partial, mask: "*", mask_prefix_count: 3, mask_suffix_count: 3` | `123****890`                          |
+| `sensitive_data`   | `anon_function: anon.digest, salt: "key", hash_algorithm: "sha256"`                  | `a1b2c3d4e5f6...` (hash)              |
+| `100.50`           | `anon_function: anon.noise, ratio: 0.1`                                              | `95.23` (with 10% noise)              |
+| `2023-01-15`       | `anon_function: anon.dnoise, interval: "1 day"`                                      | `2023-01-16` (±1 day noise)           |
+| `password123`      | `anon_function: anon.hash`                                                           | `ef92b778bafe771e89245b89ecbc08a4...` |
+| `Alice Smith`      | `anon_function: anon.pseudo_first_name, salt: "s1"`                                  | `Bob Smith` (deterministic)           |
+| `user@company.com` | `anon_function: anon.partial_email`                                                  | `u***@company.com`                    |
+| `42`               | `anon_function: anon.random_int_between(1, 100)`                                     | `73` (random between 1-100)           |
+| `/path/image.jpg`  | `anon_function: anon.image_blur, sigma: 2.5`                                         | Blurred image data                    |
+| Any value          | `anon_function: anon.fake_company()`                                                 | `Acme Corporation` (random)           |
+| `25`               | `anon_function: anon.random_int_between, min: "18", max: "65"`                       | `42` (random between 18-65)           |
+| Any value          | `anon_function: anon.random_in, range: "ARRAY['A', 'B', 'C']"`                       | `B` (random from array)               |
+| Any value          | `anon_function: anon.lorem_ipsum, unit: "words", count: 5`                           | `Lorem ipsum dolor sit amet`          |
+| Any value          | `anon_function: anon.random_string, count: 8`                                        | `aB3xY9z1` (random string)            |
+| Any value          | `anon_function: anon.random_phone, prefix: "+1-555-"`                                | `+1-555-123-4567`                     |
+| `John`             | `anon_function: anon.fake_first_name_locale, locale: "fr_FR"`                        | `Pierre` (French name)                |
+
+### Greenmask
+
+#### greenmask\_boolean
+
+**Description:** Generates random or deterministic boolean values (`true` or `false`).
+
+**Uniqueness:** `lossy`. The output space has two values. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
+
+| Supported PostgreSQL types |
+| -------------------------- |
+| `boolean`                  |
+
+| Parameter | Type   | Default | Required | Values               |
+| --------- | ------ | ------- | -------- | -------------------- |
+| generator | string | random  | No       | random,deterministic |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        is_active:
+          name: greenmask_boolean
+          parameters:
+            generator: deterministic
+```
+
+**Input-Output Examples:**
+
+| Input Value | Configuration Parameters   | Output Value               |
+| ----------- | -------------------------- | -------------------------- |
+| `true`      | `generator: deterministic` | `false`                    |
+| `false`     | `generator: deterministic` | `true`                     |
+| `true`      | `generator: random`        | `true` or `false` (random) |
+
+#### greenmask\_choice
+
+**Description:** Randomly selects a value from a predefined list of choices.
+
+**Uniqueness:** `lossy`. Any table with more rows than choices produces duplicates. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
+
+| Supported PostgreSQL types          |
+| ----------------------------------- |
+| `text`, `varchar`, `char`, `bpchar` |
+
+| Parameter | Type      | Default | Required | Values               |
+| --------- | --------- | ------- | -------- | -------------------- |
+| generator | string    | random  | No       | random,deterministic |
+| choices   | string\[] | N/A     | Yes      | N/A                  |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: orders
+      column_transformers:
+        status:
+          name: greenmask_choice
+          parameters:
+            generator: random
+            choices: ["pending", "shipped", "delivered", "cancelled"]
+```
+
+**Input-Output Examples:**
+
+| Input Value | Configuration Parameters   | Output Value         |
+| ----------- | -------------------------- | -------------------- |
+| `pending`   | `generator: random`        | `shipped` (random)   |
+| `shipped`   | `generator: deterministic` | `pending`            |
+| `delivered` | `generator: random`        | `cancelled` (random) |
+
+#### greenmask\_date
+
+**Description:** Generates random or deterministic dates within a specified range.
+
+| Supported PostgreSQL types         |
+| ---------------------------------- |
+| `date`, `timestamp`, `timestamptz` |
+
+| Parameter  | Type                  | Default | Required | Values               |
+| ---------- | --------------------- | ------- | -------- | -------------------- |
+| generator  | string                | random  | No       | random,deterministic |
+| min\_value | string (`yyyy-MM-dd`) | N/A     | Yes      | N/A                  |
+| max\_value | string (`yyyy-MM-dd`) | N/A     | Yes      | N/A                  |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: events
+      column_transformers:
+        event_date:
+          name: greenmask_date
+          parameters:
+            generator: random
+            min_value: "2020-01-01"
+            max_value: "2025-12-31"
+```
+
+**Input-Output Examples:**
+
+| Input Value  | Configuration Parameters                                          | Output Value          |
+| ------------ | ----------------------------------------------------------------- | --------------------- |
+| `2023-01-01` | `generator: random, min_value: 2020-01-01, max_value: 2025-12-31` | `2021-05-15` (random) |
+| `2022-06-15` | `generator: deterministic`                                        | `2020-01-01`          |
+
+#### greenmask\_firstname
+
+**Description:** Generates random or deterministic first names, optionally filtered by gender.
+
+**Uniqueness:** `lossy`. Names come from a fixed dictionary and repeat well before a table of any size is exhausted. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
+
+| Supported PostgreSQL types          |
+| ----------------------------------- |
+| `text`, `varchar`, `char`, `bpchar` |
+
+| Parameter | Type   | Default | Required | Values               | Dynamic |
+| --------- | ------ | ------- | -------- | -------------------- | ------- |
+| generator | string | random  | No       | random,deterministic | No      |
+| gender    | string | Any     | No       | Any,Female,Male      | Yes     |
+
+`gender` can also be a dynamic parameter, referring to some other column. Please see the below example config.
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: employees
+      column_transformers:
+        first_name:
+          name: greenmask_firstname
+          parameters:
+            generator: deterministic
+          dynamic_parameters:
+            gender:
+              column: sex
+```
+
+**Input-Output Examples:**
+
+| Input Name | Configuration Parameters | Output Name |
+| ---------- | ------------------------ | ----------- |
+| `John`     | `preserve_gender: true`  | `Michael`   |
+| `Jane`     | `preserve_gender: true`  | `Emily`     |
+| `Alex`     | `preserve_gender: false` | `Jordan`    |
+| `Chris`    | `generator: random`      | `Taylor`    |
+
+#### greenmask\_float
+
+**Description:** Generates random or deterministic floating-point numbers within a specified range.
+
+| Supported PostgreSQL types |
+| -------------------------- |
+| `real`, `double precision` |
+
+| Parameter  | Type   | Default                                       | Required | Values               |
+| ---------- | ------ | --------------------------------------------- | -------- | -------------------- |
+| generator  | string | random                                        | No       | random,deterministic |
+| min\_value | float  | -3.40282346638528859811704183484516925440e+38 | No       | N/A                  |
+| max\_value | float  | 3.40282346638528859811704183484516925440e+38  | No       | N/A                  |
+
+#### greenmask\_integer
+
+**Description:** Generates random or deterministic integers within a specified range.
+
+| Supported PostgreSQL types     |
+| ------------------------------ |
+| `smallint`,`integer`, `bigint` |
+
+| Parameter  | Type   | Default     | Required | Values               |
+| ---------- | ------ | ----------- | -------- | -------------------- |
+| generator  | string | random      | No       | random,deterministic |
+| size       | int    | 4           | No       | 2,4                  |
+| min\_value | int    | -2147483648 | No       | N/A                  |
+| max\_value | int    | 2147483647  | No       | N/A                  |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: products
+      column_transformers:
+        stock_quantity:
+          name: greenmask_integer
+          parameters:
+            generator: random
+            min_value: 1
+            max_value: 1000
+```
+
+#### greenmask\_string
+
+**Description:** Generates random or deterministic strings with customizable length and character set.
+
+| Supported PostgreSQL types          |
+| ----------------------------------- |
+| `text`, `varchar`, `char`, `bpchar` |
+
+| Parameter   | Type   | Default                                                        | Required | Values               |
+| ----------- | ------ | -------------------------------------------------------------- | -------- | -------------------- |
+| generator   | string | random                                                         | No       | random,deterministic |
+| symbols     | string | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 | No       | N/A                  |
+| min\_length | int    | 1                                                              | No       | N/A                  |
+| max\_length | int    | 100                                                            | No       | N/A                  |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        username:
+          name: greenmask_string
+          parameters:
+            generator: random
+            min_length: 5
+            max_length: 15
+            symbols: "abcdefghijklmnopqrstuvwxyz1234567890"
+```
+
+#### greenmask\_unix\_timestamp
+
+**Description:** Generates random or deterministic unix timestamps.
+
+| Supported PostgreSQL types    |
+| ----------------------------- |
+| `smallint`,`integer`,`bigint` |
+
+| Parameter  | Type   | Default | Required | Values               |
+| ---------- | ------ | ------- | -------- | -------------------- |
+| generator  | string | random  | No       | random,deterministic |
+| min\_value | string | N/A     | Yes      | N/A                  |
+| max\_value | string | N/A     | Yes      | N/A                  |
+
+#### greenmask\_utc\_timestamp
+
+**Description:** Generates random or deterministic UTC timestamps.
+
+| Supported PostgreSQL types |
+| -------------------------- |
+| `timestamp`                |
+
+| Parameter      | Type               | Default | Required | Values                                                               |
+| -------------- | ------------------ | ------- | -------- | -------------------------------------------------------------------- |
+| generator      | string             | random  | No       | random,deterministic                                                 |
+| truncate\_part | string             | ""      | No       | nanosecond,microsecond,millisecond,second,minute,hour,day,month,year |
+| min\_timestamp | string (`RFC3339`) | N/A     | Yes      | N/A                                                                  |
+| max\_timestamp | string (`RFC3339`) | N/A     | Yes      | N/A                                                                  |
+
+#### greenmask\_uuid
+
+**Description:** Generates random or deterministic UUIDs.
+
+| Supported PostgreSQL types                 |
+| ------------------------------------------ |
+| `uuid`,`text`, `varchar`, `char`, `bpchar` |
+
+| Parameter | Type   | Default | Required | Values               |
+| --------- | ------ | ------- | -------- | -------------------- |
+| generator | string | random  | No       | random,deterministic |
+
+### Neosync
+
+#### neosync\_email
+
+**Description:** Anonymizes email addresses while optionally preserving length and domain.
+
+| Supported PostgreSQL types                    |
+| --------------------------------------------- |
+| `text`, `varchar`, `char`, `bpchar`, `citext` |
+
+| Parameter              | Type      | Default | Required | Values                           |
+| ---------------------- | --------- | ------- | -------- | -------------------------------- |
+| preserve\_length       | bool      | false   | No       |                                  |
+| preserve\_domain       | bool      | false   | No       |                                  |
+| excluded\_domains      | string\[] | N/A     | No       |                                  |
+| max\_length            | int       | 100     | No       |                                  |
+| email\_type            | string    | uuidv4  | No       | uuidv4,fullname,any              |
+| invalid\_email\_action | string    | 100     | No       | reject,passthrough,null,generate |
+| seed                   | int       | Rand    | No       |                                  |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: customers
+      column_transformers:
+        email:
+          name: neosync_email
+          parameters:
+            preserve_length: true
+            preserve_domain: true
+```
+
+**Input-Output Examples:**
+
+| Input Email            | Configuration Parameters                        | Output Email           |
+| ---------------------- | ----------------------------------------------- | ---------------------- |
+| `john.doe@example.com` | `preserve_length: true, preserve_domain: true`  | `abcd.efg@example.com` |
+| `jane.doe@company.org` | `preserve_length: false, preserve_domain: true` | `random@company.org`   |
+| `user123@gmail.com`    | `preserve_length: true, preserve_domain: false` | `abcde123@random.com`  |
+| `invalid-email`        | `invalid_email_action: passthrough`             | `invalid-email`        |
+| `invalid-email`        | `invalid_email_action: null`                    | `NULL`                 |
+| `invalid-email`        | `invalid_email_action: generate`                | `generated@random.com` |
+
+#### neosync\_firstname
+
+**Description:** Generates anonymized first names while optionally preserving length.
+
+**Uniqueness:** `lossy`. Names come from a fixed dictionary and repeat well before a table of any size is exhausted. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
+
+| Supported PostgreSQL types          |
+| ----------------------------------- |
+| `text`, `varchar`, `char`, `bpchar` |
+
+| Parameter        | Type | Default | Required |
+| ---------------- | ---- | ------- | -------- |
+| preserve\_length | bool | false   | No       |
+| max\_length      | int  | 100     | No       |
+| seed             | int  | Rand    | No       |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        first_name:
+          name: neosync_firstname
+          parameters:
+            preserve_length: true
+```
+
+#### neosync\_lastname
+
+**Description:** Generates anonymized last names while optionally preserving length.
+
+**Uniqueness:** `lossy`. Names come from a fixed dictionary and repeat well before a table of any size is exhausted. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
+
+| Supported PostgreSQL types          |
+| ----------------------------------- |
+| `text`, `varchar`, `char`, `bpchar` |
+
+| Parameter        | Type | Default | Required |
+| ---------------- | ---- | ------- | -------- |
+| preserve\_length | bool | false   | No       |
+| max\_length      | int  | 100     | No       |
+| seed             | int  | Rand    | No       |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        last_name:
+          name: neosync_lastname
+          parameters:
+            preserve_length: true
+```
+
+#### neosync\_fullname
+
+**Description:** Generates anonymized full names while optionally preserving length.
+
+**Uniqueness:** `lossy`. Names come from fixed dictionaries, so even first/last combinations repeat well before a large table is exhausted. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
+
+| Supported PostgreSQL types          |
+| ----------------------------------- |
+| `text`, `varchar`, `char`, `bpchar` |
+
+| Parameter        | Type | Default | Required |
+| ---------------- | ---- | ------- | -------- |
+| preserve\_length | bool | false   | No       |
+| max\_length      | int  | 100     | No       |
+| seed             | int  | Rand    | No       |
+
+max\_length must be greater than 2. If preserve\_length is set to true, generated value can might be longer than max\_length, depending on the input length.
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        full_name:
+          name: neosync_fullname
+          parameters:
+            preserve_length: true
+```
+
+#### neosync\_string
+
+**Description:** Generates anonymized strings with customizable length.
+
+| Supported PostgreSQL types          |
+| ----------------------------------- |
+| `text`, `varchar`, `char`, `bpchar` |
+
+| Parameter        | Type | Default | Required |
+| ---------------- | ---- | ------- | -------- |
+| preserve\_length | bool | false   | No       |
+| min\_length      | int  | 1       | No       |
+| max\_length      | int  | 100     | No       |
+| seed             | int  | Rand    | No       |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: logs
+      column_transformers:
+        log_message:
+          name: neosync_string
+          parameters:
+            min_length: 10
+            max_length: 50
+```
+
+### Xata
+
+#### template
+
+**Description:** Transforms the data using go templates
+
+| Supported PostgreSQL types             |
+| -------------------------------------- |
+| All types with a string representation |
+
+| Parameter | Type   | Default | Required |
+| --------- | ------ | ------- | -------- |
+| template  | string | N/A     | Yes      |
+
+This transformer can be used for any Postgres type as long as the given template produces a value with correct syntax for that column type. e.g It can be "5-10-2021" for a date column, or "3.14159265" for a double precision one.
+
+Template transformer supports a bunch of useful functions. Use `.GetValue` to refer to the value to be transformed. Use `.GetDynamicValue "<column_name>"` to refer to some other column. Other than the standard go template functions, there are many useful helper functions supported to be used with template transformer, thanks to `greenmask`'s huge set of [core functions](https://docs.greenmask.io/latest/built_in_transformers/advanced_transformers/custom_functions/core_functions/) including `masking` function by `go-masker` and various [random data generator functions](https://docs.greenmask.io/latest/built_in_transformers/advanced_transformers/custom_functions/faker_function/) powered by the open source library `faker`. Also, template transformer has support for the open source library [sprig](https://masterminds.github.io/sprig/) which has many useful helper functions.
+
+With the below example config `pgstream` masks values in the column `email` of the table `users`, using `go-masker`'s email masking function. But first, this template checks if there's a non-empty value to be used in the column `email`. If not, it simply looks for another column named `secondary_email` and uses that instead. Then we have another check to see if it's a `@xata` email or not. Finally masking the value, only if it's not a `@xata` email, passing it without a mask otherwise.
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        email:
+          name: template
+          parameters:
+            template: >
+              {{ $email := "" }}
+              {{- if and (ne .GetValue nil) (isString .GetValue) (gt (len .GetValue) 0) -}}
+                {{ $email = .GetValue }}
+              {{- else -}}
+                {{ $email = .GetDynamicValue "secondary_email" }}
+              {{- end -}}
+              {{- if (not (contains "@xata" $email)) -}}
+                {{ masking "email" $email }}
+              {{- else -}}
+                {{ $email }}
+              {{- end -}}
+```
+
+#### masking
+
+**Description:** Masks string values using the provided masking function.
+
+**Uniqueness:** `lossy`. Every type replaces part of the value with `*`, so all values sharing the untouched part collapse to the same output — `type: id` keeps only a 6 character prefix. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
+
+A `custom` mask that would cover zero characters (for example `mask_begin: 3` with `mask_end: 3`, or `unmask_begin: 0`) is rejected at startup: it leaves values completely unmasked, which silently defeats anonymization. Use the `noop` transformer if passing a column through untouched is what you want.
+
+| Supported PostgreSQL types          |
+| ----------------------------------- |
+| `text`, `varchar`, `char`, `bpchar` |
+
+**Parameter Details:**
+
+| Parameter | Type   | Default | Required | Values                                                                              |
+| --------- | ------ | ------- | -------- | ----------------------------------------------------------------------------------- |
+| type      | string | default | No       | custom, password, name, address, email, mobile, tel, id, credit\_card, url, default |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        email:
+          name: masking
+          parameters:
+            type: email
+```
+
+**Input-Output Examples:**
+
+| Input Value              | Configuration Parameters | Output Value           |
+| ------------------------ | ------------------------ | ---------------------- |
+| `aVeryStrongPassword123` | `type: password`         | `************`         |
+| `john.doe@example.com`   | `type: email`            | `joh****e@example.com` |
+| `Sensitive Data`         | `type: default`          | `**************`       |
+
+With `custom` type, the masking function is defined by the user, by providing beginning and end indexes for masking. If the input is shorter than the end index, the rest of the string will all be masked. See the third example below.
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        email:
+          name: masking
+          parameters:
+            type: custom
+            mask_begin: "4"
+            mask_end: "12"
+```
+
+**Input-Output Examples:**
+
+| Input Value             | Output Value            |
+| ----------------------- | ----------------------- |
+| `1234567812345678`      | `1234********5678`      |
+| `sensitive@example.com` | `sens********ample.com` |
+| `sensitive`             | `sens*****`             |
+
+If the begin index is not provided, it defaults to 0. If the end is not provided, it defaults to input length.
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        email:
+          name: masking
+          parameters:
+            type: custom
+            mask_end: "5"
+```
+
+| Input Value             | Output Value            |
+| ----------------------- | ----------------------- |
+| `1234567812345678`      | `*****67812345678`      |
+| `sensitive@example.com` | `*****tive@example.com` |
+| `sensitive`             | `*****tive`             |
+
+Alternatively, since input length may vary, user can provide relative beginning and end indexes, as percentages of the input length.
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        email:
+          name: masking
+          parameters:
+            type: custom
+            mask_begin: "15%"
+            mask_end: "85%"
+```
+
+| Input Value             | Output Value            |
+| ----------------------- | ----------------------- |
+| `1234567812345678`      | `12***********678`      |
+| `sensitive@example.com` | `sen***************com` |
+| `sensitive`             | `s******ve`             |
+
+Alternatively, user can provide unmask begin and end indexes. In that case, the specified part of the input will remain unmasked, while all the rest is masked.
+Mask and unmask parameters cannot be provided at the same time.
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        email:
+          name: masking
+          parameters:
+            type: custom
+            unmask_end: "3"
+```
+
+| Input Value             | Output Value            |
+| ----------------------- | ----------------------- |
+| `1234567812345678`      | `123*************`      |
+| `sensitive@example.com` | `sen******************` |
+| `sensitive`             | `sen******`             |
+
+#### json
+
+**Description:** Transforms json data with set and delete operations
+
+| Supported PostgreSQL types |
+| -------------------------- |
+| json, jsonb                |
+
+| Parameter  | Type  | Default | Required |
+| ---------- | ----- | ------- | -------- |
+| operations | array | N/A     | Yes      |
+
+Parameter for each operation:
+
+| Parameter         | Type    | Default | Required           | Values                         |
+| ----------------- | ------- | ------- | ------------------ | ------------------------------ |
+| operation         | string  | N/A     | Yes                | set, delete                    |
+| path              | string  | N/A     | Yes                | sjson syntax<sup>\*</sup>      |
+| skip\_not\_exist  | boolean | true    | No                 | true, false                    |
+| error\_not\_exist | boolean | false   | No                 | true, false                    |
+| value             | string  | N/A     | Yes<sup>\*\*</sup> | Any valid JSON representation  |
+| value\_template   | string  | N/A     | Yes<sup>\*\*</sup> | Any template with valid syntax |
+
+<sup>\*</sup>*Paths should follow [sjson syntax](https://github.com/tidwall/sjson#path-syntax)*
+
+<sup>\*\*</sup>*Either `value` or `value_template` must be provided if the operation is `set`. If both are provided, `value_template` takes precedence.*
+
+JSON transformer can be used for Postgres types json and jsonb. This transformer executes a list of given operations on the json data to be transformed.
+
+All operations must be either `set` or `delete`.
+`set` operations support literal values as well as templates, making use of `sprig` and `greenmask`'s function sets. See template transformer section for more details. Also, like the template transformer, `.GetValue` and `.GetDynamicValue` functions are supported. Unlike template transformer, here `.GetValue` refers to the value at given path, rather than the entire JSON object; whereas `.GetDynamicValue` is again used for referring to other columns.
+`delete` operations simply delete the object at the given path.
+Execution of an operation will be skipped if the given path does not exists and the parameter `skip_not_exist` is set to true, which is also the default behavior.
+Execution of an operation errors out if the given path does not exists and the parameter `error_not_exist` - which is false by default - is set to true; unless the operation is skipped already.
+
+JSON transformer uses [sjson](https://github.com/tidwall/sjson) library for executing the operations. Operation paths should follow the [synxtax rules of sjson](https://github.com/tidwall/sjson#path-syntax)
+
+With the below config `pgstream` transforms the json values in the column `user_info_json` of the table `users` by:
+
+* First, traversing all the items in the array named `purchases`, and for each element, setting value to "-" for key "item".
+* Then, deleting the object named "country" under the top-level object "address".
+* Completely masking the "city" value under object "address", using `go-masker`'s default masking function supported by `pgstream`'s templating.
+* Finally, setting the user's lastname after fetching it from some other column named `lastname`, using dynamic values support. Assuming there's such column, having the lastname info for users.
+
+Example input-output is given below the config.
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        user_info_json:
+          name: json
+          parameters:
+            operations:
+              - operation: set
+                path: "purchases.#.item"
+                value: "-"
+                error_not_exist: true
+              - operation: delete
+                path: "address.country"
+              - operation: set
+                path: "address.city"
+                value_template: '"{{ masking "default" .GetValue }}"'
+              - operation: set
+                path: "user.lastname"
+                value_template: '"{{ .GetDynamicValue "lastname" }}"'
+```
+
+For input JSON value,
+
+```json theme={null}
+{
+  "user": {
+    "firstname": "john",
+    "lastname": "unknown"
+  },
+  "residency": {
+    "city": "some city",
+    "country": "some country"
+  },
+  "purchases": [
+    {
+      "item": "book",
+      "price": 10
+    },
+    {
+      "item": "pen",
+      "price": 2
+    }
+  ]
+}
+```
+
+the JSON transformer with above config produces output:
+
+```json theme={null}
+{
+  "user": {
+    "firstname": "john",
+    "lastname": "doe"
+  },
+  "residency": {
+    "city": "*********"
+  },
+  "purchases": [
+    {
+      "item": "-",
+      "price": 10
+    },
+    {
+      "item": "-",
+      "price": 2
+    }
+  ]
+}
+```
+
+#### hstore
+
+**Description:** Transforms hstore data with set and delete operations
+
+| Supported PostgreSQL types |
+| -------------------------- |
+| hstore                     |
+
+| Parameter  | Type  | Default | Required |
+| ---------- | ----- | ------- | -------- |
+| operations | array | N/A     | Yes      |
+
+Parameter for each operation:
+
+| Parameter         | Type         | Default | Required         | Values                         |
+| ----------------- | ------------ | ------- | ---------------- | ------------------------------ |
+| operation         | string       | N/A     | Yes              | set, delete                    |
+| key               | string       | N/A     | Yes              |                                |
+| skip\_not\_exist  | boolean      | true    | No               | true, false                    |
+| error\_not\_exist | boolean      | false   | No               | true, false                    |
+| value             | string, null | N/A     | Yes<sup>\*</sup> | Any string or null             |
+| value\_template   | string       | N/A     | Yes<sup>\*</sup> | Any template with valid syntax |
+
+<sup>\*</sup>*Either `value` or `value_template` must be provided if the operation is `set`. If both are provided, `value_template` takes precedence.*
+
+Hstore transformer can be used for Postgres type hstore. This transformer executes a list of given operations on the hstore data to be transformed.
+
+All operations must be either `set` or `delete`.
+`set` operations support literal values as well as templates, making use of `sprig` and `greenmask`'s function sets. See template transformer section for more details. Also, like the template transformer, `.GetValue` and `.GetDynamicValue` functions are supported. Unlike template transformer, here `.GetValue` refers to the value for the given key, rather than the entire Hstore object; whereas `.GetDynamicValue` is again used for referring to other columns.
+`delete` operations simply delete the pair with the given key.
+Execution of an operation will be skipped if the given key does not exists and the parameter `skip_not_exist` is set to true, which is also the default behavior.
+Execution of an operation errors out if the given key does not exists and the parameter `error_not_exist` - which is false by default - is set to true; unless the operation is skipped already.
+
+A limitation to be aware of: When using hstore transformer templates, you cannot set a value to the string literal "\<no value>". This is because Go templates produce "\<no value>" as output when the result is `nil`, creating an ambiguity. In such cases, `pgstream` will interpret it as `nil` and set the hstore value to `NULL` rather than storing the actual string "\<no value>".
+
+With the below config `pgstream` transforms the hstore values in the column `attributes` of the table `users` by:
+
+* First, updating the value for key "email" to the masked version of it, using email masking function. If the key "email" is not found, it simply ignores it, since `error_not_exist` is not set to true explicitly and it is false by default.
+* Then, deleting the pair where the key is "public\_key". If there's no such key, errors out, because the parameter "error\_not\_exist" is set to true.
+* Completely masking the value for key "private\_key", using `go-masker`'s default masking function supported by `pgstream`'s templating.
+* Finally, updating the value for key "newKey" to "newValue". Since "error\_not\_exist" is false by default, and there is no such key in the example below, this operation will be done by adding a new key-value pair.
+
+Example input-output is given below the config.
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  validation_mode: relaxed
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        attributes:
+          name: hstore
+          parameters:
+            operations:
+              - operation: set
+                key: "email"
+                value_template: '{{masking "email" .GetValue}}'
+              - operation: delete
+                key: "public_key"
+                error_not_exist: true
+              - operation: set
+                key: "private_key"
+                value_template: '{{masking "default" .GetValue}}'
+              - operation: set
+                key: "newKey"
+                value: "newValue"
+```
+
+For input hstore value,
+
+```
+  public_key => 12345,
+  private_key => 12345abcdefg,
+  email => user@email.com
+```
+
+the hstore transformer with above config produces output:
+
+```
+  private_key => ************,
+  email => use***@email.com
+  newKey => newValue
+```
+
+#### literal\_string
+
+**Description:** Transforms all values into the given constant value.
+
+**Uniqueness:** `lossy`. Every value becomes the same literal. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
+
+| Supported PostgreSQL types             |
+| -------------------------------------- |
+| All types with a string representation |
+
+| Parameter | Type   | Default | Required |
+| --------- | ------ | ------- | -------- |
+| literal   | string | N/A     | Yes      |
+
+Below example makes all values in the JSON column `log_message` to become `{'error': null}`.
+This transformer can be used for any Postgres type as long as the given string literal has the correct syntax for that type. e.g It can be "5-10-2021" for a date column, or "3.14159265" for a double precision one.
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: logs
+      column_transformers:
+        log_message:
+          name: literal_string
+          parameters:
+            literal: "{'error': null}"
+```
+
+#### phone\_number
+
+**Description:** Generates anonymized phone numbers with customizable length.
+
+| Supported PostgreSQL types          |
+| ----------------------------------- |
+| `text`, `varchar`, `char`, `bpchar` |
+
+| Parameter   | Type   | Default | Required | Values                | Dynamic |
+| ----------- | ------ | ------- | -------- | --------------------- | ------- |
+| prefix      | string | ""      | No       | N/A                   | Yes     |
+| min\_length | int    | 6       | No       | N/A                   | No      |
+| max\_length | int    | 10      | No       | N/A                   | No      |
+| generator   | string | random  | No       | random, deterministic | No      |
+
+If the prefix is set, this transformer will always generate phone numbers starting with the prefix.
+`prefix` can also be a dynamic parameter, referring to some other column. Please see the below example config.
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: users
+      column_transformers:
+        phone:
+          name: phone_number
+          parameters:
+            min_length: 9
+            max_length: 12
+            generator: deterministic
+          dynamic_parameters:
+            gender:
+              column: country_code
+```
+
+#### email
+
+**Description:** Anonymizes email addresses while optionally excluding domain to anonymize.
+
+| Supported PostgreSQL types                    |
+| --------------------------------------------- |
+| `text`, `varchar`, `char`, `bpchar`, `citext` |
+
+| Parameter           | Type   | Default        | Required | Values |
+| ------------------- | ------ | -------------- | -------- | ------ |
+| replacement\_domain | string | "@example.com" | No       |        |
+| exclude\_domain     | string | ""             | No       |        |
+| salt                | string | "defaultsalt"  | No       |        |
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: customers
+      column_transformers:
+        email:
+          name: email
+          parameters:
+            exclude_domain: "example.com"
+            salt: "helloworld"
+```
+
+**Input-Output Examples:**
+
+| Input Email            | Configuration Parameters                                                               | Output Email                          |
+| ---------------------- | -------------------------------------------------------------------------------------- | ------------------------------------- |
+| `john.doe@company.org` | `exclude_domain: "company.org", salt: "helloworld"`                                    | `john.doe@company.org`                |
+| `jane.doe@company.org` | `exclude_domain: "exclude.com", salt: "helloworld"`                                    | `T79P9zlFWzmT0yCUDMEE7S@example.com`  |
+| `jane.doe@company.org` | `exclude_domain: "exclude.com", salt: "helloworld", replacement_domain: "@random.com"` | `6EIWw5lEa8nsY9JDOm5@random.com`      |
+| `invalid-email`        | `exclude_domain: "exclude.com", salt: "helloworld"`                                    | `1fk5VLgTeoRQCCvqXFoToC1@example.com` |
+| `invalid-email`        | `exclude_domain: "exclude.com", salt: "helloworld", replacement_domain: "@random.com"` | `6EIWw5lEa8nsY9JDOm5@random.com`      |
+
+#### encrypted\_aes\_siv
+
+**Description:** Encrypts values with AES-SIV (RFC 5297), a deterministic authenticated encryption scheme. The same input, key and associated data always produce the same token, so equality relationships between column values are preserved across rows, tables and runs — while remaining reversible by holders of the key, unlike hashing. Tokens are authenticated: tampered or forged values fail decryption. The output is the ciphertext encoded as unpadded base64url, safe for URLs and file names.
+
+**Uniqueness:** `preserved`. Encryption is reversible with the key, so two distinct plaintexts cannot share a token. This is the only transformer that never collides on a column covered by a unique index. Note that being reversible makes it pseudonymization rather than anonymization — see [Keeping a column unique](#keeping-a-column-unique).
+
+| Supported PostgreSQL types                   |
+| -------------------------------------------- |
+| `text`, `varchar`, `char`, `bpchar`, `bytea` |
+
+**Note on length-constrained columns:** the token is always longer than the input — `ceil(4 × (input_length + 16) / 3)` characters (36 for an 11-character input, 22 minimum). Length-constrained columns (`varchar(n)`, `char(n)`) must be wide enough to hold the expanded token or writes to the target will fail; prefer `text` columns.
+
+For `bytea` columns the raw bytes are encrypted (the transformer normalizes the hex-text form delivered during replication and the raw bytes delivered during snapshots to the same plaintext), and the token is stored as the ASCII bytes of the base64url text.
+
+| Parameter        | Type   | Default | Required |
+| ---------------- | ------ | ------- | -------- |
+| key\_hex         | string | N/A     | Yes      |
+| associated\_data | string | ""      | No       |
+
+`key_hex` is the 64-byte AES-SIV key, hex-encoded (128 characters), e.g. generated with `openssl rand -hex 64`. AES-SIV requires the full 64-byte key (RFC 5297); shorter keys are rejected.
+
+`associated_data` is authenticated but not encrypted: a token minted with one associated data value fails decryption under another. Use it to bind tokens to a context (such as a table/column name) so they cannot be replayed elsewhere.
+
+**Security note:** the encryption is deterministic by design — equal inputs produce equal tokens, which reveals equality (and only equality) of the underlying values. Anyone holding the key can decrypt the tokens, so the anonymization guarantee is key custody: load the key from a secret manager and never store it alongside the transformed data.
+
+**Example Configuration:**
+
+```yaml theme={null}
+transformations:
+  table_transformers:
+    - schema: public
+      table: orders
+      column_transformers:
+        file_path:
+          name: encrypted_aes_siv
+          parameters:
+            # example key only — generate your own and load it from a secret store
+            key_hex: "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f"
+            associated_data: "public.orders.file_path"
+```
+
+**Input-Output Examples:**
+
+| Input         | Configuration Parameters                                                               | Output                                 |
+| ------------- | -------------------------------------------------------------------------------------- | -------------------------------------- |
+| `hello world` | `key_hex: "000102…3e3f"`, no `associated_data`                                         | `Hc5d96xIxu2ute1RbFuenEftGxw-P__m1Vv_` |
+| `hello world` | `key_hex: "000102…3e3f"`, `associated_data: "public.orders.file_path"` (example above) | `AsC2hoq-Y9V0iqK6JmNIxq0Fsr3SFPo27QNq` |
+
+Every run with the same key and parameters produces the same output. Tokens can be decrypted with any RFC 5297 AES-SIV implementation, for example Tink's `daead/subtle` package in Go.
+
+### Transformation rules
+
+The rules for the transformers are defined in a dedicated yaml file with the following format:
+
+```yaml theme={null}
+transformations:
+  infer_from_security_labels: false # whether to infer anonymization rules from Postgres `anon` security labels. Requires a live connection to the source database. Defaults to false
+  dump_inferred_rules: false # if set, dumps the inferred anonymization rules to a file in YAML format for debugging purposes. The file will be named `inferred_anon_transformation_rules.yaml` and will be created in the directory where pgstream is run. Defaults to false
+  validation_mode: <validation_mode> # Validation mode for the transformation rules. Can be one of strict, relaxed or table_level. Defaults to relaxed if not provided.
+  table_transformers: # List of table transformations
+    - schema: <schema_name> # Name of the table schema
+      table: <table_name> # Name of the table
+      validation_mode: <validation_mode> # To be used when the global validation_mode is set to `table_level`. Can be one of strict or relaxed
+      column_transformers: # List of column transformations
+        <column_name>: # Name of the column to which the transformation will be applied
+          name: <transformer_name> # Name of the transformer to be applied to the column. If no transformer needs to be applied on strict validation mode, it can be left empty or use `noop`
+          allow_uniqueness_loss: false # Whether to allow a transformer that can produce duplicates on a column covered by a unique index. Defaults to false. See "Uniqueness and unique indexes"
+          parameters: # Transformer parameters as defined in the supported transformers documentation
+            <transformer_parameter>: <transformer_parameter_value>
+```
+
+When the `infer_from_security_labels` option is enabled, the table transformers will be parsed from the source Postgres [`SECURITY LABELS`](https://www.postgresql.org/docs/current/sql-security-label.html) for the [`anon` extension](https://postgresql-anonymizer.readthedocs.io/en/stable/declare_masking_rules/). If the option is not enabled, the table transformers need to be explicitly provided.
+
+Below is a complete example of a transformation rules YAML file:
+
+```yaml theme={null}
+transformations:
+  infer_from_security_labels: false # whether to infer anonymization rules from Postgres `anon` security labels. Requires a live connection to the source database. Defaults to false
+  dump_inferred_rules: false # if set, dumps the inferred anonymization rules to a file in YAML format for debugging purposes. The file will be named `inferred_anon_transformation_rules.yaml` and will be created in the directory where pgstream is run. Defaults to false
+  validation_mode: table_level
+  table_transformers:
+    - schema: public
+      table: users
+      validation_mode: strict
+      column_transformers:
+        email:
+          name: neosync_email
+          parameters:
+            preserve_length: true
+            preserve_domain: true
+        first_name:
+          name: greenmask_firstname
+          parameters:
+            gender: Male
+        username:
+          name: greenmask_string
+          parameters:
+            generator: random
+            min_length: 5
+            max_length: 15
+            symbols: "abcdefghijklmnopqrstuvwxyz1234567890"
+    - schema: public
+      table: orders
+      validation_mode: relaxed
+      column_transformers:
+        status:
+          name: greenmask_choice
+          parameters:
+            generator: random
+            choices: ["pending", "shipped", "delivered", "cancelled"]
+        order_date:
+          name: greenmask_date
+          parameters:
+            generator: random
+            min_value: "2020-01-01"
+            max_value: "2025-12-31"
+```
+
+Validation mode can be set to `strict` or `relaxed` for all tables at once. Or it can be determined for each table individually, by setting the higher level `validation_mode` parameter to `table_level`. When it is set to strict, pgstream will throw an error if any of the columns in the table do not have a transformer defined. When set to relaxed, pgstream will skip any columns that do not have a transformer defined. Also in strict mode, all snapshot tables must be provided in the transformation config.
+For details on how to use and configure the transformer, check the [transformer tutorial](/docs/opensource/pgstream/docs/tutorials/postgres_transformer).
