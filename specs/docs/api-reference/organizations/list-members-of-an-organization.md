@@ -69,6 +69,8 @@ tags:
     x-displayName: Logs
   - name: Vercel
     x-displayName: Vercel
+  - name: Vercel Resources
+    x-displayName: Vercel Resources
   - name: Webhooks
     x-displayName: Webhooks
 externalDocs:
@@ -93,7 +95,7 @@ paths:
                   members:
                     type: array
                     items:
-                      $ref: '#/components/schemas/UserWithID'
+                      $ref: '#/components/schemas/OrganizationMember'
                 required:
                   - members
       security:
@@ -109,6 +111,22 @@ components:
         $ref: '#/components/schemas/OrganizationID'
       description: Unique identifier for a specific organization
   schemas:
+    OrganizationMember:
+      description: A member of an organization and the role they hold in it
+      allOf:
+        - $ref: '#/components/schemas/UserWithID'
+        - type: object
+          properties:
+            role:
+              $ref: '#/components/schemas/OrganizationRoleName'
+          required:
+            - role
+    OrganizationID:
+      title: OrganizationID
+      type: string
+      pattern: '[a-zA-Z0-9_-~:]+'
+      x-oapi-codegen-extra-tags:
+        validate: identifier
     UserWithID:
       allOf:
         - $ref: '#/components/schemas/User'
@@ -119,12 +137,13 @@ components:
               $ref: '#/components/schemas/UserID'
           required:
             - id
-    OrganizationID:
-      title: OrganizationID
+    OrganizationRoleName:
+      description: The roles a member of an organization can hold
       type: string
-      pattern: '[a-zA-Z0-9_-~:]+'
-      x-oapi-codegen-extra-tags:
-        validate: identifier
+      enum:
+        - admin
+        - editor
+        - viewer
     User:
       description: User information including email, full name, and profile image
       type: object
@@ -155,8 +174,8 @@ components:
           scopes:
             org:read: Read organization information
             org:write: Create and modify organizations
-            group:read: Read organization groups and their members
-            group:write: Create, modify, and delete organization groups and their members
+            role:read: Read the roles held by organization members
+            role:write: Change the role held by an organization member
             keys:read: Read API keys
             keys:write: Create and manage API keys
             project:read: Read project information

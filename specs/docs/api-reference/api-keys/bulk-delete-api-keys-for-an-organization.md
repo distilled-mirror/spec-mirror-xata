@@ -71,6 +71,8 @@ tags:
     x-displayName: Logs
   - name: Vercel
     x-displayName: Vercel
+  - name: Vercel Resources
+    x-displayName: Vercel Resources
   - name: Webhooks
     x-displayName: Webhooks
 externalDocs:
@@ -187,8 +189,8 @@ components:
           scopes:
             org:read: Read organization information
             org:write: Create and modify organizations
-            group:read: Read organization groups and their members
-            group:write: Create, modify, and delete organization groups and their members
+            role:read: Read the roles held by organization members
+            role:write: Change the role held by an organization member
             keys:read: Read API keys
             keys:write: Create and manage API keys
             project:read: Read project information

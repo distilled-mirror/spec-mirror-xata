@@ -85,6 +85,8 @@ tags:
     x-displayName: Logs
   - name: Vercel
     x-displayName: Vercel
+  - name: Vercel Resources
+    x-displayName: Vercel Resources
   - name: Webhooks
     x-displayName: Webhooks
 externalDocs:
