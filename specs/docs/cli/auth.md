@@ -34,7 +34,7 @@ xata auth login [--profile value] [--force] [--api-key value] [--issuer value] [
 </ParamField>
 
 <ParamField path="-f, --force" type="boolean" default="false">
-  Force login even if already logged in
+  Force login even if already logged in, revoking the previous session
 </ParamField>
 
 <ParamField path="--api-key" type="string">
@@ -76,8 +76,10 @@ xata auth login --profile staging --api-url https://api.staging.example.com
 
 Log out of the current account
 
+Revokes the session of the profile with the identity provider and removes the stored credentials. Because the CLI is a single application to the identity provider, revoking may also sign out other CLI installations that were authorized from the same browser session. Use `--local` when the identity provider is unreachable to remove the stored credentials without revoking the session. Profiles that use an API key are only removed locally; the key itself stays valid.
+
 ```bash theme={null}
-xata auth logout [--profile value] [--yes] [--debug]
+xata auth logout [--profile value] [--yes] [--local] [--debug]
 ```
 
 <ParamField path="--profile" type="string" default="default">
@@ -86,6 +88,10 @@ xata auth logout [--profile value] [--yes] [--debug]
 
 <ParamField path="--yes" type="boolean" default="false">
   Do not ask for confirmation, assume yes.
+</ParamField>
+
+<ParamField path="--local" type="boolean" default="false">
+  Only remove the stored credentials, do not revoke the session with the identity provider
 </ParamField>
 
 <ParamField path="--debug" type="boolean" default="false">

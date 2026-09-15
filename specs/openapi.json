@@ -1192,7 +1192,7 @@
       "post": {
         "operationId": "claimOrganizationSSODomain",
         "summary": "Claim an email domain for SSO",
-        "description": "Claims an email domain and returns the DNS record that proves control of it. A claim is only a note to\nourselves: nothing is registered against the domain until verification succeeds, so claiming a domain neither\naffects anyone's sign-in nor stops another organization claiming it first.\n",
+        "description": "Claims an email domain and returns the DNS record that proves control of it. A claim is only a note to\nourselves: nothing is registered against the domain until verification succeeds, so claiming a domain neither\naffects anyone's sign-in nor stops another organization claiming it first. A domain another organization has\nalready registered is refused with 409, before any DNS record is published.\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -1224,6 +1224,9 @@
             "$ref": "#/components/responses/AuthError"
           },
           "404": {
+            "$ref": "#/components/responses/SimpleError"
+          },
+          "409": {
             "$ref": "#/components/responses/SimpleError"
           },
           "5XX": {

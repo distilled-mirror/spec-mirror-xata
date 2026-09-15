@@ -53,14 +53,18 @@ xata scratch [--organization value] [--project value] [--parent-branch value] [-
 </ParamField>
 
 <ParamField path="command" type="string">
-  Binary command to run with scratch database environment variables
+  Binary command to run with scratch database environment variables; pass arguments to the binary after --
 </ParamField>
 
 **Examples:**
 
 ```bash theme={null}
-# Run a query against a throwaway copy
+# Run SQL with the built-in client
 xata scratch --execute "select count(*) from users"
-# Open a Postgres client on the scratch branch
-xata scratch psql
+# Run SQL using the short execute flag
+xata scratch -x "select count(*) from users"
+# Run psql with arguments
+xata scratch -- psql -c "select count(*) from users"
+# Run a database tool against the scratch branch
+xata scratch -- npm run migrate
 ```

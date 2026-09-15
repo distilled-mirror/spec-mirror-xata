@@ -85,7 +85,7 @@ xata project describe [--organization value] [--project value] [--json] [--profi
 Create a new project
 
 ```bash theme={null}
-xata project create [--organization value] (--name value) [--branch-name value] [--instance-type value] [--replicas value] [--region value] [--postgres-version value] [--scale-to-zero-base true|false] [--scale-to-zero-child true|false] [--inactivity-period-base 15|30|60|120|180] [--inactivity-period-child 15|30|60|120|180] [--json] [--profile value] [--debug]
+xata project create [--organization value] (--name value) [--branch-name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--storage value] [--postgres-version value] [--scale-to-zero-base true|false] [--scale-to-zero-child true|false] [--inactivity-period-base 15|30|60|120|180] [--inactivity-period-child 15|30|60|120|180] [--json] [--profile value] [--debug]
 ```
 
 <ParamField path="--organization" type="string">
@@ -100,6 +100,10 @@ xata project create [--organization value] (--name value) [--branch-name value] 
   Branch Name
 </ParamField>
 
+<ParamField path="--description" type="string">
+  Short description of what the first branch is for
+</ParamField>
+
 <ParamField path="--instance-type" type="string">
   Instance type for the first branch
 </ParamField>
@@ -110,6 +114,10 @@ xata project create [--organization value] (--name value) [--branch-name value] 
 
 <ParamField path="--region" type="string">
   Region to create the project in
+</ParamField>
+
+<ParamField path="--storage" type="string">
+  Storage in GB for the first branch
 </ParamField>
 
 <ParamField path="--postgres-version" type="string">

@@ -109,7 +109,7 @@ Create a new branch
 A branch is a running Postgres database that starts as a copy of its parent. It takes a moment to come up, so `xata branch wait-ready` is what to run before connecting to it. It is checked out afterwards when this folder already has an organization and a project to work from.
 
 ```bash theme={null}
-xata branch create [--organization value] [--project value] [--parent-branch value] [--no-parent] [--name value] [--instance-type value] [--replicas value] [--region value] [--postgres-version value] [--scale-to-zero true|false] [--inactivity-period 15|30|60|120|180] [--json] [--profile value] [--debug]
+xata branch create [--organization value] [--project value] [--parent-branch value] [--no-parent] [--name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--postgres-version value] [--storage value] [--scale-to-zero true|false] [--inactivity-period 15|30|60|120|180] [--json] [--profile value] [--debug]
 ```
 
 <ParamField path="--organization" type="string">
@@ -132,6 +132,10 @@ xata branch create [--organization value] [--project value] [--parent-branch val
   Branch name
 </ParamField>
 
+<ParamField path="--description" type="string">
+  Short description of what the branch is for
+</ParamField>
+
 <ParamField path="--instance-type" type="string">
   Instance type for the branch
 </ParamField>
@@ -146,6 +150,10 @@ xata branch create [--organization value] [--project value] [--parent-branch val
 
 <ParamField path="--postgres-version" type="string">
   PostgreSQL version for the branch
+</ParamField>
+
+<ParamField path="--storage" type="string">
+  Storage in GB for the branch. Root branches only, as a fork inherits its parent
 </ParamField>
 
 <ParamField path="--scale-to-zero" type="true | false">
@@ -177,6 +185,10 @@ xata branch create --name my-branch
 xata branch create --name my-branch --parent-branch main
 # Create a root branch with no parent
 xata branch create --name my-branch --no-parent
+# Create a root branch with a 10 GB disk
+xata branch create --name my-branch --no-parent --storage 10
+# Describe what the branch is for
+xata branch create --name my-branch --description "Nightly import"
 # Size the branch and let it scale to zero
 xata branch create --name my-branch --instance-type <type> --replicas 1 --scale-to-zero true
 ```
@@ -630,7 +642,7 @@ xata branch set [--organization value] [--project value] [--branch value] [--jso
 </ParamField>
 
 <ParamField path="field" type="string">
-  The field to set: name, replicas, instance-type, storage, hibernate, scale-to-zero, inactivity-period or postgres-version
+  The field to set: name, description, replicas, instance-type, storage, hibernate, scale-to-zero, inactivity-period or postgres-version
 </ParamField>
 
 <ParamField path="value" type="string">
@@ -642,6 +654,10 @@ xata branch set [--organization value] [--project value] [--branch value] [--jso
 ```bash theme={null}
 # Set a field non-interactively
 xata branch set replicas 2 my-branch
+# Describe what the branch is for
+xata branch set description "Nightly import"
+# Clear the description
+xata branch set description ""
 # Select the target version interactively
 xata branch set postgres-version
 # Upgrade to a specific PostgreSQL version
