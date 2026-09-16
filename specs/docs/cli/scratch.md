@@ -17,7 +17,7 @@ Run SQL or a Postgres client command against a temporary scratch branch
 Creates a branch from the parent given, runs what it is asked to, and deletes the branch afterwards, so a query or a migration can be tried against real data without touching an existing branch.
 
 ```bash theme={null}
-xata scratch [--organization value] [--project value] [--parent-branch value] [--database value] [--execute value] [--json] [--profile value] [--debug] <command>...
+xata scratch [--organization value] [--project value] [--parent-branch value] [--database value] [--execute value] [--profile value] [--debug] [--json] <command>...
 ```
 
 <ParamField path="--organization" type="string">
@@ -40,16 +40,16 @@ xata scratch [--organization value] [--project value] [--parent-branch value] [-
   SQL query to execute in the scratch branch
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output SQL query results in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="command" type="string">

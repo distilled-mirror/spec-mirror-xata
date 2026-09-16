@@ -18,15 +18,19 @@ Every command below also takes `-h, --help`.
 Installs bash autocomplete support for xata
 
 ```bash theme={null}
-xata completions install [--profile value] [--debug]
+xata completions install [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## uninstall
@@ -34,13 +38,17 @@ xata completions install [--profile value] [--debug]
 Uninstalls bash autocomplete support for xata
 
 ```bash theme={null}
-xata completions uninstall [--profile value] [--debug]
+xata completions uninstall [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>

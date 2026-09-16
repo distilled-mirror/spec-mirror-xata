@@ -31,19 +31,19 @@ Every command below also takes `-h, --help`.
 List all organizations
 
 ```bash theme={null}
-xata organization list [--json] [--profile value] [--debug]
+xata organization list [--profile value] [--debug] [--json]
 ```
-
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
 
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata organization ls`
@@ -53,23 +53,23 @@ xata organization list [--json] [--profile value] [--debug]
 Describe an organization
 
 ```bash theme={null}
-xata organization describe [--organization value] [--json] [--profile value] [--debug]
+xata organization describe [--organization value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
   Organization ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata organization view`, `xata organization show`
@@ -79,23 +79,23 @@ xata organization describe [--organization value] [--json] [--profile value] [--
 Create a new organization
 
 ```bash theme={null}
-xata organization create (--name value) [--json] [--profile value] [--debug]
+xata organization create (--name value) [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--name" type="string" required>
   Organization Name
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## delete
@@ -103,15 +103,11 @@ xata organization create (--name value) [--json] [--profile value] [--debug]
 Delete an organization
 
 ```bash theme={null}
-xata organization delete [--organization value] [--json] [--yes] [--profile value] [--debug]
+xata organization delete [--organization value] [--yes] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
   Organization ID
-</ParamField>
-
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
 </ParamField>
 
 <ParamField path="--yes" type="boolean" default="false">
@@ -122,8 +118,12 @@ xata organization delete [--organization value] [--json] [--yes] [--profile valu
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## get
@@ -131,7 +131,7 @@ xata organization delete [--organization value] [--json] [--yes] [--profile valu
 Get a field from an organization description
 
 ```bash theme={null}
-xata organization get [--organization value] [--profile value] [--debug] <[organization] field>...
+xata organization get [--organization value] [--profile value] [--debug] [--json] <[organization] field>...
 ```
 
 <ParamField path="--organization" type="string">
@@ -142,8 +142,12 @@ xata organization get [--organization value] [--profile value] [--debug] <[organ
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="[organization] field" type="string">
@@ -159,23 +163,23 @@ Manage organization members
 List all members of an organization
 
 ```bash theme={null}
-xata organization members list [--organization value] [--json] [--profile value] [--debug]
+xata organization members list [--organization value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
   Organization ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata organization members ls`
@@ -185,7 +189,7 @@ xata organization members list [--organization value] [--json] [--profile value]
 Send an invitation to join an organization
 
 ```bash theme={null}
-xata organization members invite [--organization value] [--email value] [--json] [--profile value] [--debug]
+xata organization members invite [--organization value] [--email value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -196,16 +200,16 @@ xata organization members invite [--organization value] [--email value] [--json]
   Email address to invite
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata organization members add`
@@ -215,7 +219,7 @@ xata organization members invite [--organization value] [--email value] [--json]
 Remove a member from an organization
 
 ```bash theme={null}
-xata organization members remove [--organization value] [--user-id value] [--force] [--json] [--profile value] [--debug]
+xata organization members remove [--organization value] [--user-id value] [--force] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -230,16 +234,16 @@ xata organization members remove [--organization value] [--user-id value] [--for
   Skip confirmation prompt
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata organization members delete`, `xata organization members rm`
@@ -253,7 +257,7 @@ Manage organization invitations
 List all invitations for an organization
 
 ```bash theme={null}
-xata organization invitations list [--organization value] [--status value] [--email value] [--search value] [--json] [--profile value] [--debug]
+xata organization invitations list [--organization value] [--status value] [--email value] [--search value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -272,16 +276,16 @@ xata organization invitations list [--organization value] [--status value] [--em
   Search invitations by email or name
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata organization invitations ls`
@@ -291,7 +295,7 @@ xata organization invitations list [--organization value] [--status value] [--em
 Get details of a specific invitation
 
 ```bash theme={null}
-xata organization invitations get [--organization value] [--invitation-id value] [--json] [--profile value] [--debug]
+xata organization invitations get [--organization value] [--invitation-id value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -302,16 +306,16 @@ xata organization invitations get [--organization value] [--invitation-id value]
   ID of the invitation to view
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata organization invitations show`
@@ -321,7 +325,7 @@ xata organization invitations get [--organization value] [--invitation-id value]
 Create and send an invitation to join an organization
 
 ```bash theme={null}
-xata organization invitations create [--organization value] [--email value] [--json] [--profile value] [--debug]
+xata organization invitations create [--organization value] [--email value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -332,16 +336,16 @@ xata organization invitations create [--organization value] [--email value] [--j
   Email address to invite
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata organization invitations add`, `xata organization invitations invite`
@@ -351,7 +355,7 @@ xata organization invitations create [--organization value] [--email value] [--j
 Delete an invitation
 
 ```bash theme={null}
-xata organization invitations delete [--organization value] [--invitation-id value] [--force] [--json] [--profile value] [--debug]
+xata organization invitations delete [--organization value] [--invitation-id value] [--force] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -366,16 +370,16 @@ xata organization invitations delete [--organization value] [--invitation-id val
   Skip confirmation prompt
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata organization invitations rm`, `xata organization invitations remove`
@@ -385,7 +389,7 @@ xata organization invitations delete [--organization value] [--invitation-id val
 Resend an invitation
 
 ```bash theme={null}
-xata organization invitations resend [--organization value] [--invitation-id value] [--json] [--profile value] [--debug]
+xata organization invitations resend [--organization value] [--invitation-id value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -396,14 +400,14 @@ xata organization invitations resend [--organization value] [--invitation-id val
   ID of the invitation to resend
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>

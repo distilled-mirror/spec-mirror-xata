@@ -35,7 +35,7 @@ Every command below also takes `-h, --help`.
 List all branches
 
 ```bash theme={null}
-xata branch list [--organization value] [--project value] [--branch value] [--json] [--profile value] [--debug]
+xata branch list [--organization value] [--project value] [--branch value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -50,16 +50,16 @@ xata branch list [--organization value] [--project value] [--branch value] [--js
   Branch ID or name
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata branch ls`
@@ -69,7 +69,7 @@ xata branch list [--organization value] [--project value] [--branch value] [--js
 Describe a branch
 
 ```bash theme={null}
-xata branch describe [--organization value] [--project value] [--branch value] [--json] [--profile value] [--debug] [<branch>]
+xata branch describe [--organization value] [--project value] [--branch value] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -84,16 +84,16 @@ xata branch describe [--organization value] [--project value] [--branch value] [
   Branch ID or name
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -109,7 +109,7 @@ Create a new branch
 A branch is a running Postgres database that starts as a copy of its parent. It takes a moment to come up, so `xata branch wait-ready` is what to run before connecting to it. It is checked out afterwards when this folder already has an organization and a project to work from.
 
 ```bash theme={null}
-xata branch create [--organization value] [--project value] [--parent-branch value] [--no-parent] [--name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--postgres-version value] [--storage value] [--scale-to-zero true|false] [--inactivity-period 15|30|60|120|180] [--json] [--profile value] [--debug]
+xata branch create [--organization value] [--project value] [--parent-branch value] [--no-parent] [--name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--postgres-version value] [--storage value] [--scale-to-zero true|false] [--inactivity-period 15|30|60|120|180] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -164,16 +164,16 @@ xata branch create [--organization value] [--project value] [--parent-branch val
   Inactivity period in minutes for the branch
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Examples:**
@@ -204,7 +204,7 @@ The branch checked out in this folder cannot be deleted, and outside an interact
 </Warning>
 
 ```bash theme={null}
-xata branch delete [--organization value] [--project value] [--branch value] [--yes] [--json] [--profile value] [--debug] [<branch>]
+xata branch delete [--organization value] [--project value] [--branch value] [--yes] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -223,16 +223,16 @@ xata branch delete [--organization value] [--project value] [--branch value] [--
   Do not ask for confirmation, assume yes.
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -255,7 +255,7 @@ Retrieve the PostgreSQL logs of a branch
 Reads the logs of every instance of the branch, the primary and any replicas, which is where slow queries, connection issues and replication problems show up. Requires the `logs:read` scope on the API key. Of the output formats, `raw` prints `<timestamp> [<level> <instanceID> <process>] <message>` per line, `json` a single array, `ndjson` one object per line for streaming into another process, and `csv` the columns `timestamp,level,instanceID,process,message`. Follow mode polls every 2 seconds with a 5 second overlap and de-duplicates entries. Logs can contain connection strings and other credentials, see [https://xata.io/docs/platform/logs](https://xata.io/docs/platform/logs) for what is redacted.
 
 ```bash theme={null}
-xata branch logs [--organization value] [--project value] [--branch value] [--level debug|info|warning|error] [--instance value]... [--process value]... [--search value] [--start value] [--end value] [--limit value] [--follow] [--output raw|json|ndjson|csv] [--json] [--profile value] [--debug] [<branch>]
+xata branch logs [--organization value] [--project value] [--branch value] [--level debug|info|warning|error] [--instance value]... [--process value]... [--search value] [--start value] [--end value] [--limit value] [--follow] [--output raw|json|ndjson|csv] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -302,20 +302,20 @@ xata branch logs [--organization value] [--project value] [--branch value] [--le
   Poll for new logs continuously. Cannot be combined with --output json
 </ParamField>
 
-<ParamField path="-o, --output" type="raw | json | ndjson | csv" default="raw">
-  Output format
-</ParamField>
-
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format. Alias for --output json.
+<ParamField path="-o, --output" type="raw | json | ndjson | csv">
+  Output format. Defaults to raw, or json when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -342,7 +342,7 @@ Print URL (connection string) for a branch
 Reads the connection details from the credentials endpoint, so an API key needs the `credentials:read` scope, see [https://xata.io/docs/cli#required-scopes](https://xata.io/docs/cli#required-scopes).
 
 ```bash theme={null}
-xata branch url [--organization value] [--project value] [--branch value] [--database value] [--type primary|primary-or-replica|replica|pooler] [--profile value] [--debug] [<branch>]
+xata branch url [--organization value] [--project value] [--branch value] [--database value] [--type primary|primary-or-replica|replica|pooler] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -369,8 +369,12 @@ xata branch url [--organization value] [--project value] [--branch value] [--dat
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -397,7 +401,7 @@ Check out a branch in this folder
 Writes the branch to `.xata/` in this folder, so later commands run against it without being told which branch to use.
 
 ```bash theme={null}
-xata branch checkout [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug] [<branch>]
+xata branch checkout [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -416,16 +420,16 @@ xata branch checkout [--organization value] [--project value] [--branch value] [
   Database name
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -446,7 +450,7 @@ xata branch checkout feature-branch --organization org-123 --project proj-456
 List all branches as a tree
 
 ```bash theme={null}
-xata branch tree [--organization value] [--project value] [--branch value] [--show-id] [--profile value] [--debug]
+xata branch tree [--organization value] [--project value] [--branch value] [--show-id] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -469,8 +473,12 @@ xata branch tree [--organization value] [--project value] [--branch value] [--sh
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata branch topology`
@@ -482,7 +490,7 @@ Get a field from a branch description
 Run it without a field to list the fields the description holds.
 
 ```bash theme={null}
-xata branch get [--organization value] [--project value] [--branch value] [--profile value] [--debug] <[branch] field>...
+xata branch get [--organization value] [--project value] [--branch value] [--profile value] [--debug] [--json] <[branch] field>...
 ```
 
 <ParamField path="--organization" type="string">
@@ -501,8 +509,12 @@ xata branch get [--organization value] [--project value] [--branch value] [--pro
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="[branch] field" type="string">
@@ -525,7 +537,7 @@ Show CPU, memory and disk usage for a branch
 Reports the metrics of every instance of the branch, the primary and any replicas, as a snapshot or continuously with --watch.
 
 ```bash theme={null}
-xata branch metrics [--organization value] [--project value] [--branch value] [--since value] [--start value] [--end value] [--metrics value] [--instances value] [--aggregations value] [--aggregation avg|max|min] [--refresh value] [--output table|json|ndjson|tui] [--watch] [--json] [--profile value] [--debug] [<branch>]
+xata branch metrics [--organization value] [--project value] [--branch value] [--since value] [--start value] [--end value] [--metrics value] [--instances value] [--aggregations value] [--aggregation avg|max|min] [--refresh value] [--output table|json|ndjson|tui] [--watch] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -572,24 +584,24 @@ xata branch metrics [--organization value] [--project value] [--branch value] [-
   Refresh interval for watch mode, such as 10s, 1m, or 500ms
 </ParamField>
 
-<ParamField path="-o, --output" type="table | json | ndjson | tui" default="table">
-  Output format
+<ParamField path="-o, --output" type="table | json | ndjson | tui">
+  Output format. Defaults to table, or json when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="-w, --watch" type="boolean" default="false">
   Refresh metrics continuously
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -614,7 +626,7 @@ Set a field value for a branch
 The `postgres-version` field upgrades PostgreSQL, and only accepts compatible upgrades within the same major version and offering type, see [https://xata.io/docs/platform/branch#upgrading-postgresql-versions](https://xata.io/docs/platform/branch#upgrading-postgresql-versions).
 
 ```bash theme={null}
-xata branch set [--organization value] [--project value] [--branch value] [--json] [--profile value] [--debug] [<field>] [<value>]
+xata branch set [--organization value] [--project value] [--branch value] [--profile value] [--debug] [--json] [<field>] [<value>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -629,16 +641,16 @@ xata branch set [--organization value] [--project value] [--branch value] [--jso
   Branch ID or name
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="field" type="string">
@@ -671,7 +683,7 @@ Rotate the database password for a branch
 Reads the current username from the credentials endpoint, so an API key needs the `credentials:read` scope, see [https://xata.io/docs/cli#required-scopes](https://xata.io/docs/cli#required-scopes).
 
 ```bash theme={null}
-xata branch rotate-password [--organization value] [--project value] [--branch value] [--yes] [--json] [--profile value] [--debug] [<branch>]
+xata branch rotate-password [--organization value] [--project value] [--branch value] [--yes] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -690,16 +702,16 @@ xata branch rotate-password [--organization value] [--project value] [--branch v
   Do not ask for confirmation, assume yes.
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -713,7 +725,7 @@ Wait for a branch to be ready
 Blocks until the branch is healthy, which is what a script needs after creating one or after a change that restarts it. A hibernated branch stays hibernated unless `--wake` is passed.
 
 ```bash theme={null}
-xata branch wait-ready [--organization value] [--project value] [--branch value] [--json] [--wake] [--profile value] [--debug] [<branch>]
+xata branch wait-ready [--organization value] [--project value] [--branch value] [--wake] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -728,10 +740,6 @@ xata branch wait-ready [--organization value] [--project value] [--branch value]
   Branch ID or name
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--wake" type="boolean">
   Wake up the branch if it is hibernated
 </ParamField>
@@ -740,8 +748,12 @@ xata branch wait-ready [--organization value] [--project value] [--branch value]
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -772,7 +784,7 @@ List historical query statistics for a branch, by total execution time
 In table output a leading `!` marks a row worth a look, a slow mean, spikes far above it, a low cache hit rate, heavy temporary file use or a very large row count, and the command prints the `show` command for each flagged query. Below the table it prints how many queries are being shown and, when more remain, the `list` command that fetches the next page. Both `json` and `ndjson` emit `{ "total", "limit", "offset", "queries" }`, with the statements under `queries`.
 
 ```bash theme={null}
-xata branch query-insights list [--organization value] [--project value] [--branch value] [--search value] [--type value] [--performance value] [--db value] [--role value] [--sort total-time|mean-time|min-time|max-time|stddev-time|calls|rows|shared-hit|shared-read|shared-dirtied|shared-written|local-hit|local-read|local-dirtied|local-written|temp-read|temp-written|database|user] [--direction asc|desc] [--limit value] [--offset value] [--wide] [--output table|json|ndjson|tui] [--json] [--profile value] [--debug] [<branch>]
+xata branch query-insights list [--organization value] [--project value] [--branch value] [--search value] [--type value] [--performance value] [--db value] [--role value] [--sort total-time|mean-time|min-time|max-time|stddev-time|calls|rows|shared-hit|shared-read|shared-dirtied|shared-written|local-hit|local-read|local-dirtied|local-written|temp-read|temp-written|database|user] [--direction asc|desc] [--limit value] [--offset value] [--wide] [--output table|json|ndjson|tui] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -827,20 +839,20 @@ xata branch query-insights list [--organization value] [--project value] [--bran
   Show all pg\_stat\_statements metrics in human output
 </ParamField>
 
-<ParamField path="-o, --output" type="table | json | ndjson | tui" default="table">
-  Output format
-</ParamField>
-
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format. Alias for --output json.
+<ParamField path="-o, --output" type="table | json | ndjson | tui">
+  Output format. Defaults to table, or json when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -865,7 +877,7 @@ Show full query statistics for a query ID
 A query ID is not unique on its own, the same normalized statement is recorded once per database and role that ran it. When the ID matches more than one row the command exits non-zero, re-run it with `--db` and `--role`. Human output ends with the potential issues found for the query.
 
 ```bash theme={null}
-xata branch query-insights show [--organization value] [--project value] [--branch value] [--db value] [--role value] [--json] [--profile value] [--debug] <queryid> [<branch>]
+xata branch query-insights show [--organization value] [--project value] [--branch value] [--db value] [--role value] [--profile value] [--debug] [--json] <queryid> [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -888,16 +900,16 @@ xata branch query-insights show [--organization value] [--project value] [--bran
   Role name to disambiguate the query ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="queryid" type="string" required>
@@ -924,7 +936,7 @@ List currently running queries for a branch
 Reads `pg_stat_activity`, so it works without `pg_stat_statements` being loaded. The columns are PID, Age, State, Wait, DB, User, Client and Query.
 
 ```bash theme={null}
-xata branch query-insights active [--organization value] [--project value] [--branch value] [--watch value] [--json] [--profile value] [--debug] [<branch>]
+xata branch query-insights active [--organization value] [--project value] [--branch value] [--watch value] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -943,16 +955,16 @@ xata branch query-insights active [--organization value] [--project value] [--br
   Refresh interval in seconds. Cannot be combined with --json
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -973,7 +985,7 @@ Enable pg\_stat\_statements for query insights on a branch
 Adds `pg_stat_statements` to the preloaded libraries, which restarts the branch, and creates the extension. Run it, wait for the branch with `xata branch wait-ready <branch> --wake`, then run it again to create the extension. Operations that rebuild a branch, such as a migration into it, can drop the extension, so run this again if query insights stop returning rows. The same can be done from the console, by adding it to the preloaded libraries in the branch settings, see [https://xata.io/docs/platform/extensions](https://xata.io/docs/platform/extensions).
 
 ```bash theme={null}
-xata branch query-insights enable [--organization value] [--project value] [--branch value] [--json] [--profile value] [--debug] [<branch>]
+xata branch query-insights enable [--organization value] [--project value] [--branch value] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -988,16 +1000,16 @@ xata branch query-insights enable [--organization value] [--project value] [--br
   Branch ID or name
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">
@@ -1015,7 +1027,7 @@ Calls `pg_stat_statements_reset()`, which requires elevated privileges.
 </Warning>
 
 ```bash theme={null}
-xata branch query-insights reset [--organization value] [--project value] [--branch value] [--yes] [--json] [--profile value] [--debug] [<branch>]
+xata branch query-insights reset [--organization value] [--project value] [--branch value] [--yes] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -1034,16 +1046,16 @@ xata branch query-insights reset [--organization value] [--project value] [--bra
   Do not ask for confirmation, assume yes.
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">

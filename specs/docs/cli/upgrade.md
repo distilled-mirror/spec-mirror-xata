@@ -13,7 +13,7 @@ This command also takes `-h, --help`.
 Upgrade the Xata CLI
 
 ```bash theme={null}
-xata upgrade [--channel dev|next|latest] [--version value] [--profile value] [--debug]
+xata upgrade [--channel dev|next|latest] [--version value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--channel" type="dev | next | latest" default="latest">
@@ -28,8 +28,12 @@ xata upgrade [--channel dev|next|latest] [--version value] [--profile value] [--
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Examples:**

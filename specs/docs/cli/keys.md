@@ -28,19 +28,19 @@ Manage API keys for the current user
 List all API keys of the current user
 
 ```bash theme={null}
-xata keys user list [--json] [--profile value] [--debug]
+xata keys user list [--profile value] [--debug] [--json]
 ```
-
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
 
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata keys user ls`
@@ -52,7 +52,7 @@ Create a new API key
 Creates a key for the account you are logged in with. It is printed once, when it is created, and cannot be read again.
 
 ```bash theme={null}
-xata keys user create [--name value] [--expiry value] [--json] [--profile value] [--debug]
+xata keys user create [--name value] [--expiry value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--name" type="string">
@@ -63,16 +63,16 @@ xata keys user create [--name value] [--expiry value] [--json] [--profile value]
   Expiry, as a date or a phrase such as 'in 1 week', or 'never'
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Examples:**
@@ -89,19 +89,19 @@ xata keys user create --name ci --expiry 2026-12-31
 Delete one or more API keys
 
 ```bash theme={null}
-xata keys user delete [--json] [--profile value] [--debug] <keyId>...
+xata keys user delete [--profile value] [--debug] [--json] <keyId>...
 ```
-
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
 
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="keyId" type="string">
@@ -119,23 +119,23 @@ Manage API keys for an organization
 List all API keys for an organization
 
 ```bash theme={null}
-xata keys organization list [--organization value] [--json] [--profile value] [--debug]
+xata keys organization list [--organization value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
   Organization ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata keys organization ls`
@@ -147,7 +147,7 @@ Create a new API key
 Creates a key for an organization rather than for an account. It is printed once, when it is created, and cannot be read again.
 
 ```bash theme={null}
-xata keys organization create [--organization value] [--name value] [--expiry value] [--json] [--profile value] [--debug]
+xata keys organization create [--organization value] [--name value] [--expiry value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -162,16 +162,16 @@ xata keys organization create [--organization value] [--name value] [--expiry va
   Expiry, as a date or a phrase such as 'in 1 week', or 'never'
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Examples:**
@@ -186,23 +186,23 @@ xata keys organization create --name deploy
 Delete one or more API keys
 
 ```bash theme={null}
-xata keys organization delete [--organization value] [--json] [--profile value] [--debug] <keyId>...
+xata keys organization delete [--organization value] [--profile value] [--debug] [--json] <keyId>...
 ```
 
 <ParamField path="--organization" type="string">
   Organization ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="keyId" type="string">

@@ -21,7 +21,7 @@ Snapshot a PostgreSQL database into a Xata branch
 Copies the source database into the branch once. The anonymization rules in `.xata/clone.yaml` are applied on the way in, and strict validation refuses to run until every table and column is covered by them.
 
 ```bash theme={null}
-xata clone start [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color value] [--dump-file value] [--postgres-url value] [--profile value] [--reset value] [--tables value] [--target value] [--target-url value] (--source-url value) [--organization value] [--project value] [--branch value] [--database value] [--filter-tables value] [--validation-mode strict|relaxed|prompt] [--role value] [--copy-roles] [--tune-target] [--debug]
+xata clone start [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color value] [--dump-file value] [--postgres-url value] [--profile value] [--reset value] [--tables value] [--target value] [--target-url value] (--source-url value) [--organization value] [--project value] [--branch value] [--database value] [--filter-tables value] [--validation-mode strict|relaxed|prompt] [--role value] [--copy-roles] [--tune-target] [--debug] [--json]
 ```
 
 <ParamField path="--config" type="string">
@@ -108,8 +108,12 @@ xata clone start [--config value] [--log-format value] [--log-level trace|debug|
   Temporarily tune the target branch for bulk loading, reverting the change when the clone stops. Raises max\_wal\_size on the branch and the maintenance settings on the index rebuild.
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## config
@@ -119,7 +123,7 @@ Write the anonymization rules that clone start and stream apply
 Inspects the source database and writes `.xata/clone.yaml`, interactively or with AI, so the columns that carry personal data are transformed as they are copied.
 
 ```bash theme={null}
-xata clone config (--source-url value) [--mode auto|prompt|web|ai] [--validation-mode strict|relaxed|prompt] [--organization value] [--project value] [--branch value] [--prompt value] [--model value] [--profile value] [--debug]
+xata clone config (--source-url value) [--mode auto|prompt|web|ai] [--validation-mode strict|relaxed|prompt] [--organization value] [--project value] [--branch value] [--prompt value] [--model value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--source-url" type="string" required>
@@ -158,8 +162,12 @@ xata clone config (--source-url value) [--mode auto|prompt|web|ai] [--validation
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## stream
@@ -169,7 +177,7 @@ Stream a PostgreSQL database into a Xata branch continuously
 Follows the source through logical replication, so the branch keeps up with it until the command is stopped. Passing `--snapshot-tables` copies those tables first, otherwise only the changes from now on are streamed.
 
 ```bash theme={null}
-xata clone stream [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color value] [--data-only value] [--dump-file value] [--init value] [--profile value] [--replication-slot value] [--reset value] [--snapshot-tables value] [--source value] (--source-url value) [--target value] [--target-url value] [--upgrade value] [--with-injector value] [--organization value] [--project value] [--branch value] [--database value] [--filter-tables value] [--validation-mode strict|relaxed|prompt] [--role value] [--copy-roles] [--skip-ddl-tracking] [--debug]
+xata clone stream [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color value] [--data-only value] [--dump-file value] [--init value] [--profile value] [--replication-slot value] [--reset value] [--snapshot-tables value] [--source value] (--source-url value) [--target value] [--target-url value] [--upgrade value] [--with-injector value] [--organization value] [--project value] [--branch value] [--database value] [--filter-tables value] [--validation-mode strict|relaxed|prompt] [--role value] [--copy-roles] [--skip-ddl-tracking] [--debug] [--json]
 ```
 
 <ParamField path="--config" type="string">
@@ -276,6 +284,10 @@ xata clone stream [--config value] [--log-format value] [--log-level trace|debug
   Skip DDL tracking during streaming. Useful for managed PostgreSQL services that do not support superuser access required for event triggers. Requires --replication-slot flag to be set with a pre-created replication slot on the source database.
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>

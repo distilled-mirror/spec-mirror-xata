@@ -26,12 +26,8 @@ Log in to a Xata account
 Prints a URL and a code to authorize this machine, or stores an API key with `--api-key` for non-interactive use. The issuer, API URL and client flags log in against a deployment other than production, which is how Enterprise customers connect the CLI to a custom deployment in their own cloud. Omit them and the CLI uses the default production values.
 
 ```bash theme={null}
-xata auth login [--profile value] [--force] [--api-key value] [--issuer value] [--api-url value] [--client-id value] [--client-secret value] [--debug]
+xata auth login [--force] [--api-key value] [--issuer value] [--api-url value] [--client-id value] [--client-secret value] [--profile value] [--debug] [--json]
 ```
-
-<ParamField path="--profile" type="string" default="default">
-  The profile to log in to
-</ParamField>
 
 <ParamField path="-f, --force" type="boolean" default="false">
   Force login even if already logged in, revoking the previous session
@@ -57,8 +53,16 @@ xata auth login [--profile value] [--force] [--api-key value] [--issuer value] [
   Client secret for custom environment
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Examples:**
@@ -79,12 +83,8 @@ Log out of the current account
 Revokes the session of the profile with the identity provider and removes the stored credentials. Because the CLI is a single application to the identity provider, revoking may also sign out other CLI installations that were authorized from the same browser session. Use `--local` when the identity provider is unreachable to remove the stored credentials without revoking the session. Profiles that use an API key are only removed locally; the key itself stays valid.
 
 ```bash theme={null}
-xata auth logout [--profile value] [--yes] [--local] [--debug]
+xata auth logout [--yes] [--local] [--profile value] [--debug] [--json]
 ```
-
-<ParamField path="--profile" type="string" default="default">
-  The profile to log out of
-</ParamField>
 
 <ParamField path="--yes" type="boolean" default="false">
   Do not ask for confirmation, assume yes.
@@ -94,8 +94,16 @@ xata auth logout [--profile value] [--yes] [--local] [--debug]
   Only remove the stored credentials, do not revoke the session with the identity provider
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## status
@@ -105,15 +113,19 @@ Display active account and authentication state
 Reads the stored session without contacting the server, so it stays fast and works offline. It reports an expiry the stored session has already passed, but it cannot see a session revoked server-side. Use `xata auth refresh` to verify against the server.
 
 ```bash theme={null}
-xata auth status [--profile value] [--debug]
+xata auth status [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--profile" type="string">
-  The profile to check
+  The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## switch
@@ -121,15 +133,19 @@ xata auth status [--profile value] [--debug]
 Switch to a different Xata account profile
 
 ```bash theme={null}
-xata auth switch [--profile value] [--debug] [<arg1>]
+xata auth switch [--profile value] [--debug] [--json] [<arg1>]
 ```
 
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="value" type="string">
@@ -141,19 +157,19 @@ xata auth switch [--profile value] [--debug] [<arg1>]
 List all available Xata account profiles
 
 ```bash theme={null}
-xata auth list [--json] [--profile value] [--debug]
+xata auth list [--profile value] [--debug] [--json]
 ```
-
-<ParamField path="--json" type="boolean">
-  Output in JSON format
-</ParamField>
 
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata auth ls`
@@ -165,19 +181,19 @@ Refresh the access token of the current session
 Refreshes the session even when the current access token is still valid, and stores the new one. Every command already refreshes on its own when the token is about to expire, so this is for scripts that want to fail early, or to rotate the token before a long job.
 
 ```bash theme={null}
-xata auth refresh [--profile value] [--json] [--debug]
+xata auth refresh [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--profile" type="string">
-  The profile to refresh
+  The profile to use
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## access-token
@@ -185,15 +201,19 @@ xata auth refresh [--profile value] [--json] [--debug]
 Print the current access token
 
 ```bash theme={null}
-xata auth access-token [--profile value] [--debug]
+xata auth access-token [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string" default="default">
+<ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## refresh-token
@@ -201,13 +221,17 @@ xata auth access-token [--profile value] [--debug]
 Print the stored refresh token, without refreshing the session
 
 ```bash theme={null}
-xata auth refresh-token [--profile value] [--debug]
+xata auth refresh-token [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string" default="default">
+<ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>

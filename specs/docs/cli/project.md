@@ -29,23 +29,23 @@ Every command below also takes `-h, --help`.
 List all projects
 
 ```bash theme={null}
-xata project list [--organization value] [--json] [--profile value] [--debug]
+xata project list [--organization value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
   Organization ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata project ls`
@@ -55,7 +55,7 @@ xata project list [--organization value] [--json] [--profile value] [--debug]
 Describe a project
 
 ```bash theme={null}
-xata project describe [--organization value] [--project value] [--json] [--profile value] [--debug]
+xata project describe [--organization value] [--project value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -66,16 +66,16 @@ xata project describe [--organization value] [--project value] [--json] [--profi
   Project ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Aliases:** `xata project view`, `xata project show`
@@ -85,7 +85,7 @@ xata project describe [--organization value] [--project value] [--json] [--profi
 Create a new project
 
 ```bash theme={null}
-xata project create [--organization value] (--name value) [--branch-name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--storage value] [--postgres-version value] [--scale-to-zero-base true|false] [--scale-to-zero-child true|false] [--inactivity-period-base 15|30|60|120|180] [--inactivity-period-child 15|30|60|120|180] [--json] [--profile value] [--debug]
+xata project create [--organization value] (--name value) [--branch-name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--storage value] [--postgres-version value] [--scale-to-zero-base true|false] [--scale-to-zero-child true|false] [--inactivity-period-base 15|30|60|120|180] [--inactivity-period-child 15|30|60|120|180] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -140,16 +140,16 @@ xata project create [--organization value] (--name value) [--branch-name value] 
   Default inactivity period in minutes for child branches
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## delete
@@ -157,7 +157,7 @@ xata project create [--organization value] (--name value) [--branch-name value] 
 Delete a project
 
 ```bash theme={null}
-xata project delete [--organization value] [--project value] [--json] [--yes] [--profile value] [--debug]
+xata project delete [--organization value] [--project value] [--yes] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -168,10 +168,6 @@ xata project delete [--organization value] [--project value] [--json] [--yes] [-
   Project ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--yes" type="boolean" default="false">
   Do not ask for confirmation, assume yes.
 </ParamField>
@@ -180,8 +176,12 @@ xata project delete [--organization value] [--project value] [--json] [--yes] [-
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## init
@@ -191,7 +191,7 @@ Link this folder to a project and branch
 Writes the organization, project, branch and database to `.xata/` in this folder, so the commands run here no longer need them passed in.
 
 ```bash theme={null}
-xata project init [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug]
+xata project init [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -210,16 +210,16 @@ xata project init [--organization value] [--project value] [--branch value] [--d
   Database name on the branch
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Examples:**
@@ -236,7 +236,7 @@ xata project init --organization <org-id> --project <project-id> --branch <branc
 Get a field from a project description
 
 ```bash theme={null}
-xata project get [--organization value] [--project value] [--profile value] [--debug] <[project] field>...
+xata project get [--organization value] [--project value] [--profile value] [--debug] [--json] <[project] field>...
 ```
 
 <ParamField path="--organization" type="string">
@@ -251,8 +251,12 @@ xata project get [--organization value] [--project value] [--profile value] [--d
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="[project] field" type="string">
@@ -266,7 +270,7 @@ Set a field value for a project
 The fields are name, scale-to-zero-base, scale-to-zero-child, inactivity-period-base and inactivity-period-child. The scale to zero and inactivity fields are the defaults new branches inherit, base for branches without a parent and child for the rest. Run it without a field to list them.
 
 ```bash theme={null}
-xata project set [--organization value] [--project value] [--json] [--profile value] [--debug] [<field>] [<value>]
+xata project set [--organization value] [--project value] [--profile value] [--debug] [--json] [<field>] [<value>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -277,16 +281,16 @@ xata project set [--organization value] [--project value] [--json] [--profile va
   Project ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="field" type="string">
@@ -313,7 +317,7 @@ Manage IP filtering for a project
 Show IP filtering status and configured CIDR entries
 
 ```bash theme={null}
-xata project ip-filter list [--organization value] [--project value] [--json] [--profile value] [--debug]
+xata project ip-filter list [--organization value] [--project value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -324,16 +328,16 @@ xata project ip-filter list [--organization value] [--project value] [--json] [-
   Project ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ### ip-filter enable
@@ -341,7 +345,7 @@ xata project ip-filter list [--organization value] [--project value] [--json] [-
 Enable IP filtering for a project
 
 ```bash theme={null}
-xata project ip-filter enable [--organization value] [--project value] [--json] [--profile value] [--debug]
+xata project ip-filter enable [--organization value] [--project value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -352,16 +356,16 @@ xata project ip-filter enable [--organization value] [--project value] [--json] 
   Project ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ### ip-filter disable
@@ -369,7 +373,7 @@ xata project ip-filter enable [--organization value] [--project value] [--json] 
 Disable IP filtering for a project
 
 ```bash theme={null}
-xata project ip-filter disable [--organization value] [--project value] [--json] [--profile value] [--debug]
+xata project ip-filter disable [--organization value] [--project value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -380,16 +384,16 @@ xata project ip-filter disable [--organization value] [--project value] [--json]
   Project ID
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ### ip-filter add
@@ -397,7 +401,7 @@ xata project ip-filter disable [--organization value] [--project value] [--json]
 Add a CIDR entry to the IP filter allow list
 
 ```bash theme={null}
-xata project ip-filter add [--organization value] [--project value] [--label value] [--json] [--profile value] [--debug] [<cidr>]
+xata project ip-filter add [--organization value] [--project value] [--label value] [--profile value] [--debug] [--json] [<cidr>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -412,16 +416,16 @@ xata project ip-filter add [--organization value] [--project value] [--label val
   Label for the CIDR entry
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="cidr" type="string">
@@ -442,7 +446,7 @@ xata project ip-filter add 203.0.113.0/24 --label office
 Remove a CIDR entry from the IP filter allow list
 
 ```bash theme={null}
-xata project ip-filter remove [--organization value] [--project value] [--force] [--json] [--profile value] [--debug] [<cidr>]
+xata project ip-filter remove [--organization value] [--project value] [--force] [--profile value] [--debug] [--json] [<cidr>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -457,16 +461,16 @@ xata project ip-filter remove [--organization value] [--project value] [--force]
   Skip confirmation prompts
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="cidr" type="string">

@@ -17,7 +17,7 @@ Link this folder to a project and branch
 Writes the organization, project, branch and database to `.xata/` in this folder, so the commands run here no longer need them passed in.
 
 ```bash theme={null}
-xata init [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug]
+xata init [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -36,16 +36,16 @@ xata init [--organization value] [--project value] [--branch value] [--database 
   Database name on the branch
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 **Examples:**

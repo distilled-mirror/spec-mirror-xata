@@ -188,4 +188,4 @@ Now that you have a base branch and development branch to try out, explore what 
 
 ***
 
-**Need help?** Reach out to the Xata team at [info@xata.io](mailto:info@xata.io) or join our Discord community.
+**Need help?** Reach out to the Xata team at [info@xata.io](mailto:info@xata.io).

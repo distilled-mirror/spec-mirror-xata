@@ -13,12 +13,8 @@ This command also takes `-h, --help`.
 Get the version of the Xata CLI, pgroll and pgstream
 
 ```bash theme={null}
-xata version [--json] [--skip-download] [--profile value] [--debug]
+xata version [--skip-download] [--profile value] [--debug] [--json]
 ```
-
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
 
 <ParamField path="--skip-download" type="boolean" default="false">
   Skip downloading the pgroll/pgstream binaries
@@ -28,6 +24,10 @@ xata version [--json] [--skip-download] [--profile value] [--debug]
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>

@@ -17,7 +17,7 @@ Check out a branch in this folder
 Writes the branch to `.xata/` in this folder, so later commands run against it without being told which branch to use.
 
 ```bash theme={null}
-xata checkout [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug] [<branch>]
+xata checkout [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json] [<branch>]
 ```
 
 <ParamField path="--organization" type="string">
@@ -36,16 +36,16 @@ xata checkout [--organization value] [--project value] [--branch value] [--datab
   Database name
 </ParamField>
 
-<ParamField path="--json" type="boolean" default="false">
-  Output in JSON format
-</ParamField>
-
 <ParamField path="--profile" type="string">
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="branch" type="string">

@@ -90,7 +90,7 @@ xata roll baseline [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
 </ParamField>
 
@@ -107,7 +107,7 @@ xata roll baseline [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
 Complete an ongoing migration with the operations present in the given file
 
 ```bash theme={null}
-xata roll complete [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug]
+xata roll complete [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -158,8 +158,12 @@ xata roll complete [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## init
@@ -167,7 +171,7 @@ xata roll complete [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
 Initialize pgroll in the target database
 
 ```bash theme={null}
-xata roll init [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug]
+xata roll init [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -218,8 +222,12 @@ xata roll init [--lock-timeout value] [--pgroll-schema value] [--postgres-url va
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## latest
@@ -231,7 +239,7 @@ Print the name of the latest schema version or migration
 Print the latest migration name
 
 ```bash theme={null}
-xata roll latest migration [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug]
+xata roll latest migration [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -286,8 +294,12 @@ xata roll latest migration [--lock-timeout value] [--pgroll-schema value] [--pos
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ### latest schema
@@ -295,7 +307,7 @@ xata roll latest migration [--lock-timeout value] [--pgroll-schema value] [--pos
 Print the latest version schema name
 
 ```bash theme={null}
-xata roll latest schema [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug]
+xata roll latest schema [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -350,8 +362,12 @@ xata roll latest schema [--lock-timeout value] [--pgroll-schema value] [--postgr
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## migrate
@@ -359,7 +375,7 @@ xata roll latest schema [--lock-timeout value] [--pgroll-schema value] [--postgr
 Apply outstanding migrations from a directory to a database
 
 ```bash theme={null}
-xata roll migrate [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete value] [--expect-one value] [--profile value] [--debug] [<folder>]
+xata roll migrate [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete value] [--expect-one value] [--profile value] [--debug] [--json] [<folder>]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -426,8 +442,12 @@ xata roll migrate [--lock-timeout value] [--pgroll-schema value] [--postgres-url
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="folder" type="string">
@@ -494,7 +514,7 @@ xata roll update [--lock-timeout value] [--pgroll-schema value] [--postgres-url 
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
 </ParamField>
 
@@ -562,7 +582,7 @@ xata roll pull [--lock-timeout value] [--pgroll-schema value] [--postgres-url va
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
 </ParamField>
 
@@ -575,7 +595,7 @@ xata roll pull [--lock-timeout value] [--pgroll-schema value] [--postgres-url va
 Roll back an ongoing migration
 
 ```bash theme={null}
-xata roll rollback [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug]
+xata roll rollback [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -626,8 +646,12 @@ xata roll rollback [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## start
@@ -635,7 +659,7 @@ xata roll rollback [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
 Start a migration for the operations present in the given file
 
 ```bash theme={null}
-xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete value] [--skip-validation value] [--profile value] [--debug] <file>
+xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete value] [--skip-validation value] [--profile value] [--debug] [--json] <file>
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -702,8 +726,12 @@ xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url v
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 <ParamField path="file" type="string" required>
@@ -715,7 +743,7 @@ xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url v
 Show pgroll status
 
 ```bash theme={null}
-xata roll status [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug]
+xata roll status [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -766,8 +794,12 @@ xata roll status [--lock-timeout value] [--pgroll-schema value] [--postgres-url 
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
 
 ## convert
@@ -830,7 +862,7 @@ xata roll convert [--lock-timeout value] [--pgroll-schema value] [--postgres-url
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
 </ParamField>
 

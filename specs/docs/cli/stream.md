@@ -21,7 +21,7 @@ Remove the pgstream setup from a source database
 Drops the replication slot along with the tables, functions and triggers pgstream created, and the pgstream schema itself.
 
 ```bash theme={null}
-xata stream destroy [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color value] [--migrations-only value] [--postgres-url value] [--replication-slot value] [--slot-only value] [--with-injector value] (--source-url value) [--profile value] [--debug]
+xata stream destroy [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color value] [--migrations-only value] [--postgres-url value] [--replication-slot value] [--slot-only value] [--with-injector value] (--source-url value) [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--config" type="string">
@@ -68,6 +68,10 @@ xata stream destroy [--config value] [--log-format value] [--log-level trace|deb
   The profile to use
 </ParamField>
 
-<ParamField path="--debug" type="boolean" default="false">
+<ParamField path="--debug" type="boolean">
   Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
