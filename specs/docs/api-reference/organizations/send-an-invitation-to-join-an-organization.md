@@ -128,6 +128,12 @@ components:
           description: Email address of the user to invite
           type: string
           format: email
+        role:
+          $ref: '#/components/schemas/OrganizationRoleName'
+          description: >-
+            Role the user holds once they accept the invitation. Optional; when
+            omitted, the least privileged role (Viewer) applies once roles are
+            enabled for the organization
       required:
         - email
     OrganizationID:
@@ -136,6 +142,13 @@ components:
       pattern: '[a-zA-Z0-9_-~:]+'
       x-oapi-codegen-extra-tags:
         validate: identifier
+    OrganizationRoleName:
+      description: The roles a member of an organization can hold
+      type: string
+      enum:
+        - admin
+        - editor
+        - viewer
   responses:
     BadRequestError:
       description: >-

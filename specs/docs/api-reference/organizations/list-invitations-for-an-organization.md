@@ -205,6 +205,9 @@ components:
           enum:
             - pending
             - expired
+        role:
+          $ref: '#/components/schemas/OrganizationRoleName'
+          description: Role the user holds once they accept the invitation
       required:
         - id
         - organization_id
@@ -212,12 +215,20 @@ components:
         - created_at
         - expires_at
         - status
+        - role
     OrganizationID:
       title: OrganizationID
       type: string
       pattern: '[a-zA-Z0-9_-~:]+'
       x-oapi-codegen-extra-tags:
         validate: identifier
+    OrganizationRoleName:
+      description: The roles a member of an organization can hold
+      type: string
+      enum:
+        - admin
+        - editor
+        - viewer
   responses:
     BadRequestError:
       description: >-

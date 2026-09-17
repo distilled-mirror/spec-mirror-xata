@@ -58,6 +58,11 @@ source:
             # - statement_timeout=0
             # - lock_timeout=0
             # - synchronous_commit=off # faster restore, but a target crash right after the restore can lose the final index/constraint commits
+          # Number of standalone CREATE INDEX/CREATE UNIQUE INDEX statements restored concurrently against the target. Statements that depend on an index
+          # (constraints, comments, partition attachments, REPLICA IDENTITY, CLUSTER) always wait for every index to be created first.
+          # Each worker holds one target connection and applies the index_constraint_session_settings above to it, so the target needs this many free
+          # connection slots and up to workers x maintenance_work_mem of memory. Defaults to 1 (sequential), maximum 32.
+          index_restore_workers: 1
           dump_file: pg_dump.sql # name of the file where the contents of the schema pg_dump command and output will be written for debugging purposes.
           # Granular object type filtering for schema snapshots. Only one of include_object_types or exclude_object_types can be set.
           # Available categories: tables, sequences, types, indexes, constraints, functions, views, materialized_views, triggers, event_triggers, policies, rules, comments, extensions, collations, text_search
@@ -89,6 +94,10 @@ source:
       ca_cert: "/path/to/ca.crt" # path to CA certificate
       client_cert: "/path/to/client.crt" # path to client certificate
       client_key: "/path/to/client.key" # path to client key
+    sasl: # remove this section to disable SASL authentication
+      mechanism: "scram-sha-512" # options are plain, scram-sha-256 or scram-sha-512. Required
+      user: "myuser" # user for the SASL authentication. Required
+      password: "mypassword" # password for the SASL authentication. Required
     backoff:
       disable_retries: false
       exponential:
@@ -145,6 +154,10 @@ target:
       ca_cert: "/path/to/ca.crt" # path to CA certificate
       client_cert: "/path/to/client.crt" # path to client certificate
       client_key: "/path/to/client.key" # path to client key
+    sasl: # remove this section to disable SASL authentication
+      mechanism: "scram-sha-512" # options are plain, scram-sha-256 or scram-sha-512. Required
+      user: "myuser" # user for the SASL authentication. Required
+      password: "mypassword" # password for the SASL authentication. Required
     batch:
       timeout: 1000 # batch timeout in milliseconds. Defaults to 1s
       size: 100 # number of messages in a batch. Defaults to 100
@@ -360,6 +373,12 @@ Here's a list of all the environment variables that can be used to configure the
     **Description**: Space-separated PostgreSQL `name=value` session settings applied only while restoring indexes and constraints, for example `maintenance_work_mem=4GB max_parallel_maintenance_workers=4`. Each setting must be a whitespace-free `name=value` pair; invalid entries fail at startup. Unset or empty preserves existing behavior.
   </Accordion>
 
+  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_INDEX_RESTORE_WORKERS">
+    **Default**: 1\
+    **Required**: Optional\
+    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, number of standalone `CREATE INDEX`/`CREATE UNIQUE INDEX` statements restored concurrently against the target. Statements that depend on an index (constraints added `USING INDEX`, comments, partition attachments, `REPLICA IDENTITY`, `CLUSTER`) always wait for every index to be created first. Each worker holds one target connection and applies `PGSTREAM_POSTGRES_SNAPSHOT_INDEX_CONSTRAINT_SESSION_SETTINGS` to it, so the target needs this many free connection slots and up to workers × `maintenance_work_mem` of memory. Defaults to 1 (sequential); values above 32 are rejected at startup.
+  </Accordion>
+
   <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_INCLUDE_OBJECT_TYPES">
     **Default**: \[]\
     **Required**: Optional\
@@ -498,6 +517,30 @@ One of exponential/constant/disable retries retry policies can be provided for t
     **Description**: Path to the client PEM private key to use for Kafka TLS client authentication.
   </Accordion>
 
+  <Accordion title="PGSTREAM_KAFKA_SASL_ENABLED">
+    **Default**: False\
+    **Required**: Optional\
+    **Description**: Enable SASL authentication to the Kafka servers.
+  </Accordion>
+
+  <Accordion title="PGSTREAM_KAFKA_SASL_MECHANISM">
+    **Default**: ""\
+    **Required**: Optional\
+    **Description**: SASL mechanism to use, one of `plain`, `scram-sha-256` or `scram-sha-512`.
+  </Accordion>
+
+  <Accordion title="PGSTREAM_KAFKA_SASL_USER">
+    **Default**: ""\
+    **Required**: Optional\
+    **Description**: User for the Kafka SASL authentication.
+  </Accordion>
+
+  <Accordion title="PGSTREAM_KAFKA_SASL_PASSWORD">
+    **Default**: ""\
+    **Required**: Optional\
+    **Description**: Password for the Kafka SASL authentication.
+  </Accordion>
+
   <Accordion title="PGSTREAM_KAFKA_COMMIT_EXP_BACKOFF_INITIAL_INTERVAL">
     **Default**: 0\
     **Required**: Optional\
@@ -600,6 +643,30 @@ One of exponential/constant backoff policies can be provided for the Kafka commi
     **Default**: ""\
     **Required**: Optional\
     **Description**: Path to the client PEM private key to use for Kafka TLS client authentication.
+  </Accordion>
+
+  <Accordion title="PGSTREAM_KAFKA_SASL_ENABLED">
+    **Default**: False\
+    **Required**: Optional\
+    **Description**: Enable SASL authentication to the Kafka servers.
+  </Accordion>
+
+  <Accordion title="PGSTREAM_KAFKA_SASL_MECHANISM">
+    **Default**: ""\
+    **Required**: Optional\
+    **Description**: SASL mechanism to use, one of `plain`, `scram-sha-256` or `scram-sha-512`.
+  </Accordion>
+
+  <Accordion title="PGSTREAM_KAFKA_SASL_USER">
+    **Default**: ""\
+    **Required**: Optional\
+    **Description**: User for the Kafka SASL authentication.
+  </Accordion>
+
+  <Accordion title="PGSTREAM_KAFKA_SASL_PASSWORD">
+    **Default**: ""\
+    **Required**: Optional\
+    **Description**: Password for the Kafka SASL authentication.
   </Accordion>
 
   <Accordion title="PGSTREAM_KAFKA_WRITER_BATCH_TIMEOUT">
