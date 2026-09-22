@@ -31,7 +31,7 @@ Every command below also takes `-h, --help`.
 Create a baseline migration for an existing database schema
 
 ```bash theme={null}
-xata roll baseline [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--json value] [--yes value] [--profile value] [--debug] [<version>] [<folder>]
+xata roll baseline [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--json] [--yes] [--profile value] [--debug] [<version>] [<folder>]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -54,11 +54,11 @@ xata roll baseline [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -78,11 +78,11 @@ xata roll baseline [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
   Database name on the branch
 </ParamField>
 
-<ParamField path="--json" type="string">
+<ParamField path="--json" type="boolean">
   Output in JSON format instead of YAML
 </ParamField>
 
-<ParamField path="--yes" type="string">
+<ParamField path="--yes" type="boolean">
   Skip confirmation prompt
 </ParamField>
 
@@ -107,7 +107,7 @@ xata roll baseline [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
 Complete an ongoing migration with the operations present in the given file
 
 ```bash theme={null}
-xata roll complete [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
+xata roll complete [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -130,11 +130,11 @@ xata roll complete [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -171,7 +171,7 @@ xata roll complete [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
 Initialize pgroll in the target database
 
 ```bash theme={null}
-xata roll init [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
+xata roll init [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -194,11 +194,11 @@ xata roll init [--lock-timeout value] [--pgroll-schema value] [--postgres-url va
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -239,7 +239,7 @@ Print the name of the latest schema version or migration
 Print the latest migration name
 
 ```bash theme={null}
-xata roll latest migration [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug] [--json]
+xata roll latest migration [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -262,11 +262,11 @@ xata roll latest migration [--lock-timeout value] [--pgroll-schema value] [--pos
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -307,7 +307,7 @@ xata roll latest migration [--lock-timeout value] [--pgroll-schema value] [--pos
 Print the latest version schema name
 
 ```bash theme={null}
-xata roll latest schema [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug] [--json]
+xata roll latest schema [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -330,11 +330,11 @@ xata roll latest schema [--lock-timeout value] [--pgroll-schema value] [--postgr
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -375,7 +375,7 @@ xata roll latest schema [--lock-timeout value] [--pgroll-schema value] [--postgr
 Apply outstanding migrations from a directory to a database
 
 ```bash theme={null}
-xata roll migrate [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete value] [--expect-one value] [--profile value] [--debug] [--json] [<folder>]
+xata roll migrate [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete] [--expect-one] [--profile value] [--debug] [--json] [<folder>]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -398,11 +398,11 @@ xata roll migrate [--lock-timeout value] [--pgroll-schema value] [--postgres-url
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -430,11 +430,11 @@ xata roll migrate [--lock-timeout value] [--pgroll-schema value] [--postgres-url
   Number of rows backfilled in each batch
 </ParamField>
 
-<ParamField path="--complete" type="string">
+<ParamField path="--complete" type="boolean">
   Complete the final migration rather than leaving it active
 </ParamField>
 
-<ParamField path="--expect-one" type="string">
+<ParamField path="--expect-one" type="boolean">
   Abort if there is more than one migration to be applied
 </ParamField>
 
@@ -459,7 +459,7 @@ xata roll migrate [--lock-timeout value] [--pgroll-schema value] [--postgres-url
 Update outdated migrations in a directory
 
 ```bash theme={null}
-xata roll update [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--json value] [--profile value] [--debug] [<folder>]
+xata roll update [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug] [<folder>]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -482,11 +482,11 @@ xata roll update [--lock-timeout value] [--pgroll-schema value] [--postgres-url 
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -506,7 +506,7 @@ xata roll update [--lock-timeout value] [--pgroll-schema value] [--postgres-url 
   Database name on the branch
 </ParamField>
 
-<ParamField path="--json" type="string">
+<ParamField path="--json" type="boolean">
   Output migration file in JSON format instead of YAML
 </ParamField>
 
@@ -527,7 +527,7 @@ xata roll update [--lock-timeout value] [--pgroll-schema value] [--postgres-url 
 Pull migration history from the target database and write it to disk
 
 ```bash theme={null}
-xata roll pull [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--json value] [--profile value] [--debug] [<folder>]
+xata roll pull [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug] [<folder>]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -550,11 +550,11 @@ xata roll pull [--lock-timeout value] [--pgroll-schema value] [--postgres-url va
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -574,7 +574,7 @@ xata roll pull [--lock-timeout value] [--pgroll-schema value] [--postgres-url va
   Database name on the branch
 </ParamField>
 
-<ParamField path="--json" type="string">
+<ParamField path="--json" type="boolean">
   Output each migration in JSON format instead of YAML
 </ParamField>
 
@@ -595,7 +595,7 @@ xata roll pull [--lock-timeout value] [--pgroll-schema value] [--postgres-url va
 Roll back an ongoing migration
 
 ```bash theme={null}
-xata roll rollback [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
+xata roll rollback [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -618,11 +618,11 @@ xata roll rollback [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -659,7 +659,7 @@ xata roll rollback [--lock-timeout value] [--pgroll-schema value] [--postgres-ur
 Start a migration for the operations present in the given file
 
 ```bash theme={null}
-xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete value] [--skip-validation value] [--profile value] [--debug] [--json] <file>
+xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete] [--skip-validation] [--profile value] [--debug] [--json] <file>
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -682,11 +682,11 @@ xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url v
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -714,11 +714,11 @@ xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url v
   Number of rows backfilled in each batch
 </ParamField>
 
-<ParamField path="--complete" type="string">
+<ParamField path="--complete" type="boolean">
   Mark the migration as complete
 </ParamField>
 
-<ParamField path="--skip-validation" type="string">
+<ParamField path="--skip-validation" type="boolean">
   Skip migration validation
 </ParamField>
 
@@ -743,7 +743,7 @@ xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url v
 Show pgroll status
 
 ```bash theme={null}
-xata roll status [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
+xata roll status [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -766,11 +766,11 @@ xata roll status [--lock-timeout value] [--pgroll-schema value] [--postgres-url 
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -807,7 +807,7 @@ xata roll status [--lock-timeout value] [--pgroll-schema value] [--postgres-url 
 Convert SQL statements to a pgroll migration
 
 ```bash theme={null}
-xata roll convert [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema value] [--verbose value] [--organization value] [--project value] [--branch value] [--database value] [--json value] [--profile value] [--debug] <file>
+xata roll convert [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug] <file>
 ```
 
 <ParamField path="--lock-timeout" type="string">
@@ -830,11 +830,11 @@ xata roll convert [--lock-timeout value] [--pgroll-schema value] [--postgres-url
   Postgres schema to use for the migration
 </ParamField>
 
-<ParamField path="--use-version-schema" type="string">
+<ParamField path="--use-version-schema" type="boolean">
   Create version schemas for each migration
 </ParamField>
 
-<ParamField path="--verbose" type="string">
+<ParamField path="--verbose" type="boolean">
   Enable verbose logging
 </ParamField>
 
@@ -854,7 +854,7 @@ xata roll convert [--lock-timeout value] [--pgroll-schema value] [--postgres-url
   Database name on the branch
 </ParamField>
 
-<ParamField path="--json" type="string">
+<ParamField path="--json" type="boolean">
   Output migration file in JSON format instead of YAML
 </ParamField>
 

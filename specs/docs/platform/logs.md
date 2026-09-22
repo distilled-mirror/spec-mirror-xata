@@ -10,6 +10,10 @@ Branch logs let you inspect PostgreSQL server output across the primary and repl
 
 Branch logs are generally available on every branch — no opt-in or feature flag is required.
 
+<Note>
+  Logs are retained for 30 days. Entries older than that are no longer available from the dashboard, the CLI, or the API.
+</Note>
+
 ## Viewing logs in the dashboard
 
 Open a branch in the Xata dashboard and select **Logs** in the branch sidebar to browse entries in a searchable viewer.
@@ -62,7 +66,7 @@ The response contains a `logs` array of entries and a `nextCursor` that you can 
 
 | Field     | Type                | Description                                                                                                                                                                                                                            |
 | --------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `start`   | `string` (RFC 3339) | Start of the time range. Required.                                                                                                                                                                                                     |
+| `start`   | `string` (RFC 3339) | Start of the time range. Required. Logs are retained for 30 days, so ranges older than that return no entries.                                                                                                                         |
 | `end`     | `string` (RFC 3339) | End of the time range. Required.                                                                                                                                                                                                       |
 | `limit`   | `integer`           | Maximum number of entries to return per request. Default `100`, maximum `200`. To retrieve more, page with `cursor` as described below, or use [`xata branch logs --limit`](/docs/cli/branch#logs), which pages for you up to 1000 entries. |
 | `cursor`  | `string`            | Pagination cursor returned by a previous response.                                                                                                                                                                                     |

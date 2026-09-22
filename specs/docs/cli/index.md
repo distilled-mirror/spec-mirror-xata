@@ -77,6 +77,7 @@ Every command page opens with an index of the commands on it.
     * [`xata organization members list`](/docs/cli/organization#members-list) — List all members of an organization
     * [`xata organization members invite`](/docs/cli/organization#members-invite) — Send an invitation to join an organization
     * [`xata organization members remove`](/docs/cli/organization#members-remove) — Remove a member from an organization
+    * [`xata organization members set-role`](/docs/cli/organization#members-set-role) — Set the role of an organization member
   * [`xata organization invitations`](/docs/cli/organization#invitations) — Manage organization invitations
     * [`xata organization invitations list`](/docs/cli/organization#invitations-list) — List all invitations for an organization
     * [`xata organization invitations get`](/docs/cli/organization#invitations-get) — Get details of a specific invitation

@@ -21,7 +21,7 @@ Remove the pgstream setup from a source database
 Drops the replication slot along with the tables, functions and triggers pgstream created, and the pgstream schema itself.
 
 ```bash theme={null}
-xata stream destroy [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color value] [--migrations-only value] [--postgres-url value] [--replication-slot value] [--slot-only value] [--with-injector value] (--source-url value) [--profile value] [--debug] [--json]
+xata stream destroy [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color] [--migrations-only] [--replication-slot value] [--slot-only] [--with-injector] (--source-url value) [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--config" type="string">
@@ -36,27 +36,23 @@ xata stream destroy [--config value] [--log-format value] [--log-level trace|deb
   Log level for pgstream
 </ParamField>
 
-<ParamField path="--no-color" type="string">
+<ParamField path="--no-color" type="boolean">
   Disable ANSI color codes in console log output (ignored when --log-format=json)
 </ParamField>
 
-<ParamField path="--migrations-only" type="string">
+<ParamField path="--migrations-only" type="boolean">
   Whether to only revert the database migrations
-</ParamField>
-
-<ParamField path="--postgres-url" type="string">
-  Source postgres URL where pgstream destroy will be run
 </ParamField>
 
 <ParamField path="--replication-slot" type="string">
   Name of the postgres replication slot to be deleted by pgstream from the source url
 </ParamField>
 
-<ParamField path="--slot-only" type="string">
+<ParamField path="--slot-only" type="boolean">
   Whether to only drop the replication slot, leaving the pgstream schema and migrations in place
 </ParamField>
 
-<ParamField path="--with-injector" type="string">
+<ParamField path="--with-injector" type="boolean">
   Whether to also destroy the injector related database objects
 </ParamField>
 

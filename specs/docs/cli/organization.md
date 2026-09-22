@@ -19,6 +19,7 @@ Every command below also takes `-h, --help`.
   * [`xata organization members list`](#members-list) — List all members of an organization
   * [`xata organization members invite`](#members-invite) — Send an invitation to join an organization
   * [`xata organization members remove`](#members-remove) — Remove a member from an organization
+  * [`xata organization members set-role`](#members-set-role) — Set the role of an organization member
 * [`xata organization invitations`](#invitations) — Manage organization invitations
   * [`xata organization invitations list`](#invitations-list) — List all invitations for an organization
   * [`xata organization invitations get`](#invitations-get) — Get details of a specific invitation
@@ -189,7 +190,7 @@ xata organization members list [--organization value] [--profile value] [--debug
 Send an invitation to join an organization
 
 ```bash theme={null}
-xata organization members invite [--organization value] [--email value] [--profile value] [--debug] [--json]
+xata organization members invite [--organization value] [--email value] [--role admin|editor|viewer] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -198,6 +199,10 @@ xata organization members invite [--organization value] [--email value] [--profi
 
 <ParamField path="--email" type="string">
   Email address to invite
+</ParamField>
+
+<ParamField path="--role" type="admin | editor | viewer">
+  Role the new member holds once they accept
 </ParamField>
 
 <ParamField path="--profile" type="string">
@@ -247,6 +252,38 @@ xata organization members remove [--organization value] [--user-id value] [--for
 </ParamField>
 
 **Aliases:** `xata organization members delete`, `xata organization members rm`
+
+### members set-role
+
+Set the role of an organization member
+
+```bash theme={null}
+xata organization members set-role [--organization value] [--user-id value] [--role admin|editor|viewer] [--profile value] [--debug] [--json]
+```
+
+<ParamField path="--organization" type="string">
+  Organization ID
+</ParamField>
+
+<ParamField path="--user-id" type="string">
+  ID of the member
+</ParamField>
+
+<ParamField path="--role" type="admin | editor | viewer">
+  Role to grant
+</ParamField>
+
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
+  Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+</ParamField>
 
 ## invitations
 
@@ -325,7 +362,7 @@ xata organization invitations get [--organization value] [--invitation-id value]
 Create and send an invitation to join an organization
 
 ```bash theme={null}
-xata organization invitations create [--organization value] [--email value] [--profile value] [--debug] [--json]
+xata organization invitations create [--organization value] [--email value] [--role admin|editor|viewer] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -334,6 +371,10 @@ xata organization invitations create [--organization value] [--email value] [--p
 
 <ParamField path="--email" type="string">
   Email address to invite
+</ParamField>
+
+<ParamField path="--role" type="admin | editor | viewer">
+  Role the new member holds once they accept
 </ParamField>
 
 <ParamField path="--profile" type="string">
