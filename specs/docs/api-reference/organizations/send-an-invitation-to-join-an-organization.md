@@ -132,8 +132,7 @@ components:
           $ref: '#/components/schemas/OrganizationRoleName'
           description: >-
             Role the user holds once they accept the invitation. Optional; when
-            omitted, the least privileged role (Viewer) applies once roles are
-            enabled for the organization
+            omitted, Editor applies once roles are enabled for the organization
       required:
         - email
     OrganizationID:
@@ -148,7 +147,6 @@ components:
       enum:
         - admin
         - editor
-        - viewer
   responses:
     BadRequestError:
       description: >-

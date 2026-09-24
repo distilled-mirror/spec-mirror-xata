@@ -149,6 +149,7 @@ Every command page opens with an index of the commands on it.
 * [`xata version`](/docs/cli/version) — Get the version of the Xata CLI, pgroll and pgstream
 * [`xata checkout`](/docs/cli/checkout) — Check out a branch in this folder
 * [`xata scratch`](/docs/cli/scratch) — Run SQL or a Postgres client command against a temporary scratch branch
+* [`xata console`](/docs/cli/console) — Open an interactive branch console
 * [`xata upgrade`](/docs/cli/upgrade) — Upgrade the Xata CLI
 * [`xata completions`](/docs/cli/completions) — Install or uninstall shell completions for the Xata CLI
   * [`xata completions install`](/docs/cli/completions#install) — Installs bash autocomplete support for xata

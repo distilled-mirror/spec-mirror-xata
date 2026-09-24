@@ -183,7 +183,6 @@ components:
       enum:
         - admin
         - editor
-        - viewer
   responses:
     BadRequestError:
       description: >-

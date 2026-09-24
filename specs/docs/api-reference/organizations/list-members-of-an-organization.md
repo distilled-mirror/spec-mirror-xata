@@ -143,7 +143,6 @@ components:
       enum:
         - admin
         - editor
-        - viewer
     User:
       description: User information including email, full name, and profile image
       type: object

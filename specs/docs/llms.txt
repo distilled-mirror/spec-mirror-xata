@@ -118,6 +118,7 @@
 - [version](https://xata.io/docs/cli/version.md): Get the version of the Xata CLI, pgroll and pgstream
 - [checkout](https://xata.io/docs/cli/checkout.md): Check out a branch in this folder
 - [scratch](https://xata.io/docs/cli/scratch.md): Run SQL or a Postgres client command against a temporary scratch branch
+- [console](https://xata.io/docs/cli/console.md): Open an interactive branch console
 - [upgrade](https://xata.io/docs/cli/upgrade.md): Upgrade the Xata CLI
 - [completions](https://xata.io/docs/cli/completions.md): Install or uninstall shell completions for the Xata CLI
 - [Overview](https://xata.io/docs/opensource/pgstream/overview.md): Postgres replication with DDL changes

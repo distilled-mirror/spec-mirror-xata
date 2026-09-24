@@ -133,6 +133,7 @@ paths:
                           enum:
                             - aws
                             - gcp
+                            - azure
                             - custom
                         organizationId:
                           description: >-
