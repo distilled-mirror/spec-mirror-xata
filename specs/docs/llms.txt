@@ -33,6 +33,7 @@
 - [Extensions](https://xata.io/docs/platform/extensions.md): All extensions listed below are currently available for PostgreSQL 14, 15, 16, 17, and 18. These extensions provide additional functionality to enhance your database, from spatial data processing to text search and monitoring tools.
 - [Logs](https://xata.io/docs/platform/logs.md): Inspect PostgreSQL logs from your branch instances
 - [AWS PrivateLink](https://xata.io/docs/platform/privatelink.md): Connect to your Xata Postgres databases privately from your AWS VPC, without traffic leaving the AWS network
+- [Single sign-on](https://xata.io/docs/platform/sso.md): Require your organization's members to sign in through your own identity provider
 - [AWS RDS](https://xata.io/docs/migrations/aws-rds.md): Learn how to migrate your AWS RDS PostgreSQL database to Xata using xata clone
 - [AWS Aurora](https://xata.io/docs/migrations/aws-aurora.md): Learn how to migrate your AWS Aurora PostgreSQL database to Xata using xata clone
 - [GCP Cloud SQL](https://xata.io/docs/migrations/gcp-cloudsql.md): Learn how to migrate your GCP Cloud SQL PostgreSQL database to Xata using xata clone
