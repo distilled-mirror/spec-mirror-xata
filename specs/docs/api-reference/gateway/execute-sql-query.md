@@ -468,22 +468,32 @@ components:
         tableID:
           description: OID of the source table (0 if not a table column).
           type: integer
-          format: int32
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           x-go-type: uint32
         columnID:
-          description: Attribute number of the column within the table.
+          description: >-
+            Attribute number of the column within the table (0 if not a table
+            column, negative for system columns).
           type: integer
           format: int32
-          x-go-type: uint16
+          maximum: 32767
+          minimum: -32768
+          x-go-type: int16
         dataTypeID:
           description: OID of the column data type.
           type: integer
-          format: int32
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           x-go-type: uint32
         dataTypeSize:
           description: Data type size (negative for variable-length types).
           type: integer
           format: int32
+          maximum: 32767
+          minimum: -32768
           x-go-type: int16
         dataTypeModifier:
           description: Type-specific modifier (e.g. precision/scale for numeric types).

@@ -71,11 +71,11 @@ Create a Flow for the database setup you repeat often: create branch, print bran
 
 ## Troubleshooting
 
-| Issue                                 | Fix                                                                        |
-| ------------------------------------- | -------------------------------------------------------------------------- |
-| Cascade forgets the database target   | Put the branch name and environment file path in the Flow description.     |
-| A Flow runs against stale credentials | Regenerate the branch URL and restart the local dev server.                |
-| Generated SQL is too broad            | Ask Cascade to split schema and data changes into separate reviewed steps. |
+| Issue | Fix |
+| - | - |
+| Cascade forgets the database target | Put the branch name and environment file path in the Flow description. |
+| A Flow runs against stale credentials | Regenerate the branch URL and restart the local dev server. |
+| Generated SQL is too broad | Ask Cascade to split schema and data changes into separate reviewed steps. |
 
 ## Related Xata docs
 

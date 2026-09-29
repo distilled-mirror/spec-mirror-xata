@@ -47,13 +47,13 @@ postgresql://xata:<password>@<host>.us-east-1.xata.tech:5432/xata?sslmode=requir
 
 3. Create a new PostgreSQL credential in n8n and copy the values from the connection string field by field:
 
-   | n8n field | Value from connection string                |
-   | --------- | ------------------------------------------- |
-   | Host      | The host, e.g. `<host>.us-east-1.xata.tech` |
-   | Database  | `xata`                                      |
-   | User      | `xata`                                      |
-   | Password  | The password from the connection string     |
-   | Port      | `5432`                                      |
+   | n8n field | Value from connection string |
+   | - | - |
+   | Host | The host, e.g. `<host>.us-east-1.xata.tech` |
+   | Database | `xata` |
+   | User | `xata` |
+   | Password | The password from the connection string |
+   | Port | `5432` |
 
 <img src="https://mintcdn.com/xata/Nj_y4Z5mGeTrrakS/images/n8n-postgresql-settings.png?fit=max&auto=format&n=Nj_y4Z5mGeTrrakS&q=85&s=ffe839b7611ba5741ef1d074873f88af" alt="n8n PostgreSQL credential form filled in with Xata connection details" className="rounded-lg" width="1714" height="1332" data-path="images/n8n-postgresql-settings.png" />
 

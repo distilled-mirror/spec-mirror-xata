@@ -84,6 +84,16 @@ Every command page opens with an index of the commands on it.
     * [`xata organization invitations create`](/docs/cli/organization#invitations-create) — Create and send an invitation to join an organization
     * [`xata organization invitations delete`](/docs/cli/organization#invitations-delete) — Delete an invitation
     * [`xata organization invitations resend`](/docs/cli/organization#invitations-resend) — Resend an invitation
+  * [`xata organization sso`](/docs/cli/organization#sso) — Configure single sign-on for an organization
+    * [`xata organization sso show`](/docs/cli/organization#sso-show) — Show the domains and identity providers configured for an organization
+    * [`xata organization sso domains`](/docs/cli/organization#sso-domains) — Claim and verify the email domains that sign in through your identity providers
+      * [`xata organization sso domains add`](/docs/cli/organization#sso-domains-add) — Claim an email domain and print the DNS record that proves you own it
+      * [`xata organization sso domains verify`](/docs/cli/organization#sso-domains-verify) — Check the DNS record for a claimed domain and mark it verified
+      * [`xata organization sso domains remove`](/docs/cli/organization#sso-domains-remove) — Remove a claimed domain from an organization
+    * [`xata organization sso providers`](/docs/cli/organization#sso-providers) — Connect the identity providers that sign in each verified domain
+      * [`xata organization sso providers add`](/docs/cli/organization#sso-providers-add) — Connect an identity provider to a verified domain
+      * [`xata organization sso providers remove`](/docs/cli/organization#sso-providers-remove) — Disconnect an identity provider from an organization
+      * [`xata organization sso providers enforce`](/docs/cli/organization#sso-providers-enforce) — Require members on a domain to sign in through its identity provider
 * [`xata project`](/docs/cli/project) — Create, list, and manage projects
   * [`xata project list`](/docs/cli/project#list) — List all projects
   * [`xata project describe`](/docs/cli/project#describe) — Describe a project
@@ -173,15 +183,15 @@ Every command page opens with an index of the commands on it.
 
 Most commands work with a key scoped to `branch:read`. These need more:
 
-| Command                                                 | Scope              | Why                                                    |
-| ------------------------------------------------------- | ------------------ | ------------------------------------------------------ |
-| [`branch logs`](/docs/cli/branch#logs)                       | `logs:read`        | Reads server logs through the Xata API                 |
-| [`branch url`](/docs/cli/branch#url)                         | `credentials:read` | Reads connection details from the credentials endpoint |
-| [`branch rotate-password`](/docs/cli/branch#rotate-password) | `credentials:read` | Reads the current username before rotating             |
-| [`branch query-insights`](/docs/cli/branch#query-insights)   | `credentials:read` | Opens a direct PostgreSQL connection to the branch     |
-| [`roll url`](/docs/cli/roll)                                 | `credentials:read` | Reads connection details from the credentials endpoint |
-| [`project init`](/docs/cli/project)                          | `credentials:read` | Reads connection details from the credentials endpoint |
-| [`clone start`](/docs/cli/clone), [`stream`](/docs/cli/stream)    | `credentials:read` | Connects to the source and target branches             |
+| Command | Scope | Why |
+| - | - | - |
+| [`branch logs`](/docs/cli/branch#logs) | `logs:read` | Reads server logs through the Xata API |
+| [`branch url`](/docs/cli/branch#url) | `credentials:read` | Reads connection details from the credentials endpoint |
+| [`branch rotate-password`](/docs/cli/branch#rotate-password) | `credentials:read` | Reads the current username before rotating |
+| [`branch query-insights`](/docs/cli/branch#query-insights) | `credentials:read` | Opens a direct PostgreSQL connection to the branch |
+| [`roll url`](/docs/cli/roll) | `credentials:read` | Reads connection details from the credentials endpoint |
+| [`project init`](/docs/cli/project) | `credentials:read` | Reads connection details from the credentials endpoint |
+| [`clone start`](/docs/cli/clone), [`stream`](/docs/cli/stream) | `credentials:read` | Connects to the source and target branches |
 
 A key that only has `branch:read` returns a 401 on the commands above. Scopes are set when you create the key, so a key created before a scope existed does not have it. See [API keys](/docs/platform/api-key) for how to create and scope one.
 

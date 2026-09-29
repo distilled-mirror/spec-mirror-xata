@@ -119,16 +119,16 @@ Xata uses PgBouncer for connection pooling to efficiently manage database connec
 
 The `default_pool_size` parameter controls how many server connections PgBouncer maintains per database. This value is automatically calculated as `floor(0.9 * max_connections)` based on your instance's `max_connections` setting.
 
-| Instance     | RAM    | max\_connections | default\_pool\_size |
-| ------------ | ------ | ---------------- | ------------------- |
-| xata.micro   | 1 GB   | 50               | 45                  |
-| xata.small   | 2 GB   | 100              | 90                  |
-| xata.medium  | 4 GB   | 200              | 180                 |
-| xata.large   | 8 GB   | 400              | 360                 |
-| xata.xlarge  | 16 GB  | 800              | 720                 |
-| xata.2xlarge | 32 GB  | 1,600            | 1,440               |
-| xata.4xlarge | 64 GB  | 3,200            | 2,880               |
-| xata.8xlarge | 128 GB | 5,000            | 4,500               |
+| Instance | RAM | max\_connections | default\_pool\_size |
+| - | - | - | - |
+| xata.micro | 1 GB | 50 | 45 |
+| xata.small | 2 GB | 100 | 90 |
+| xata.medium | 4 GB | 200 | 180 |
+| xata.large | 8 GB | 400 | 360 |
+| xata.xlarge | 16 GB | 800 | 720 |
+| xata.2xlarge | 32 GB | 1,600 | 1,440 |
+| xata.4xlarge | 64 GB | 3,200 | 2,880 |
+| xata.8xlarge | 128 GB | 5,000 | 4,500 |
 
 If you modify `max_connections` in your PostgreSQL configuration, the `default_pool_size` will automatically adjust on the next reconciliation. You can also override this value directly in your branch configuration if needed.
 

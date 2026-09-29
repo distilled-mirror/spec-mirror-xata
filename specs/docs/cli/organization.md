@@ -26,6 +26,16 @@ Every command below also takes `-h, --help`.
   * [`xata organization invitations create`](#invitations-create) — Create and send an invitation to join an organization
   * [`xata organization invitations delete`](#invitations-delete) — Delete an invitation
   * [`xata organization invitations resend`](#invitations-resend) — Resend an invitation
+* [`xata organization sso`](#sso) — Configure single sign-on for an organization
+  * [`xata organization sso show`](#sso-show) — Show the domains and identity providers configured for an organization
+  * [`xata organization sso domains`](#sso-domains) — Claim and verify the email domains that sign in through your identity providers
+    * [`xata organization sso domains add`](#sso-domains-add) — Claim an email domain and print the DNS record that proves you own it
+    * [`xata organization sso domains verify`](#sso-domains-verify) — Check the DNS record for a claimed domain and mark it verified
+    * [`xata organization sso domains remove`](#sso-domains-remove) — Remove a claimed domain from an organization
+  * [`xata organization sso providers`](#sso-providers) — Connect the identity providers that sign in each verified domain
+    * [`xata organization sso providers add`](#sso-providers-add) — Connect an identity provider to a verified domain
+    * [`xata organization sso providers remove`](#sso-providers-remove) — Disconnect an identity provider from an organization
+    * [`xata organization sso providers enforce`](#sso-providers-enforce) — Require members on a domain to sign in through its identity provider
 
 ## list
 
@@ -190,7 +200,7 @@ xata organization members list [--organization value] [--profile value] [--debug
 Send an invitation to join an organization
 
 ```bash theme={null}
-xata organization members invite [--organization value] [--email value] [--role admin|editor|viewer] [--profile value] [--debug] [--json]
+xata organization members invite [--organization value] [--email value] [--role admin|editor] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -201,7 +211,7 @@ xata organization members invite [--organization value] [--email value] [--role 
   Email address to invite
 </ParamField>
 
-<ParamField path="--role" type="admin | editor | viewer">
+<ParamField path="--role" type="admin | editor">
   Role the new member holds once they accept
 </ParamField>
 
@@ -258,7 +268,7 @@ xata organization members remove [--organization value] [--user-id value] [--for
 Set the role of an organization member
 
 ```bash theme={null}
-xata organization members set-role [--organization value] [--user-id value] [--role admin|editor|viewer] [--profile value] [--debug] [--json]
+xata organization members set-role [--organization value] [--user-id value] [--role admin|editor] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -269,7 +279,7 @@ xata organization members set-role [--organization value] [--user-id value] [--r
   ID of the member
 </ParamField>
 
-<ParamField path="--role" type="admin | editor | viewer">
+<ParamField path="--role" type="admin | editor">
   Role to grant
 </ParamField>
 
@@ -362,7 +372,7 @@ xata organization invitations get [--organization value] [--invitation-id value]
 Create and send an invitation to join an organization
 
 ```bash theme={null}
-xata organization invitations create [--organization value] [--email value] [--role admin|editor|viewer] [--profile value] [--debug] [--json]
+xata organization invitations create [--organization value] [--email value] [--role admin|editor] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -373,7 +383,7 @@ xata organization invitations create [--organization value] [--email value] [--r
   Email address to invite
 </ParamField>
 
-<ParamField path="--role" type="admin | editor | viewer">
+<ParamField path="--role" type="admin | editor">
   Role the new member holds once they accept
 </ParamField>
 
@@ -451,4 +461,256 @@ xata organization invitations resend [--organization value] [--invitation-id val
 
 <ParamField path="--json" type="boolean">
   Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+</ParamField>
+
+## sso
+
+Configure single sign-on for an organization
+
+Claim an email domain, prove you own it with a DNS record, connect the identity provider its members sign in through, and then require it. Each verified domain has its own provider, so an organization can have several.
+
+### sso show
+
+Show the domains and identity providers configured for an organization
+
+```bash theme={null}
+xata organization sso show [--organization value] [--profile value] [--debug] [--json]
+```
+
+<ParamField path="--organization" type="string">
+  Organization ID
+</ParamField>
+
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
+  Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+</ParamField>
+
+**Aliases:** `xata organization sso get`
+
+### sso domains
+
+Claim and verify the email domains that sign in through your identity providers
+
+#### sso domains add
+
+Claim an email domain and print the DNS record that proves you own it
+
+```bash theme={null}
+xata organization sso domains add [--organization value] [--profile value] [--debug] [--json] [<domain>]
+```
+
+<ParamField path="--organization" type="string">
+  Organization ID
+</ParamField>
+
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
+  Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+</ParamField>
+
+<ParamField path="domain" type="string">
+  Domain to claim, such as acme.com
+</ParamField>
+
+**Aliases:** `xata organization sso domains claim`
+
+#### sso domains verify
+
+Check the DNS record for a claimed domain and mark it verified
+
+```bash theme={null}
+xata organization sso domains verify [--organization value] [--profile value] [--debug] [--json] [<domain>]
+```
+
+<ParamField path="--organization" type="string">
+  Organization ID
+</ParamField>
+
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
+  Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+</ParamField>
+
+<ParamField path="domain" type="string">
+  Domain to verify, such as acme.com
+</ParamField>
+
+#### sso domains remove
+
+Remove a claimed domain from an organization
+
+```bash theme={null}
+xata organization sso domains remove [--organization value] [--yes] [--profile value] [--debug] [--json] [<domain>]
+```
+
+<ParamField path="--organization" type="string">
+  Organization ID
+</ParamField>
+
+<ParamField path="--yes" type="boolean" default="false">
+  Do not ask for confirmation, assume yes.
+</ParamField>
+
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
+  Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+</ParamField>
+
+<ParamField path="domain" type="string">
+  Domain to remove, such as acme.com
+</ParamField>
+
+**Aliases:** `xata organization sso domains delete`
+
+### sso providers
+
+Connect the identity providers that sign in each verified domain
+
+#### sso providers add
+
+Connect an identity provider to a verified domain
+
+Reads the client secret from --client-secret, the XATA\_SSO\_CLIENT\_SECRET environment variable, or a prompt, so it need not appear in shell history. Provider types: google (Google Workspace), microsoft (Microsoft Entra ID), oidc (OpenID Connect). Every type except google needs --issuer-url.
+
+```bash theme={null}
+xata organization sso providers add [--organization value] [--type google|microsoft|oidc] [--domain value] [--issuer-url value] [--client-id value] [--client-secret value] [--profile value] [--debug] [--json]
+```
+
+<ParamField path="--organization" type="string">
+  Organization ID
+</ParamField>
+
+<ParamField path="--type" type="google | microsoft | oidc" default="google">
+  Provider type
+</ParamField>
+
+<ParamField path="--domain" type="string">
+  Verified domain this provider signs in
+</ParamField>
+
+<ParamField path="--issuer-url" type="string">
+  Issuer URL, required for every type except google
+</ParamField>
+
+<ParamField path="--client-id" type="string">
+  Client ID issued by the identity provider
+</ParamField>
+
+<ParamField path="--client-secret" type="string">
+  Client secret issued by the identity provider
+</ParamField>
+
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
+  Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+</ParamField>
+
+**Aliases:** `xata organization sso providers connect`
+
+#### sso providers remove
+
+Disconnect an identity provider from an organization
+
+```bash theme={null}
+xata organization sso providers remove [--organization value] [--yes] [--profile value] [--debug] [--json] [<alias>]
+```
+
+<ParamField path="--organization" type="string">
+  Organization ID
+</ParamField>
+
+<ParamField path="--yes" type="boolean" default="false">
+  Do not ask for confirmation, assume yes.
+</ParamField>
+
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
+  Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+</ParamField>
+
+<ParamField path="alias" type="string">
+  Provider alias, as shown by xata organization sso show
+</ParamField>
+
+**Aliases:** `xata organization sso providers delete`
+
+#### sso providers enforce
+
+Require members on a domain to sign in through its identity provider
+
+Members on the domain lose the password form and the shared Google and GitHub buttons, so check the provider works before requiring it. Pass --disable to lift the requirement.
+
+```bash theme={null}
+xata organization sso providers enforce [--organization value] [--disable] [--yes] [--profile value] [--debug] [--json] [<alias>]
+```
+
+<ParamField path="--organization" type="string">
+  Organization ID
+</ParamField>
+
+<ParamField path="--disable" type="boolean" default="false">
+  Stop requiring SSO instead of requiring it
+</ParamField>
+
+<ParamField path="--yes" type="boolean" default="false">
+  Do not ask for confirmation, assume yes.
+</ParamField>
+
+<ParamField path="--profile" type="string">
+  The profile to use
+</ParamField>
+
+<ParamField path="--debug" type="boolean">
+  Print where each resolved value came from
+</ParamField>
+
+<ParamField path="--json" type="boolean">
+  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+</ParamField>
+
+<ParamField path="alias" type="string">
+  Provider alias, as shown by xata organization sso show
 </ParamField>

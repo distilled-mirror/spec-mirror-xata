@@ -26,10 +26,10 @@ The server uses the **Streamable HTTP** transport. There is no SSE endpoint and 
 
 The MCP server supports two authentication methods:
 
-| Method  | Use when                          | Client requirement                                  |
-| ------- | --------------------------------- | --------------------------------------------------- |
-| OAuth   | Interactive use in an editor/chat | Support for MCP OAuth (dynamic client registration) |
-| API key | Automation, CI, headless agents   | Support for custom HTTP headers                     |
+| Method | Use when | Client requirement |
+| - | - | - |
+| OAuth | Interactive use in an editor/chat | Support for MCP OAuth (dynamic client registration) |
+| API key | Automation, CI, headless agents | Support for custom HTTP headers |
 
 ### OAuth
 
@@ -304,19 +304,19 @@ The assistant should call `search_operations` with `{"query":"list branches"}` a
 
 The Xata MCP server exposes the following tools:
 
-| Tool                         | Description                                                                                                               |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `search_operations`          | Find a Xata REST API operation by intent (for example, "list branches" or "invite member").                               |
-| `describe_operation`         | Return the parameters and request/response schemas for a specific operation.                                              |
-| `call_read_operation`        | Invoke a read-only Xata REST API operation.                                                                               |
-| `call_write_operation`       | Invoke a Xata REST API operation that creates or updates data.                                                            |
-| `call_destructive_operation` | Invoke a Xata REST API operation that destroys data or revokes access. Requires `confirm=true`.                           |
-| `run_sql`                    | Run SQL against a branch. Read-only by default; statements that mutate data require both `write=true` and `confirm=true`. |
-| `describe_schema`            | List the tables and columns of a branch.                                                                                  |
-| `list_skills`                | List the available Xata skills — guided workflows for common multi-step tasks.                                            |
-| `get_skill`                  | Read the instructions for a specific skill.                                                                               |
-| `search_xata`                | Search the Xata documentation.                                                                                            |
-| `query_docs_filesystem_xata` | Read Xata documentation pages by path.                                                                                    |
+| Tool | Description |
+| - | - |
+| `search_operations` | Find a Xata REST API operation by intent (for example, "list branches" or "invite member"). |
+| `describe_operation` | Return the parameters and request/response schemas for a specific operation. |
+| `call_read_operation` | Invoke a read-only Xata REST API operation. |
+| `call_write_operation` | Invoke a Xata REST API operation that creates or updates data. |
+| `call_destructive_operation` | Invoke a Xata REST API operation that destroys data or revokes access. Requires `confirm=true`. |
+| `run_sql` | Run SQL against a branch. Read-only by default; statements that mutate data require both `write=true` and `confirm=true`. |
+| `describe_schema` | List the tables and columns of a branch. |
+| `list_skills` | List the available Xata skills — guided workflows for common multi-step tasks. |
+| `get_skill` | Read the instructions for a specific skill. |
+| `search_xata` | Search the Xata documentation. |
+| `query_docs_filesystem_xata` | Read Xata documentation pages by path. |
 
 ## Security
 

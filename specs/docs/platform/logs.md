@@ -64,34 +64,34 @@ The response contains a `logs` array of entries and a `nextCursor` that you can 
 
 ## Request parameters
 
-| Field     | Type                | Description                                                                                                                                                                                                                            |
-| --------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `start`   | `string` (RFC 3339) | Start of the time range. Required. Logs are retained for 30 days, so ranges older than that return no entries.                                                                                                                         |
-| `end`     | `string` (RFC 3339) | End of the time range. Required.                                                                                                                                                                                                       |
-| `limit`   | `integer`           | Maximum number of entries to return per request. Default `100`, maximum `200`. To retrieve more, page with `cursor` as described below, or use [`xata branch logs --limit`](/docs/cli/branch#logs), which pages for you up to 1000 entries. |
-| `cursor`  | `string`            | Pagination cursor returned by a previous response.                                                                                                                                                                                     |
-| `filters` | `array`             | Optional filters. Multiple filters are combined with `AND`.                                                                                                                                                                            |
+| Field | Type | Description |
+| - | - | - |
+| `start` | `string` (RFC 3339) | Start of the time range. Required. Logs are retained for 30 days, so ranges older than that return no entries. |
+| `end` | `string` (RFC 3339) | End of the time range. Required. |
+| `limit` | `integer` | Maximum number of entries to return per request. Default `100`, maximum `200`. To retrieve more, page with `cursor` as described below, or use [`xata branch logs --limit`](/docs/cli/branch#logs), which pages for you up to 1000 entries. |
+| `cursor` | `string` | Pagination cursor returned by a previous response. |
+| `filters` | `array` | Optional filters. Multiple filters are combined with `AND`. |
 
 ## Log entry fields
 
-| Field        | Description                                            |
-| ------------ | ------------------------------------------------------ |
-| `timestamp`  | Time the log was emitted.                              |
+| Field | Description |
+| - | - |
+| `timestamp` | Time the log was emitted. |
 | `instanceID` | Instance that produced the entry (primary or replica). |
-| `level`      | One of `debug`, `info`, `warning`, `error`.            |
-| `process`    | Name of the PostgreSQL process that emitted the log.   |
-| `message`    | The log message.                                       |
+| `level` | One of `debug`, `info`, `warning`, `error`. |
+| `process` | Name of the PostgreSQL process that emitted the log. |
+| `message` | The log message. |
 
 ## Filtering
 
 Pass one or more `filters` to narrow results. Each filter applies to a specific `field` with an `op` and either a `value` or `values`:
 
-| Field      | Description                        |
-| ---------- | ---------------------------------- |
-| `instance` | Filter by instance ID.             |
-| `level`    | Filter by log level.               |
-| `process`  | Filter by PostgreSQL process name. |
-| `body`     | Filter by the log message body.    |
+| Field | Description |
+| - | - |
+| `instance` | Filter by instance ID. |
+| `level` | Filter by log level. |
+| `process` | Filter by PostgreSQL process name. |
+| `body` | Filter by the log message body. |
 
 Supported operators:
 

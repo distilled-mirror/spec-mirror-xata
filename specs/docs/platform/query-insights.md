@@ -47,22 +47,22 @@ The row counter below the headline shows how many queries match the active filte
 
 A column selector in the toolbar lets you toggle which statistics are visible. The **Query** column is always shown.
 
-| Column                                | Description                                               |
-| ------------------------------------- | --------------------------------------------------------- |
-| Query                                 | Normalized SQL text                                       |
-| Database                              | Database the query ran against                            |
-| User                                  | Role that executed the query                              |
-| Runtime                               | Share of total execution time across all captured queries |
-| Calls                                 | Number of times the query was executed                    |
-| Total                                 | Cumulative execution time                                 |
-| Avg                                   | Mean execution time per call                              |
-| Min                                   | Fastest recorded execution                                |
-| Max                                   | Slowest recorded execution (highlighted when over 1s)     |
-| Stddev                                | Standard deviation of execution time                      |
-| Rows                                  | Total rows retrieved or affected                          |
-| Shared Hit / Read / Dirtied / Written | Shared buffer activity                                    |
-| Local Hit / Read / Dirtied / Written  | Local buffer activity (temp tables)                       |
-| Temp Read / Written                   | Temporary file I/O                                        |
+| Column | Description |
+| - | - |
+| Query | Normalized SQL text |
+| Database | Database the query ran against |
+| User | Role that executed the query |
+| Runtime | Share of total execution time across all captured queries |
+| Calls | Number of times the query was executed |
+| Total | Cumulative execution time |
+| Avg | Mean execution time per call |
+| Min | Fastest recorded execution |
+| Max | Slowest recorded execution (highlighted when over 1s) |
+| Stddev | Standard deviation of execution time |
+| Rows | Total rows retrieved or affected |
+| Shared Hit / Read / Dirtied / Written | Shared buffer activity |
+| Local Hit / Read / Dirtied / Written | Local buffer activity (temp tables) |
+| Temp Read / Written | Temporary file I/O |
 
 By default, the table shows **Query**, **Runtime**, **Calls**, **Total**, **Avg**, **Max**, and **Rows**.
 

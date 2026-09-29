@@ -25,13 +25,13 @@ Execute SQL queries directly in the browser with syntax highlighting and auto-co
 
 ### Keyboard shortcuts
 
-| Action       | Shortcut            |
-| ------------ | ------------------- |
-| Run query    | `⌘` + `Enter`       |
-| Save query   | `⌘` + `S`           |
-| Open Ask AI  | `⌘` + `K`           |
+| Action | Shortcut |
+| - | - |
+| Run query | `⌘` + `Enter` |
+| Save query | `⌘` + `S` |
+| Open Ask AI | `⌘` + `K` |
 | Rename query | `⌘` + `Shift` + `R` |
-| New query    | `⌘` + `J`           |
+| New query | `⌘` + `J` |
 
 ## Generate SQL with Ask AI
 

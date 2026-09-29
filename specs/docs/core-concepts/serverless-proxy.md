@@ -26,22 +26,22 @@ The Serverless Proxy solves these problems by allowing stateless HTTP requests a
 
 Xata supports three ways to connect to your database:
 
-| Method    | Protocol            | Best for                                       |
-| --------- | ------------------- | ---------------------------------------------- |
-| Standard  | TCP (wire protocol) | Traditional servers, long-running applications |
-| HTTP      | HTTPS               | Serverless functions, one-off queries          |
-| WebSocket | WSS                 | Edge functions, interactive applications       |
+| Method | Protocol | Best for |
+| - | - | - |
+| Standard | TCP (wire protocol) | Traditional servers, long-running applications |
+| HTTP | HTTPS | Serverless functions, one-off queries |
+| WebSocket | WSS | Edge functions, interactive applications |
 
 ## Connection endpoints
 
 When connecting to your Xata database, you can use different endpoints to route your traffic:
 
-| Endpoint                            | Description                | Use case                                                              |
-| ----------------------------------- | -------------------------- | --------------------------------------------------------------------- |
-| `{branch-id}` (no suffix)           | Default endpoint           | Routes through PgBouncer for connection pooling                       |
-| `{branch-id}-rw`                    | Read-write endpoint        | Routes directly to the primary instance for read and write operations |
-| `{branch-id}-ro` or `{branch-id}-r` | Read-only endpoint         | Routes to read replicas for read operations only                      |
-| `{branch-id}-pooler`                | Connection pooler endpoint | Routes through PgBouncer for connection pooling                       |
+| Endpoint | Description | Use case |
+| - | - | - |
+| `{branch-id}` (no suffix) | Default endpoint | Routes through PgBouncer for connection pooling |
+| `{branch-id}-rw` | Read-write endpoint | Routes directly to the primary instance for read and write operations |
+| `{branch-id}-ro` or `{branch-id}-r` | Read-only endpoint | Routes to read replicas for read operations only |
+| `{branch-id}-pooler` | Connection pooler endpoint | Routes through PgBouncer for connection pooling |
 
 <Note>
   When connecting through the Serverless Proxy (HTTP and WebSocket), hostnames without an explicit endpoint suffix are routed through the PgBouncer connection pooler by default. To bypass the pooler and connect directly to the primary instance, use the `-rw` suffix.
@@ -67,15 +67,15 @@ export DATABASE_URL=$(xata branch url)
 
 The driver supports two modes of communication, each suited to different use cases:
 
-| Feature             | HTTP                           | WebSocket                 |
-| ------------------- | ------------------------------ | ------------------------- |
-| Connection overhead | None (stateless)               | One-time handshake        |
-| Latency per query   | Higher (new request each time) | Lower (reuses connection) |
-| Transactions        | Not supported                  | Supported                 |
-| Session variables   | Not supported                  | Supported                 |
-| Prepared statements | Not supported                  | Supported                 |
-| Multiple queries    | One per request                | Batched efficiently       |
-| Best for            | Single, simple queries         | Complex operations        |
+| Feature | HTTP | WebSocket |
+| - | - | - |
+| Connection overhead | None (stateless) | One-time handshake |
+| Latency per query | Higher (new request each time) | Lower (reuses connection) |
+| Transactions | Not supported | Supported |
+| Session variables | Not supported | Supported |
+| Prepared statements | Not supported | Supported |
+| Multiple queries | One per request | Batched efficiently |
+| Best for | Single, simple queries | Complex operations |
 
 **Use HTTP when:**
 

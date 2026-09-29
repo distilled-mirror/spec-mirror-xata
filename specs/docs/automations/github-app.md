@@ -121,11 +121,11 @@ Removing the mapping unlinks the GitHub repository from the Xata project. The Gi
 
 The GitHub App and the GitHub Actions workflows solve related but different problems:
 
-| Use case                                                                    | Recommended approach                            |
-| --------------------------------------------------------------------------- | ----------------------------------------------- |
-| Automatically create and clean up one preview branch per pull request       | Xata GitHub App                                 |
-| Run custom commands, migrations, tests, deployment steps, or comments in CI | [GitHub Actions workflow](/docs/automations/ga-pr)   |
-| Bulk cleanup of branches by naming convention or age                        | [Bulk delete workflow](/docs/automations/ga-cleanup) |
+| Use case | Recommended approach |
+| - | - |
+| Automatically create and clean up one preview branch per pull request | Xata GitHub App |
+| Run custom commands, migrations, tests, deployment steps, or comments in CI | [GitHub Actions workflow](/docs/automations/ga-pr) |
+| Bulk cleanup of branches by naming convention or age | [Bulk delete workflow](/docs/automations/ga-cleanup) |
 
 You can still run GitHub Actions alongside the GitHub App. For example, let the GitHub App create the Xata preview branch, then use your own CI workflow to run tests or deploy a preview environment with that branch's connection string.
 

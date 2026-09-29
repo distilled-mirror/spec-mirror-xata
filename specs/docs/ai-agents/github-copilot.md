@@ -62,11 +62,11 @@ Use branch-per-PR automation for team workflows. Copilot can update the workflow
 
 ## Troubleshooting
 
-| Issue                                               | Fix                                                                                        |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| GitHub Actions cannot authenticate                  | Confirm `XATA_API_KEY` is present in repository secrets and the key has branch access.     |
-| Copilot generates a workflow with broad permissions | Reduce permissions to the minimum needed for the PR workflow before merging.               |
-| CI tests use production data                        | Make the branch URL an explicit CI environment variable and fail the job if it is missing. |
+| Issue | Fix |
+| - | - |
+| GitHub Actions cannot authenticate | Confirm `XATA_API_KEY` is present in repository secrets and the key has branch access. |
+| Copilot generates a workflow with broad permissions | Reduce permissions to the minimum needed for the PR workflow before merging. |
+| CI tests use production data | Make the branch URL an explicit CI environment variable and fail the job if it is missing. |
 
 ## Related Xata docs
 

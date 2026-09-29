@@ -22,10 +22,10 @@ Any MCP client connected to the [Xata MCP server](/docs/platform/mcp) can list a
 
 ## Available skills
 
-| Skill                 | Use when                                                                                                                                     |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `using-xata-cli`      | Working with projects, branches, auth, migrations, clone, keys, or organizations from the terminal                                           |
-| `using-xata-api`      | Calling the Xata HTTP API directly, scripting against `api.xata.tech`, or building apps that manage Xata programmatically                    |
+| Skill | Use when |
+| - | - |
+| `using-xata-cli` | Working with projects, branches, auth, migrations, clone, keys, or organizations from the terminal |
+| `using-xata-api` | Calling the Xata HTTP API directly, scripting against `api.xata.tech`, or building apps that manage Xata programmatically |
 | `managing-postgresql` | Diagnosing slow queries, high CPU, connection issues, locks, vacuum, indexes, backups, replication, or other PostgreSQL problems on a branch |
 
 ## Access skills through MCP

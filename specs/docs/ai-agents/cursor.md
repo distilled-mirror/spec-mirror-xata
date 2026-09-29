@@ -72,11 +72,11 @@ Keep a separate branch for each Cursor task or background agent. If Cursor needs
 
 ## Troubleshooting
 
-| Issue                                   | Fix                                                                                                 |
-| --------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Issue | Fix |
+| - | - |
 | Cursor edits the wrong environment file | Move production variables out of editable local files and keep only the branch URL in `.env.local`. |
-| Background agent loses database context | Add the branch name and `DATABASE_URL` source to the task prompt.                                   |
-| Generated migrations are hard to review | Ask Cursor to summarize each operation and run it against the branch before merge.                  |
+| Background agent loses database context | Add the branch name and `DATABASE_URL` source to the task prompt. |
+| Generated migrations are hard to review | Ask Cursor to summarize each operation and run it against the branch before merge. |
 
 ## Related Xata docs
 

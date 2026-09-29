@@ -18,41 +18,41 @@ Anonymization is lossy by design, and that conflicts directly with unique constr
 
 Each transformer declares how it behaves with respect to uniqueness:
 
-| Uniqueness       | Meaning                                                                                                                                                               | Validation |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| `preserved`      | Distinct inputs always produce distinct outputs. Safe on unique columns.                                                                                              | passes     |
-| `not_guaranteed` | Output is random, hashed, or driven by user supplied logic. Duplicates are possible, at the birthday bound of the output space (which usually depends on parameters). | warns      |
-| `lossy`          | Distinct inputs are mapped to the same output by construction: partial masks, fixed literals, small value sets, name dictionaries.                                    | errors     |
+| Uniqueness | Meaning | Validation |
+| - | - | - |
+| `preserved` | Distinct inputs always produce distinct outputs. Safe on unique columns. | passes |
+| `not_guaranteed` | Output is random, hashed, or driven by user supplied logic. Duplicates are possible, at the birthday bound of the output space (which usually depends on parameters). | warns |
+| `lossy` | Distinct inputs are mapped to the same output by construction: partial masks, fixed literals, small value sets, name dictionaries. | errors |
 
-| Transformer                | Uniqueness       |
-| -------------------------- | ---------------- |
-| `encrypted_aes_siv`        | `preserved`      |
-| `fpe_ff1`                  | `preserved`      |
-| `email`                    | `not_guaranteed` |
-| `greenmask_date`           | `not_guaranteed` |
-| `greenmask_float`          | `not_guaranteed` |
-| `greenmask_integer`        | `not_guaranteed` |
-| `greenmask_string`         | `not_guaranteed` |
+| Transformer | Uniqueness |
+| - | - |
+| `encrypted_aes_siv` | `preserved` |
+| `fpe_ff1` | `preserved` |
+| `email` | `not_guaranteed` |
+| `greenmask_date` | `not_guaranteed` |
+| `greenmask_float` | `not_guaranteed` |
+| `greenmask_integer` | `not_guaranteed` |
+| `greenmask_string` | `not_guaranteed` |
 | `greenmask_unix_timestamp` | `not_guaranteed` |
-| `greenmask_utc_timestamp`  | `not_guaranteed` |
-| `greenmask_uuid`           | `not_guaranteed` |
-| `hstore`                   | `not_guaranteed` |
-| `json`                     | `not_guaranteed` |
-| `neosync_email`            | `not_guaranteed` |
-| `neosync_string`           | `not_guaranteed` |
-| `pg_anonymizer`            | `not_guaranteed` |
-| `phone_number`             | `not_guaranteed` |
-| `string`                   | `not_guaranteed` |
-| `template`                 | `not_guaranteed` |
-| `greenmask_boolean`        | `lossy`          |
-| `greenmask_choice`         | `lossy`          |
-| `greenmask_firstname`      | `lossy`          |
-| `lookup_choice`            | `lossy`          |
-| `literal_string`           | `lossy`          |
-| `masking`                  | `lossy`          |
-| `neosync_firstname`        | `lossy`          |
-| `neosync_fullname`         | `lossy`          |
-| `neosync_lastname`         | `lossy`          |
+| `greenmask_utc_timestamp` | `not_guaranteed` |
+| `greenmask_uuid` | `not_guaranteed` |
+| `hstore` | `not_guaranteed` |
+| `json` | `not_guaranteed` |
+| `neosync_email` | `not_guaranteed` |
+| `neosync_string` | `not_guaranteed` |
+| `pg_anonymizer` | `not_guaranteed` |
+| `phone_number` | `not_guaranteed` |
+| `string` | `not_guaranteed` |
+| `template` | `not_guaranteed` |
+| `greenmask_boolean` | `lossy` |
+| `greenmask_choice` | `lossy` |
+| `greenmask_firstname` | `lossy` |
+| `lookup_choice` | `lossy` |
+| `literal_string` | `lossy` |
+| `masking` | `lossy` |
+| `neosync_firstname` | `lossy` |
+| `neosync_fullname` | `lossy` |
+| `neosync_lastname` | `lossy` |
 
 On an array column the classification describes the whole array transform, which depends on the configured generator. See [Array columns](#array-columns).
 
@@ -122,10 +122,10 @@ column_transformers:
       max_count: 12
 ```
 
-| Generator | Behavior                                                                                                                                |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `map`     | Applies the transformer to each source element, in order. The array keeps its length. This is the default.                              |
-| `random`  | Emits between `min_count` and `max_count` elements. Each element is the transform of a source element selected at random, with repeats. |
+| Generator | Behavior |
+| - | - |
+| `map` | Applies the transformer to each source element, in order. The array keeps its length. This is the default. |
+| `random` | Emits between `min_count` and `max_count` elements. Each element is the transform of a source element selected at random, with repeats. |
 
 `min_count` and `max_count` are required with the `random` generator. They must be non-negative, `min_count` must not be greater than `max_count`, and `max_count` must not be greater than 10000. The limit protects against a mistyped value, which pgstream would otherwise apply to every row. These parameters are not valid with the `map` generator. pgstream rejects the rules at startup if these conditions are not met, and names the schema, table and column.
 
@@ -162,29 +162,29 @@ The uniqueness check reads the classification of the whole array transform, not 
 
 ⚠️ This transformer requires a PostgreSQL database connection to execute transformations, which may impact performance compared to other transformers in this document that generate values locally without database queries.
 
-| Supported PostgreSQL types                                                                                    |
-| ------------------------------------------------------------------------------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | Dependent on [anonymizer function](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/) |
 
-| Parameter           | Type   | Default    | Required | Values                                                                                              |
-| ------------------- | ------ | ---------- | -------- | --------------------------------------------------------------------------------------------------- |
-| anon\_function      | string | N/A        | Yes      | Any valid anon.\* function                                                                          |
-| postgres\_url       | string | N/A        | Yes      | PostgreSQL connection URL                                                                           |
-| salt                | string | ""         | No       | Salt for deterministic functions                                                                    |
-| hash\_algorithm     | string | sha256     | No       | Algorithm for anon.digest. One of md5, sha224, sha256, sha384, sha512                               |
-| interval            | string | N/A        | No       | Time interval for anon.dnoise function                                                              |
-| ratio               | float  | N/A        | No       | Noise ratio for anon.noise function                                                                 |
-| sigma               | float  | N/A        | No       | Blur sigma for anon.image\_blur function                                                            |
-| mask                | string | N/A        | No       | Mask character for anon.partial function                                                            |
-| mask\_prefix\_count | int    | 0          | No       | Prefix count for anon.partial function                                                              |
-| mask\_suffix\_count | int    | 0          | No       | Suffix count for anon.partial function                                                              |
-| min                 | string | N/A        | No       | Minimum value for anon.random\_\*\_between functions                                                |
-| max                 | string | N/A        | No       | Maximum value for anon.random\_\*\_between functions                                                |
-| range               | string | ""         | No       | Range for anon.random\_in\_\* functions                                                             |
-| locale              | string | en\_US     | No       | Locale for dummy supported functions. One of ar\_SA, en\_US, fr\_FR, ja\_JP, pt\_BR, zh\_CN, zh\_TW |
-| count               | int    | 0          | No       | Count parameter for functions like anon.random\_string and anon.lorem\_ipsum                        |
-| unit                | string | paragraphs | No       | Unit for anon.lorem\_ipsum function. One of characters, words, paragraphs                           |
-| prefix              | string | ""         | No       | Prefix for anon.random\_phone function                                                              |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| anon\_function | string | N/A | Yes | Any valid anon.\* function |
+| postgres\_url | string | N/A | Yes | PostgreSQL connection URL |
+| salt | string | "" | No | Salt for deterministic functions |
+| hash\_algorithm | string | sha256 | No | Algorithm for anon.digest. One of md5, sha224, sha256, sha384, sha512 |
+| interval | string | N/A | No | Time interval for anon.dnoise function |
+| ratio | float | N/A | No | Noise ratio for anon.noise function |
+| sigma | float | N/A | No | Blur sigma for anon.image\_blur function |
+| mask | string | N/A | No | Mask character for anon.partial function |
+| mask\_prefix\_count | int | 0 | No | Prefix count for anon.partial function |
+| mask\_suffix\_count | int | 0 | No | Suffix count for anon.partial function |
+| min | string | N/A | No | Minimum value for anon.random\_\*\_between functions |
+| max | string | N/A | No | Maximum value for anon.random\_\*\_between functions |
+| range | string | "" | No | Range for anon.random\_in\_\* functions |
+| locale | string | en\_US | No | Locale for dummy supported functions. One of ar\_SA, en\_US, fr\_FR, ja\_JP, pt\_BR, zh\_CN, zh\_TW |
+| count | int | 0 | No | Count parameter for functions like anon.random\_string and anon.lorem\_ipsum |
+| unit | string | paragraphs | No | Unit for anon.lorem\_ipsum function. One of characters, words, paragraphs |
+| prefix | string | "" | No | Prefix for anon.random\_phone function |
 
 Notes:
 
@@ -257,26 +257,26 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input Value        | Function Configuration                                                               | Output Value                          |
-| ------------------ | ------------------------------------------------------------------------------------ | ------------------------------------- |
-| `John`             | `anon_function: anon.fake_first_name()`                                              | `Michael` (random)                    |
-| `john@test.com`    | `anon_function: anon.pseudo_email, salt: "key123"`                                   | `alice@test.com` (deterministic)      |
-| `1234567890`       | `anon_function: anon.partial, mask: "*", mask_prefix_count: 3, mask_suffix_count: 3` | `123****890`                          |
-| `sensitive_data`   | `anon_function: anon.digest, salt: "key", hash_algorithm: "sha256"`                  | `a1b2c3d4e5f6...` (hash)              |
-| `100.50`           | `anon_function: anon.noise, ratio: 0.1`                                              | `95.23` (with 10% noise)              |
-| `2023-01-15`       | `anon_function: anon.dnoise, interval: "1 day"`                                      | `2023-01-16` (±1 day noise)           |
-| `password123`      | `anon_function: anon.hash`                                                           | `ef92b778bafe771e89245b89ecbc08a4...` |
-| `Alice Smith`      | `anon_function: anon.pseudo_first_name, salt: "s1"`                                  | `Bob Smith` (deterministic)           |
-| `user@company.com` | `anon_function: anon.partial_email`                                                  | `u***@company.com`                    |
-| `42`               | `anon_function: anon.random_int_between(1, 100)`                                     | `73` (random between 1-100)           |
-| `/path/image.jpg`  | `anon_function: anon.image_blur, sigma: 2.5`                                         | Blurred image data                    |
-| Any value          | `anon_function: anon.fake_company()`                                                 | `Acme Corporation` (random)           |
-| `25`               | `anon_function: anon.random_int_between, min: "18", max: "65"`                       | `42` (random between 18-65)           |
-| Any value          | `anon_function: anon.random_in, range: "ARRAY['A', 'B', 'C']"`                       | `B` (random from array)               |
-| Any value          | `anon_function: anon.lorem_ipsum, unit: "words", count: 5`                           | `Lorem ipsum dolor sit amet`          |
-| Any value          | `anon_function: anon.random_string, count: 8`                                        | `aB3xY9z1` (random string)            |
-| Any value          | `anon_function: anon.random_phone, prefix: "+1-555-"`                                | `+1-555-123-4567`                     |
-| `John`             | `anon_function: anon.fake_first_name_locale, locale: "fr_FR"`                        | `Pierre` (French name)                |
+| Input Value | Function Configuration | Output Value |
+| - | - | - |
+| `John` | `anon_function: anon.fake_first_name()` | `Michael` (random) |
+| `john@test.com` | `anon_function: anon.pseudo_email, salt: "key123"` | `alice@test.com` (deterministic) |
+| `1234567890` | `anon_function: anon.partial, mask: "*", mask_prefix_count: 3, mask_suffix_count: 3` | `123****890` |
+| `sensitive_data` | `anon_function: anon.digest, salt: "key", hash_algorithm: "sha256"` | `a1b2c3d4e5f6...` (hash) |
+| `100.50` | `anon_function: anon.noise, ratio: 0.1` | `95.23` (with 10% noise) |
+| `2023-01-15` | `anon_function: anon.dnoise, interval: "1 day"` | `2023-01-16` (±1 day noise) |
+| `password123` | `anon_function: anon.hash` | `ef92b778bafe771e89245b89ecbc08a4...` |
+| `Alice Smith` | `anon_function: anon.pseudo_first_name, salt: "s1"` | `Bob Smith` (deterministic) |
+| `user@company.com` | `anon_function: anon.partial_email` | `u***@company.com` |
+| `42` | `anon_function: anon.random_int_between(1, 100)` | `73` (random between 1-100) |
+| `/path/image.jpg` | `anon_function: anon.image_blur, sigma: 2.5` | Blurred image data |
+| Any value | `anon_function: anon.fake_company()` | `Acme Corporation` (random) |
+| `25` | `anon_function: anon.random_int_between, min: "18", max: "65"` | `42` (random between 18-65) |
+| Any value | `anon_function: anon.random_in, range: "ARRAY['A', 'B', 'C']"` | `B` (random from array) |
+| Any value | `anon_function: anon.lorem_ipsum, unit: "words", count: 5` | `Lorem ipsum dolor sit amet` |
+| Any value | `anon_function: anon.random_string, count: 8` | `aB3xY9z1` (random string) |
+| Any value | `anon_function: anon.random_phone, prefix: "+1-555-"` | `+1-555-123-4567` |
+| `John` | `anon_function: anon.fake_first_name_locale, locale: "fr_FR"` | `Pierre` (French name) |
 
 ### Greenmask
 
@@ -287,12 +287,12 @@ transformations:
 **Uniqueness:** `lossy`. The output space has two values. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
 
 | Supported PostgreSQL types |
-| -------------------------- |
-| `boolean`                  |
+| - |
+| `boolean` |
 
-| Parameter | Type   | Default | Required | Values               |
-| --------- | ------ | ------- | -------- | -------------------- |
-| generator | string | random  | No       | random,deterministic |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| generator | string | random | No | random,deterministic |
 
 **Example Configuration:**
 
@@ -310,11 +310,11 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input Value | Configuration Parameters   | Output Value               |
-| ----------- | -------------------------- | -------------------------- |
-| `true`      | `generator: deterministic` | `false`                    |
-| `false`     | `generator: deterministic` | `true`                     |
-| `true`      | `generator: random`        | `true` or `false` (random) |
+| Input Value | Configuration Parameters | Output Value |
+| - | - | - |
+| `true` | `generator: deterministic` | `false` |
+| `false` | `generator: deterministic` | `true` |
+| `true` | `generator: random` | `true` or `false` (random) |
 
 #### greenmask\_choice
 
@@ -322,8 +322,8 @@ transformations:
 
 **Uniqueness:** `lossy`. Any table with more rows than choices produces duplicates. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
 
-| Supported PostgreSQL types                                                  |
-| --------------------------------------------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar`, user-defined enum, and arrays of these |
 
 `choices` is optional for an enum column. If you do not set it, pgstream uses the labels of the enum. If you set it, pgstream compares each value with those labels. A wrong value stops the run at startup, not at each insert.
@@ -344,10 +344,10 @@ The default choices have three limits:
 
 ℹ️ The transformer writes the value as a string. This is a change for the Kafka, webhook, Elasticsearch and OpenSearch targets. Before this change, `greenmask_choice` wrote a byte array, and these targets encoded that byte array as base64 in JSON. Update the consumers that decode base64. A search index also contains base64 in the documents from before this change.
 
-| Parameter | Type      | Default                       | Required                   | Values               |
-| --------- | --------- | ----------------------------- | -------------------------- | -------------------- |
-| generator | string    | random                        | No                         | random,deterministic |
-| choices   | string\[] | the enum's labels, if an enum | Yes, unless an enum column | N/A                  |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| generator | string | random | No | random,deterministic |
+| choices | string\[] | the enum's labels, if an enum | Yes, unless an enum column | N/A |
 
 `transformers-definition.json` shows `choices` as always required. This file describes the transformer, not the column that you configure it on.
 
@@ -371,25 +371,25 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input Value | Configuration Parameters   | Output Value         |
-| ----------- | -------------------------- | -------------------- |
-| `pending`   | `generator: random`        | `shipped` (random)   |
-| `shipped`   | `generator: deterministic` | `pending`            |
-| `delivered` | `generator: random`        | `cancelled` (random) |
+| Input Value | Configuration Parameters | Output Value |
+| - | - | - |
+| `pending` | `generator: random` | `shipped` (random) |
+| `shipped` | `generator: deterministic` | `pending` |
+| `delivered` | `generator: random` | `cancelled` (random) |
 
 #### greenmask\_date
 
 **Description:** Generates random or deterministic dates within a specified range.
 
-| Supported PostgreSQL types         |
-| ---------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `date`, `timestamp`, `timestamptz` |
 
-| Parameter  | Type                  | Default | Required | Values               |
-| ---------- | --------------------- | ------- | -------- | -------------------- |
-| generator  | string                | random  | No       | random,deterministic |
-| min\_value | string (`yyyy-MM-dd`) | N/A     | Yes      | N/A                  |
-| max\_value | string (`yyyy-MM-dd`) | N/A     | Yes      | N/A                  |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| generator | string | random | No | random,deterministic |
+| min\_value | string (`yyyy-MM-dd`) | N/A | Yes | N/A |
+| max\_value | string (`yyyy-MM-dd`) | N/A | Yes | N/A |
 
 **Example Configuration:**
 
@@ -409,10 +409,10 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input Value  | Configuration Parameters                                          | Output Value          |
-| ------------ | ----------------------------------------------------------------- | --------------------- |
+| Input Value | Configuration Parameters | Output Value |
+| - | - | - |
 | `2023-01-01` | `generator: random, min_value: 2020-01-01, max_value: 2025-12-31` | `2021-05-15` (random) |
-| `2022-06-15` | `generator: deterministic`                                        | `2020-01-01`          |
+| `2022-06-15` | `generator: deterministic` | `2020-01-01` |
 
 #### greenmask\_firstname
 
@@ -420,14 +420,14 @@ transformations:
 
 **Uniqueness:** `lossy`. Names come from a fixed dictionary and repeat well before a table of any size is exhausted. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
 
-| Supported PostgreSQL types          |
-| ----------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar` |
 
-| Parameter | Type   | Default | Required | Values               | Dynamic |
-| --------- | ------ | ------- | -------- | -------------------- | ------- |
-| generator | string | random  | No       | random,deterministic | No      |
-| gender    | string | Any     | No       | Any,Female,Male      | Yes     |
+| Parameter | Type | Default | Required | Values | Dynamic |
+| - | - | - | - | - | - |
+| generator | string | random | No | random,deterministic | No |
+| gender | string | Any | No | Any,Female,Male | Yes |
 
 `gender` can also be a dynamic parameter, referring to some other column. Please see the below example config.
 
@@ -451,18 +451,18 @@ transformations:
 **Input-Output Examples:**
 
 | Input Name | Configuration Parameters | Output Name |
-| ---------- | ------------------------ | ----------- |
-| `John`     | `preserve_gender: true`  | `Michael`   |
-| `Jane`     | `preserve_gender: true`  | `Emily`     |
-| `Alex`     | `preserve_gender: false` | `Jordan`    |
-| `Chris`    | `generator: random`      | `Taylor`    |
+| - | - | - |
+| `John` | `preserve_gender: true` | `Michael` |
+| `Jane` | `preserve_gender: true` | `Emily` |
+| `Alex` | `preserve_gender: false` | `Jordan` |
+| `Chris` | `generator: random` | `Taylor` |
 
 #### greenmask\_float
 
 **Description:** Generates random or deterministic floating-point numbers within a specified range.
 
-| Supported PostgreSQL types            |
-| ------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `real`, `double precision`, `numeric` |
 
 ⚠️ Set `min_value` and `max_value` for a `numeric` column. These parameters are required there. The default range covers all `float32` values. With the default range, the transformer writes the same constant value in each row.
@@ -471,26 +471,26 @@ The transformer converts the `numeric` value to a `float64` and uses that `float
 
 pgstream compares the range with the column when it validates the rules. If the range does not fit a `numeric(p,s)` column, the run stops. A `numeric` column without a precision holds any value. For such a column, pgstream checks only that you set both bounds.
 
-| Parameter  | Type   | Default                                       | Required | Values               |
-| ---------- | ------ | --------------------------------------------- | -------- | -------------------- |
-| generator  | string | random                                        | No       | random,deterministic |
-| min\_value | float  | -3.40282346638528859811704183484516925440e+38 | No       | N/A                  |
-| max\_value | float  | 3.40282346638528859811704183484516925440e+38  | No       | N/A                  |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| generator | string | random | No | random,deterministic |
+| min\_value | float | -3.40282346638528859811704183484516925440e+38 | No | N/A |
+| max\_value | float | 3.40282346638528859811704183484516925440e+38 | No | N/A |
 
 #### greenmask\_integer
 
 **Description:** Generates random or deterministic integers within a specified range.
 
-| Supported PostgreSQL types                                             |
-| ---------------------------------------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `smallint`, `integer`, `bigint`, `real`, `double precision`, `numeric` |
 
-| Parameter  | Type   | Default     | Required | Values               |
-| ---------- | ------ | ----------- | -------- | -------------------- |
-| generator  | string | random      | No       | random,deterministic |
-| size       | int    | 4           | No       | 2,4                  |
-| min\_value | int    | -2147483648 | No       | N/A                  |
-| max\_value | int    | 2147483647  | No       | N/A                  |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| generator | string | random | No | random,deterministic |
+| size | int | 4 | No | 2,4 |
+| min\_value | int | -2147483648 | No | N/A |
+| max\_value | int | 2147483647 | No | N/A |
 
 **Example Configuration:**
 
@@ -512,16 +512,16 @@ transformations:
 
 **Description:** Generates random or deterministic strings with customizable length and character set.
 
-| Supported PostgreSQL types          |
-| ----------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar` |
 
-| Parameter   | Type   | Default                                                        | Required | Values               |
-| ----------- | ------ | -------------------------------------------------------------- | -------- | -------------------- |
-| generator   | string | random                                                         | No       | random,deterministic |
-| symbols     | string | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 | No       | N/A                  |
-| min\_length | int    | 1                                                              | No       | N/A                  |
-| max\_length | int    | 100                                                            | No       | N/A                  |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| generator | string | random | No | random,deterministic |
+| symbols | string | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 | No | N/A |
+| min\_length | int | 1 | No | N/A |
+| max\_length | int | 100 | No | N/A |
 
 **Example Configuration:**
 
@@ -544,42 +544,42 @@ transformations:
 
 **Description:** Generates random or deterministic unix timestamps.
 
-| Supported PostgreSQL types                                             |
-| ---------------------------------------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `smallint`, `integer`, `bigint`, `real`, `double precision`, `numeric` |
 
-| Parameter  | Type   | Default | Required | Values               |
-| ---------- | ------ | ------- | -------- | -------------------- |
-| generator  | string | random  | No       | random,deterministic |
-| min\_value | string | N/A     | Yes      | N/A                  |
-| max\_value | string | N/A     | Yes      | N/A                  |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| generator | string | random | No | random,deterministic |
+| min\_value | string | N/A | Yes | N/A |
+| max\_value | string | N/A | Yes | N/A |
 
 #### greenmask\_utc\_timestamp
 
 **Description:** Generates random or deterministic UTC timestamps.
 
 | Supported PostgreSQL types |
-| -------------------------- |
-| `timestamp`                |
+| - |
+| `timestamp` |
 
-| Parameter      | Type               | Default | Required | Values                                                               |
-| -------------- | ------------------ | ------- | -------- | -------------------------------------------------------------------- |
-| generator      | string             | random  | No       | random,deterministic                                                 |
-| truncate\_part | string             | ""      | No       | nanosecond,microsecond,millisecond,second,minute,hour,day,month,year |
-| min\_timestamp | string (`RFC3339`) | N/A     | Yes      | N/A                                                                  |
-| max\_timestamp | string (`RFC3339`) | N/A     | Yes      | N/A                                                                  |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| generator | string | random | No | random,deterministic |
+| truncate\_part | string | "" | No | nanosecond,microsecond,millisecond,second,minute,hour,day,month,year |
+| min\_timestamp | string (`RFC3339`) | N/A | Yes | N/A |
+| max\_timestamp | string (`RFC3339`) | N/A | Yes | N/A |
 
 #### greenmask\_uuid
 
 **Description:** Generates random or deterministic UUIDs.
 
-| Supported PostgreSQL types                 |
-| ------------------------------------------ |
+| Supported PostgreSQL types |
+| - |
 | `uuid`,`text`, `varchar`, `char`, `bpchar` |
 
-| Parameter | Type   | Default | Required | Values               |
-| --------- | ------ | ------- | -------- | -------------------- |
-| generator | string | random  | No       | random,deterministic |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| generator | string | random | No | random,deterministic |
 
 ### Neosync
 
@@ -587,19 +587,19 @@ transformations:
 
 **Description:** Anonymizes email addresses while optionally preserving length and domain.
 
-| Supported PostgreSQL types                    |
-| --------------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar`, `citext` |
 
-| Parameter              | Type      | Default | Required | Values                           |
-| ---------------------- | --------- | ------- | -------- | -------------------------------- |
-| preserve\_length       | bool      | false   | No       |                                  |
-| preserve\_domain       | bool      | false   | No       |                                  |
-| excluded\_domains      | string\[] | N/A     | No       |                                  |
-| max\_length            | int       | 100     | No       |                                  |
-| email\_type            | string    | uuidv4  | No       | uuidv4,fullname,any              |
-| invalid\_email\_action | string    | 100     | No       | reject,passthrough,null,generate |
-| seed                   | int       | Rand    | No       |                                  |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| preserve\_length | bool | false | No | |
+| preserve\_domain | bool | false | No | |
+| excluded\_domains | string\[] | N/A | No | |
+| max\_length | int | 100 | No | |
+| email\_type | string | uuidv4 | No | uuidv4,fullname,any |
+| invalid\_email\_action | string | 100 | No | reject,passthrough,null,generate |
+| seed | int | Rand | No | |
 
 **Example Configuration:**
 
@@ -618,14 +618,14 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input Email            | Configuration Parameters                        | Output Email           |
-| ---------------------- | ----------------------------------------------- | ---------------------- |
-| `john.doe@example.com` | `preserve_length: true, preserve_domain: true`  | `abcd.efg@example.com` |
-| `jane.doe@company.org` | `preserve_length: false, preserve_domain: true` | `random@company.org`   |
-| `user123@gmail.com`    | `preserve_length: true, preserve_domain: false` | `abcde123@random.com`  |
-| `invalid-email`        | `invalid_email_action: passthrough`             | `invalid-email`        |
-| `invalid-email`        | `invalid_email_action: null`                    | `NULL`                 |
-| `invalid-email`        | `invalid_email_action: generate`                | `generated@random.com` |
+| Input Email | Configuration Parameters | Output Email |
+| - | - | - |
+| `john.doe@example.com` | `preserve_length: true, preserve_domain: true` | `abcd.efg@example.com` |
+| `jane.doe@company.org` | `preserve_length: false, preserve_domain: true` | `random@company.org` |
+| `user123@gmail.com` | `preserve_length: true, preserve_domain: false` | `abcde123@random.com` |
+| `invalid-email` | `invalid_email_action: passthrough` | `invalid-email` |
+| `invalid-email` | `invalid_email_action: null` | `NULL` |
+| `invalid-email` | `invalid_email_action: generate` | `generated@random.com` |
 
 #### neosync\_firstname
 
@@ -633,15 +633,15 @@ transformations:
 
 **Uniqueness:** `lossy`. Names come from a fixed dictionary and repeat well before a table of any size is exhausted. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
 
-| Supported PostgreSQL types          |
-| ----------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar` |
 
-| Parameter        | Type | Default | Required |
-| ---------------- | ---- | ------- | -------- |
-| preserve\_length | bool | false   | No       |
-| max\_length      | int  | 100     | No       |
-| seed             | int  | Rand    | No       |
+| Parameter | Type | Default | Required |
+| - | - | - | - |
+| preserve\_length | bool | false | No |
+| max\_length | int | 100 | No |
+| seed | int | Rand | No |
 
 **Example Configuration:**
 
@@ -663,15 +663,15 @@ transformations:
 
 **Uniqueness:** `lossy`. Names come from a fixed dictionary and repeat well before a table of any size is exhausted. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
 
-| Supported PostgreSQL types          |
-| ----------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar` |
 
-| Parameter        | Type | Default | Required |
-| ---------------- | ---- | ------- | -------- |
-| preserve\_length | bool | false   | No       |
-| max\_length      | int  | 100     | No       |
-| seed             | int  | Rand    | No       |
+| Parameter | Type | Default | Required |
+| - | - | - | - |
+| preserve\_length | bool | false | No |
+| max\_length | int | 100 | No |
+| seed | int | Rand | No |
 
 **Example Configuration:**
 
@@ -693,15 +693,15 @@ transformations:
 
 **Uniqueness:** `lossy`. Names come from fixed dictionaries, so even first/last combinations repeat well before a large table is exhausted. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
 
-| Supported PostgreSQL types          |
-| ----------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar` |
 
-| Parameter        | Type | Default | Required |
-| ---------------- | ---- | ------- | -------- |
-| preserve\_length | bool | false   | No       |
-| max\_length      | int  | 100     | No       |
-| seed             | int  | Rand    | No       |
+| Parameter | Type | Default | Required |
+| - | - | - | - |
+| preserve\_length | bool | false | No |
+| max\_length | int | 100 | No |
+| seed | int | Rand | No |
 
 max\_length must be greater than 2. If preserve\_length is set to true, generated value can might be longer than max\_length, depending on the input length.
 
@@ -723,16 +723,16 @@ transformations:
 
 **Description:** Generates anonymized strings with customizable length.
 
-| Supported PostgreSQL types          |
-| ----------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar` |
 
-| Parameter        | Type | Default | Required |
-| ---------------- | ---- | ------- | -------- |
-| preserve\_length | bool | false   | No       |
-| min\_length      | int  | 1       | No       |
-| max\_length      | int  | 100     | No       |
-| seed             | int  | Rand    | No       |
+| Parameter | Type | Default | Required |
+| - | - | - | - |
+| preserve\_length | bool | false | No |
+| min\_length | int | 1 | No |
+| max\_length | int | 100 | No |
+| seed | int | Rand | No |
 
 **Example Configuration:**
 
@@ -755,13 +755,13 @@ transformations:
 
 **Description:** Transforms the data using go templates
 
-| Supported PostgreSQL types             |
-| -------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | All types with a string representation |
 
-| Parameter | Type   | Default | Required |
-| --------- | ------ | ------- | -------- |
-| template  | string | N/A     | Yes      |
+| Parameter | Type | Default | Required |
+| - | - | - | - |
+| template | string | N/A | Yes |
 
 This transformer can be used for any Postgres type as long as the given template produces a value with correct syntax for that column type. e.g It can be "5-10-2021" for a date column, or "3.14159265" for a double precision one.
 
@@ -804,15 +804,15 @@ transformations:
 
 A `custom` mask that would cover zero characters (for example `mask_begin: 3` with `mask_end: 3`, or `unmask_begin: 0`) is rejected at startup: it leaves values completely unmasked, which silently defeats anonymization. Use the `noop` transformer if passing a column through untouched is what you want.
 
-| Supported PostgreSQL types          |
-| ----------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar` |
 
 **Parameter Details:**
 
-| Parameter | Type   | Default | Required | Values                                                                              |
-| --------- | ------ | ------- | -------- | ----------------------------------------------------------------------------------- |
-| type      | string | default | No       | custom, password, name, address, email, mobile, tel, id, credit\_card, url, default |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| type | string | default | No | custom, password, name, address, email, mobile, tel, id, credit\_card, url, default |
 
 **Example Configuration:**
 
@@ -830,11 +830,11 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input Value              | Configuration Parameters | Output Value           |
-| ------------------------ | ------------------------ | ---------------------- |
-| `aVeryStrongPassword123` | `type: password`         | `************`         |
-| `john.doe@example.com`   | `type: email`            | `joh****e@example.com` |
-| `Sensitive Data`         | `type: default`          | `**************`       |
+| Input Value | Configuration Parameters | Output Value |
+| - | - | - |
+| `aVeryStrongPassword123` | `type: password` | `************` |
+| `john.doe@example.com` | `type: email` | `joh****e@example.com` |
+| `Sensitive Data` | `type: default` | `**************` |
 
 With `custom` type, the masking function is defined by the user, by providing beginning and end indexes for masking. If the input is shorter than the end index, the rest of the string will all be masked. See the third example below.
 
@@ -854,11 +854,11 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input Value             | Output Value            |
-| ----------------------- | ----------------------- |
-| `1234567812345678`      | `1234********5678`      |
+| Input Value | Output Value |
+| - | - |
+| `1234567812345678` | `1234********5678` |
 | `sensitive@example.com` | `sens********ample.com` |
-| `sensitive`             | `sens*****`             |
+| `sensitive` | `sens*****` |
 
 If the begin index is not provided, it defaults to 0. If the end is not provided, it defaults to input length.
 
@@ -875,11 +875,11 @@ transformations:
             mask_end: "5"
 ```
 
-| Input Value             | Output Value            |
-| ----------------------- | ----------------------- |
-| `1234567812345678`      | `*****67812345678`      |
+| Input Value | Output Value |
+| - | - |
+| `1234567812345678` | `*****67812345678` |
 | `sensitive@example.com` | `*****tive@example.com` |
-| `sensitive`             | `*****tive`             |
+| `sensitive` | `*****tive` |
 
 Alternatively, since input length may vary, user can provide relative beginning and end indexes, as percentages of the input length.
 
@@ -897,11 +897,11 @@ transformations:
             mask_end: "85%"
 ```
 
-| Input Value             | Output Value            |
-| ----------------------- | ----------------------- |
-| `1234567812345678`      | `12***********678`      |
+| Input Value | Output Value |
+| - | - |
+| `1234567812345678` | `12***********678` |
 | `sensitive@example.com` | `sen***************com` |
-| `sensitive`             | `s******ve`             |
+| `sensitive` | `s******ve` |
 
 Alternatively, user can provide unmask begin and end indexes. In that case, the specified part of the input will remain unmasked, while all the rest is masked.
 Mask and unmask parameters cannot be provided at the same time.
@@ -919,34 +919,34 @@ transformations:
             unmask_end: "3"
 ```
 
-| Input Value             | Output Value            |
-| ----------------------- | ----------------------- |
-| `1234567812345678`      | `123*************`      |
+| Input Value | Output Value |
+| - | - |
+| `1234567812345678` | `123*************` |
 | `sensitive@example.com` | `sen******************` |
-| `sensitive`             | `sen******`             |
+| `sensitive` | `sen******` |
 
 #### json
 
 **Description:** Transforms json data with set and delete operations
 
 | Supported PostgreSQL types |
-| -------------------------- |
-| json, jsonb                |
+| - |
+| json, jsonb |
 
-| Parameter  | Type  | Default | Required |
-| ---------- | ----- | ------- | -------- |
-| operations | array | N/A     | Yes      |
+| Parameter | Type | Default | Required |
+| - | - | - | - |
+| operations | array | N/A | Yes |
 
 Parameter for each operation:
 
-| Parameter         | Type    | Default | Required           | Values                         |
-| ----------------- | ------- | ------- | ------------------ | ------------------------------ |
-| operation         | string  | N/A     | Yes                | set, delete                    |
-| path              | string  | N/A     | Yes                | sjson syntax<sup>\*</sup>      |
-| skip\_not\_exist  | boolean | true    | No                 | true, false                    |
-| error\_not\_exist | boolean | false   | No                 | true, false                    |
-| value             | string  | N/A     | Yes<sup>\*\*</sup> | Any valid JSON representation  |
-| value\_template   | string  | N/A     | Yes<sup>\*\*</sup> | Any template with valid syntax |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| operation | string | N/A | Yes | set, delete |
+| path | string | N/A | Yes | sjson syntax<sup>\*</sup> |
+| skip\_not\_exist | boolean | true | No | true, false |
+| error\_not\_exist | boolean | false | No | true, false |
+| value | string | N/A | Yes<sup>\*\*</sup> | Any valid JSON representation |
+| value\_template | string | N/A | Yes<sup>\*\*</sup> | Any template with valid syntax |
 
 <sup>\*</sup>*Paths should follow [sjson syntax](https://github.com/tidwall/sjson#path-syntax)*
 
@@ -1051,23 +1051,23 @@ the JSON transformer with above config produces output:
 **Description:** Transforms hstore data with set and delete operations
 
 | Supported PostgreSQL types |
-| -------------------------- |
-| hstore                     |
+| - |
+| hstore |
 
-| Parameter  | Type  | Default | Required |
-| ---------- | ----- | ------- | -------- |
-| operations | array | N/A     | Yes      |
+| Parameter | Type | Default | Required |
+| - | - | - | - |
+| operations | array | N/A | Yes |
 
 Parameter for each operation:
 
-| Parameter         | Type         | Default | Required         | Values                         |
-| ----------------- | ------------ | ------- | ---------------- | ------------------------------ |
-| operation         | string       | N/A     | Yes              | set, delete                    |
-| key               | string       | N/A     | Yes              |                                |
-| skip\_not\_exist  | boolean      | true    | No               | true, false                    |
-| error\_not\_exist | boolean      | false   | No               | true, false                    |
-| value             | string, null | N/A     | Yes<sup>\*</sup> | Any string or null             |
-| value\_template   | string       | N/A     | Yes<sup>\*</sup> | Any template with valid syntax |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| operation | string | N/A | Yes | set, delete |
+| key | string | N/A | Yes | |
+| skip\_not\_exist | boolean | true | No | true, false |
+| error\_not\_exist | boolean | false | No | true, false |
+| value | string, null | N/A | Yes<sup>\*</sup> | Any string or null |
+| value\_template | string | N/A | Yes<sup>\*</sup> | Any template with valid syntax |
 
 <sup>\*</sup>*Either `value` or `value_template` must be provided if the operation is `set`. If both are provided, `value_template` takes precedence.*
 
@@ -1139,13 +1139,13 @@ the hstore transformer with above config produces output:
 
 **Uniqueness:** `lossy`. Every value becomes the same literal. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
 
-| Supported PostgreSQL types             |
-| -------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | All types with a string representation |
 
-| Parameter | Type   | Default | Required |
-| --------- | ------ | ------- | -------- |
-| literal   | string | N/A     | Yes      |
+| Parameter | Type | Default | Required |
+| - | - | - | - |
+| literal | string | N/A | Yes |
 
 Below example makes all values in the JSON column `log_message` to become `{'error': null}`.
 This transformer can be used for any Postgres type as long as the given string literal has the correct syntax for that type. e.g It can be "5-10-2021" for a date column, or "3.14159265" for a double precision one.
@@ -1168,16 +1168,16 @@ transformations:
 
 **Description:** Generates anonymized phone numbers with customizable length.
 
-| Supported PostgreSQL types          |
-| ----------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar` |
 
-| Parameter   | Type   | Default | Required | Values                | Dynamic |
-| ----------- | ------ | ------- | -------- | --------------------- | ------- |
-| prefix      | string | ""      | No       | N/A                   | Yes     |
-| min\_length | int    | 6       | No       | N/A                   | No      |
-| max\_length | int    | 10      | No       | N/A                   | No      |
-| generator   | string | random  | No       | random, deterministic | No      |
+| Parameter | Type | Default | Required | Values | Dynamic |
+| - | - | - | - | - | - |
+| prefix | string | "" | No | N/A | Yes |
+| min\_length | int | 6 | No | N/A | No |
+| max\_length | int | 10 | No | N/A | No |
+| generator | string | random | No | random, deterministic | No |
 
 If the prefix is set, this transformer will always generate phone numbers starting with the prefix.
 `prefix` can also be a dynamic parameter, referring to some other column. Please see the below example config.
@@ -1205,15 +1205,15 @@ transformations:
 
 **Description:** Anonymizes email addresses while optionally excluding domain to anonymize.
 
-| Supported PostgreSQL types                    |
-| --------------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar`, `citext` |
 
-| Parameter           | Type   | Default        | Required | Values |
-| ------------------- | ------ | -------------- | -------- | ------ |
-| replacement\_domain | string | "@example.com" | No       |        |
-| exclude\_domain     | string | ""             | No       |        |
-| salt                | string | "defaultsalt"  | No       |        |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| replacement\_domain | string | "@example.com" | No | |
+| exclude\_domain | string | "" | No | |
+| salt | string | "defaultsalt" | No | |
 
 **Example Configuration:**
 
@@ -1232,13 +1232,13 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input Email            | Configuration Parameters                                                               | Output Email                          |
-| ---------------------- | -------------------------------------------------------------------------------------- | ------------------------------------- |
-| `john.doe@company.org` | `exclude_domain: "company.org", salt: "helloworld"`                                    | `john.doe@company.org`                |
-| `jane.doe@company.org` | `exclude_domain: "exclude.com", salt: "helloworld"`                                    | `T79P9zlFWzmT0yCUDMEE7S@example.com`  |
-| `jane.doe@company.org` | `exclude_domain: "exclude.com", salt: "helloworld", replacement_domain: "@random.com"` | `6EIWw5lEa8nsY9JDOm5@random.com`      |
-| `invalid-email`        | `exclude_domain: "exclude.com", salt: "helloworld"`                                    | `1fk5VLgTeoRQCCvqXFoToC1@example.com` |
-| `invalid-email`        | `exclude_domain: "exclude.com", salt: "helloworld", replacement_domain: "@random.com"` | `6EIWw5lEa8nsY9JDOm5@random.com`      |
+| Input Email | Configuration Parameters | Output Email |
+| - | - | - |
+| `john.doe@company.org` | `exclude_domain: "company.org", salt: "helloworld"` | `john.doe@company.org` |
+| `jane.doe@company.org` | `exclude_domain: "exclude.com", salt: "helloworld"` | `T79P9zlFWzmT0yCUDMEE7S@example.com` |
+| `jane.doe@company.org` | `exclude_domain: "exclude.com", salt: "helloworld", replacement_domain: "@random.com"` | `6EIWw5lEa8nsY9JDOm5@random.com` |
+| `invalid-email` | `exclude_domain: "exclude.com", salt: "helloworld"` | `1fk5VLgTeoRQCCvqXFoToC1@example.com` |
+| `invalid-email` | `exclude_domain: "exclude.com", salt: "helloworld", replacement_domain: "@random.com"` | `6EIWw5lEa8nsY9JDOm5@random.com` |
 
 #### encrypted\_aes\_siv
 
@@ -1246,18 +1246,18 @@ transformations:
 
 **Uniqueness:** `preserved`. Encryption is reversible with the key, so two distinct plaintexts cannot share a token. This is the only transformer that never collides on a column covered by a unique index. Note that being reversible makes it pseudonymization rather than anonymization — see [Keeping a column unique](#keeping-a-column-unique).
 
-| Supported PostgreSQL types                   |
-| -------------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar`, `bytea` |
 
 **Note on length-constrained columns:** the token is always longer than the input — `ceil(4 × (input_length + 16) / 3)` characters (36 for an 11-character input, 22 minimum). Length-constrained columns (`varchar(n)`, `char(n)`) must be wide enough to hold the expanded token or writes to the target will fail; prefer `text` columns.
 
 For `bytea` columns the raw bytes are encrypted (the transformer normalizes the hex-text form delivered during replication and the raw bytes delivered during snapshots to the same plaintext), and the token is stored as the ASCII bytes of the base64url text.
 
-| Parameter        | Type   | Default | Required |
-| ---------------- | ------ | ------- | -------- |
-| key\_hex         | string | N/A     | Yes      |
-| associated\_data | string | ""      | No       |
+| Parameter | Type | Default | Required |
+| - | - | - | - |
+| key\_hex | string | N/A | Yes |
+| associated\_data | string | "" | No |
 
 `key_hex` is the 64-byte AES-SIV key, hex-encoded (128 characters), e.g. generated with `openssl rand -hex 64`. AES-SIV requires the full 64-byte key (RFC 5297); shorter keys are rejected.
 
@@ -1283,9 +1283,9 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input         | Configuration Parameters                                                               | Output                                 |
-| ------------- | -------------------------------------------------------------------------------------- | -------------------------------------- |
-| `hello world` | `key_hex: "000102…3e3f"`, no `associated_data`                                         | `Hc5d96xIxu2ute1RbFuenEftGxw-P__m1Vv_` |
+| Input | Configuration Parameters | Output |
+| - | - | - |
+| `hello world` | `key_hex: "000102…3e3f"`, no `associated_data` | `Hc5d96xIxu2ute1RbFuenEftGxw-P__m1Vv_` |
 | `hello world` | `key_hex: "000102…3e3f"`, `associated_data: "public.orders.file_path"` (example above) | `AsC2hoq-Y9V0iqK6JmNIxq0Fsr3SFPo27QNq` |
 
 Every run with the same key and parameters produces the same output. Tokens can be decrypted with any RFC 5297 AES-SIV implementation, for example Tink's `daead/subtle` package in Go.
@@ -1296,20 +1296,20 @@ Every run with the same key and parameters produces the same output. Tokens can 
 
 **Uniqueness:** `lossy`. Any table with more rows than the lookup column has values produces duplicates, in both generator modes. Cannot be used on a column covered by a unique index. See [Uniqueness and unique indexes](#uniqueness-and-unique-indexes).
 
-| Supported PostgreSQL types                                                                                                                                |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar`, `citext`, `bytea`, `boolean`, `int2`, `int4`, `int8`, `float4`, `float8`, `uuid`, `date`, `timestamp`, `timestamptz` |
 
 The type comes from the **lookup column**: the transformer asks PostgreSQL what it is and reports the column types its values can be written to, so a rule pointing a column at a lookup column of an incompatible type is rejected on startup. A narrower integer or float is accepted for a wider column (an `int4` lookup key can fill an `int8` foreign key). A lookup column of any other type is rejected rather than silently skipping the check.
 
-| Parameter      | Type    | Default | Required | Values                |
-| -------------- | ------- | ------- | -------- | --------------------- |
-| lookup\_table  | string  | N/A     | Yes      | N/A                   |
-| lookup\_column | string  | N/A     | Yes      | N/A                   |
-| generator      | string  | random  | No       | random, deterministic |
-| max\_values    | integer | 100000  | No       | N/A                   |
-| ignore\_values | any\[]  | \[]     | No       | N/A                   |
-| postgres\_url  | string  | N/A     | Yes      | N/A                   |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| lookup\_table | string | N/A | Yes | N/A |
+| lookup\_column | string | N/A | Yes | N/A |
+| generator | string | random | No | random, deterministic |
+| max\_values | integer | 100000 | No | N/A |
+| ignore\_values | any\[] | \[] | No | N/A |
+| postgres\_url | string | N/A | Yes | N/A |
 
 `lookup_table` is schema qualified, e.g. `public.countries`; an unqualified name is read from the `public` schema. Both names are quoted as written, so `Public.Countries` looks for a case-sensitive `"Countries"`.
 
@@ -1350,12 +1350,12 @@ transformations:
 
 Given a `public.countries` table whose `id` column holds `1, 2, 3`:
 
-| Input Value | Configuration Parameters   | Output Value          |
-| ----------- | -------------------------- | --------------------- |
-| `7`         | `generator: random`        | `3` (random)          |
-| `7`         | `generator: deterministic` | `2`                   |
-| `7`         | `generator: deterministic` | `2` (again, next run) |
-| `8`         | `generator: deterministic` | `1`                   |
+| Input Value | Configuration Parameters | Output Value |
+| - | - | - |
+| `7` | `generator: random` | `3` (random) |
+| `7` | `generator: deterministic` | `2` |
+| `7` | `generator: deterministic` | `2` (again, next run) |
+| `8` | `generator: deterministic` | `1` |
 
 #### fpe\_ff1
 
@@ -1363,20 +1363,20 @@ Given a `public.countries` table whose `id` column holds `1, 2, 3`:
 
 **Uniqueness:** `preserved`. FF1 maps each input to one different output. Two different inputs cannot give the same output. Use this transformer when a unique column must keep its format. Use `encrypted_aes_siv` when the format is not important.
 
-| Supported PostgreSQL types          |
-| ----------------------------------- |
+| Supported PostgreSQL types |
+| - |
 | `text`, `varchar`, `char`, `bpchar` |
 
-| Parameter        | Type   | Default | Required | Values                                                                |
-| ---------------- | ------ | ------- | -------- | --------------------------------------------------------------------- |
-| key\_hex         | string | N/A     | Yes      | 32, 48 or 64 hexadecimal characters                                   |
-| associated\_data | string | ""      | No       | Any string                                                            |
-| alphabet         | string | digits  | No       | `digits`, `letters`, `alphanumeric`, or a set of characters           |
-| passthrough      | string | keep    | No       | `keep`, `error`                                                       |
-| keep\_prefix     | int    | 0       | No       | Number of characters in the alphabet to keep at the start             |
-| keep\_suffix     | int    | 0       | No       | Number of characters in the alphabet to keep at the end               |
-| min\_length      | int    | 0       | No       | 0 sets the minimum that FF1 permits for the alphabet                  |
-| preserve\_from   | string | ""      | No       | A delimiter. The transformer keeps the text from its last occurrence. |
+| Parameter | Type | Default | Required | Values |
+| - | - | - | - | - |
+| key\_hex | string | N/A | Yes | 32, 48 or 64 hexadecimal characters |
+| associated\_data | string | "" | No | Any string |
+| alphabet | string | digits | No | `digits`, `letters`, `alphanumeric`, or a set of characters |
+| passthrough | string | keep | No | `keep`, `error` |
+| keep\_prefix | int | 0 | No | Number of characters in the alphabet to keep at the start |
+| keep\_suffix | int | 0 | No | Number of characters in the alphabet to keep at the end |
+| min\_length | int | 0 | No | 0 sets the minimum that FF1 permits for the alphabet |
+| preserve\_from | string | "" | No | A delimiter. The transformer keeps the text from its last occurrence. |
 
 `key_hex` is the AES key in hexadecimal. Use 32, 48 or 64 characters for a key of 128, 192 or 256 bits. To make a key, run `openssl rand -hex 32`. The `encrypted_aes_siv` transformer is different, because it needs a key of 64 bytes.
 
@@ -1396,11 +1396,11 @@ Given a `public.countries` table whose `id` column holds `1, 2, 3`:
 
 **Email addresses.** With `alphabet: alphanumeric` and `passthrough: keep`, the transformer encrypts the local part, the domain and the top-level domain. The address `john.doe@example.com` becomes `FdSQ.v6s@udengIL.0Td`. The top-level domain is not valid, and a mail server cannot deliver to this address. Use `preserve_from` to correct this:
 
-| `preserve_from` | Result                 | What the transformer encrypts                                                                                          |
-| --------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| unset           | `FdSQ.v6s@udengIL.0Td` | The full address. The top-level domain is not valid.                                                                   |
-| `"."`           | `lHtC.Mr7@1uH9RP1.com` | The local part and the domain name. The transformer keeps the top-level domain, thus the address has a correct format. |
-| `"@"`           | `69pe.Nzy@example.com` | The local part only. The address is valid, but the target shows the domain.                                            |
+| `preserve_from` | Result | What the transformer encrypts |
+| - | - | - |
+| unset | `FdSQ.v6s@udengIL.0Td` | The full address. The top-level domain is not valid. |
+| `"."` | `lHtC.Mr7@1uH9RP1.com` | The local part and the domain name. The transformer keeps the top-level domain, thus the address has a correct format. |
+| `"@"` | `69pe.Nzy@example.com` | The local part only. The address is valid, but the target shows the domain. |
 
 Select the option that agrees with your data. Do not use `preserve_from: "@"` when the domain is sensitive, because the target then contains each source domain. All three options keep the outputs unique. Use `neosync_email` with `preserve_domain: true` when a mail server must deliver to the address. That transformer makes a new local part, but its uniqueness is `not_guaranteed`. Two different addresses can give the same output.
 
@@ -1429,17 +1429,17 @@ transformations:
 
 **Input-Output Examples:**
 
-| Input                  | Configuration Parameters                                                   | Output                 |
-| ---------------------- | -------------------------------------------------------------------------- | ---------------------- |
-| `1234567890`           | `key_hex: "000102…0e0f"`, no `associated_data`                             | `5102547240`           |
-| `1234567890`           | `key_hex: "000102…0e0f"`, `associated_data: "public.persons.phone_number"` | `0453276999`           |
-| `+36301234567`         | as the example above (`keep_prefix: 4`)                                    | `+36303497985`         |
-| `+36 30 123 4567`      | as the example above (`keep_prefix: 4`)                                    | `+36 30 349 7985`      |
-| `(301) 555-0123`       | as the example above (`keep_prefix: 4`)                                    | `(301) 545-8564`       |
-| `Acme Trading`         | `key_hex: "000102…0e0f"`, `alphabet: letters`                              | `Dmkh VjksJwk`         |
-| `john.doe@example.com` | `key_hex: "000102…0e0f"`, `alphabet: alphanumeric`                         | `FdSQ.v6s@udengIL.0Td` |
-| `john.doe@example.com` | `key_hex: "000102…0e0f"`, `alphabet: alphanumeric`, `preserve_from: "."`   | `lHtC.Mr7@1uH9RP1.com` |
-| `john.doe@example.com` | `key_hex: "000102…0e0f"`, `alphabet: alphanumeric`, `preserve_from: "@"`   | `69pe.Nzy@example.com` |
+| Input | Configuration Parameters | Output |
+| - | - | - |
+| `1234567890` | `key_hex: "000102…0e0f"`, no `associated_data` | `5102547240` |
+| `1234567890` | `key_hex: "000102…0e0f"`, `associated_data: "public.persons.phone_number"` | `0453276999` |
+| `+36301234567` | as the example above (`keep_prefix: 4`) | `+36303497985` |
+| `+36 30 123 4567` | as the example above (`keep_prefix: 4`) | `+36 30 349 7985` |
+| `(301) 555-0123` | as the example above (`keep_prefix: 4`) | `(301) 545-8564` |
+| `Acme Trading` | `key_hex: "000102…0e0f"`, `alphabet: letters` | `Dmkh VjksJwk` |
+| `john.doe@example.com` | `key_hex: "000102…0e0f"`, `alphabet: alphanumeric` | `FdSQ.v6s@udengIL.0Td` |
+| `john.doe@example.com` | `key_hex: "000102…0e0f"`, `alphabet: alphanumeric`, `preserve_from: "."` | `lHtC.Mr7@1uH9RP1.com` |
+| `john.doe@example.com` | `key_hex: "000102…0e0f"`, `alphabet: alphanumeric`, `preserve_from: "@"` | `69pe.Nzy@example.com` |
 
 Each run gives the same output for the same key and the same parameters. Any NIST FF1 implementation can decrypt the values. It needs the key, the tweak and the alphabet.
 

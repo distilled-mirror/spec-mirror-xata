@@ -67,10 +67,10 @@ Use a fresh branch for every Devin task. For production-like tasks, start from a
 
 ## Troubleshooting
 
-| Issue                              | Fix                                                                                     |
-| ---------------------------------- | --------------------------------------------------------------------------------------- |
-| Devin needs long-lived access      | Use a branch-scoped key and rotate or revoke it after the task.                         |
-| The task modifies too much data    | Recreate the branch from the parent and narrow the prompt.                              |
+| Issue | Fix |
+| - | - |
+| Devin needs long-lived access | Use a branch-scoped key and rotate or revoke it after the task. |
+| The task modifies too much data | Recreate the branch from the parent and narrow the prompt. |
 | The handoff omits database changes | Ask Devin to list migrations, SQL commands, branch name, and test output before review. |
 
 ## Related Xata docs

@@ -54,11 +54,11 @@ See [API keys](/docs/platform/api-key) for more information about project restri
 
 In the Vercel project, open **Settings** > **Environment Variables** and add these variables for the **Preview** environment:
 
-| Variable               | Value                                                                                      |
-| ---------------------- | ------------------------------------------------------------------------------------------ |
-| `XATA_API_KEY`         | The API key created in the previous section. Mark it as **Sensitive**.                     |
+| Variable | Value |
+| - | - |
+| `XATA_API_KEY` | The API key created in the previous section. Mark it as **Sensitive**. |
 | `XATA_ORGANIZATION_ID` | The organization ID from the Xata Console project URL, or from `xata organization get id`. |
-| `XATA_PROJECT_ID`      | The project ID from the Xata Console project URL, or from `xata project get id`.           |
+| `XATA_PROJECT_ID` | The project ID from the Xata Console project URL, or from `xata project get id`. |
 
 The Xata CLI automatically uses these standard environment variables for authentication and project selection. You do not need to install the CLI locally if you copy the organization and project IDs from a Console URL such as `https://console.xata.io/organizations/<organization-id>/projects/<project-id>`.
 

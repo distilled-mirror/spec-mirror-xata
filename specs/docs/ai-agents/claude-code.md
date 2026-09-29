@@ -85,11 +85,11 @@ For schema work, ask Claude Code to run migrations against the branch and report
 
 ## Troubleshooting
 
-| Issue                                      | Fix                                                                                                                        |
-| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| Issue | Fix |
+| - | - |
 | Claude Code connects to the wrong database | Replace `DATABASE_URL` with `xata branch url <branch>` and ask it to print the active database host before running writes. |
-| Migrations pass locally but fail in CI     | Create the CI branch from the same parent and run the same migration command there.                                        |
-| The agent changed production-like data     | Stop the task, rotate exposed credentials if needed, and repeat the work on an isolated branch.                            |
+| Migrations pass locally but fail in CI | Create the CI branch from the same parent and run the same migration command there. |
+| The agent changed production-like data | Stop the task, rotate exposed credentials if needed, and repeat the work on an isolated branch. |
 
 ## Related Xata docs
 

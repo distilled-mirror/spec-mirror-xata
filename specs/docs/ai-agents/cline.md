@@ -72,10 +72,10 @@ Use Cline's approval step for every database command. Give it a branch URL, not 
 
 ## Troubleshooting
 
-| Issue                                            | Fix                                                                          |
-| ------------------------------------------------ | ---------------------------------------------------------------------------- |
-| Cline proposes a command against production      | Reject it and provide the branch URL explicitly.                             |
-| Too many commands are proposed at once           | Ask Cline to split the task into setup, migration, test, and cleanup phases. |
+| Issue | Fix |
+| - | - |
+| Cline proposes a command against production | Reject it and provide the branch URL explicitly. |
+| Too many commands are proposed at once | Ask Cline to split the task into setup, migration, test, and cleanup phases. |
 | A generated migration includes unrelated changes | Ask Cline to regenerate it from the branch state and explain each operation. |
 
 ## Related Xata docs

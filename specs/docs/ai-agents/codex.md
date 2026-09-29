@@ -83,11 +83,11 @@ Use a branch per Codex task. For risky changes, start from anonymized production
 
 ## Troubleshooting
 
-| Issue                               | Fix                                                                                           |
-| ----------------------------------- | --------------------------------------------------------------------------------------------- |
-| Codex cannot connect to Postgres    | Re-run `xata branch url codex-task` and confirm `DATABASE_URL` is exported in the same shell. |
-| Codex proposes production writes    | Reject the step and restate that all writes must target the Xata task branch.                 |
-| The task creates noisy fixture data | Ask Codex to delete test rows or recreate the branch from its parent.                         |
+| Issue | Fix |
+| - | - |
+| Codex cannot connect to Postgres | Re-run `xata branch url codex-task` and confirm `DATABASE_URL` is exported in the same shell. |
+| Codex proposes production writes | Reject the step and restate that all writes must target the Xata task branch. |
+| The task creates noisy fixture data | Ask Codex to delete test rows or recreate the branch from its parent. |
 
 ## Related Xata docs
 

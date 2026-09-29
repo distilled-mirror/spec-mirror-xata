@@ -83,11 +83,11 @@ Keep OpenCode pointed at a single temporary branch. Use the branch connection st
 
 ## Troubleshooting
 
-| Issue                              | Fix                                                                                     |
-| ---------------------------------- | --------------------------------------------------------------------------------------- |
-| OpenCode cannot find Xata commands | Confirm the Xata CLI install path is in `PATH`.                                         |
-| Tests use a cached production URL  | Print `DATABASE_URL` in the shell before starting the agent and restart the dev server. |
-| The branch gets messy              | Delete it with `xata branch delete <name>` and create a fresh branch from the parent.   |
+| Issue | Fix |
+| - | - |
+| OpenCode cannot find Xata commands | Confirm the Xata CLI install path is in `PATH`. |
+| Tests use a cached production URL | Print `DATABASE_URL` in the shell before starting the agent and restart the dev server. |
+| The branch gets messy | Delete it with `xata branch delete <name>` and create a fresh branch from the parent. |
 
 ## Related Xata docs
 

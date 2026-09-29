@@ -16,9 +16,9 @@ Typical use cases include development branches for pull requests, preview databa
 
 Every branch in a project is either a base branch or a child branch:
 
-| Term             | Meaning                                                                                                                                                                                   |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Base branch**  | A branch without a parent. It starts as an empty PostgreSQL database, and you choose its region, instance type, and configuration at creation.                                            |
+| Term | Meaning |
+| - | - |
+| **Base branch** | A branch without a parent. It starts as an empty PostgreSQL database, and you choose its region, instance type, and configuration at creation. |
 | **Child branch** | A branch created from a parent branch. It starts with the parent's exact schema and data at the moment of creation, inherits the parent's configuration, and runs in the parent's region. |
 
 When you create your first branch in a project, the console suggests the name `main`. This is a naming convention only — `main` is not a special or default branch, and any branch can be the parent of a child branch. Branches can be nested: a child branch can itself have children, forming a branch tree.
@@ -111,12 +111,12 @@ A base branch has no parent and starts empty — no schema, no data. Use it for 
 
 Each branch has its own connection string and credentials. When connecting, you choose an endpoint type that controls how traffic is routed within the branch:
 
-| Endpoint type                | Access                         | Use it for                                                       |
-| ---------------------------- | ------------------------------ | ---------------------------------------------------------------- |
-| **Primary** (`rw`)           | Read/write on the primary      | Default for most applications                                    |
-| **Primary or replica** (`r`) | Routed to primary or a replica | Read-only workloads that can use either; do not use for writes   |
-| **Replica only** (`ro`)      | Read-only, replicas only       | Keeping read load off the primary; requires at least one replica |
-| **Pooler** (`pooled_rw`)     | Pooled access to the primary   | Serverless and high-concurrency workloads                        |
+| Endpoint type | Access | Use it for |
+| - | - | - |
+| **Primary** (`rw`) | Read/write on the primary | Default for most applications |
+| **Primary or replica** (`r`) | Routed to primary or a replica | Read-only workloads that can use either; do not use for writes |
+| **Replica only** (`ro`) | Read-only, replicas only | Keeping read load off the primary; requires at least one replica |
+| **Pooler** (`pooled_rw`) | Pooled access to the primary | Serverless and high-concurrency workloads |
 
 To get a connection string, open the branch's **Connect** panel in the console, or use the CLI:
 
