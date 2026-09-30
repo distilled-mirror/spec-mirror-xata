@@ -29,7 +29,7 @@ Since this is a non-production setup, you can typically select 0 replicas. It is
 instance size as you use for production, but you can also use a smaller instance size if the production clone traffic will be much smaller. You can adjust the size later.
 
 <Tip>
-  If you're using Xata for production, we recommend creating a separate organization for your production clone. This allows you to control access to production data more effectively by only granting production access to team members who need it. More granular role-based access control (RBAC) is on our roadmap.
+  If you're using Xata for production, we recommend creating a separate organization for your production clone. This allows you to control access to production data more effectively by only granting production access to team members who need it. Within an organization, [roles](/docs/platform/organization-roles) control who can manage members, billing and API keys, but every member can access all of its projects and branches.
 </Tip>
 
 ## 3. Configure the Xata CLI

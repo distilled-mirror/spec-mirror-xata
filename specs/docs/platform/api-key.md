@@ -46,6 +46,10 @@ Several CLI commands need more than branch access. See [Required scopes](/docs/c
 * **Read-Only**: Keys with read-only access can only read or view
 * **Read and Write**: Keys with read and write access have full access
 
+## Keys and Organization Roles
+
+A user API key acts with the [organization role](/docs/platform/organization-roles) of the member who created it, so an Editor's key cannot perform Admin-only actions whatever its scopes. Organization API keys act with Admin access, limited by their scopes.
+
 ### From the CLI
 
 Create and manage API keys using the Xata CLI:

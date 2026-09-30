@@ -195,6 +195,8 @@ Most commands work with a key scoped to `branch:read`. These need more:
 
 A key that only has `branch:read` returns a 401 on the commands above. Scopes are set when you create the key, so a key created before a scope existed does not have it. See [API keys](/docs/platform/api-key) for how to create and scope one.
 
+Commands that manage members, invitations, roles, organization API keys or single sign-on also need an Admin of the organization. See [Organization roles](/docs/platform/organization-roles).
+
 ## Environment Variables
 
 The Xata CLI can be configured using environment variables. These are useful for CI/CD pipelines, automation workflows, and advanced configuration.

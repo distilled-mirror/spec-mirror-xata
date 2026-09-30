@@ -6,6 +6,14 @@
 
 > Stay up to date with the latest Xata features, fixes and changes
 
+<Update label="Sep 29, 2026" description="Organizations now have Admin and Editor roles, so you can decide who manages members, billing, API keys and single sign-on.">
+  ## Organization roles
+
+  Every organization member is now an **Admin** or an **Editor**. Admins manage members, billing, API keys and single sign-on; Editors work with projects and branches.
+
+  Existing members are Admins, so nobody lost access. New invitations default to Editor. Admins change roles from the **Members** page, with `xata organization members set-role`, or through the API. See [Organization roles](/docs/platform/organization-roles).
+</Update>
+
 <Update label="Aug 25, 2026" description="A hosted MCP server at api.xata.tech/mcp gives coding agents the Xata API, SQL against a branch, and the docs, behind 11 tools.">
   ## MCP server
 

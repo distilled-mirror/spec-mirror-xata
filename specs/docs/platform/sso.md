@@ -34,7 +34,7 @@ SSO is configured per email domain. Each domain goes through three steps:
 
 Nothing changes for anyone until you complete the third step. You can add more than one domain, and each domain has its own identity provider.
 
-Only organization Admins can view and change single sign-on settings. To open them, select **Organization Settings** in the sidebar, then **Single sign-on**.
+Only organization [Admins](/docs/platform/organization-roles) can view and change single sign-on settings. To open them, select **Organization Settings** in the sidebar, then **Single sign-on**.
 
 ## Step 1: Verify your domain
 

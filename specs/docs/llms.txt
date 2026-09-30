@@ -20,6 +20,7 @@
 - [Use Xata with n8n](https://xata.io/docs/quickstarts/n8n.md): Learn how to use Xata as the memory provider for AI agents in n8n.
 - [Account Management](https://xata.io/docs/platform/account.md): Manage your account settings, profile, and authentication preferences
 - [Organizations](https://xata.io/docs/platform/organization.md): Collaborate with your team in a shared organization
+- [Organization roles](https://xata.io/docs/platform/organization-roles.md): Choose who can manage your organization's members, billing and API keys
 - [API Keys](https://xata.io/docs/platform/api-key.md): Generate and manage API keys for secure access to your Xata database
 - [MCP Server](https://xata.io/docs/platform/mcp.md): Connect Cursor, Claude, VS Code, and other MCP clients to Xata
 - [Projects](https://xata.io/docs/platform/project.md): Create and manage projects that contain your database branches

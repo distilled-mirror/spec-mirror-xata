@@ -178,10 +178,22 @@ components:
           type: boolean
         verification:
           description: >-
-            The DNS record that proves control of the domain. Absent once the
-            domain is verified.
+            The DNS record that proves control of the domain. It must stay
+            published while the domain is verified.
           allOf:
             - $ref: '#/components/schemas/OrganizationSSODomainVerification'
+          nullable: true
+        missing_since:
+          description: >-
+            When the daily recheck first found the record missing from a
+            verified domain.
+          type: string
+          format: date-time
+          nullable: true
+        revokes_at:
+          description: When the domain stops being verified if the record is still missing.
+          type: string
+          format: date-time
           nullable: true
       required:
         - provider_alias
