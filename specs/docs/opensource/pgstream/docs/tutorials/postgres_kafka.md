@@ -709,3 +709,6 @@ In this tutorial, we successfully configured `pgstream` to replicate data from a
 4. Verified that schema changes and data changes were replicated correctly across all targets.
 
 This tutorial demonstrates how `pgstream` can leverage Kafka for scalable, real-time replication to multiple targets. For more advanced use cases, refer to the [pgstream tutorials](/docs/opensource/pgstream/overview#tutorials).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

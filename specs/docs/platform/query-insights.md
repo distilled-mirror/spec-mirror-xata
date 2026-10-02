@@ -99,3 +99,6 @@ Note that `query-insights` opens a direct PostgreSQL connection to the branch, s
 ## Availability
 
 Query insights is available on any branch that has `pg_stat_statements` enabled. The page is not available while a branch is hibernated, still provisioning, or has public access disabled. In those cases, the standard branch status view is shown instead. The `active` subcommand in the CLI is the one exception to the extension requirement: it reads `pg_stat_activity`, which is always present.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

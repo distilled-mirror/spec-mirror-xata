@@ -79,3 +79,6 @@ Use a fresh branch for every Devin task. For production-like tasks, start from a
 * [API Keys](/docs/platform/api-key)
 * [Instant Branching](/docs/core-concepts/branching)
 * [Branch commands](/docs/cli/branch)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

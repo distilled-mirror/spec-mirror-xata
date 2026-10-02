@@ -204,3 +204,6 @@ Branch creation copies its parent's data without anonymizing it. Use [`xata clon
 * [Branching](/docs/core-concepts/branching): how copy-on-write branches work
 * [Scale to Zero](/docs/core-concepts/scale-to-zero): how idle branches hibernate and wake
 * [Serverless Proxy](/docs/core-concepts/serverless-proxy): HTTP and WebSocket connections for functions and edge runtimes
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

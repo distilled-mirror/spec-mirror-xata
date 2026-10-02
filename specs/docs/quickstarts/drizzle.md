@@ -155,3 +155,6 @@ npx drizzle-kit migrate
 <Tip>
   For serverless environments, consider using the [Serverless Proxy](/docs/core-concepts/serverless-proxy) to connect over HTTP or WebSocket instead of TCP.
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

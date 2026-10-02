@@ -23,10 +23,10 @@ Every command below also takes `-h, --help`.
 
 Log in to a Xata account
 
-Prints a URL and a code to authorize this machine, or stores an API key with `--api-key` for non-interactive use. The issuer, API URL and client flags log in against a deployment other than production, which is how Enterprise customers connect the CLI to a custom deployment in their own cloud. Omit them and the CLI uses the default production values.
+Prints a URL and a code to authorize this machine, or stores an API key with `--api-key` for non-interactive use. The issuer, API URL, console URL and client flags log in against a deployment other than production, which is how Enterprise customers connect the CLI to a custom deployment in their own cloud. Omit them and the CLI uses the default production values.
 
 ```bash theme={null}
-xata auth login [--force] [--api-key value] [--issuer value] [--api-url value] [--client-id value] [--client-secret value] [--profile value] [--debug] [--json]
+xata auth login [--force] [--api-key value] [--issuer value] [--api-url value] [--client-id value] [--client-secret value] [--console-url value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="-f, --force" type="boolean" default="false">
@@ -51,6 +51,10 @@ xata auth login [--force] [--api-key value] [--issuer value] [--api-url value] [
 
 <ParamField path="--client-secret" type="string">
   Client secret for custom environment
+</ParamField>
+
+<ParamField path="--console-url" type="string">
+  Console URL for custom environment, used by AI features
 </ParamField>
 
 <ParamField path="--profile" type="string">
@@ -235,3 +239,6 @@ xata auth refresh-token [--profile value] [--debug] [--json]
 <ParamField path="--json" type="boolean">
   Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -74,3 +74,6 @@ Use branch-per-PR automation for team workflows. Copilot can update the workflow
 * [Branch cleanup](/docs/automations/ga-cleanup)
 * [API Keys](/docs/platform/api-key)
 * [CLI environment variables](/docs/cli)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

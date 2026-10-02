@@ -170,3 +170,6 @@ Two behaviors worth knowing if a coding agent is the one running these. The CLI 
 * [Logs](/docs/platform/logs) and [Metrics](/docs/platform/metrics) for what each surface collects
 * [`xata branch` CLI reference](/docs/cli/branch#query-insights) for the full flag surface
 * [Create a production clone](/docs/tutorials/create-production-clone) to do this work against realistic data without touching production
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

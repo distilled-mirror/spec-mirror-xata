@@ -476,3 +476,6 @@ xata project ip-filter remove [--organization value] [--project value] [--force]
 <ParamField path="cidr" type="string">
   CIDR block to remove
 </ParamField>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

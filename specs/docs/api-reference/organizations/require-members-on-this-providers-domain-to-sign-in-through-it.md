@@ -178,14 +178,15 @@ components:
           description: Name members see for this provider when signing in.
           type: string
         domain:
-          description: The verified email domain this provider serves.
+          description: >-
+            The verified email domain this provider serves. Empty while the
+            domain is not verified.
           type: string
         enforced:
           description: >-
             Whether members on this domain are sent to this provider
             automatically, leaving no other way in. Registering a provider does
-            not set this; it is enabled separately once a sign-in through it has
-            worked.
+            not set this; it is enabled separately.
           type: boolean
         issuer:
           description: OIDC issuer URL, without the /.well-known suffix.
@@ -272,3 +273,5 @@ components:
             marketplace:write: Register with cloud marketplaces
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

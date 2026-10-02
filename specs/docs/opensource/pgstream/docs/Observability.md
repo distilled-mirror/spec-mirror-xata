@@ -571,3 +571,6 @@ If you encounter issues with observability setup:
 5. Examine distributed traces for detailed execution flow
 6. Consult the troubleshooting section above
 7. Check PostgreSQL logs for replication related errors
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

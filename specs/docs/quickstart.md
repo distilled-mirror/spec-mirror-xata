@@ -189,3 +189,6 @@ Now that you have a base branch and development branch to try out, explore what 
 ***
 
 **Need help?** Reach out to the Xata team at [info@xata.io](mailto:info@xata.io).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

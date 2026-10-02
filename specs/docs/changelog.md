@@ -287,3 +287,6 @@
 
   <img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/changelog/2025-09-10/metrics.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=b9719e86e4a767eec9daecf6be152cc0" alt="View available metrics in console" className="rounded-lg" width="3372" height="1850" data-path="images/changelog/2025-09-10/metrics.png" />
 </Update>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

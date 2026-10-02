@@ -684,3 +684,6 @@ In this tutorial, we successfully configured `pgstream` to replicate data from a
 4. Verified that both schema changes and data changes were replicated correctly.
 
 This tutorial demonstrates how `pgstream` can be used to integrate PostgreSQL with OpenSearch for real-time indexing. For more advanced use cases, refer to the [pgstream tutorials](/docs/opensource/pgstream/overview#tutorials).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

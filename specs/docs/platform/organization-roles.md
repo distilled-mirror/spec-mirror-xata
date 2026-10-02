@@ -66,3 +66,6 @@ curl -X PUT https://api.xata.tech/organizations/{organizationID}/members/{userID
 ## API keys
 
 A user API key acts with the current role of the member who created it, so an Editor's key cannot perform Admin-only actions whatever its scopes. Organization API keys act with Admin access, limited by their scopes. See [API Keys](/docs/platform/api-key).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

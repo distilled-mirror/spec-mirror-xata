@@ -125,3 +125,5 @@ paths:
           description: Bad request — unable to upgrade connection
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

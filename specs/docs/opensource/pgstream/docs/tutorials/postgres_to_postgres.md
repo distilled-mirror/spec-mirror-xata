@@ -340,3 +340,6 @@ In this tutorial, we successfully configured `pgstream` to replicate data from a
 5. Verified that both DML (data manipulation) and DDL (schema changes) were replicated correctly.
 
 This tutorial demonstrates how `pgstream` can be used for real-time replication between PostgreSQL databases. For more advanced use cases, such as transformations or webhook integration, refer to the [pgstream tutorials](/docs/opensource/pgstream/overview#tutorials).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

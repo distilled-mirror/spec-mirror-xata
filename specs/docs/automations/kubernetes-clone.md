@@ -123,3 +123,6 @@ kubectl logs -l job-name=xata-clone-manual -f -n xata-clone
 ```
 
 If there are any errors, you can delete the whole task (`kubectl delete -f xata-clone-crontask.yaml`), fix the issue, and repeat Step 2.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

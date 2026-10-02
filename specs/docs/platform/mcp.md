@@ -333,3 +333,6 @@ The Xata MCP server exposes the following tools:
 **Your client can't connect at all.** Confirm the URL is exactly `https://api.xata.tech/mcp` and that your client supports Streamable HTTP. SSE-only clients are not supported.
 
 **The server doesn't appear in your client.** Check the client's MCP configuration file syntax — the JSON shape differs between clients (`mcpServers` vs `servers` vs `context_servers`, `url` vs `serverUrl`) — and check the client's logs. Most clients require a full restart after configuration changes.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

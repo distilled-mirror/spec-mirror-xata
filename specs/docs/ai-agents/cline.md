@@ -84,3 +84,6 @@ Use Cline's approval step for every database command. Give it a branch URL, not 
 * [Branch commands](/docs/cli/branch)
 * [Schema Changes](/docs/core-concepts/schema-changes)
 * [API Keys](/docs/platform/api-key)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -232,3 +232,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](https:
 ## Support
 
 If you have any questions, encounter issues, or need assistance, open an issue in this repository, and our community will be happy to help.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

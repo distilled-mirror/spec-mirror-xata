@@ -40,3 +40,6 @@ By default, all metrics have a 1 minute granularity and a retention period of 30
 | Write IOPS | Shows the number of write operations performed by your database instances | Count |
 | Wal Sync Time | Shows the time it takes to synchronize Write-Ahead Log (WAL) data to disk in milliseconds | Milliseconds |
 | Replication Lag | Shows the time it takes for the replica to catch up with the primary | Seconds |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -47,3 +47,6 @@ View and manage your active sessions across different devices and locations.
 ## Account Delete
 
 Deleting an account will delete all organizations, projects and branches underneath it. Please contact [support](https://xata.io/contact-support) for assistance.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

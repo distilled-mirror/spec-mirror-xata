@@ -189,3 +189,6 @@ For more advanced cleanup rules, you can extend this pattern by fetching externa
 * [Merge Readiness](./ga-check) — For validating main branch status.
 * [Create Branch](./ga-pr) — For managing pull request branches.
 * [Branch CLI reference](../cli/branch) — Full reference for `xata branch list` and `xata branch delete`.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

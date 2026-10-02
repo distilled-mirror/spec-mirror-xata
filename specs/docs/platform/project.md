@@ -61,3 +61,6 @@ xata project delete --project "project-id"
 ```
 
 For more CLI commands, see the [CLI Reference](/docs/cli/project).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

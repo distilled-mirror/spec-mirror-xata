@@ -74,3 +74,6 @@ From version 1 onwards, schema changes are captured using event triggers that em
 The detailed SQL used for both versions can be found in the [migrations folder](https://github.com/xataio/pgstream/tree/main/migrations/postgres).
 
 The schema and data changes are part of the same linear stream - the downstream consumers always observe the schema changes as soon as they happen, before any data arrives that relies on the new schema. This prevents data loss and manual intervention.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

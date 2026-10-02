@@ -49,3 +49,6 @@ You can also add Xata to your existing project. To do this, you would typically 
 1. Create a `DATABASE_URL` variable and set it to the PostgreSQL connection string, which you can copy from the Xata branch **Overview** page.
 2. Use `DATABASE_URL` as your PostgreSQL connection string in your application. See the various framework and programming language guides on how to do this.
 3. If you had PostgreSQL on your Railway canvas, you can remove it now.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

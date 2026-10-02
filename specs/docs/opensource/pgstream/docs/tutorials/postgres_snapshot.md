@@ -315,3 +315,6 @@ In this tutorial, we successfully configured `pgstream` to snapshot data from a 
 5. Verified that the data was successfully replicated to the target database.
 
 This process demonstrates how `pgstream` can be used to efficiently snapshot data between PostgreSQL databases. For more advanced use cases, such as continuous replication or applying transformations, refer to the other [pgstream tutorials](/docs/opensource/pgstream/overview#tutorials).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -152,3 +152,6 @@ Xata does not replace an existing branch with the same name as the pull request'
 ### A closed pull request did not delete a branch
 
 Xata deletes a branch on pull request close only when the branch is a child of the configured root branch. This protects manually created or unrelated branches that happen to share the pull request source branch name.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

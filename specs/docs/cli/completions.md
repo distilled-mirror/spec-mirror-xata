@@ -52,3 +52,6 @@ xata completions uninstall [--profile value] [--debug] [--json]
 <ParamField path="--json" type="boolean">
   Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -96,3 +96,6 @@ Use a branch per Codex task. For risky changes, start from anonymized production
 * [Branch commands](/docs/cli/branch)
 * [Data Anonymization](/docs/core-concepts/anonymization)
 * [Create Branch automation](/docs/automations/ga-pr)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

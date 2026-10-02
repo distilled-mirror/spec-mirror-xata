@@ -208,3 +208,6 @@ xata keys organization delete [--organization value] [--profile value] [--debug]
 <ParamField path="keyId" type="string">
   IDs of the keys to delete
 </ParamField>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

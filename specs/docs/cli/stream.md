@@ -71,3 +71,6 @@ xata stream destroy [--config value] [--log-format value] [--log-level trace|deb
 <ParamField path="--json" type="boolean">
   Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

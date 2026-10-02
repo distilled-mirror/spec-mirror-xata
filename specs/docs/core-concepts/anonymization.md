@@ -66,3 +66,6 @@ xata clone start --source-url postgres://user:pass@host:5432/prod_db
 ```
 
 This will copy your production data into the production clone branch, applying the anonymization rules you configured.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -139,3 +139,6 @@ Xata does not support SCIM provisioning. Removing someone in your identity provi
 * **Remove domain** releases the domain from your organization. It is only available once no identity provider is connected to the domain.
 
 Both actions ask you to type the domain name to confirm.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

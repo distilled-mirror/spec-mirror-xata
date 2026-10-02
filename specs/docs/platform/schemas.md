@@ -16,3 +16,6 @@ Design, manage, and optimize your database schema structure, tables, relationshi
 * **Table View**: View your schema in a table view for each table with visibility into data types, contstraints, relationships and indices
 * **UML View**: Use the UML view for a graphical representation of your schema
 * **Schema Diff**: Choose to the diff option to view a diff of your branch schema and its parent branch
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

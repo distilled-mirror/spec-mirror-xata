@@ -41,3 +41,6 @@ If roles that can run DDL on the source are **less trusted** than `pgstreamtarge
 
 * Grant `pgstreamtarget` only the privileges it needs to apply schema and data changes. Avoid `SUPERUSER`, `CREATEROLE`, and `CREATEDB` unless a feature explicitly requires them.
 * If your source and target roles have different trust levels, disable DDL replication (see [`ignore_ddl`](/docs/opensource/pgstream/docs/configuration)).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

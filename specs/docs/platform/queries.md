@@ -98,3 +98,6 @@ The following preferences persist in local storage and apply across sessions on 
 * Striped rows
 * Compact density
 * Row limit
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

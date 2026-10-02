@@ -54,3 +54,6 @@ xata init [--organization value] [--project value] [--branch value] [--database 
 # Link without prompts
 xata init --organization <org-id> --project <project-id> --branch <branch-id>
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

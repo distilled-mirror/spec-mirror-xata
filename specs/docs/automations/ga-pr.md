@@ -282,3 +282,6 @@ Use this workflow when you want to:
 
 * [Check Workflow](./ga-check) - For validating main branch status
 * [Clone Workflow](./ga-clone) - For cloning databases in CI/CD
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

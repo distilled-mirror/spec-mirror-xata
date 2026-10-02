@@ -83,3 +83,6 @@ Create a Flow for the database setup you repeat often: create branch, print bran
 * [Data Anonymization](/docs/core-concepts/anonymization)
 * [Schema Changes](/docs/core-concepts/schema-changes)
 * [Branch commands](/docs/cli/branch)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

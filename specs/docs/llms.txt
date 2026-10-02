@@ -79,9 +79,9 @@
 - [Get organization membership limits](https://xata.io/docs/api-reference/organizations/get-organization-membership-limits.md): Retrieves the membership limits for the specified organization (maximum members and invitations).
 - [Get the organization's SSO configuration](https://xata.io/docs/api-reference/organizations/get-the-organizations-sso-configuration.md): Lists the organization's identity providers and the email domains claimed for them. An organization signs in through one provider per verified domain, so both are collections. Client secrets are write-only and are never returned. An organization that has not set anything up yet responds 200 with emp…
 - [Claim an email domain for SSO](https://xata.io/docs/api-reference/organizations/claim-an-email-domain-for-sso.md): Claims an email domain and returns the DNS record that proves control of it. A claim is only a note to ourselves: nothing is registered against the domain until verification succeeds, so claiming a domain neither affects anyone's sign-in nor stops another organization claiming it first. A domain ano…
-- [Release a claimed or verified domain](https://xata.io/docs/api-reference/organizations/release-a-claimed-or-verified-domain.md): Drops a pending claim, or releases a verified domain so members on it sign in however they could before. Refused with a 409 while a provider is still bound to the domain, since releasing it underneath one would leave a provider nobody can reach; remove the provider first. Idempotent.
-- [Check the DNS record for a claimed domain](https://xata.io/docs/api-reference/organizations/check-the-dns-record-for-a-claimed-domain.md): Looks up the challenge TXT record. Verification is a poll, not a command: a missing or stale record is reported as `verified: false` on a 200 rather than as an error, so a client can retry while DNS propagates. Verifying proves the organization controls the domain and nothing more; it does not chang…
-- [Register an identity provider for a verified domain](https://xata.io/docs/api-reference/organizations/register-an-identity-provider-for-a-verified-domain.md): Registers an identity provider for one verified domain. `google` needs only the credentials and pins the login to that Google Workspace domain; `oidc` is the fallback for any other provider and discovers its endpoints from the issuer's `/.well-known/openid-configuration`. The domain must already be…
+- [Release a claimed or verified domain](https://xata.io/docs/api-reference/organizations/release-a-claimed-or-verified-domain.md): Drops a pending claim, or releases a verified domain so members on it sign in however they could before. Refused with a 409 while the organization has a provider for the domain; remove the provider first. Idempotent.
+- [Check the DNS record for a claimed domain](https://xata.io/docs/api-reference/organizations/check-the-dns-record-for-a-claimed-domain.md): Looks up the challenge TXT record. Verification is a poll, not a command: a missing or stale record is reported as `verified: false` on a 200 rather than as an error, so a client can retry while DNS propagates. Verifying a domain that lost its verification restores its provider, with enforcement off…
+- [Register an identity provider for a verified domain](https://xata.io/docs/api-reference/organizations/register-an-identity-provider-for-a-verified-domain.md): Registers an identity provider for one verified domain. `google` needs only the credentials and pins the login to that Google Workspace domain; `microsoft` pins it to the Entra tenant in the issuer; `oidc` is the fallback for any other provider and discovers its endpoints from the issuer's `/.well-k…
 - [Update an identity provider's credentials](https://xata.io/docs/api-reference/organizations/update-an-identity-providers-credentials.md): Replaces the provider's credentials, and for `oidc` re-discovers its endpoints from the issuer. The domain it serves and whether it is enforced are carried across unchanged, so rotating a client secret does not quietly turn enforcement off. A provider whose domain stopped being verified is refused u…
 - [Remove an identity provider](https://xata.io/docs/api-reference/organizations/remove-an-identity-provider.md): Deletes the provider, so members on its domain fall back to the sign-in methods they had before. The domain stays verified and can be given another provider. Idempotent.
 - [Require members on this provider's domain to sign in through it](https://xata.io/docs/api-reference/organizations/require-members-on-this-providers-domain-to-sign-in-through-it.md): Enabling sends every address on the provider's domain to it, leaving those members no other way in. Refused with a 409 until the domain is verified. Disabling needs nothing, so the way out is always open.
@@ -115,6 +115,7 @@
 - [Retrieve branch logs](https://xata.io/docs/api-reference/branches/retrieve-branch-logs.md)
 - [Get PostgreSQL configuration details](https://xata.io/docs/api-reference/branches/get-postgresql-configuration-details.md): Retrieves detailed information about the current PostgreSQL configuration parameters for a branch, including parameter types, descriptions, acceptable ranges, default values, and current values.
 - [Command-line Interface](https://xata.io/docs/cli/index.md): Complete reference for the Xata CLI
+- [skill](https://xata.io/docs/cli/skill.md): Discover and install Xata agent skills
 - [init](https://xata.io/docs/cli/init.md): Link this folder to a project and branch
 - [auth](https://xata.io/docs/cli/auth.md): Authenticate with Xata
 - [organization](https://xata.io/docs/cli/organization.md): Create, list, and manage organizations
@@ -124,7 +125,7 @@
 - [roll](https://xata.io/docs/cli/roll.md): Run pgroll to manage PostgreSQL schema migrations
 - [clone](https://xata.io/docs/cli/clone.md): Clone another PostgreSQL database with anonymization
 - [stream](https://xata.io/docs/cli/stream.md): Run pgstream to stream PostgreSQL data to another destination
-- [status](https://xata.io/docs/cli/status.md): Show the organization, project, and branch this folder uses
+- [status](https://xata.io/docs/cli/status.md): Show the organization, project, branch, and database this folder uses
 - [version](https://xata.io/docs/cli/version.md): Get the version of the Xata CLI, pgroll and pgstream
 - [checkout](https://xata.io/docs/cli/checkout.md): Check out a branch in this folder
 - [scratch](https://xata.io/docs/cli/scratch.md): Run SQL or a Postgres client command against a temporary scratch branch
@@ -169,3 +170,6 @@
 ## OpenAPI Specs
 
 - [openapi](https://api.xata.tech/openapi.json)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -95,3 +95,6 @@ Keep OpenCode pointed at a single temporary branch. Use the branch connection st
 * [Branch commands](/docs/cli/branch)
 * [Postgres extensions](/docs/platform/extensions)
 * [Scale to Zero](/docs/core-concepts/scale-to-zero)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

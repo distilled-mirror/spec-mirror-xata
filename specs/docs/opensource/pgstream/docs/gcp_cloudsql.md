@@ -223,3 +223,6 @@ ALTER SCHEMA <schema> OWNER TO pgstreamtarget;
     **Fix**: Use `postgres` or grant required privileges first.
   </Accordion>
 </AccordionGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

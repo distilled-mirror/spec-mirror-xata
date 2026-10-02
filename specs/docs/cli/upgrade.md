@@ -44,3 +44,6 @@ xata upgrade --version 1.5.4
 # Follow the pre-release channel
 xata upgrade --channel next
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

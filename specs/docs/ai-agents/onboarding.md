@@ -18,7 +18,7 @@ Ground rules for this onboarding:
 * The Xata CLI detects coding agents and disables interactive prompts. Always pass explicit flags, and add `--json` when you need to parse output. When a command fails because a value is missing or invalid, the error names the flag to pass — ask the user for that value rather than guessing.
 * Before starting, look at the current directory. If there is an existing application, ask whether to connect it to Xata; if not, ask whether they want to scaffold a small app or just explore the database workflow. Don't scaffold a project without agreement.
 * Ask before installing software, creating billable cloud resources, deleting branches, or copying data from an existing database.
-* Never print full connection strings or API keys into the conversation; write them to env files instead.
+* Never print full connection strings or API keys into the conversation; write them to gitignored env files instead. Resource-creation, metadata, readiness, and deletion output can contain credentials too, including a credential-bearing `connectionString`. `--json` does not redact secrets. Capture sensitive output or filter it to explicitly allowed fields before it reaches tool output or the conversation; don't dump raw responses or enable shell tracing (`set -x`).
 
 ## What is Xata?
 
@@ -69,16 +69,19 @@ Ask whether the user is setting up **development and branching** or a **producti
 
 Inform the user of the proposed region, instance size, replicas, and sleep behavior without requiring them to choose technical flags. For example: "I'll use one primary and one read replica for a standby failover target. The replica adds compute cost. Since this is production, I'll keep the main branch running and let development branches sleep when idle." Obtain approval for billable resources before provisioning.
 
-For a new setup, find or create an organization, then create the project with an initial `main` branch. For development-only use, replace `<replicas>` with `0` and `<base-scale-to-zero>` with `true`; for production, use `1` and `false`, respectively. Because prompts are disabled for agents, pass explicit flags:
+For a new setup, find or create an organization, then create the project with an initial `main` branch. For development-only use, replace `<replicas>` with `0` and `<base-scale-to-zero>` with `true`; for production, use `1` and `false`, respectively. Because prompts are disabled for agents, pass explicit flags.
+
+The filtered examples below use `jq` to show only resource IDs, names, and status. Check that it is installed (`command -v jq`); ask before installing it if needed. In Bash, enable `pipefail` so filtering does not hide a failed CLI command.
 
 ```bash theme={null}
+set -o pipefail
 xata organization list --json
 # if the user has no organization yet:
-xata organization create --name "<user or company name>" --json
+xata organization create --name "<user or company name>" --json | jq '{id, name}'
 
 xata project create --organization <org-id> --name "<project>" --branch-name main \
   --region <region> --replicas <replicas> --instance-type <instance-type> --postgres-version <version> \
-  --scale-to-zero-base <base-scale-to-zero> --scale-to-zero-child true --json
+  --scale-to-zero-base <base-scale-to-zero> --scale-to-zero-child true --json | jq '{id, name}'
 ```
 
 Region, instance type, and Postgres version choices depend on the organization and plan. If a value is rejected, the error says so — ask the user what they want, or have them run `xata project create --name "<project>"` in their own terminal, where the CLI lists the valid options interactively. Explain any change to the proposed settings before proceeding.
@@ -86,21 +89,29 @@ Region, instance type, and Postgres version choices depend on the organization a
 Wait for the branch to be ready, then link the user's project folder so later commands don't need IDs. The explicit wait also supports CLI versions that return from `init` before an unhealthy branch is ready:
 
 ```bash theme={null}
-xata branch wait-ready --organization <org-id> --project <project-id> --branch main --wake
+set -o pipefail
+xata branch wait-ready --organization <org-id> --project <project-id> --branch main --wake --json | jq '{id, name, status}'
 xata init --organization <org-id> --project <project-id> --branch main --database postgres
 ```
 
-`xata init` writes the configuration to `.xata/` in the current folder. `--database` selects the Postgres database on the branch; use the existing `postgres` database for onboarding. Verify with `xata status` that the organization, project, branch, and database match the intended target before changing application configuration or running migrations. A successful exit alone is not proof that the folder was linked to the new project.
+`xata init` writes the configuration to `.xata/` in the current folder. `--database` selects the Postgres database on the branch; use the existing `postgres` database for onboarding. Verify with `xata status` that the organization, project, and branch match the intended target before changing application configuration or running migrations. A successful exit alone is not proof that the folder was linked to the new project.
+
+CLI 1.14.2 does not show the database name in `xata status`. Inspect only the relevant fields in the local configuration, and check whether `XATA_DATABASE_NAME` overrides the configured database:
+
+```bash theme={null}
+jq '{branchName, databaseName}' .xata/branch.json
+printf 'Database override: %s\n' "${XATA_DATABASE_NAME:-<not set>}"
+```
+
+Configuration identifies the intended target, not whether that database exists; this also applies if your CLI shows a database name in status output. Confirm the actual database with `SELECT current_database();` through the application's driver or, if `psql` is installed, the following command. It captures the URL without printing it and should return `postgres` for this setup. Resolve any mismatch before running migrations:
+
+```bash theme={null}
+psql "$(xata branch url)" -Atc 'SELECT current_database();'
+```
 
 ### Step 4: Connect the user's application
 
-Get the branch connection string and put it wherever the user's app reads its database URL (commonly `DATABASE_URL`):
-
-```bash theme={null}
-xata branch url
-```
-
-This is a standard `postgresql://` connection string containing credentials. Before writing it anywhere: check which env file the framework actually loads (`.env.local` for Next.js, `.env` otherwise), make sure that file is gitignored, don't duplicate an existing `DATABASE_URL` entry, and don't echo the URL into the conversation. A safe pattern:
+Capture the branch connection string with `$(xata branch url)` and put it wherever the user's app reads its database URL (commonly `DATABASE_URL`). Don't run `xata branch url` on its own in agent tool output: it prints a standard `postgresql://` connection string containing credentials. Before writing it anywhere: check which env file the framework actually loads (`.env.local` for Next.js, `.env` otherwise), make sure that file is gitignored, don't duplicate an existing `DATABASE_URL` entry, and don't echo the URL into the conversation. A safe pattern:
 
 ```bash theme={null}
 echo "DATABASE_URL=$(xata branch url)" >> .env
@@ -126,16 +137,25 @@ Before moving on, verify the connection end to end: run the user's app (or a one
 This is the part that makes Xata click. Create a development branch as a copy-on-write copy of `main`, including its data. Child branches default to one primary and zero read replicas, even when the parent has replicas. Keep that zero-replica default for development to reduce compute cost; the child has no standby failover target:
 
 ```bash theme={null}
-xata branch create --name dev --parent-branch main
+set -o pipefail
+xata branch create --name dev --parent-branch main --json | jq '{id, name}'
 xata checkout dev
-xata branch wait-ready dev --wake
+xata branch wait-ready dev --wake --json | jq '{id, name, status}'
 ```
 
 Now CLI commands target `dev`: `xata branch url` prints the `dev` connection string. Note that `xata checkout` changes only the CLI context — the application keeps using whatever `DATABASE_URL` is in its env file until you update it.
 
-Prove the isolation to the user: query `dev` and show the data copied from `main` is already there, insert a row on `dev`, then query `main` and show it is unchanged. Explain the workflow this enables: a branch per feature, per pull request, per teammate, or per coding agent — each isolated, each disposable. Clean up experiments with `xata branch delete <name>` (ask the user before deleting anything).
+Prove the isolation to the user: query `dev` and show the data copied from `main` is already there, insert a row on `dev`, then query `main` and show it is unchanged. Explain the workflow this enables: a branch per feature, per pull request, per teammate, or per coding agent — each isolated, each disposable.
 
-Switch back with `xata checkout main` when done.
+Switch back with `xata checkout main` when done. If the app was pointed at `dev`, update its env file to use `main` before deleting `dev`; checkout alone does not update the application. To clean up the experiment, first get the user's explicit approval to delete `dev`. The CLI cannot delete the currently checked-out branch, and agent/noninteractive mode requires `--yes`. Only after approval, run:
+
+```bash theme={null}
+set -o pipefail
+xata checkout main
+xata branch delete dev --yes --json | jq '{id, name}'
+```
+
+`--yes` confirms deletion to the CLI, not on behalf of the user — it does not replace their approval.
 
 ### Step 7: The console
 
@@ -170,4 +190,7 @@ Provider-specific guides start at [https://xata.io/docs/migrations/aws-rds](http
 
 * It's the coding agent's job to run CLI commands and write schema migrations, not the human user. The human can use [https://console.xata.io](https://console.xata.io) to see everything you did.
 * Every page on [https://xata.io](https://xata.io) is available as markdown by appending `.md` to its URL. The docs index for agents is at [https://xata.io/docs/llms.txt](https://xata.io/docs/llms.txt).
-* If something fails, `xata status`, `xata auth status`, and `xata branch describe` are the fastest ways to diagnose state.
+* If something fails, `xata status`, `xata auth status`, and `xata branch describe --json | jq '{id, name, status}'` are the fastest ways to diagnose state. Keep `pipefail` enabled and filter branch metadata rather than printing the raw response.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

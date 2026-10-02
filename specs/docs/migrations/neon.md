@@ -111,3 +111,6 @@ const users = await sql`SELECT * FROM users`;
 <Tip>
   For more details on using the serverless driver with Xata, see the [Serverless Proxy](/docs/core-concepts/serverless-proxy) documentation.
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

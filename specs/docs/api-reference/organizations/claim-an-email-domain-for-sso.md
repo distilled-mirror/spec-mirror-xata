@@ -153,9 +153,7 @@ components:
       type: object
       properties:
         domain:
-          description: >-
-            Bare email domain to claim, for example acme.com. Wildcards and
-            public email providers are rejected.
+          description: Bare email domain to claim, for example acme.com.
           type: string
       required:
         - domain
@@ -293,3 +291,5 @@ components:
             marketplace:write: Register with cloud marketplaces
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

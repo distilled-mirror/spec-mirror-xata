@@ -200,3 +200,6 @@ psql "$(xata branch url)" -At -c "
 Greenmask supports rich PII transformations (anonymising emails, hashing names, redacting fields) on top of subsetting. Those are useful if you want to use your imported subset for dev/test as well as evaluation. See the [Greenmask transformer docs](https://docs.greenmask.io/latest/built_in_transformers/) for the full list.
 
 For full data migration (not subsets), see the other guides in this folder.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -100,3 +100,6 @@ We don't actively maintain third-party extension code, but we're happy to help y
 ### BYOC for custom extensions
 
 If you need to install custom extensions that aren't available in our standard offering, consider our [Bring Your Own Cloud (BYOC) deployment model](/docs/core-concepts/deployment#bring-your-own-cloud-byoc). This allows you to run the entire Xata dataplane in your own Kubernetes cluster, giving you full control over which extensions are installed and configured.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

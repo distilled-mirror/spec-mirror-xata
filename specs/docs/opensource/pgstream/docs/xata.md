@@ -229,3 +229,6 @@ ALTER SCHEMA <schema> OWNER TO pgstreamtarget;
     **Fix**: Grant required privileges to `pgstreamtarget` first, or use a user with more privileges.
   </Accordion>
 </AccordionGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

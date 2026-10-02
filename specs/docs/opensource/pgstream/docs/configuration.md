@@ -1273,3 +1273,6 @@ Schemas themselves are never filtered out, since the remaining objects need thei
 For DDL replication, a single statement can create objects of several types at once (`CREATE TABLE` with a primary key produces both a table and an index). Such an event is only skipped when *all* of its objects belong to excluded categories.
 
 > ⚠️ Filtering does not resolve dependencies between object types. Excluding a category that surviving objects depend on (for example excluding `types` while keeping tables with columns of those types) will make the snapshot or the DDL replay fail. Use this with a good understanding of your schema.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -92,3 +92,6 @@ when deploying on our platform.
 This setup is especially convenient if you want to offer an internal “Postgres as a service” or if you’re looking to white-label Xata for your customers.
 
 If you have any question regarding BYOC, do not hesitate to write us [an email](mailto:info@xata.io).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

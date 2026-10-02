@@ -1517,3 +1517,6 @@ transformations:
 
 Validation mode can be set to `strict` or `relaxed` for all tables at once. Or it can be determined for each table individually, by setting the higher level `validation_mode` parameter to `table_level`. When it is set to strict, pgstream will throw an error if any of the columns in the table do not have a transformer defined. When set to relaxed, pgstream will skip any columns that do not have a transformer defined. Also in strict mode, all snapshot tables must be provided in the transformation config.
 For details on how to use and configure the transformer, check the [transformer tutorial](/docs/opensource/pgstream/docs/tutorials/postgres_transformer).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

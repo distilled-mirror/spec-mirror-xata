@@ -60,3 +60,6 @@ xata checkout main
 # Check out a branch of another project
 xata checkout feature-branch --organization org-123 --project proj-456
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

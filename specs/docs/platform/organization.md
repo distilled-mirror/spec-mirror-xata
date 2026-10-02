@@ -89,3 +89,6 @@ For the immediate destructive variant, use the `DELETE /organizations/{organizat
 ```bash theme={null}
 xata organization delete --organization <id>
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

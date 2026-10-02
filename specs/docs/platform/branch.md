@@ -279,3 +279,6 @@ xata branch describe staging
 ```
 
 For more CLI commands, see the [CLI Reference](/docs/cli/branch).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

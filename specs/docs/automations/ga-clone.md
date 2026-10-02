@@ -195,3 +195,6 @@ This ensures that:
 
 * [Check workflow](./ga-check) - For validating main branch status
 * [PR workflow](./ga-pr) - For managing pull request environments
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

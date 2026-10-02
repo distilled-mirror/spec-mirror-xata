@@ -237,3 +237,6 @@ Only the blocks that are modified need to be copied, which results in significan
 * **Can I reset a child branch from its parent?** Not in place. Delete the branch and create a fresh one from the parent to get a new point-in-time copy.
 * **Is `main` special?** No. It's the conventional name for the first branch, but Xata has no default-branch or promotion concept — any branch can be a parent.
 * **Can I change a branch's region?** No. Region is fixed at creation, and child branches always live in the parent's region. Create a new base branch and [clone](/docs/cli/clone) your data to move regions.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

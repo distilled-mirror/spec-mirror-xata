@@ -720,3 +720,6 @@ In this tutorial, we successfully configured `pgstream` to replicate data from a
 5. Explored how to update webhook subscriptions and use the injector for metadata enrichment.
 
 This tutorial demonstrates how `pgstream` can be used to integrate PostgreSQL with webhook-based systems, enabling real-time event-driven architectures. For more advanced use cases, refer to the other [pgstream tutorials](/docs/opensource/pgstream/overview#tutorials).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

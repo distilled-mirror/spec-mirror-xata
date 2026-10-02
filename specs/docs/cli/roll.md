@@ -869,3 +869,6 @@ xata roll convert [--lock-timeout value] [--pgroll-schema value] [--postgres-url
 <ParamField path="file" type="string" required>
   The migration file to convert
 </ParamField>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

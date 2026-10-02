@@ -240,3 +240,6 @@ For details about setting up the workflow and available configuration options, s
 * Use `xata roll complete` to finalize migrations when your application is ready
 * For more details on up/down migrations, see the [pgroll documentation](https://pgroll.com/docs/latest).
 * See the [CLI reference](/docs/cli/roll) for all available `xata roll` commands.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

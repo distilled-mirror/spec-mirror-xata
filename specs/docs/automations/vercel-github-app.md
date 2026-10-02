@@ -195,3 +195,6 @@ This is expected. Closing the pull request causes the Xata GitHub App to delete 
 ### A pull request comes from a fork
 
 Vercel protects environment variables for deployments from forks. An authorized project member must approve the deployment before it can access the Xata API key. Do not disable this protection for a project that contains secrets.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

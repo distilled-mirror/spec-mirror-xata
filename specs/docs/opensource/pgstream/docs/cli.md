@@ -585,3 +585,6 @@ pgstream destroy --help
 
 * **GitHub Issues**: [https://github.com/xataio/pgstream/issues](https://github.com/xataio/pgstream/issues)
 * **Documentation**: [https://github.com/xataio/pgstream/tree/main/docs](https://github.com/xataio/pgstream/tree/main/docs)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

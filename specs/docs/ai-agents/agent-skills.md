@@ -49,3 +49,6 @@ The agent calls `get_skill` with the skill name and follows the instructions.
 * [Xata for Agents](/docs/ai-agents/overview)
 * [MCP Server](/docs/platform/mcp)
 * [CLI Reference](/docs/cli)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

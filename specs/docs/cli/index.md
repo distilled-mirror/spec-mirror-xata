@@ -57,6 +57,9 @@ docker run -e XATA_API_KEY=yourkey ghcr.io/xataio/xata:latest-pg18 [command] [su
 
 Every command page opens with an index of the commands on it.
 
+* [`xata skill`](/docs/cli/skill) — Discover and install Xata agent skills
+  * [`xata skill list`](/docs/cli/skill#list) — List available skills from xataio/skills
+  * [`xata skill install`](/docs/cli/skill#install) — Install a skill; select interactively or list when no name is given
 * [`xata init`](/docs/cli/init) — Link this folder to a project and branch
 * [`xata auth`](/docs/cli/auth) — Authenticate with Xata
   * [`xata auth login`](/docs/cli/auth#login) — Log in to a Xata account
@@ -94,6 +97,7 @@ Every command page opens with an index of the commands on it.
       * [`xata organization sso providers add`](/docs/cli/organization#sso-providers-add) — Connect an identity provider to a verified domain
       * [`xata organization sso providers remove`](/docs/cli/organization#sso-providers-remove) — Disconnect an identity provider from an organization
       * [`xata organization sso providers enforce`](/docs/cli/organization#sso-providers-enforce) — Require members on a domain to sign in through its identity provider
+      * [`xata organization sso providers test`](/docs/cli/organization#sso-providers-test) — Print a link that tests sign-in through an identity provider
 * [`xata project`](/docs/cli/project) — Create, list, and manage projects
   * [`xata project list`](/docs/cli/project#list) — List all projects
   * [`xata project describe`](/docs/cli/project#describe) — Describe a project
@@ -155,7 +159,7 @@ Every command page opens with an index of the commands on it.
   * [`xata clone start`](/docs/cli/clone#start) — Snapshot a PostgreSQL database into a Xata branch
   * [`xata clone config`](/docs/cli/clone#config) — Write the anonymization rules that clone start and stream apply
   * [`xata clone stream`](/docs/cli/clone#stream) — Stream a PostgreSQL database into a Xata branch continuously
-* [`xata status`](/docs/cli/status) — Show the organization, project, and branch this folder uses
+* [`xata status`](/docs/cli/status) — Show the organization, project, branch, and database this folder uses
 * [`xata version`](/docs/cli/version) — Get the version of the Xata CLI, pgroll and pgstream
 * [`xata checkout`](/docs/cli/checkout) — Check out a branch in this folder
 * [`xata scratch`](/docs/cli/scratch) — Run SQL or a Postgres client command against a temporary scratch branch
@@ -282,3 +286,6 @@ export XATA_PROJECT_ID="your-project-id"
 export XATA_BRANCH_ID="your-branch-id"
 xata roll migrate --complete
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -5,9 +5,10 @@
 # Register an identity provider for a verified domain
 
 > Registers an identity provider for one verified domain. `google` needs only the credentials and pins the login
-to that Google Workspace domain; `oidc` is the fallback for any other provider and discovers its endpoints from
-the issuer's `/.well-known/openid-configuration`. The domain must already be verified, and registering does not
-redirect anyone on its own: that is enabled separately.
+to that Google Workspace domain; `microsoft` pins it to the Entra tenant in the issuer; `oidc` is the fallback
+for any other provider and discovers its endpoints from the issuer's `/.well-known/openid-configuration`. The
+domain must already be verified, and registering does not redirect anyone on its own: that is enabled
+separately.
 
 
 
@@ -93,13 +94,16 @@ paths:
         Registers an identity provider for one verified domain. `google` needs
         only the credentials and pins the login
 
-        to that Google Workspace domain; `oidc` is the fallback for any other
-        provider and discovers its endpoints from
+        to that Google Workspace domain; `microsoft` pins it to the Entra tenant
+        in the issuer; `oidc` is the fallback
 
-        the issuer's `/.well-known/openid-configuration`. The domain must
-        already be verified, and registering does not
+        for any other provider and discovers its endpoints from the issuer's
+        `/.well-known/openid-configuration`. The
 
-        redirect anyone on its own: that is enabled separately.
+        domain must already be verified, and registering does not redirect
+        anyone on its own: that is enabled
+
+        separately.
       operationId: createOrganizationSSOProvider
       requestBody:
         required: true
@@ -194,14 +198,15 @@ components:
           description: Name members see for this provider when signing in.
           type: string
         domain:
-          description: The verified email domain this provider serves.
+          description: >-
+            The verified email domain this provider serves. Empty while the
+            domain is not verified.
           type: string
         enforced:
           description: >-
             Whether members on this domain are sent to this provider
             automatically, leaving no other way in. Registering a provider does
-            not set this; it is enabled separately once a sign-in through it has
-            worked.
+            not set this; it is enabled separately.
           type: boolean
         issuer:
           description: OIDC issuer URL, without the /.well-known suffix.
@@ -305,3 +310,5 @@ components:
             marketplace:write: Register with cloud marketplaces
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

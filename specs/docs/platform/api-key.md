@@ -69,3 +69,6 @@ xata keys organization list
 ```
 
 For more CLI commands, see the [CLI Reference](/docs/cli/keys).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

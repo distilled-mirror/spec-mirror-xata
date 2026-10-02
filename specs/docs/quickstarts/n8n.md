@@ -67,3 +67,6 @@ postgresql://xata:<password>@<host>.us-east-1.xata.tech:5432/xata?sslmode=requir
 
 * **Enable scale-to-zero.** In your branch settings, enable scale-to-zero (a suggested inactivity time is 1 hour) so the branch pauses when it's not in use. This way you only incur compute costs while the branch is active. See [Scale to zero](/docs/core-concepts/scale-to-zero) for details.
 * **Move beyond the free trial.** To keep using Xata after the free trial, add a credit card in the billing system. Xata charges only for the resources you use. There is no minimum fee.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

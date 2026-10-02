@@ -5,8 +5,7 @@
 # Release a claimed or verified domain
 
 > Drops a pending claim, or releases a verified domain so members on it sign in however they could before.
-Refused with a 409 while a provider is still bound to the domain, since releasing it underneath one would
-leave a provider nobody can reach; remove the provider first. Idempotent.
+Refused with a 409 while the organization has a provider for the domain; remove the provider first. Idempotent.
 
 
 
@@ -93,11 +92,8 @@ paths:
         Drops a pending claim, or releases a verified domain so members on it
         sign in however they could before.
 
-        Refused with a 409 while a provider is still bound to the domain, since
-        releasing it underneath one would
-
-        leave a provider nobody can reach; remove the provider first.
-        Idempotent.
+        Refused with a 409 while the organization has a provider for the domain;
+        remove the provider first. Idempotent.
       operationId: deleteOrganizationSSODomain
       responses:
         '204':
@@ -200,3 +196,5 @@ components:
             marketplace:write: Register with cloud marketplaces
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

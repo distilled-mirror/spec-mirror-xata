@@ -99,3 +99,6 @@ instance in your VPC:
 dig +short <branch>.us-east-1.xata.tech
 # should return private IPs from your VPC's subnets (the endpoint ENIs)
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

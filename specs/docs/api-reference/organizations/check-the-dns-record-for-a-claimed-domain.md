@@ -5,8 +5,8 @@
 # Check the DNS record for a claimed domain
 
 > Looks up the challenge TXT record. Verification is a poll, not a command: a missing or stale record is reported
-as `verified: false` on a 200 rather than as an error, so a client can retry while DNS propagates. Verifying
-proves the organization controls the domain and nothing more; it does not change how anyone signs in.
+as `verified: false` on a 200 rather than as an error, so a client can retry while DNS propagates. Verifying a
+domain that lost its verification restores its provider, with enforcement off.
 
 
 
@@ -94,10 +94,10 @@ paths:
         command: a missing or stale record is reported
 
         as `verified: false` on a 200 rather than as an error, so a client can
-        retry while DNS propagates. Verifying
+        retry while DNS propagates. Verifying a
 
-        proves the organization controls the domain and nothing more; it does
-        not change how anyone signs in.
+        domain that lost its verification restores its provider, with
+        enforcement off.
       operationId: verifyOrganizationSSODomain
       responses:
         '200':
@@ -267,3 +267,5 @@ components:
             marketplace:write: Register with cloud marketplaces
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

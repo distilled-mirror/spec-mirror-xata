@@ -116,3 +116,6 @@ Great for automated testing databases:
 * You can hibernate between test runs
 * Branches wake up for CI/CD pipelines
 * This optimizes costs for comprehensive testing
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

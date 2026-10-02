@@ -398,3 +398,6 @@ To see all the transformers currently supported, check out the [transformers sec
 ## Summary
 
 In this tutorial, we successfully configured `pgstream` to replicate data from a source PostgreSQL database to a target PostgreSQL database, applying transformations to anonymize sensitive data during replication. For more use cases, refer to the [pgstream documentation](https://github.com/xataio/pgstream).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -322,3 +322,5 @@ components:
       openIdConnectUrl: https://auth.xata.io/realms/xata/.well-known/openid-configuration
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

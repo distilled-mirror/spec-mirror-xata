@@ -33,3 +33,6 @@ Customize compute settings for individual branches.
 * **Scale to zero**: Enable or disable scale to zero for this branch
 * **Inactivity period**: Define the duration of inactivity before hibernating the branch
 * **Hibernate branch**: Instead of enabling scale to zero, manually hibernate the branch
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

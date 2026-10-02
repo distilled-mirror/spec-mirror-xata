@@ -98,3 +98,6 @@ For schema work, ask Claude Code to run migrations against the branch and report
 * [Instant Branching](/docs/core-concepts/branching)
 * [Schema Changes](/docs/core-concepts/schema-changes)
 * [API Keys](/docs/platform/api-key)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

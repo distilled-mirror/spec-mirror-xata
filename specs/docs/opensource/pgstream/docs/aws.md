@@ -287,3 +287,6 @@ ALTER SCHEMA <schema> OWNER TO pgstreamtarget;
     **Fix**: Modify the parameter group via AWS Console, not via SQL.
   </Accordion>
 </AccordionGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -1061,3 +1061,6 @@ xata branch query-insights reset [--organization value] [--project value] [--bra
 <ParamField path="branch" type="string">
   The branch to reset query statistics for
 </ParamField>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -148,3 +148,6 @@ curl -X POST "https://api.xata.tech/organizations/{organizationId}/projects/{pro
     "cursor": "<nextCursor from previous response>"
   }'
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

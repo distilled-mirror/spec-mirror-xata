@@ -79,3 +79,6 @@ After migration, verify your data:
    -- Check sample data
    SELECT * FROM your_table LIMIT 10;
    ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

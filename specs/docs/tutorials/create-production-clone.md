@@ -132,3 +132,6 @@ psql `xata branch url`
 For more details on how to set up an advanced schema changes workflow, see the [schema changes](/docs/core-concepts/schema-changes) section.
 
 To automate this process and keep your production clone up-to-date, see the [scheduled clone](/docs/automations/kubernetes-clone) documentation.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

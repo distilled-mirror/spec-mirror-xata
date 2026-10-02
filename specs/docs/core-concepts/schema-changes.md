@@ -33,3 +33,6 @@ Migrations using `pgroll` are expressed declaratively, rather than using SQL dir
 ***
 
 For more details about how `pgroll` works, please visit its [documentation](https://pgroll.com/docs/latest/getting-started).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

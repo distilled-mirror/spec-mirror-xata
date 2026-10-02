@@ -170,3 +170,6 @@ to keep the max WAL size in check.
 * The replication slot ensures no data loss during network interruptions
 
 For more details on advanced streaming configurations and monitoring, see the [clone command documentation](/docs/cli/clone).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

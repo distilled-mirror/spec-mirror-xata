@@ -107,7 +107,7 @@ Write the anonymization rules that clone start and stream apply
 Inspects the source database and writes `.xata/clone.yaml`, interactively or with AI, so the columns that carry personal data are transformed as they are copied.
 
 ```bash theme={null}
-xata clone config (--source-url value) [--mode auto|prompt|web|ai] [--validation-mode strict|relaxed|prompt] [--organization value] [--project value] [--branch value] [--prompt value] [--model value] [--profile value] [--debug] [--json]
+xata clone config (--source-url value) [--mode auto|prompt|web|ai] [--validation-mode strict|relaxed|prompt] [--organization value] [--project value] [--branch value] [--prompt value] [--model gemini-2.5-flash|claude-sonnet-4-6|claude-haiku-4-5-20251001] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--source-url" type="string" required>
@@ -138,8 +138,8 @@ xata clone config (--source-url value) [--mode auto|prompt|web|ai] [--validation
   Instructions for AI mode (e.g., which columns to anonymize, specific transformers to use)
 </ParamField>
 
-<ParamField path="--model" type="string">
-  Anthropic model override for AI mode
+<ParamField path="--model" type="gemini-2.5-flash | claude-sonnet-4-6 | claude-haiku-4-5-20251001">
+  AI model, gemini-2.5-flash by default
 </ParamField>
 
 <ParamField path="--profile" type="string">
@@ -243,3 +243,6 @@ xata clone stream [--config value] [--log-format value] [--log-level trace|debug
 <ParamField path="--json" type="boolean">
   Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 </ParamField>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.
