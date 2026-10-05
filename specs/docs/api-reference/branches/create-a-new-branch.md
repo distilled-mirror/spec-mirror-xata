@@ -165,10 +165,8 @@ components:
       discriminator:
         propertyName: mode
         mapping:
-          inherit:
-            $ref: '#/components/schemas/BranchFromParent'
-          custom:
-            $ref: '#/components/schemas/BranchFromConfiguration'
+          inherit: '#/components/schemas/BranchFromParent'
+          custom: '#/components/schemas/BranchFromConfiguration'
       oneOf:
         - $ref: '#/components/schemas/BranchFromParent'
         - $ref: '#/components/schemas/BranchFromConfiguration'
