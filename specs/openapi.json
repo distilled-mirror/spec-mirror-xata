@@ -5289,6 +5289,110 @@
         ],
         "x-excluded": true,
         "x-operation-kind": "read"
+      },
+      "delete": {
+        "operationId": "deleteResource",
+        "summary": "Delete a Vercel Marketplace resource",
+        "description": "Deprovision a resource (its Xata project and branches) and mark the\ntracking records deleting. Vercel calls this when a customer removes a\nresource. Idempotent: a resource already being torn down is deprovisioned\nagain harmlessly; a resource that no longer exists returns 404.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InstallationId"
+          },
+          {
+            "$ref": "#/components/parameters/ResourceId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The resource is being deprovisioned."
+          },
+          "403": {
+            "$ref": "#/components/responses/ResourceError"
+          },
+          "404": {
+            "$ref": "#/components/responses/ResourceError"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResourceError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResourceError"
+          }
+        },
+        "tags": [
+          "Vercel Resources"
+        ],
+        "x-excluded": true,
+        "x-operation-kind": "destructive"
+      }
+    },
+    "/v1/installations/{installationId}/resources": {
+      "post": {
+        "operationId": "provisionResource",
+        "summary": "Provision a Vercel Marketplace resource",
+        "description": "Create a resource (a Xata project and its branches) and return it with\nthe connection secrets. Vercel calls this when a customer creates a\nresource. Idempotent when an Idempotency-Key header is sent: a retry with\nthe same key returns the existing resource unchanged, and reusing the key\nwith a different body is a conflict (409). Without the header there is no\nstable key, so each call provisions a new resource.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InstallationId"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A stable key Vercel sends to make retries safe. A repeat with the same\nkey returns the existing resource; reusing it with a different body is a\nconflict (409). Optional — without it each call provisions a new resource.\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProvisionResourceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The provisioned resource, with connection secrets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvisionedResource"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ResourceError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResourceError"
+          },
+          "404": {
+            "$ref": "#/components/responses/ResourceError"
+          },
+          "409": {
+            "$ref": "#/components/responses/ResourceError"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResourceError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResourceError"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResourceError"
+          }
+        },
+        "tags": [
+          "Vercel Resources"
+        ],
+        "x-excluded": true,
+        "x-operation-kind": "write"
       }
     },
     "/webhooks/orb": {
@@ -5660,7 +5764,7 @@
             "format": "email"
           },
           "role": {
-            "description": "Role the user holds once they accept the invitation. Optional; when omitted, Editor applies once roles are enabled for the organization",
+            "description": "Role the user holds once they accept the invitation. Optional; when omitted, the least privileged role offered applies",
             "$ref": "#/components/schemas/OrganizationRoleName"
           }
         },
@@ -8821,6 +8925,120 @@
         "x-excluded": true,
         "x-internal": true
       },
+      "ProvisionResourceRequest": {
+        "description": "Vercel Provision Resource request body.",
+        "type": "object",
+        "properties": {
+          "productId": {
+            "description": "The partner-specific product id/slug.",
+            "type": "string"
+          },
+          "name": {
+            "description": "User-inputted resource name.",
+            "type": "string"
+          },
+          "metadata": {
+            "description": "User-inputted metadata based on the registered metadata schema.",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "billingPlanId": {
+            "description": "Selected Vercel billing plan id.",
+            "type": "string"
+          },
+          "externalId": {
+            "description": "Partner-provided identifier indicating the source of provisioning.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "productId",
+          "name",
+          "metadata",
+          "billingPlanId"
+        ],
+        "x-excluded": true,
+        "x-internal": true
+      },
+      "ProvisionedResource": {
+        "description": "A newly provisioned resource: the Resource fields plus the connection\nsecrets. Provision Resource is the only endpoint that returns secrets.\n",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The partner-specific resource id.",
+            "type": "string"
+          },
+          "productId": {
+            "description": "The partner-specific product id/slug.",
+            "type": "string"
+          },
+          "name": {
+            "description": "User-inputted resource name.",
+            "type": "string"
+          },
+          "metadata": {
+            "description": "User-inputted metadata based on the registered metadata schema.",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "status": {
+            "description": "Resource lifecycle status. One of Vercel's values: ready, pending, onboarding, suspended, resumed, uninstalled, error.",
+            "type": "string"
+          },
+          "secrets": {
+            "description": "Connection secrets that become environment variables on connected projects.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Secret"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "productId",
+          "name",
+          "metadata",
+          "status",
+          "secrets"
+        ],
+        "x-excluded": true,
+        "x-internal": true
+      },
+      "Secret": {
+        "description": "A connection secret exposed as an environment variable on connected Vercel projects.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Environment variable name.",
+            "type": "string"
+          },
+          "value": {
+            "description": "Default value, used when no per-environment override applies.",
+            "type": "string"
+          },
+          "environmentOverrides": {
+            "description": "Per-environment values that override value for that Vercel environment.",
+            "type": "object",
+            "properties": {
+              "development": {
+                "type": "string"
+              },
+              "preview": {
+                "type": "string"
+              },
+              "production": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ],
+        "x-excluded": true,
+        "x-internal": true
+      },
       "ResourceError": {
         "description": "Vercel Partner API error envelope.",
         "type": "object",
@@ -8848,6 +9066,26 @@
                     "description": "URL to a help article or dashboard page for resolution.",
                     "type": "string"
                   }
+                }
+              },
+              "fields": {
+                "description": "Field-level validation errors, for 400 responses.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "description": "The metadata field the error applies to.",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Validation message for this field.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "key"
+                  ]
                 }
               }
             },

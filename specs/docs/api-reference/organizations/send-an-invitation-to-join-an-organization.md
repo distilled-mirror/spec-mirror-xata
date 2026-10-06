@@ -132,7 +132,7 @@ components:
           $ref: '#/components/schemas/OrganizationRoleName'
           description: >-
             Role the user holds once they accept the invitation. Optional; when
-            omitted, Editor applies once roles are enabled for the organization
+            omitted, the least privileged role offered applies
       required:
         - email
     OrganizationID:
