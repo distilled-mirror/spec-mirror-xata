@@ -184,7 +184,7 @@ Now that you have a base branch and development branch to try out, explore what 
 
 * **[Set up a production clone](/docs/tutorials/create-production-clone):** Learn how to use Xata for production clones, feature branches, and collaborative development.
 * **[Schema changes](/docs/tutorials/schema-change):** Learn how to safely apply and roll back schema changes with zero downtime.
-* **[Migrate to Xata](/docs/migrations/aws-rds):** Get set up for production by migrating your existing PostgreSQL database to Xata.
+* **[Migrate to Xata](/docs/migrations/overview):** Get set up for production by migrating your existing PostgreSQL database to Xata.
 
 ***
 

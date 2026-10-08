@@ -88,7 +88,7 @@
         <span className="text-primary dark:text-primary-light">Read</span>
       </a>
 
-      <a href="migrations/aws-rds" className="flex items-start justify-between gap-4 rounded-lg p-3 transition hover:bg-gray-100 dark:hover:bg-white/[0.04]">
+      <a href="migrations/overview" className="flex items-start justify-between gap-4 rounded-lg p-3 transition hover:bg-gray-100 dark:hover:bg-white/[0.04]">
         <span>
           <span className="block font-semibold text-gray-950 dark:text-white">Migrations</span>
           <span className="mt-1 block text-sm text-gray-600 dark:text-gray-400">Move PostgreSQL data from AWS, GCP, Azure, Neon, Supabase, or self-hosted sources.</span>
