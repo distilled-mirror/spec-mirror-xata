@@ -161,6 +161,7 @@ Every command page opens with an index of the commands on it.
   * [`xata clone stream`](/docs/cli/clone#stream) — Stream a PostgreSQL database into a Xata branch continuously
 * [`xata status`](/docs/cli/status) — Show the organization, project, branch, and database this folder uses
 * [`xata version`](/docs/cli/version) — Get the version of the Xata CLI, pgroll and pgstream
+* [`xata licenses`](/docs/cli/licenses) — Show third-party software notices and licenses bundled with the Xata CLI
 * [`xata checkout`](/docs/cli/checkout) — Check out a branch in this folder
 * [`xata scratch`](/docs/cli/scratch) — Run SQL or a Postgres client command against a temporary scratch branch
 * [`xata console`](/docs/cli/console) — Open an interactive branch console

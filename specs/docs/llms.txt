@@ -128,6 +128,7 @@
 - [stream](https://xata.io/docs/cli/stream.md): Run pgstream to stream PostgreSQL data to another destination
 - [status](https://xata.io/docs/cli/status.md): Show the organization, project, branch, and database this folder uses
 - [version](https://xata.io/docs/cli/version.md): Get the version of the Xata CLI, pgroll and pgstream
+- [licenses](https://xata.io/docs/cli/licenses.md): Show third-party software notices and licenses bundled with the Xata CLI
 - [checkout](https://xata.io/docs/cli/checkout.md): Check out a branch in this folder
 - [scratch](https://xata.io/docs/cli/scratch.md): Run SQL or a Postgres client command against a temporary scratch branch
 - [console](https://xata.io/docs/cli/console.md): Open an interactive branch console
