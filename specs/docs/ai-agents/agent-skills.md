@@ -26,6 +26,7 @@ Any MCP client connected to the [Xata MCP server](/docs/platform/mcp) can list a
 | - | - |
 | `using-xata-cli` | Working with projects, branches, auth, migrations, clone, keys, or organizations from the terminal |
 | `using-xata-api` | Calling the Xata HTTP API directly, scripting against `api.xata.tech`, or building apps that manage Xata programmatically |
+| `branching-postgresql-for-agents` | Fixing a bug or building a feature that needs database queries or tests, without reading or writing the source or production database |
 | `managing-postgresql` | Diagnosing slow queries, high CPU, connection issues, locks, vacuum, indexes, backups, replication, or other PostgreSQL problems on a branch |
 
 ## Access skills through MCP
