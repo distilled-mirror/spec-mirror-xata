@@ -17,6 +17,7 @@ Ground rules for this onboarding:
 * Run the commands for the user, but explain why you are running them so they can follow along.
 * The Xata CLI detects coding agents and disables interactive prompts. Always pass explicit flags, and add `--json` when you need to parse output. When a command fails because a value is missing or invalid, the error names the flag to pass — ask the user for that value rather than guessing.
 * Before starting, look at the current directory. If there is an existing application, ask whether to connect it to Xata; if not, ask whether they want to scaffold a small app or just explore the database workflow. Don't scaffold a project without agreement.
+* Before database access, read the project's existing agent instructions. If `branching-postgresql-for-agents` already applies, follow its complete isolated-branch workflow instead of this guide's `main`-based examples. Keep application runs, SQL, tests, and schema migrations on the verified child, and leave it available for review; do not switch the application back to `main` or delete that child. If a requested migration requires reading the source database, stop and explain the conflict before proceeding.
 * Ask before installing software, creating billable cloud resources, deleting branches, or copying data from an existing database.
 * Never print full connection strings or API keys into the conversation; write them to gitignored env files instead. Resource-creation, metadata, readiness, and deletion output can contain credentials too, including a credential-bearing `connectionString`. `--json` does not redact secrets. Capture sensitive output or filter it to explicitly allowed fields before it reaches tool output or the conversation; don't dump raw responses or enable shell tracing (`set -x`).
 
@@ -45,6 +46,47 @@ powershell -c "irm https://xata.io/install.ps1 | iex"
 ```
 
 The binary installs to `~/.config/xata/bin`. Make sure that directory is on the PATH, then verify with `xata version`.
+
+#### Set up skills for future agent sessions
+
+Xata skills teach coding agents how to use the CLI and follow Xata-specific workflows. Offer to install the CLI skill in the user's project so future sessions can discover it. This does not require Xata authentication or MCP setup.
+
+Once the user has chosen a project directory, identify the coding agent running this session and its supported `--agent` value, such as `claude-code`, `codex`, `cursor`, or `amp`. Ask if uncertain; do not infer the agent from its model name or another client's configuration files. See [the skills command reference](/docs/cli/skill) for all supported agents. If the user is only exploring and has no project directory yet, defer installation.
+
+Explain that this adds project-local instruction files and get approval, then check availability:
+
+```bash theme={null}
+xata skill install --help
+xata skill list --json
+```
+
+If the installed CLI does not support these commands, offer to upgrade it with permission, or use [skills through MCP](/docs/ai-agents/agent-skills#access-skills-through-mcp). Do not report a local installation as complete if it was skipped or failed.
+
+Install `using-xata-cli`, replacing both placeholders with the verified values:
+
+```bash theme={null}
+xata skill install using-xata-cli \
+  --agent <agent-id> \
+  --directory "<project-root>" \
+  --json
+```
+
+Always supply the skill name and agent: without a name, noninteractive `install` only lists skills. `--directory` is the project root, not the final skills directory. Keep the installation project-local unless the user explicitly wants a global installation.
+
+Verify the result and installed files, then read the installed `SKILL.md` now rather than assuming the running session has loaded it. Keep this guide's approval and credential-handling rules when following skill examples. An identical installation can report `unchanged`; if existing files differ, stop and ask before replacing them. Do not automatically add `--force`, which discards local edits. Installed skills are snapshots, not automatic updates.
+
+With permission, append a short pointer to the project instruction file this client reads, such as an existing `AGENTS.md` or `CLAUDE.md`. Preserve existing guidance and replace the path below with the actual project-relative skill directory so the pointer works in other checkouts:
+
+```markdown theme={null}
+## Xata
+
+Before running Xata CLI commands, read
+<installed CLI skill path>/SKILL.md and relevant references.
+If guidance is missing or conflicts with project rules,
+stop and ask. Never expose credentials or bypass approval.
+```
+
+Offer to include the complete project-local skill directory, including references, and the instruction change in version control so they are available in future checkouts. Installation makes skills discoverable; it does not guarantee automatic use. A future session may need a restart or reload. Verify discovery in a fresh or reloaded session when the client supports it; otherwise tell the user that this check remains outstanding.
 
 ### Step 2: Log in
 
@@ -167,8 +209,31 @@ Set the user up so their coding agents keep working well with Xata after onboard
 
 * **MCP server** — Xata hosts an MCP server at `https://api.xata.tech/mcp` (Streamable HTTP, OAuth or API-key auth). Offer to configure it in the user's client now, for example `claude mcp add --transport http xata https://api.xata.tech/mcp` for Claude Code, or an entry in `.cursor/mcp.json` for Cursor. Per-client instructions: [https://xata.io/docs/platform/mcp](https://xata.io/docs/platform/mcp).
 * **Agent authentication** — a machine-readable guide to obtaining Xata API credentials as an agent: [https://xata.io/auth.md](https://xata.io/auth.md).
-* **Claude Code skill** — [https://xata.io/xata-claude-skill/SKILL.md](https://xata.io/xata-claude-skill/SKILL.md) teaches Claude Code to create isolated branches per task.
 * **Per-agent branches** — recommend giving every agent task its own branch created from `main` (or an anonymized clone of production) and reviewing changes before they reach `main`. Details: [https://xata.io/docs/ai-agents/overview](https://xata.io/docs/ai-agents/overview).
+
+### Prepare future database tasks
+
+After completing all requested onboarding and migration work, offer to install the isolated-branch workflow in the chosen project. If there is still no project directory, defer this step. If skill setup was deferred earlier, identify the supported agent, confirm the project root, and run the availability checks now. With the user's approval, use the verified agent and project root:
+
+```bash theme={null}
+xata skill install branching-postgresql-for-agents \
+  --agent <agent-id> \
+  --directory "<project-root>" \
+  --json
+```
+
+This skill is for subsequent database-backed coding tasks. It requires creating and verifying an isolated child branch before database access, prohibits querying the source database even for reads, and does not allow reusing an inherited `DATABASE_URL`. Introduce it at this final handoff, not midway through the fresh-setup demonstration above, which deliberately queries and modifies `main`. If it already applies to the project, follow the ground rules above from the start.
+
+Verify the installed files and read the skill. Preserve existing installations and ask before replacement, just as for the CLI skill. With permission, add a pointer using its actual project-relative skill directory to the project's agent instructions:
+
+```markdown theme={null}
+Before database-backed coding tasks, read
+<installed branching skill path>/SKILL.md and follow its
+isolated-branch workflow. Do not query the source database
+or reuse an inherited DATABASE_URL.
+```
+
+Include this skill in the same version-control and discovery checks as the CLI skill. Offer `using-xata-api` for direct Xata management-API work and `managing-postgresql` for troubleshooting when relevant; do not install the entire catalog by default. At handoff, tell the user which skills were installed, where they live, and whether a fresh session has verified discovery or still needs a restart or reload.
 
 ## Appendix: migrating an existing database
 
