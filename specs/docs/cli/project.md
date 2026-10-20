@@ -85,7 +85,7 @@ xata project describe [--organization value] [--project value] [--profile value]
 Create a new project
 
 ```bash theme={null}
-xata project create [--organization value] (--name value) [--branch-name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--storage value] [--postgres-version value] [--scale-to-zero-base true|false] [--scale-to-zero-child true|false] [--inactivity-period-base 15|30|60|120|180] [--inactivity-period-child 15|30|60|120|180] [--profile value] [--debug] [--json]
+xata project create [--organization value] (--name value) [--branch-name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--storage value] [--postgres-version value] [--scale-to-zero-base true|false] [--scale-to-zero-child true|false] [--inactivity-period-base value] [--inactivity-period-child value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -132,12 +132,12 @@ xata project create [--organization value] (--name value) [--branch-name value] 
   Default scale to zero status for child branches
 </ParamField>
 
-<ParamField path="--inactivity-period-base" type="15 | 30 | 60 | 120 | 180">
-  Default inactivity period in minutes for base branches
+<ParamField path="--inactivity-period-base" type="string">
+  Default inactivity period for base branches in whole minutes (1–1440)
 </ParamField>
 
-<ParamField path="--inactivity-period-child" type="15 | 30 | 60 | 120 | 180">
-  Default inactivity period in minutes for child branches
+<ParamField path="--inactivity-period-child" type="string">
+  Default inactivity period for child branches in whole minutes (1–1440)
 </ParamField>
 
 <ParamField path="--profile" type="string">

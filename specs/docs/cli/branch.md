@@ -109,7 +109,7 @@ Create a new branch
 A branch is a running Postgres database that starts as a copy of its parent. It takes a moment to come up, so `xata branch wait-ready` is what to run before connecting to it. It is checked out afterwards when this folder already has an organization and a project to work from.
 
 ```bash theme={null}
-xata branch create [--organization value] [--project value] [--parent-branch value] [--no-parent] [--name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--postgres-version value] [--storage value] [--scale-to-zero true|false] [--inactivity-period 15|30|60|120|180] [--profile value] [--debug] [--json]
+xata branch create [--organization value] [--project value] [--parent-branch value] [--no-parent] [--name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--postgres-version value] [--storage value] [--scale-to-zero true|false] [--inactivity-period value] [--profile value] [--debug] [--json]
 ```
 
 <ParamField path="--organization" type="string">
@@ -160,8 +160,8 @@ xata branch create [--organization value] [--project value] [--parent-branch val
   Scale to zero status for the branch
 </ParamField>
 
-<ParamField path="--inactivity-period" type="15 | 30 | 60 | 120 | 180">
-  Inactivity period in minutes for the branch
+<ParamField path="--inactivity-period" type="string">
+  Inactivity period for the branch in whole minutes (1–1440)
 </ParamField>
 
 <ParamField path="--profile" type="string">

@@ -248,14 +248,24 @@ components:
       type: object
       properties:
         retentionPeriod:
-          description: how long are we keeping the backups around for
+          description: >-
+            Number of days of point-in-time recovery to guarantee. You can
+            restore the branch to any point within this many days. To provide
+            this, the most recent full backup taken before the start of the
+            window is always kept, along with all changes made after it. Because
+            of this, restore points older than retentionPeriod are sometimes
+            available, but how far back they go depends on the backup schedule
+            and is not guaranteed.
           type: integer
           format: int32
           default: 2
           maximum: 35
           minimum: 2
         backupTime:
-          description: time of day/week when we are taking a full backup
+          description: >-
+            When to take a full backup, in UTC, in the format D:HH:MM. D is *
+            for every day, or 0-6 for one day of the week (0 is Sunday). If it
+            is not set, a random time on Sunday between 02:00 and 05:59 is used.
           type: string
           pattern: ^(\*|[0-6]):(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$
       x-excluded: true
