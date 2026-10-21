@@ -31,17 +31,17 @@ List all API keys of the current user
 xata keys user list [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata keys user ls`
 
@@ -55,25 +55,25 @@ Creates a key for the account you are logged in with. It is printed once, when i
 xata keys user create [--name value] [--expiry value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--name" type="string">
-  API key name
-</ParamField>
+**--name** `string`
 
-<ParamField path="--expiry" type="string">
-  Expiry, as a date or a phrase such as 'in 1 week', or 'never'
-</ParamField>
+API key name
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--expiry** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Expiry, as a date or a phrase such as 'in 1 week', or 'never'
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Examples:**
 
@@ -92,21 +92,21 @@ Delete one or more API keys
 xata keys user delete [--profile value] [--debug] [--json] <keyId>...
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
 
-<ParamField path="keyId" type="string">
-  IDs of the keys to delete
-</ParamField>
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**keyId** `string`
+
+IDs of the keys to delete
 
 ## organization
 
@@ -122,21 +122,21 @@ List all API keys for an organization
 xata keys organization list [--organization value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata keys organization ls`
 
@@ -150,29 +150,29 @@ Creates a key for an organization rather than for an account. It is printed once
 xata keys organization create [--organization value] [--name value] [--expiry value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--name" type="string">
-  API key name
-</ParamField>
+Organization ID
 
-<ParamField path="--expiry" type="string">
-  Expiry, as a date or a phrase such as 'in 1 week', or 'never'
-</ParamField>
+**--name** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+API key name
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--expiry** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Expiry, as a date or a phrase such as 'in 1 week', or 'never'
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Examples:**
 
@@ -189,25 +189,25 @@ Delete one or more API keys
 xata keys organization delete [--organization value] [--profile value] [--debug] [--json] <keyId>...
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
 
-<ParamField path="keyId" type="string">
-  IDs of the keys to delete
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**keyId** `string`
+
+IDs of the keys to delete
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

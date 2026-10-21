@@ -44,23 +44,21 @@ See [MCP Server](/docs/platform/mcp) for setup instructions for Cursor, VS Code,
 
 ## Choose your integration
 
-<CardGroup cols={2}>
-  <Card title="Xata CLI" icon="terminal" href="/docs/cli">
-    Branches, auth, migrations, clone, stream, and project linking from the terminal.
-  </Card>
+> **[Xata CLI](/docs/cli)**
+>
+> Branches, auth, migrations, clone, stream, and project linking from the terminal.
 
-  <Card title="Xata MCP" icon="plug" href="/docs/platform/mcp">
-    Connect through OAuth or an API key. Works with Cursor, Claude Code, VS Code, Codex, OpenCode, Windsurf, Cline, and more.
-  </Card>
+> **[Xata MCP](/docs/platform/mcp)**
+>
+> Connect through OAuth or an API key. Works with Cursor, Claude Code, VS Code, Codex, OpenCode, Windsurf, Cline, and more.
 
-  <Card title="Agent Skills" icon="star" href="/docs/ai-agents/agent-skills">
-    Guided workflows for the CLI, HTTP API, and PostgreSQL operations. Available through the MCP server.
-  </Card>
+> **[Agent Skills](/docs/ai-agents/agent-skills)**
+>
+> Guided workflows for the CLI, HTTP API, and PostgreSQL operations. Available through the MCP server.
 
-  <Card title="Agent guides" icon="robot" href="/docs/ai-agents/claude-code">
-    Step-by-step setup for Claude Code, Cursor, Codex, Copilot, and other coding agents with isolated branches.
-  </Card>
-</CardGroup>
+> **[Agent guides](/docs/ai-agents/claude-code)**
+>
+> Step-by-step setup for Claude Code, Cursor, Codex, Copilot, and other coding agents with isolated branches.
 
 ## When to use each
 
@@ -71,49 +69,45 @@ See [MCP Server](/docs/platform/mcp) for setup instructions for Cursor, VS Code,
 
 ## Working with sensitive data
 
-<CardGroup cols={1}>
-  <Card title="Anonymized production clones" icon="user-shield" href="/docs/core-concepts/anonymization">
-    Give agents realistic schema and data for testing without exposing PII or other sensitive values. Create an anonymized clone as the parent branch before spinning up agent task branches.
-  </Card>
-</CardGroup>
+> **[Anonymized production clones](/docs/core-concepts/anonymization)**
+>
+> Give agents realistic schema and data for testing without exposing PII or other sensitive values. Create an anonymized clone as the parent branch before spinning up agent task branches.
 
 ## Agent directory
 
 Use the guide for your coding agent to create an isolated branch, pass the branch connection string to the agent, and keep schema or data changes scoped to that branch until you review them.
 
-<CardGroup cols={2}>
-  <Card title="Claude Code" icon="terminal" href="/docs/ai-agents/claude-code">
-    Terminal-first workflows for branch-scoped migrations, tests, and database inspection.
-  </Card>
+> **[Claude Code](/docs/ai-agents/claude-code)**
+>
+> Terminal-first workflows for branch-scoped migrations, tests, and database inspection.
 
-  <Card title="Codex" icon="code" href="/docs/ai-agents/codex">
-    Sandbox-friendly workflows for running tests and edits against a dedicated Xata branch.
-  </Card>
+> **[Codex](/docs/ai-agents/codex)**
+>
+> Sandbox-friendly workflows for running tests and edits against a dedicated Xata branch.
 
-  <Card title="Cursor" icon="arrow-pointer" href="/docs/ai-agents/cursor">
-    IDE and background-agent setup with `.env.local` connection strings and reviewable schema changes.
-  </Card>
+> **[Cursor](/docs/ai-agents/cursor)**
+>
+> IDE and background-agent setup with `.env.local` connection strings and reviewable schema changes.
 
-  <Card title="OpenCode" icon="terminal" href="/docs/ai-agents/opencode">
-    Provider-agnostic terminal agent workflows using standard Postgres and the Xata CLI.
-  </Card>
+> **[OpenCode](/docs/ai-agents/opencode)**
+>
+> Provider-agnostic terminal agent workflows using standard Postgres and the Xata CLI.
 
-  <Card title="GitHub Copilot" icon="github" href="/docs/ai-agents/github-copilot">
-    VS Code and GitHub workflows for per-PR branches and CI-backed database checks.
-  </Card>
+> **[GitHub Copilot](/docs/ai-agents/github-copilot)**
+>
+> VS Code and GitHub workflows for per-PR branches and CI-backed database checks.
 
-  <Card title="Windsurf" icon="wind" href="/docs/ai-agents/windsurf">
-    Cascade and Flow patterns for repeatable branch creation, migration testing, and cleanup.
-  </Card>
+> **[Windsurf](/docs/ai-agents/windsurf)**
+>
+> Cascade and Flow patterns for repeatable branch creation, migration testing, and cleanup.
 
-  <Card title="Cline" icon="check-double" href="/docs/ai-agents/cline">
-    Approval-based VS Code workflows with safe terminal commands and branch-scoped credentials.
-  </Card>
+> **[Cline](/docs/ai-agents/cline)**
+>
+> Approval-based VS Code workflows with safe terminal commands and branch-scoped credentials.
 
-  <Card title="Devin" icon="cloud" href="/docs/ai-agents/devin">
-    Long-running cloud-agent tasks with isolated branches, scoped credentials, and explicit cleanup.
-  </Card>
-</CardGroup>
+> **[Devin](/docs/ai-agents/devin)**
+>
+> Long-running cloud-agent tasks with isolated branches, scoped credentials, and explicit cleanup.
 
 ## Recommended baseline
 

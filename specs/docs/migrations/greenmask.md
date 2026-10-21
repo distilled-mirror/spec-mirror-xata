@@ -130,9 +130,9 @@ restore:
     no-privileges: true
 ```
 
-<Tip>
-  There's no single "right" predicate. Start with a `subset_conds` value that returns a small slice (for example `tenants.id <= 10`), run the dump, and check the resulting row counts. Widen or narrow the condition and re-run until the subset is the size and shape you want — a tight predicate keeps the first few iterations fast while you dial it in.
-</Tip>
+> [!TIP]
+>
+> There's no single "right" predicate. Start with a `subset_conds` value that returns a small slice (for example `tenants.id <= 10`), run the dump, and check the resulting row counts. Widen or narrow the condition and re-run until the subset is the size and shape you want — a tight predicate keeps the first few iterations fast while you dial it in.
 
 ## Run the dump
 

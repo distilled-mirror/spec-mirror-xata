@@ -208,27 +208,25 @@ ALTER SCHEMA <schema> OWNER TO pgstreamtarget;
 
 ## Troubleshooting
 
-<AccordionGroup>
-  <Accordion title="permission denied for table pg_authid">
-    **Cause**: Roles with passwords require pg\_authid access.\
-    **Fix**: Use `xata` user as source, or disable role passwords (`roles_snapshot_mode: no_passwords`).
-  </Accordion>
+> **permission denied for table pg\_authid**
+>
+> **Cause**: Roles with passwords require pg\_authid access.\
+> **Fix**: Use `xata` user as source, or disable role passwords (`roles_snapshot_mode: no_passwords`).
 
-  <Accordion title="permission denied to set parameter &#x22;session_replication_role&#x22;">
-    **Cause**: Only the `xata` user can set this parameter.\
-    **Fix**: Set `disable_triggers: false` in target config, or use the `xata` user as target.
-  </Accordion>
+> **permission denied to set parameter "session\_replication\_role"**
+>
+> **Cause**: Only the `xata` user can set this parameter.\
+> **Fix**: Set `disable_triggers: false` in target config, or use the `xata` user as target.
 
-  <Accordion title="permission denied for schema public when transferring ownership">
-    **Cause**: Target role lacks CREATE privilege on schema.\
-    **Fix**: Grant CREATE on schema to the role: `GRANT CREATE ON SCHEMA public TO role_name;`
-  </Accordion>
+> **permission denied for schema public when transferring ownership**
+>
+> **Cause**: Target role lacks CREATE privilege on schema.\
+> **Fix**: Grant CREATE on schema to the role: `GRANT CREATE ON SCHEMA public TO role_name;`
 
-  <Accordion title="Role creation fails">
-    **Cause**: `pgstreamtarget` lacks privileges it tries to assign.\
-    **Fix**: Grant required privileges to `pgstreamtarget` first, or use a user with more privileges.
-  </Accordion>
-</AccordionGroup>
+> **Role creation fails**
+>
+> **Cause**: `pgstreamtarget` lacks privileges it tries to assign.\
+> **Fix**: Grant required privileges to `pgstreamtarget` first, or use a user with more privileges.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

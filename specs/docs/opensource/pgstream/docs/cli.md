@@ -31,32 +31,30 @@ brew install pgstream
 
 These flags are available for all commands:
 
-<AccordionGroup>
-  <Accordion title="--config, -c">
-    **Description**: .env or .yaml config file to use with pgstream if any\
-    **Default**: -
-  </Accordion>
+> **--config, -c**
+>
+> **Description**: .env or .yaml config file to use with pgstream if any\
+> **Default**: -
 
-  <Accordion title="--log-level">
-    **Description**: Log level for the application. One of trace, debug, info, warn, error, fatal, panic\
-    **Default**: `debug`
-  </Accordion>
+> **--log-level**
+>
+> **Description**: Log level for the application. One of trace, debug, info, warn, error, fatal, panic\
+> **Default**: `debug`
 
-  <Accordion title="--log-format">
-    **Description**: Log output format. One of `console` (human-readable) or `json` (structured)\
-    **Default**: `console`
-  </Accordion>
+> **--log-format**
+>
+> **Description**: Log output format. One of `console` (human-readable) or `json` (structured)\
+> **Default**: `console`
 
-  <Accordion title="--no-color">
-    **Description**: Disable ANSI color codes in console log output (ignored when `--log-format=json`)\
-    **Default**: `false`
-  </Accordion>
+> **--no-color**
+>
+> **Description**: Disable ANSI color codes in console log output (ignored when `--log-format=json`)\
+> **Default**: `false`
 
-  <Accordion title="--help, -h">
-    **Description**: Show help information\
-    **Default**: -
-  </Accordion>
-</AccordionGroup>
+> **--help, -h**
+>
+> **Description**: Show help information\
+> **Default**: -
 
 Every global flag also has an equivalent `PGSTREAM_`-prefixed environment variable (for example, `PGSTREAM_LOG_FORMAT=json`, `PGSTREAM_LOG_NO_COLOR=true`). Use `--log-format=json` when shipping logs to cloud aggregators like GCP Cloud Logging or Datadog that parse structured JSON.
 

@@ -19,17 +19,17 @@ List available skills from xataio/skills
 xata skill list [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## install
 
@@ -39,37 +39,37 @@ Install a skill; select interactively or list when no name is given
 xata skill install [--agent claude-code|codex|cursor|amp|github-copilot|antigravity-cli|opencode|windsurf|zed|cline] [--global] [--directory value] [--force] [--profile value] [--debug] [--json] [<name>]
 ```
 
-<ParamField path="--agent" type="claude-code | codex | cursor | amp | github-copilot | antigravity-cli | opencode | windsurf | zed | cline">
-  Target agent; repeat to select multiple agents
-</ParamField>
+**--agent** `claude-code | codex | cursor | amp | github-copilot | antigravity-cli | opencode | windsurf | zed | cline`
 
-<ParamField path="--global" type="boolean">
-  Install at user scope instead of project scope
-</ParamField>
+Target agent; repeat to select multiple agents
 
-<ParamField path="--directory" type="string">
-  Project root (defaults to the current directory); not the final skill directory
-</ParamField>
+**--global** `boolean`
 
-<ParamField path="--force" type="boolean">
-  Replace differing existing skills, discarding local edits
-</ParamField>
+Install at user scope instead of project scope
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--directory** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Project root (defaults to the current directory); not the final skill directory
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--force** `boolean`
 
-<ParamField path="name" type="string">
-  Skill name from xataio/skills
-</ParamField>
+Replace differing existing skills, discarding local edits
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**name** `string`
+
+Skill name from xataio/skills
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

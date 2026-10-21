@@ -10,9 +10,9 @@ Single sign-on (SSO) lets members of your organization sign in to Xata through y
 password or social logins. You prove you own an email domain, connect the identity provider for that domain, and can then
 require everyone with an address on it to sign in through that provider.
 
-<Note>
-  Single sign-on is a paid add-on. Please contact support to enable it for your organization.
-</Note>
+> [!NOTE]
+>
+> Single sign-on is a paid add-on. Please contact support to enable it for your organization.
 
 ## Supported identity providers
 
@@ -47,11 +47,11 @@ Only organization [Admins](/docs/platform/organization-roles) can view and chang
 
 Once the record is found, the domain is marked **Verified**.
 
-<img src="https://mintcdn.com/xata/Pj5PQhsXA8ZN6iw-/images/platform/organization-sso-domain.png?fit=max&auto=format&n=Pj5PQhsXA8ZN6iw-&q=85&s=4a0bf2f50eed714b9e3b50c90e419711" alt="Domain awaiting DNS verification" className="rounded-lg" width="1440" height="900" data-path="images/platform/organization-sso-domain.png" />
+![Domain awaiting DNS verification](https://mintcdn.com/xata/Pj5PQhsXA8ZN6iw-/images/platform/organization-sso-domain.png?fit=max\&auto=format\&n=Pj5PQhsXA8ZN6iw-\&q=85\&s=4a0bf2f50eed714b9e3b50c90e419711)
 
-<Warning>
-  Keep the TXT record published for as long as you use single sign-on. Xata checks it daily, and emails your Admins when it first finds the record missing. If the record is still missing at the first daily check after 72 hours, the domain is no longer verified, its identity provider is disabled and SSO is no longer required. Admins get a second email when this happens.
-</Warning>
+> [!WARNING]
+>
+> Keep the TXT record published for as long as you use single sign-on. Xata checks it daily, and emails your Admins when it first finds the record missing. If the record is still missing at the first daily check after 72 hours, the domain is no longer verified, its identity provider is disabled and SSO is no longer required. Admins get a second email when this happens.
 
 While the domain is unverified, the identity provider stays connected but members cannot sign in through it. They can sign in with the Google and GitHub buttons, or with a password. Members who have only ever signed in through SSO have no password, so they need to select **Forgot Password?** on the sign-in page to set one.
 
@@ -73,36 +73,34 @@ Each domain has its own redirect URI, so copy it from the domain you are setting
 
 Once the domain is verified, choose the provider type and enter its details.
 
-<Tabs>
-  <Tab title="Google Workspace">
-    1. In the [Google Cloud console](https://console.cloud.google.com/auth/clients), create an OAuth 2.0 Client ID of type **Web application**.
-    2. Add the redirect URI from Xata under **Authorized redirect URIs**.
-    3. In Xata, select **Google Workspace** and paste the **Client ID** and **Client secret**.
-  </Tab>
+**Google Workspace**
 
-  <Tab title="Microsoft Entra ID">
-    1. In the Microsoft Entra admin center, register an application and add the redirect URI from Xata as a **Web** redirect URI.
-    2. Add a client secret under **Certificates & secrets**.
-    3. Under **API permissions**, make sure the application has the delegated Microsoft Graph permissions `openid`, `profile`, `email` and `User.Read`. Xata reads each member's profile from Microsoft Graph.
-    4. In Xata, select **Microsoft Entra ID** and enter:
-       * **Issuer URL**: `https://login.microsoftonline.com/<tenant-id>/v2.0`, using your tenant ID
-       * **Client ID**: the application (client) ID
-       * **Client secret**: the secret value
+1. In the [Google Cloud console](https://console.cloud.google.com/auth/clients), create an OAuth 2.0 Client ID of type **Web application**.
+2. Add the redirect URI from Xata under **Authorized redirect URIs**.
+3. In Xata, select **Google Workspace** and paste the **Client ID** and **Client secret**.
 
-    The shared `common`, `organizations` and `consumers` issuers are refused, because they are not limited to your tenant.
+**Microsoft Entra ID**
 
-    Xata takes each member's email address from the `mail` attribute of their Entra user, or from their user principal name if `mail` is empty. That address must be on the verified domain, or the sign-in is refused. A Microsoft Entra ID Free tenant is enough.
-  </Tab>
+1. In the Microsoft Entra admin center, register an application and add the redirect URI from Xata as a **Web** redirect URI.
+2. Add a client secret under **Certificates & secrets**.
+3. Under **API permissions**, make sure the application has the delegated Microsoft Graph permissions `openid`, `profile`, `email` and `User.Read`. Xata reads each member's profile from Microsoft Graph.
+4. In Xata, select **Microsoft Entra ID** and enter:
+   * **Issuer URL**: `https://login.microsoftonline.com/<tenant-id>/v2.0`, using your tenant ID
+   * **Client ID**: the application (client) ID
+   * **Client secret**: the secret value
 
-  <Tab title="OpenID Connect">
-    1. In your provider, for example Okta or Auth0, register a web application and add the redirect URI from Xata as its sign-in redirect URI.
-    2. In Xata, select **OpenID Connect** and enter:
-       * **Issuer URL**: your provider's issuer, for example `https://acme.okta.com`. It must use `https://`.
-       * **Client ID** and **Client secret** from the application.
+The shared `common`, `organizations` and `consumers` issuers are refused, because they are not limited to your tenant.
 
-    Xata reads the endpoints from the issuer's `/.well-known/openid-configuration` document, so you do not enter them by hand.
-  </Tab>
-</Tabs>
+Xata takes each member's email address from the `mail` attribute of their Entra user, or from their user principal name if `mail` is empty. That address must be on the verified domain, or the sign-in is refused. A Microsoft Entra ID Free tenant is enough.
+
+**OpenID Connect**
+
+1. In your provider, for example Okta or Auth0, register a web application and add the redirect URI from Xata as its sign-in redirect URI.
+2. In Xata, select **OpenID Connect** and enter:
+   * **Issuer URL**: your provider's issuer, for example `https://acme.okta.com`. It must use `https://`.
+   * **Client ID** and **Client secret** from the application.
+
+Xata reads the endpoints from the issuer's `/.well-known/openid-configuration` document, so you do not enter them by hand.
 
 Select **Connect** followed by the provider name, for example **Connect Google Workspace**, to save. Xata checks the client ID and secret against your provider before saving, and rejects them if the provider does.
 
@@ -110,7 +108,7 @@ Xata requests the `openid`, `profile` and `email` scopes, plus `User.Read` for M
 
 Before you require SSO, check that a sign-in through the provider works. Once the provider is connected, the domain card shows a **Test sign-in** link. Open it in a private browser window and sign in with an account on the domain. You land on your account page, which lists the provider under **Connected Accounts**. If the sign-in fails, check your provider settings and select **Edit credentials** to fix them.
 
-<img src="https://mintcdn.com/xata/Pj5PQhsXA8ZN6iw-/images/platform/organization-sso-provider.png?fit=max&auto=format&n=Pj5PQhsXA8ZN6iw-&q=85&s=e803ce754d34d7021076548b41aee6af" alt="Connect an identity provider" className="rounded-lg" width="1184" height="1174" data-path="images/platform/organization-sso-provider.png" />
+![Connect an identity provider](https://mintcdn.com/xata/Pj5PQhsXA8ZN6iw-/images/platform/organization-sso-provider.png?fit=max\&auto=format\&n=Pj5PQhsXA8ZN6iw-\&q=85\&s=e803ce754d34d7021076548b41aee6af)
 
 ## Step 3: Require SSO
 
@@ -118,7 +116,7 @@ Turn on **Require SSO for \<domain>** on the domain card. The change takes effec
 
 If members on the domain cannot sign in afterwards, turn **Require SSO for \<domain>** off again from a window where you are still signed in. Their previous sign-in methods work again straight away.
 
-<img src="https://mintcdn.com/xata/Pj5PQhsXA8ZN6iw-/images/platform/organization-sso-required.png?fit=max&auto=format&n=Pj5PQhsXA8ZN6iw-&q=85&s=e16821e6f3d9d44351ab6419ffe80b54" alt="Domain with SSO required" className="rounded-lg" width="1440" height="1230" data-path="images/platform/organization-sso-required.png" />
+![Domain with SSO required](https://mintcdn.com/xata/Pj5PQhsXA8ZN6iw-/images/platform/organization-sso-required.png?fit=max\&auto=format\&n=Pj5PQhsXA8ZN6iw-\&q=85\&s=e16821e6f3d9d44351ab6419ffe80b54)
 
 While SSO is required, for every Xata account with an email address on the domain:
 
@@ -128,9 +126,9 @@ While SSO is required, for every Xata account with an email address on the domai
 
 This applies to Admins too, and to every account on the domain, whether or not it is already a member of your organization.
 
-<Warning>
-  If your identity provider stops accepting sign-ins while SSO is required, for example because the client secret was rotated or expired, nobody on the domain can sign in to Xata, including Admins. Keep the credentials in Xata up to date, and contact support if you are locked out.
-</Warning>
+> [!WARNING]
+>
+> If your identity provider stops accepting sign-ins while SSO is required, for example because the client secret was rotated or expired, nobody on the domain can sign in to Xata, including Admins. Keep the credentials in Xata up to date, and contact support if you are locked out.
 
 You can turn enforcement off again at any time. Members can then sign in with the Google and GitHub buttons, or with a password. Members who have only ever signed in through SSO have no password and need to select **Forgot Password?** to set one.
 

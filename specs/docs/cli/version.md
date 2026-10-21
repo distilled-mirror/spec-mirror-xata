@@ -16,21 +16,21 @@ Get the version of the Xata CLI, pgroll and pgstream
 xata version [--skip-download] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--skip-download" type="boolean" default="false">
-  Skip downloading the pgroll/pgstream binaries
-</ParamField>
+**--skip-download** `boolean` (default: false)
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Skip downloading the pgroll/pgstream binaries
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

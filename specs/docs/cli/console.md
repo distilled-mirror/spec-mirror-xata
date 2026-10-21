@@ -16,37 +16,37 @@ Open an interactive branch console
 xata console [--organization value] [--project value] [--branch value] [--database value] [--type primary|primary-or-replica|replica|pooler] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--branch" type="string">
-  Branch ID
-</ParamField>
+**--project** `string`
 
-<ParamField path="--database" type="string">
-  Database name
-</ParamField>
+Project ID
 
-<ParamField path="--type" type="primary | primary-or-replica | replica | pooler" default="primary">
-  Connection type: primary (direct access to the primary), primary-or-replica (routed access to primary or replicas), replica (read-only access to replicas only), pooler (pooled access to the primary)
-</ParamField>
+**--branch** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Branch ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--database** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Database name
+
+**--type** `primary | primary-or-replica | replica | pooler` (default: primary)
+
+Connection type: primary (direct access to the primary), primary-or-replica (routed access to primary or replicas), replica (read-only access to replicas only), pooler (pooled access to the primary)
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

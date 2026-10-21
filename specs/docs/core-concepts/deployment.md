@@ -24,7 +24,7 @@ Anonymization can be done during the cloning phase. Depending on your requiremen
 or `relaxed` mode. In `strict` mode, any new table and column needs to be explicitly present in the configuration,
 minimizing the chance of accidental leaks.
 
-<img src="https://mintcdn.com/xata/zunLvnbMMVhTIsZq/images/deployment-models/xata-deployment-staging.png?fit=max&auto=format&n=zunLvnbMMVhTIsZq&q=85&s=19ef06a16fb3d83a6d6bff838395b5b1" alt="Xata for staging and dev use-cases" className="rounded-lg" width="1084" height="1270" data-path="images/deployment-models/xata-deployment-staging.png" />
+![Xata for staging and dev use-cases](https://mintcdn.com/xata/zunLvnbMMVhTIsZq/images/deployment-models/xata-deployment-staging.png?fit=max\&auto=format\&n=zunLvnbMMVhTIsZq\&q=85\&s=19ef06a16fb3d83a6d6bff838395b5b1)
 
 Because `xata clone` is executed in the context of your environment (e.g. you cloud account), there are two important benefits:
 
@@ -42,7 +42,7 @@ instance and are configured with lower CPU and memory resources to save costs.
 
 If you'd like to set up anonymization between your production and development branches, as well as have stricter controls on who can access production, you can use two Xata organizations. In the production organization you run only the production branch. You can configure `xata clone` to copy and anonymize the data between prod and staging.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/deployment-models/xata-prod-branches-diagram.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=1e26d43a7395275eaa34781e6a0b4574" alt="Production and staging/dev branches on the Xata platform" className="rounded-lg" width="1130" height="1304" data-path="images/deployment-models/xata-prod-branches-diagram.png" />
+![Production and staging/dev branches on the Xata platform](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/deployment-models/xata-prod-branches-diagram.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=1e26d43a7395275eaa34781e6a0b4574)
 
 ### High availability and replicas
 
@@ -50,9 +50,9 @@ Each branch has one primary PostgreSQL instance and can have zero or more replic
 
 Configure at least 1 replica for production workloads. If the primary becomes unavailable, Xata can automatically promote a healthy replica. During maintenance or an upgrade that requires replacing the primary, Xata can first switch over to a replica to minimize disruption. Failovers and planned switchovers can briefly interrupt existing connections, so applications must reconnect and retry transient failures as appropriate.
 
-<Warning>
-  **A branch with 0 replicas is not suitable for production workloads.** It has no standby promotion target and cannot automatically fail over. A primary failure, or an update that requires the primary to restart or be replaced, makes the database unavailable until the primary is available again.
-</Warning>
+> [!WARNING]
+>
+> **A branch with 0 replicas is not suitable for production workloads.** It has no standby promotion target and cannot automatically fail over. A primary failure, or an update that requires the primary to restart or be replaced, makes the database unavailable until the primary is available again.
 
 #### Connection endpoints
 
@@ -82,7 +82,7 @@ This model brings the following benefits:
 * **Better use of your cloud provider credits.** Since you pay for the Kubernetes nodes directly to your cloud provider, you can take advantage fully of your cloud credits, discounts, and negotiated private agreements.
 * **Throughput and latency.** Depending on your hardware and networking setup, this deployment model can achieve levels of performance not possible when using a separate cloud account.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/deployment-models/byoc-architecture.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=f89e157ddc85ef95ac6dda6b13526051" alt="BYOC deployment model" className="rounded-lg" width="1132" height="992" data-path="images/deployment-models/byoc-architecture.png" />
+![BYOC deployment model](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/deployment-models/byoc-architecture.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=f89e157ddc85ef95ac6dda6b13526051)
 
 The Xata control plane—responsible for managing organizations, users, regions, and instances—continues to run in our AWS account. Latency between
 the control and data planes is not critical, as it involves only control messages (e.g., start/stop instance). By keeping the control plane in

@@ -8,9 +8,9 @@
 
 The Serverless Proxy enables you to connect to your Xata PostgreSQL database using HTTP and WebSocket protocols, in addition to the standard PostgreSQL wire protocol (TCP). This is ideal for serverless functions and edge environments where maintaining persistent TCP connections is not practical.
 
-<Info>
-  Xata implements the [Neon serverless driver protocol](https://github.com/neondatabase/serverless), allowing you to use the `@neondatabase/serverless` npm package to connect to your Xata database over HTTP or WebSocket. If you're migrating from Neon, and you are using the serverless driver, you don't need any code changes.
-</Info>
+> [!NOTE]
+>
+> Xata implements the [Neon serverless driver protocol](https://github.com/neondatabase/serverless), allowing you to use the `@neondatabase/serverless` npm package to connect to your Xata database over HTTP or WebSocket. If you're migrating from Neon, and you are using the serverless driver, you don't need any code changes.
 
 ## Why use the Serverless Proxy?
 
@@ -43,9 +43,9 @@ When connecting to your Xata database, you can use different endpoints to route 
 | `{branch-id}-ro` or `{branch-id}-r` | Read-only endpoint | Routes to read replicas for read operations only |
 | `{branch-id}-pooler` | Connection pooler endpoint | Routes through PgBouncer for connection pooling |
 
-<Note>
-  When connecting through the Serverless Proxy (HTTP and WebSocket), hostnames without an explicit endpoint suffix are routed through the PgBouncer connection pooler by default. To bypass the pooler and connect directly to the primary instance, use the `-rw` suffix.
-</Note>
+> [!NOTE]
+>
+> When connecting through the Serverless Proxy (HTTP and WebSocket), hostnames without an explicit endpoint suffix are routed through the PgBouncer connection pooler by default. To bypass the pooler and connect directly to the primary instance, use the `-rw` suffix.
 
 The connection pooler uses PgBouncer to manage database connections efficiently. This is particularly useful for applications that create many short-lived connections, as the pooler maintains a pool of persistent connections to the database and reuses them across client requests. Routing serverless traffic through the pooler by default keeps the number of connections to PostgreSQL low, even when many serverless functions invoke queries concurrently.
 
@@ -102,9 +102,9 @@ const sql = neon(process.env.DATABASE_URL);
 const users = await sql`SELECT * FROM users WHERE id = ${userId}`;
 ```
 
-<Note>
-  HTTP connections are stateless. Each query runs in its own transaction and cannot share state with other queries. Use WebSocket connections if you need transactions or session-level features.
-</Note>
+> [!NOTE]
+>
+> HTTP connections are stateless. Each query runs in its own transaction and cannot share state with other queries. Use WebSocket connections if you need transactions or session-level features.
 
 ### Error handling
 
@@ -124,18 +124,18 @@ If you attempt to connect to a hibernated branch, you'll receive a `409 Conflict
 
 Use WebSocket connections when you need transactions, session variables, or want to execute multiple queries efficiently. The WebSocket mode maintains a persistent connection, allowing for stateful interactions with the database.
 
-<Note>
-  If you are running in Node.js versions earlier than 21, you need to supply a WebSocket implementation. Install the `ws` package (`npm install ws`) and configure it before creating a pool:
-
-  ```typescript theme={null}
-  import { neonConfig } from '@neondatabase/serverless';
-  import ws from 'ws';
-
-  neonConfig.webSocketConstructor = ws;
-  ```
-
-  This is not needed in edge runtimes (Vercel Edge, Cloudflare Workers, Deno) or Node.js 21+, which have built-in WebSocket support.
-</Note>
+> [!NOTE]
+>
+> If you are running in Node.js versions earlier than 21, you need to supply a WebSocket implementation. Install the `ws` package (`npm install ws`) and configure it before creating a pool:
+>
+> ```typescript theme={null}
+> import { neonConfig } from '@neondatabase/serverless';
+> import ws from 'ws';
+>
+> neonConfig.webSocketConstructor = ws;
+> ```
+>
+> This is not needed in edge runtimes (Vercel Edge, Cloudflare Workers, Deno) or Node.js 21+, which have built-in WebSocket support.
 
 ```typescript theme={null}
 import { Pool } from '@neondatabase/serverless';
@@ -158,63 +158,61 @@ try {
 
 ## Framework examples
 
-<Tabs>
-  <Tab title="Vercel">
-    ```typescript theme={null}
-    import { neon } from '@neondatabase/serverless';
+**Vercel**
 
-    export async function GET() {
-      const sql = neon(process.env.DATABASE_URL!);
-      const users = await sql`SELECT * FROM users LIMIT 10`;
-      return Response.json(users);
-    }
-    ```
-  </Tab>
+```typescript theme={null}
+import { neon } from '@neondatabase/serverless';
 
-  <Tab title="Cloudflare Workers">
-    ```typescript theme={null}
-    import { neon } from '@neondatabase/serverless';
+export async function GET() {
+  const sql = neon(process.env.DATABASE_URL!);
+  const users = await sql`SELECT * FROM users LIMIT 10`;
+  return Response.json(users);
+}
+```
 
-    export default {
-      async fetch(request: Request, env: Env) {
-        const sql = neon(env.DATABASE_URL);
-        const users = await sql`SELECT * FROM users LIMIT 10`;
-        return Response.json(users);
-      },
-    };
-    ```
-  </Tab>
+**Cloudflare Workers**
 
-  <Tab title="Netlify">
-    ```typescript theme={null}
-    import { neon } from '@neondatabase/serverless';
-    import type { Context } from '@netlify/functions';
+```typescript theme={null}
+import { neon } from '@neondatabase/serverless';
 
-    export default async (request: Request, context: Context) => {
-      const sql = neon(process.env.DATABASE_URL!);
-      const users = await sql`SELECT * FROM users LIMIT 10`;
-      return Response.json(users);
-    };
+export default {
+  async fetch(request: Request, env: Env) {
+    const sql = neon(env.DATABASE_URL);
+    const users = await sql`SELECT * FROM users LIMIT 10`;
+    return Response.json(users);
+  },
+};
+```
 
-    export const config = { path: '/api/users' };
-    ```
-  </Tab>
+**Netlify**
 
-  <Tab title="AWS Lambda">
-    ```typescript theme={null}
-    import { neon } from '@neondatabase/serverless';
+```typescript theme={null}
+import { neon } from '@neondatabase/serverless';
+import type { Context } from '@netlify/functions';
 
-    export const handler = async (event) => {
-      const sql = neon(process.env.DATABASE_URL);
-      const users = await sql`SELECT * FROM users LIMIT 10`;
-      return {
-        statusCode: 200,
-        body: JSON.stringify(users),
-      };
-    };
-    ```
-  </Tab>
-</Tabs>
+export default async (request: Request, context: Context) => {
+  const sql = neon(process.env.DATABASE_URL!);
+  const users = await sql`SELECT * FROM users LIMIT 10`;
+  return Response.json(users);
+};
+
+export const config = { path: '/api/users' };
+```
+
+**AWS Lambda**
+
+```typescript theme={null}
+import { neon } from '@neondatabase/serverless';
+
+export const handler = async (event) => {
+  const sql = neon(process.env.DATABASE_URL);
+  const users = await sql`SELECT * FROM users LIMIT 10`;
+  return {
+    statusCode: 200,
+    body: JSON.stringify(users),
+  };
+};
+```
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

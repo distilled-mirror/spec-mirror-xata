@@ -22,7 +22,7 @@ The primary mechanism to configure anonymization are *transformers*. Transformer
 
 For example, an "email" transformer can be used to anonymize email addresses, and is guaranteed to generate syntactically correct email addresses (`info@xata.io -> a2asd112@example.com`). Dedicated transformers are possible for many types of data, like names, addresses, phone numbers, IP addresses, and so on.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/transformers.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=4ddd457c3b6a94098ab9d6d89d004681" alt="Transformers" className="rounded-lg" width="1126" height="590" data-path="images/transformers.png" />
+![Transformers](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/transformers.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=4ddd457c3b6a94098ab9d6d89d004681)
 
 A transformer can have configuration options, for example, whether to keep the domain part of the email address (`info@xata.io -> a2asd112@xata.io`).
 

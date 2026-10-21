@@ -43,25 +43,19 @@ Clients that support custom headers can authenticate with a [Xata API key](/docs
 Authorization: Bearer YOUR_XATA_API_KEY
 ```
 
-<Warning>
-  Create a dedicated API key for MCP access rather than reusing an existing key. Store it in an environment variable or your client's secret storage — never commit it to source control.
-</Warning>
+> [!WARNING]
+>
+> Create a dedicated API key for MCP access rather than reusing an existing key. Store it in an environment variable or your client's secret storage — never commit it to source control.
 
 ## Set up your MCP client
 
 ### Cursor
 
-<Tip title="CURSOR USERS: ONE-CLICK ALTERNATIVE">
-  Cursor offers a deep link for quick OAuth setup:
-
-  <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=xata&config=eyJ1cmwiOiJodHRwczovL2FwaS54YXRhLnRlY2gvbWNwIn0%3D" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 12px', backgroundColor: '#111111', color: '#ffffff', borderRadius: '6px', fontWeight: '500', textDecoration: 'none', marginTop: '8px', marginBottom: '16px' }}>
-    <svg width="14" height="16" viewBox="0 0 466.73 532.09" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#ffffff" d="M457.43,125.94L244.42,2.96c-6.84-3.95-15.28-3.95-22.12,0L9.3,125.94c-5.75,3.32-9.3,9.46-9.3,16.11v247.99c0,6.65,3.55,12.79,9.3,16.11l213.01,122.98c6.84,3.95,15.28,3.95,22.12,0l213.01-122.98c5.75-3.32,9.3-9.46,9.3-16.11v-247.99c0-6.65-3.55-12.79-9.3-16.11h-.01ZM444.05,151.99l-205.63,356.16c-1.39,2.4-5.06,1.42-5.06-1.36v-233.21c0-4.66-2.49-8.97-6.53-11.31L24.87,145.67c-2.4-1.39-1.42-5.06,1.36-5.06h411.26c5.84,0,9.49,6.33,6.57,11.39h-.01Z" />
-    </svg>
-
-    <span style={{ color: '#ffffff' }}>Add to Cursor</span>
-  </a>
-</Tip>
+> [!TIP]
+>
+> Cursor offers a deep link for quick OAuth setup:
+>
+> [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=xata\&config=eyJ1cmwiOiJodHRwczovL2FwaS54YXRhLnRlY2gvbWNwIn0%3D)
 
 Alternatively, you can add it manually:
 
@@ -123,15 +117,13 @@ Start the server from **MCP: List Servers** and allow it to authenticate when pr
 
 ### Claude (web and desktop)
 
-<Tip title="CLAUDE USERS: QUICK SETUP">
-  Open Claude's custom connector dialog with Xata's details prefilled:
-
-  <a href="https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Xata&connectorUrl=https%3A%2F%2Fapi.xata.tech%2Fmcp" style={{ display: 'inline-flex', alignItems: 'center', padding: '8px 12px', backgroundColor: '#735adc', color: '#ffffff', borderRadius: '6px', fontWeight: '500', textDecoration: 'none', marginTop: '8px', marginBottom: '16px' }}>
-    <span style={{ color: '#ffffff' }}>Connect Xata to Claude</span>
-  </a>
-
-  Review and confirm the connector in Claude, then authenticate with Xata.
-</Tip>
+> [!TIP]
+>
+> Open Claude's custom connector dialog with Xata's details prefilled:
+>
+> [Connect Xata to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector\&connectorName=Xata\&connectorUrl=https%3A%2F%2Fapi.xata.tech%2Fmcp)
+>
+> Review and confirm the connector in Claude, then authenticate with Xata.
 
 Alternatively, add Xata as a custom connector manually:
 
@@ -140,9 +132,9 @@ Alternatively, add Xata as a custom connector manually:
 3. Enter `https://api.xata.tech/mcp` as the server URL and click **Add**.
 4. Follow the prompts to sign in with your Xata account.
 
-<Note>
-  Custom connectors using remote MCP are not available on all Claude plans, and may require an organization owner to add them on team plans. See the [Claude documentation](https://support.claude.com/en/articles/11175166-getting-started-with-custom-connectors-using-remote-mcp) for details.
-</Note>
+> [!NOTE]
+>
+> Custom connectors using remote MCP are not available on all Claude plans, and may require an organization owner to add them on team plans. See the [Claude documentation](https://support.claude.com/en/articles/11175166-getting-started-with-custom-connectors-using-remote-mcp) for details.
 
 ### ChatGPT
 
@@ -166,9 +158,9 @@ Add the Xata server:
 codex mcp add xata --url https://api.xata.tech/mcp
 ```
 
-<Note>
-  The `add` command may open a browser and report an OAuth error. If that happens, continue with the login command below; the `xata` server entry has already been saved.
-</Note>
+> [!NOTE]
+>
+> The `add` command may open a browser and report an OAuth error. If that happens, continue with the login command below; the `xata` server entry has already been saved.
 
 Authenticate with Xata using explicit OAuth scopes:
 
@@ -279,9 +271,9 @@ Then start `amp` — you should be prompted to authenticate in the browser. Run 
 }
 ```
 
-<Note>
-  The transport type must be `streamableHttp` (camelCase). Omitting it causes Cline to fall back to the legacy SSE transport, which the Xata MCP server does not support.
-</Note>
+> [!NOTE]
+>
+> The transport type must be `streamableHttp` (camelCase). Omitting it causes Cline to fall back to the legacy SSE transport, which the Xata MCP server does not support.
 
 ### Other MCP clients
 

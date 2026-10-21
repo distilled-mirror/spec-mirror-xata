@@ -35,9 +35,9 @@ Either route restarts the branch, because loading a shared library requires it. 
 xata branch wait-ready my-branch --wake
 ```
 
-<Note>
-  The extension only records statements executed after it was loaded. If you enable it and immediately look, the table will be close to empty. Let real traffic run for a while before drawing conclusions.
-</Note>
+> [!NOTE]
+>
+> The extension only records statements executed after it was loaded. If you enable it and immediately look, the table will be close to empty. Let real traffic run for a while before drawing conclusions.
 
 ## 3. Find the expensive statements
 
@@ -98,9 +98,9 @@ To watch it, refreshing every five seconds:
 xata branch qi active my-branch --watch 5
 ```
 
-<Note>
-  `active` is the one subcommand that does not need `pg_stat_statements`, since `pg_stat_activity` is always present. It is also only available from the CLI; there is no page for it in the console.
-</Note>
+> [!NOTE]
+>
+> `active` is the one subcommand that does not need `pg_stat_statements`, since `pg_stat_activity` is always present. It is also only available from the CLI; there is no page for it in the console.
 
 ## 6. Correlate with logs and instance metrics
 
@@ -138,9 +138,9 @@ xata branch query-insights reset my-branch
 
 This calls `pg_stat_statements_reset()`, discards all counters for the branch, and cannot be undone. Let traffic run again, then re-check the same sort from step 3 and compare mean execution time and cache hit ratio against what you wrote down earlier.
 
-<Warning>
-  Reset is branch-wide. Everyone looking at query insights on that branch loses their history too, so on a shared branch it is worth telling people first.
-</Warning>
+> [!WARNING]
+>
+> Reset is branch-wide. Everyone looking at query insights on that branch loses their history too, so on a shared branch it is worth telling people first.
 
 ## Running this from a script or an agent
 

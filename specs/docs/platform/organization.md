@@ -12,13 +12,13 @@ An organization is a hierarchical structure that supports multiple projects, eac
 
 Each member is either an Admin or an Editor. Admins manage the organization, including its members, billing and API keys; Editors work with its projects and branches. See [Organization roles](/docs/platform/organization-roles) for what each role can do.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=8c6dc3416156fde7d5f3a46466b4114c" alt="Organization overview interface" className="rounded-lg" width="2880" height="1556" data-path="images/platform/organization.png" />
+![Organization overview interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=8c6dc3416156fde7d5f3a46466b4114c)
 
 ## Create an Organization
 
 Set up your organization to start collaborating with your team and managing multiple projects.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization-create.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=705b068133e492fb23ee12d09cda6ec1" alt="Create organization interface" className="rounded-lg" width="2880" height="1556" data-path="images/platform/organization-create.png" />
+![Create organization interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization-create.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=705b068133e492fb23ee12d09cda6ec1)
 
 ### From the CLI
 
@@ -35,7 +35,7 @@ For more CLI commands, see the [CLI Reference](/docs/cli/organization).
 
 Admins add team members to your organization by sending invitation emails. Each invitation sets the role the new member holds once they accept, **Editor** by default. See [Organization roles](/docs/platform/organization-roles) for how to choose or change a role.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization-invite-members.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=07493f80faece810fe5632dd1163c90b" alt="Invite members interface" className="rounded-lg" width="2880" height="1556" data-path="images/platform/organization-invite-members.png" />
+![Invite members interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization-invite-members.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=07493f80faece810fe5632dd1163c90b)
 
 ### Managing Invitations
 
@@ -51,7 +51,7 @@ You can manage organization invitations through the Console, CLI and API. Every 
 
 Manage API keys at the organization level for team-wide access and permissions.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization-api-key.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=7a72f1c0648755b2d01f00e99a1ed23f" alt="Organization API keys interface" className="rounded-lg" width="2880" height="1556" data-path="images/platform/organization-api-key.png" />
+![Organization API keys interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization-api-key.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=7a72f1c0648755b2d01f00e99a1ed23f)
 
 Organization API keys provide centralized access control across all projects and branches within your organization. These keys can be scoped to specific projects, branches, or functionality levels.
 
@@ -63,7 +63,7 @@ For more detailed information about API key management, see [Account API Keys](/
 
 Manage billing and usage across your entire organization with centralized cost tracking and allocation.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization-billing.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=c50d6e7bdc6b9aa115aa516f09aa9536" alt="Organization billing interface" className="rounded-lg" width="2880" height="1556" data-path="images/platform/organization-billing.png" />
+![Organization billing interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization-billing.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=c50d6e7bdc6b9aa115aa516f09aa9536)
 
 Organization billing allows you to view both upcoming and historic invoices. Only Admins can view and change billing.
 
@@ -78,9 +78,9 @@ curl -X POST https://api.xata.tech/organizations/{organizationID}/deletion-reque
 
 A successful request returns `202 Accepted`.
 
-<Note>
-  The request is rejected with `409 Conflict` if the organization still has active projects or outstanding invoices. Delete or transfer all projects and settle outstanding invoices before requesting deletion.
-</Note>
+> [!NOTE]
+>
+> The request is rejected with `409 Conflict` if the organization still has active projects or outstanding invoices. Delete or transfer all projects and settle outstanding invoices before requesting deletion.
 
 This endpoint requires an API key with the `org:delete` scope. See [API Keys](/docs/platform/api-key) for details on scoping.
 

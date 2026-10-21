@@ -6,7 +6,7 @@
 
 > Create isolated database environments for development, testing, and staging
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-list-view.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=a46b0050ccd85553fbbb11d73a7f9e4e" alt="Branch list view showing all available branches in the project" className="rounded-lg" width="2880" height="1302" data-path="images/platform/branch-list-view.png" />
+![Branch list view showing all available branches in the project](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-list-view.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=a46b0050ccd85553fbbb11d73a7f9e4e)
 
 Xata's branching system uses Copy-on-Write (CoW) at the storage layer to create instant database branches. Each branch contains the exact schema and data of the parent branch at the moment of creation, but after creation, branches are independent PostgreSQL instances. Learn more about [how branching works](/docs/core-concepts/branching).
 
@@ -14,7 +14,7 @@ Xata's branching system uses Copy-on-Write (CoW) at the storage layer to create 
 
 The overview page provides a single pane of glass to understand the details of your branch.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-overview.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=e1942e917a5ac58ac9aae23e40b32824" alt="Branch overview showing branch details and configuration options" className="rounded-lg" width="2880" height="2314" data-path="images/platform/branch-overview.png" />
+![Branch overview showing branch details and configuration options](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-overview.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=e1942e917a5ac58ac9aae23e40b32824)
 
 * **Connect**: Copy a connection string or individual parameters. Choose an [endpoint type](#endpoint-types) to route traffic to the primary, read replicas, or a connection pooler
 * **Health**: View the health and state of your primary instance and replicas
@@ -23,35 +23,33 @@ The overview page provides a single pane of glass to understand the details of y
 * **Instance Health**: Click into an instance node to quickly view the latest metrics
 * **Rotate Credentials**: Rotate the database password for the `xata` user for enhanced security
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-node-flyout.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=a20429f025fc22252a42eebafb13c30e" alt="Branch node flyout showing quick actions and branch information" className="rounded-lg" width="2880" height="1556" data-path="images/platform/branch-node-flyout.png" />
+![Branch node flyout showing quick actions and branch information](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-node-flyout.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=a20429f025fc22252a42eebafb13c30e)
 
 ## Branch Features
 
-<Columns cols={2}>
-  <Card title="Queries" icon="magnifying-glass" iconType="solid" href="/docs/platform/queries">
-    Execute and manage database queries across your branches.
-  </Card>
+> **[Queries](/docs/platform/queries)**
+>
+> Execute and manage database queries across your branches.
 
-  <Card title="Metrics" icon="chart-line" iconType="solid" href="/docs/platform/metrics">
-    Monitor branch performance and usage across your instances within a branch.
-  </Card>
+> **[Metrics](/docs/platform/metrics)**
+>
+> Monitor branch performance and usage across your instances within a branch.
 
-  <Card title="Logs" icon="file-lines" iconType="solid" href="/docs/platform/logs">
-    Inspect PostgreSQL logs from the primary and replicas of your branch.
-  </Card>
+> **[Logs](/docs/platform/logs)**
+>
+> Inspect PostgreSQL logs from the primary and replicas of your branch.
 
-  <Card title="Extensions" icon="puzzle-piece" iconType="solid" href="/docs/platform/extensions">
-    Extend your database functionality with extensions.
-  </Card>
+> **[Extensions](/docs/platform/extensions)**
+>
+> Extend your database functionality with extensions.
 
-  <Card title="Schemas" icon="database" iconType="solid" href="/docs/platform/schemas">
-    Manage your database structure and schema.
-  </Card>
+> **[Schemas](/docs/platform/schemas)**
+>
+> Manage your database structure and schema.
 
-  <Card title="Migrations" icon="code-merge" iconType="solid" href="/docs/platform/migrations">
-    Apply schema changes to your database without downtime.
-  </Card>
-</Columns>
+> **[Migrations](/docs/platform/migrations)**
+>
+> Apply schema changes to your database without downtime.
 
 ## Settings
 
@@ -61,7 +59,7 @@ Configure branch-specific settings including instance details, compute and Postg
 
 Configure the fundamental properties and settings for your branch instance.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-settings-instance-details.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=837e7bdc0901d1bb5fe224ddc237efb3" alt="Branch settings showing instance details and configuration options" className="rounded-lg" width="2240" height="914" data-path="images/platform/branch-settings-instance-details.png" />
+![Branch settings showing instance details and configuration options](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-settings-instance-details.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=837e7bdc0901d1bb5fe224ddc237efb3)
 
 * **Branch Name**: Set and modify the human-readable branch name
 * **Replicas**: Configure the number of read replicas for the branch. Replicas provide high availability, automated failover, and read scaling.
@@ -69,9 +67,9 @@ Configure the fundamental properties and settings for your branch instance.
 * **Storage**: Adjust storage size for the branch in GB. Storage can only be increased, not decreased, with a maximum of 1024 Gi (1 TB). You are charged based on actual usage, not the configured limit. Note that 0.5-1% of the configured limit is reserved for filesystem overhead.
 * **PostgreSQL Image**: Select from available PostgreSQL images including standard postgres, and analytics-optimized. You can upgrade to newer minor versions (e.g., from 17.5 to 17.7) but cannot change the offering type or perform major version upgrades.
 
-<Warning>
-  **A branch with 0 replicas is not suitable for production workloads.** It has no standby promotion target and cannot automatically fail over. A primary failure, or an update that requires the primary to restart or be replaced, makes the database unavailable until the primary is available again. Configure at least 1 replica for production. See [High availability and replicas](/docs/core-concepts/deployment#high-availability-and-replicas).
-</Warning>
+> [!WARNING]
+>
+> **A branch with 0 replicas is not suitable for production workloads.** It has no standby promotion target and cannot automatically fail over. A primary failure, or an update that requires the primary to restart or be replaced, makes the database unavailable until the primary is available again. Configure at least 1 replica for production. See [High availability and replicas](/docs/core-concepts/deployment#high-availability-and-replicas).
 
 ### Compute
 
@@ -87,18 +85,18 @@ You can rotate the password from the branch settings page or using the CLI:
 xata branch rotate-password <branch-name>
 ```
 
-<Note>
-  * Existing database connections remain active during rotation
-  * New connections will use the new password once rotation completes
-  * PgBouncer automatically picks up the new password for connection pooling
-  * There may be a brief period where credentials are unavailable during rotation
-</Note>
+> [!NOTE]
+>
+> * Existing database connections remain active during rotation
+> * New connections will use the new password once rotation completes
+> * PgBouncer automatically picks up the new password for connection pooling
+> * There may be a brief period where credentials are unavailable during rotation
 
 ### PostgreSQL Configuration
 
 Fine-tune PostgreSQL parameters and settings for optimal database performance.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-settings-postgres-config.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=cc44c1f36d30cd42319e73d70c6a9df8" alt="Branch settings showing PostgreSQL configuration parameters" className="rounded-lg" width="2240" height="644" data-path="images/platform/branch-settings-postgres-config.png" />
+![Branch settings showing PostgreSQL configuration parameters](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-settings-postgres-config.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=cc44c1f36d30cd42319e73d70c6a9df8)
 
 * **Connections**: Configure connection and authentication settings
 * **Resource Consumption**: Configure memory and resource allocation settings
@@ -107,9 +105,9 @@ Fine-tune PostgreSQL parameters and settings for optimal database performance.
 * **Write-Ahead Log**: Configure Write-Ahead logging (WAL)
 * **Extensions**: Configure extension-specific parameters (available parameters depend on your branch's image type and PostgreSQL version)
 
-<Note>
-  Available PostgreSQL parameters and preload libraries depend on your branch's image type (postgres or analytics) and PostgreSQL major version. Extension-specific parameters only appear when the extension is available for your image type.
-</Note>
+> [!NOTE]
+>
+> Available PostgreSQL parameters and preload libraries depend on your branch's image type (postgres or analytics) and PostgreSQL major version. Extension-specific parameters only appear when the extension is available for your image type.
 
 ### Connection Pooling
 
@@ -178,9 +176,9 @@ You can upgrade your branch to a newer minor version of PostgreSQL while maintai
 * **No major version changes**: Major version upgrades (e.g., 16.x → 17.x) are not supported through this method
 * **Separate from configuration changes**: Image upgrades cannot be combined with PostgreSQL configuration parameters, instance type, or preload library changes in the same update. Make these changes in separate requests.
 
-<Warning>
-  Upgrading PostgreSQL versions will trigger a rolling update of your branch instances. Plan upgrades during maintenance windows to minimize impact on your applications.
-</Warning>
+> [!WARNING]
+>
+> Upgrading PostgreSQL versions will trigger a rolling update of your branch instances. Plan upgrades during maintenance windows to minimize impact on your applications.
 
 ### In the Console
 
@@ -211,9 +209,9 @@ curl -X PATCH "https://api.xata.tech/organizations/{organizationId}/projects/{pr
   -d '{"image": "postgres:17.7"}'
 ```
 
-<Warning>
-  When upgrading the PostgreSQL image, you cannot simultaneously update PostgreSQL configuration parameters, instance type, or preload libraries in the same API call. These changes must be made in separate requests.
-</Warning>
+> [!WARNING]
+>
+> When upgrading the PostgreSQL image, you cannot simultaneously update PostgreSQL configuration parameters, instance type, or preload libraries in the same API call. These changes must be made in separate requests.
 
 ## Rotating database credentials
 
@@ -235,12 +233,12 @@ curl "https://api.xata.tech/organizations/{organizationId}/projects/{projectId}/
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-<Note>
-  * Existing database connections remain active during rotation
-  * New connections will use the new password once rotation completes
-  * PgBouncer automatically picks up the new password for connection pooling
-  * There may be a brief period where credentials are unavailable during rotation
-</Note>
+> [!NOTE]
+>
+> * Existing database connections remain active during rotation
+> * New connections will use the new password once rotation completes
+> * PgBouncer automatically picks up the new password for connection pooling
+> * There may be a brief period where credentials are unavailable during rotation
 
 ## Deleting branches
 

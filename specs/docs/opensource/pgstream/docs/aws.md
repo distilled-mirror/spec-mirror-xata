@@ -256,37 +256,35 @@ ALTER SCHEMA <schema> OWNER TO pgstreamtarget;
 
 ## Troubleshooting
 
-<AccordionGroup>
-  <Accordion title="permission denied for table pg_authid">
-    **Cause**: Roles with passwords require pg\_authid access.\
-    **Fix**: AWS RDS doesn't allow access to `pg_authid`. Disable role passwords (`roles_snapshot_mode: disabled` or `no_passwords`).
-  </Accordion>
+> **permission denied for table pg\_authid**
+>
+> **Cause**: Roles with passwords require pg\_authid access.\
+> **Fix**: AWS RDS doesn't allow access to `pg_authid`. Disable role passwords (`roles_snapshot_mode: disabled` or `no_passwords`).
 
-  <Accordion title="permission denied to set parameter &#x22;session_replication_role&#x22;">
-    **Cause**: AWS RDS only allows setting this parameter when using an `rds_superuser` role.\
-    **Fix**: Set `disable_triggers: false` in target config or use a role with enough privileges.
-  </Accordion>
+> **permission denied to set parameter "session\_replication\_role"**
+>
+> **Cause**: AWS RDS only allows setting this parameter when using an `rds_superuser` role.\
+> **Fix**: Set `disable_triggers: false` in target config or use a role with enough privileges.
 
-  <Accordion title="permission denied for schema public when transferring ownership">
-    **Cause**: Target role lacks CREATE privilege on schema.\
-    **Fix**: Grant CREATE on schema to the role: `GRANT CREATE ON SCHEMA public TO role_name;`
-  </Accordion>
+> **permission denied for schema public when transferring ownership**
+>
+> **Cause**: Target role lacks CREATE privilege on schema.\
+> **Fix**: Grant CREATE on schema to the role: `GRANT CREATE ON SCHEMA public TO role_name;`
 
-  <Accordion title="Role creation fails">
-    **Cause**: `pgstreamtarget` lacks privileges it tries to assign.\
-    **Fix**: Grant required privileges to `pgstreamtarget` first, or use a user with more privileges.
-  </Accordion>
+> **Role creation fails**
+>
+> **Cause**: `pgstreamtarget` lacks privileges it tries to assign.\
+> **Fix**: Grant required privileges to `pgstreamtarget` first, or use a user with more privileges.
 
-  <Accordion title="must be superuser to create event triggers">
-    **Cause**: Initialization user lacks sufficient privileges.\
-    **Fix**: Use the `postgres` user or grant `rds_superuser`: `GRANT rds_superuser TO username;`
-  </Accordion>
+> **must be superuser to create event triggers**
+>
+> **Cause**: Initialization user lacks sufficient privileges.\
+> **Fix**: Use the `postgres` user or grant `rds_superuser`: `GRANT rds_superuser TO username;`
 
-  <Accordion title="cannot set parameter &#x22;rds.logical_replication&#x22;">
-    **Cause**: Parameter can only be set in parameter group.\
-    **Fix**: Modify the parameter group via AWS Console, not via SQL.
-  </Accordion>
-</AccordionGroup>
+> **cannot set parameter "rds.logical\_replication"**
+>
+> **Cause**: Parameter can only be set in parameter group.\
+> **Fix**: Modify the parameter group via AWS Console, not via SQL.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

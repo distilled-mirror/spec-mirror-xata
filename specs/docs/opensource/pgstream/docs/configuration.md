@@ -240,343 +240,339 @@ Here's a list of all the environment variables that can be used to configure the
 
 #### Postgres Listener
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_POSTGRES_LISTENER_URL">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: URL of the Postgres database to connect to for replication purposes.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_LISTENER\_URL**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: URL of the Postgres database to connect to for replication purposes.
 
-  <Accordion title="PGSTREAM_POSTGRES_REPLICATION_SLOT_NAME">
-    **Default**: "pgstream\_dbname\_slot"\
-    **Required**: Optional\
-    **Description**: Name of the Postgres replication slot name.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_REPLICATION\_SLOT\_NAME**
+>
+> **Default**: "pgstream\_dbname\_slot"\
+> **Required**: Optional\
+> **Description**: Name of the Postgres replication slot name.
 
-  <Accordion title="PGSTREAM_POSTGRES_REPLICATION_PLUGIN_INCLUDE_XIDS">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Whether to include XIDs in the replication events.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_REPLICATION\_PLUGIN\_INCLUDE\_XIDS**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Whether to include XIDs in the replication events.
 
-  <Accordion title="PGSTREAM_POSTGRES_REPLICATION_PLUGIN_ADD_TABLES">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Comma-separated list of tables to include in the wal2json output. Supports wildcards (e.g. `public.*`). Filters at the source decode level, preventing wal2json from generating JSON for excluded tables.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_REPLICATION\_PLUGIN\_ADD\_TABLES**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Comma-separated list of tables to include in the wal2json output. Supports wildcards (e.g. `public.*`). Filters at the source decode level, preventing wal2json from generating JSON for excluded tables.
 
-  <Accordion title="PGSTREAM_POSTGRES_REPLICATION_PLUGIN_FILTER_TABLES">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Comma-separated list of tables to exclude from the wal2json output. Supports wildcards (e.g. `pipelines.*,private.*`). Filters at the source decode level, preventing wal2json from generating JSON for excluded tables.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_REPLICATION\_PLUGIN\_FILTER\_TABLES**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Comma-separated list of tables to exclude from the wal2json output. Supports wildcards (e.g. `pipelines.*,private.*`). Filters at the source decode level, preventing wal2json from generating JSON for excluded tables.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_MODE">
-    **Default**: "full"\
-    **Required**: Optional\
-    **Description**: Mode in which the snapshot will be run. It can be one of `schema`, `data` or `full` (both schema and data).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_MODE**
+>
+> **Default**: "full"\
+> **Required**: Optional\
+> **Description**: Mode in which the snapshot will be run. It can be one of `schema`, `data` or `full` (both schema and data).
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_TABLES">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Tables for which there will be an initial snapshot generated. The syntax supports wildcards. Tables without a schema defined will be applied the public schema. Example: for `public.test_table` and all tables in the `test_schema` schema, the value would be the following: `"test_table test_schema.\*"`
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_TABLES**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Tables for which there will be an initial snapshot generated. The syntax supports wildcards. Tables without a schema defined will be applied the public schema. Example: for `public.test_table` and all tables in the `test_schema` schema, the value would be the following: `"test_table test_schema.\*"`
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_EXCLUDED_TABLES">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Tables that will be excluded in the snapshot process. The syntax does not support wildcards. Tables without a schema defined will be applied the public schema.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_EXCLUDED\_TABLES**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Tables that will be excluded in the snapshot process. The syntax does not support wildcards. Tables without a schema defined will be applied the public schema.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_SCHEMA_ONLY_TABLES">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Tables for which only the schema will be snapshotted, skipping their data. The syntax supports wildcards. Tables without a schema defined will be applied the public schema. Requires snapshot mode `full` or `schema`. Tables explicitly listed in the snapshot tables take precedence over a schema-only wildcard match; excluded tables take precedence over the schema-only list.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_SCHEMA\_ONLY\_TABLES**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Tables for which only the schema will be snapshotted, skipping their data. The syntax supports wildcards. Tables without a schema defined will be applied the public schema. Requires snapshot mode `full` or `schema`. Tables explicitly listed in the snapshot tables take precedence over a schema-only wildcard match; excluded tables take precedence over the schema-only list.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_SCHEMA_WORKERS">
-    **Default**: 4\
-    **Required**: Optional\
-    **Description**: Number of tables per schema that will be processed in parallel by the snapshotting process.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_SCHEMA\_WORKERS**
+>
+> **Default**: 4\
+> **Required**: Optional\
+> **Description**: Number of tables per schema that will be processed in parallel by the snapshotting process.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_TABLE_WORKERS">
-    **Default**: 4\
-    **Required**: Optional\
-    **Description**: Number of concurrent workers that will be used per table by the snapshotting process.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_TABLE\_WORKERS**
+>
+> **Default**: 4\
+> **Required**: Optional\
+> **Description**: Number of concurrent workers that will be used per table by the snapshotting process.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_BATCH_BYTES">
-    **Default**: 83886080 (80MiB)\
-    **Required**: Optional\
-    **Description**: Max batch size in bytes to be read and processed by each table worker at a time. The number of pages in the select queries will be based on this value.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_BATCH\_BYTES**
+>
+> **Default**: 83886080 (80MiB)\
+> **Required**: Optional\
+> **Description**: Max batch size in bytes to be read and processed by each table worker at a time. The number of pages in the select queries will be based on this value.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_WORKERS">
-    **Default**: 1\
-    **Required**: Optional\
-    **Description**: Number of schemas that will be processed in parallel by the snapshotting process.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_WORKERS**
+>
+> **Default**: 1\
+> **Required**: Optional\
+> **Description**: Number of schemas that will be processed in parallel by the snapshotting process.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_MAX_CONNECTIONS">
-    **Default**: 50\
-    **Required**: Optional\
-    **Description**: Maximum number of Postgres connections that will be opened by the snapshotting process. This value shouldn't be lower than the number of schema/table workers selected.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_MAX\_CONNECTIONS**
+>
+> **Default**: 50\
+> **Required**: Optional\
+> **Description**: Maximum number of Postgres connections that will be opened by the snapshotting process. This value shouldn't be lower than the number of schema/table workers selected.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_CLEAN_TARGET_DB">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, option to issue commands to DROP all the objects that will be restored. Destructive: the DROPs are applied before the table data is copied, so a snapshot that fails afterwards leaves the target partially rebuilt with the previous contents already gone. See [resetting the target](/docs/opensource/pgstream/docs/snapshots#️-resetting-the-target-destroys-it-before-the-new-data-lands).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_CLEAN\_TARGET\_DB**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, option to issue commands to DROP all the objects that will be restored. Destructive: the DROPs are applied before the table data is copied, so a snapshot that fails afterwards leaves the target partially rebuilt with the previous contents already gone. See [resetting the target](/docs/opensource/pgstream/docs/snapshots#️-resetting-the-target-destroys-it-before-the-new-data-lands).
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_INCLUDE_GLOBAL_DB_OBJECTS">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, option to snapshot all global database objects outside of the selected schema (such as extensions, triggers, etc).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_INCLUDE\_GLOBAL\_DB\_OBJECTS**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, option to snapshot all global database objects outside of the selected schema (such as extensions, triggers, etc).
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_CREATE_TARGET_DB">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, option to create the database being restored.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_CREATE\_TARGET\_DB**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, option to create the database being restored.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_NO_OWNER">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, do not output commands to set ownership of objects to match the original database.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_NO\_OWNER**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, do not output commands to set ownership of objects to match the original database.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_NO_PRIVILEGES">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, do not output privilege related commands (grant/revoke).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_NO\_PRIVILEGES**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, do not output privilege related commands (grant/revoke).
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_EXCLUDED_SECURITY_LABELS">
-    **Default**: \[]\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, list of providers whose security labels will be excluded.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_EXCLUDED\_SECURITY\_LABELS**
+>
+> **Default**: \[]\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, list of providers whose security labels will be excluded.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_REFRESH_MATERIALIZED_VIEWS">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, whether to refresh materialized views (REFRESH MATERIALIZED VIEW ... WITH DATA) after the table data has been restored.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_REFRESH\_MATERIALIZED\_VIEWS**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, whether to refresh materialized views (REFRESH MATERIALIZED VIEW ... WITH DATA) after the table data has been restored.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_INDEX_CONSTRAINT_SESSION_SETTINGS">
-    **Default**: \[]\
-    **Required**: Optional\
-    **Description**: Space-separated PostgreSQL `name=value` session settings applied only while restoring indexes and constraints, for example `maintenance_work_mem=4GB max_parallel_maintenance_workers=4`. Each setting must be a whitespace-free `name=value` pair; invalid entries fail at startup. Unset or empty preserves existing behavior.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_INDEX\_CONSTRAINT\_SESSION\_SETTINGS**
+>
+> **Default**: \[]\
+> **Required**: Optional\
+> **Description**: Space-separated PostgreSQL `name=value` session settings applied only while restoring indexes and constraints, for example `maintenance_work_mem=4GB max_parallel_maintenance_workers=4`. Each setting must be a whitespace-free `name=value` pair; invalid entries fail at startup. Unset or empty preserves existing behavior.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_INDEX_RESTORE_WORKERS">
-    **Default**: 1\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, number of standalone `CREATE INDEX`/`CREATE UNIQUE INDEX` statements restored concurrently against the target. Statements that depend on an index (constraints added `USING INDEX`, comments, partition attachments, `REPLICA IDENTITY`, `CLUSTER`) always wait for every index to be created first. Each worker holds one target connection and applies `PGSTREAM_POSTGRES_SNAPSHOT_INDEX_CONSTRAINT_SESSION_SETTINGS` to it, so the target needs this many free connection slots and up to workers × `maintenance_work_mem` of memory. Defaults to 1 (sequential); values above 32 are rejected at startup.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_INDEX\_RESTORE\_WORKERS**
+>
+> **Default**: 1\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, number of standalone `CREATE INDEX`/`CREATE UNIQUE INDEX` statements restored concurrently against the target. Statements that depend on an index (constraints added `USING INDEX`, comments, partition attachments, `REPLICA IDENTITY`, `CLUSTER`) always wait for every index to be created first. Each worker holds one target connection and applies `PGSTREAM_POSTGRES_SNAPSHOT_INDEX_CONSTRAINT_SESSION_SETTINGS` to it, so the target needs this many free connection slots and up to workers × `maintenance_work_mem` of memory. Defaults to 1 (sequential); values above 32 are rejected at startup.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_INCLUDE_OBJECT_TYPES">
-    **Default**: \[]\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, list of object type categories to include in the schema snapshot. Everything else is excluded. Mutually exclusive with `PGSTREAM_POSTGRES_SNAPSHOT_EXCLUDE_OBJECT_TYPES`. See [object type filtering](#object-type-filtering).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_INCLUDE\_OBJECT\_TYPES**
+>
+> **Default**: \[]\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, list of object type categories to include in the schema snapshot. Everything else is excluded. Mutually exclusive with `PGSTREAM_POSTGRES_SNAPSHOT_EXCLUDE_OBJECT_TYPES`. See [object type filtering](#object-type-filtering).
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_EXCLUDE_OBJECT_TYPES">
-    **Default**: \[]\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, list of object type categories to exclude from the schema snapshot. Mutually exclusive with `PGSTREAM_POSTGRES_SNAPSHOT_INCLUDE_OBJECT_TYPES`. See [object type filtering](#object-type-filtering).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_EXCLUDE\_OBJECT\_TYPES**
+>
+> **Default**: \[]\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, list of object type categories to exclude from the schema snapshot. Mutually exclusive with `PGSTREAM_POSTGRES_SNAPSHOT_INCLUDE_OBJECT_TYPES`. See [object type filtering](#object-type-filtering).
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_ROLE">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, role name to be used to create the dump.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_ROLE**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, role name to be used to create the dump.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_ROLES_SNAPSHOT_MODE">
-    **Default**: "no\_passwords"\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, controls how roles are snapshotted. Possible values: "enabled" (snapshot all roles including passwords), "disabled" (do not snapshot roles), "no\_passwords" (snapshot roles but exclude passwords).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_ROLES\_SNAPSHOT\_MODE**
+>
+> **Default**: "no\_passwords"\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, controls how roles are snapshotted. Possible values: "enabled" (snapshot all roles including passwords), "disabled" (do not snapshot roles), "no\_passwords" (snapshot roles but exclude passwords).
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_SCHEMA_DUMP_FILE">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, file where the contents of the schema pg\_dump command and output will be written for debugging purposes.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_SCHEMA\_DUMP\_FILE**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, file where the contents of the schema pg\_dump command and output will be written for debugging purposes.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_STORE_URL">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Postgres URL for the database where the snapshot requests and their status will be tracked. A table `snapshot_requests` will be created under a `pgstream` schema.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_STORE\_URL**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Postgres URL for the database where the snapshot requests and their status will be tracked. A table `snapshot_requests` will be created under a `pgstream` schema.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_STORE_REPEATABLE">
-    **Default**: False (run), True (snapshot)\
-    **Required**: Optional\
-    **Description**: Allow to repeat snapshots requests that have been already completed successfully. If using the run command, initial snapshots won't be repeatable by default. If the snapshot command is used instead, the snapshot will be repeatable by default.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_STORE\_REPEATABLE**
+>
+> **Default**: False (run), True (snapshot)\
+> **Required**: Optional\
+> **Description**: Allow to repeat snapshots requests that have been already completed successfully. If using the run command, initial snapshots won't be repeatable by default. If the snapshot command is used instead, the snapshot will be repeatable by default.
 
-  <Accordion title="PGSTREAM_POSTGRES_SNAPSHOT_DISABLE_PROGRESS_TRACKING">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Whether to disable progress tracking for the snapshot.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_SNAPSHOT\_DISABLE\_PROGRESS\_TRACKING**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Whether to disable progress tracking for the snapshot.
 
-  <Accordion title="PGSTREAM_POSTGRES_LISTENER_EXP_BACKOFF_INITIAL_INTERVAL">
-    **Default**: 500ms\
-    **Required**: Optional\
-    **Description**: Initial interval for the exponential backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_LISTENER\_EXP\_BACKOFF\_INITIAL\_INTERVAL**
+>
+> **Default**: 500ms\
+> **Required**: Optional\
+> **Description**: Initial interval for the exponential backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_LISTENER_EXP_BACKOFF_MAX_INTERVAL">
-    **Default**: 10s\
-    **Required**: Optional\
-    **Description**: Max interval for the exponential backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_LISTENER\_EXP\_BACKOFF\_MAX\_INTERVAL**
+>
+> **Default**: 10s\
+> **Required**: Optional\
+> **Description**: Max interval for the exponential backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_LISTENER_EXP_BACKOFF_MAX_RETRIES">
-    **Default**: 20\
-    **Required**: Optional\
-    **Description**: Max retries for the exponential backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_LISTENER\_EXP\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 20\
+> **Required**: Optional\
+> **Description**: Max retries for the exponential backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_LISTENER_BACKOFF_INTERVAL">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Constant interval for the backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_LISTENER\_BACKOFF\_INTERVAL**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Constant interval for the backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_LISTENER_BACKOFF_MAX_RETRIES">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Max retries for the backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_LISTENER\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Max retries for the backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_LISTENER_DISABLE_RETRIES">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Disable any retry policy.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_POSTGRES\_LISTENER\_DISABLE\_RETRIES**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Disable any retry policy.
 
 One of exponential/constant/disable retries retry policies can be provided for the Postgres connection retry strategy. If none is provided, the exponential defaults apply.
 
 #### Kafka Listener
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_KAFKA_READER_SERVERS">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: URLs for the Kafka servers to connect to.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_READER\_SERVERS**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: URLs for the Kafka servers to connect to.
 
-  <Accordion title="PGSTREAM_KAFKA_TOPIC_NAME">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: Name of the Kafka topic to read from.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TOPIC\_NAME**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: Name of the Kafka topic to read from.
 
-  <Accordion title="PGSTREAM_KAFKA_READER_CONSUMER_GROUP_ID">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: Name of the Kafka consumer group for the WAL Kafka reader.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_READER\_CONSUMER\_GROUP\_ID**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: Name of the Kafka consumer group for the WAL Kafka reader.
 
-  <Accordion title="PGSTREAM_KAFKA_READER_CONSUMER_GROUP_START_OFFSET">
-    **Default**: Earliest\
-    **Required**: Optional\
-    **Description**: Kafka offset from which the consumer will start if there's no offset available for the consumer group.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_READER\_CONSUMER\_GROUP\_START\_OFFSET**
+>
+> **Default**: Earliest\
+> **Required**: Optional\
+> **Description**: Kafka offset from which the consumer will start if there's no offset available for the consumer group.
 
-  <Accordion title="PGSTREAM_KAFKA_TLS_ENABLED">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Enable TLS connection to the Kafka servers.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TLS\_ENABLED**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Enable TLS connection to the Kafka servers.
 
-  <Accordion title="PGSTREAM_KAFKA_TLS_CA_CERT_FILE">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Path to the CA PEM certificate to use for Kafka TLS authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TLS\_CA\_CERT\_FILE**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Path to the CA PEM certificate to use for Kafka TLS authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_TLS_CLIENT_CERT_FILE">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Path to the client PEM certificate to use for Kafka TLS client authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TLS\_CLIENT\_CERT\_FILE**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Path to the client PEM certificate to use for Kafka TLS client authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_TLS_CLIENT_KEY_FILE">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Path to the client PEM private key to use for Kafka TLS client authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TLS\_CLIENT\_KEY\_FILE**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Path to the client PEM private key to use for Kafka TLS client authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_SASL_ENABLED">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Enable SASL authentication to the Kafka servers.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_SASL\_ENABLED**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Enable SASL authentication to the Kafka servers.
 
-  <Accordion title="PGSTREAM_KAFKA_SASL_MECHANISM">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: SASL mechanism to use, one of `plain`, `scram-sha-256` or `scram-sha-512`.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_SASL\_MECHANISM**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: SASL mechanism to use, one of `plain`, `scram-sha-256` or `scram-sha-512`.
 
-  <Accordion title="PGSTREAM_KAFKA_SASL_USER">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: User for the Kafka SASL authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_SASL\_USER**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: User for the Kafka SASL authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_SASL_PASSWORD">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Password for the Kafka SASL authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_SASL\_PASSWORD**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Password for the Kafka SASL authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_COMMIT_EXP_BACKOFF_INITIAL_INTERVAL">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Initial interval for the exponential backoff policy to be applied to the Kafka commit retries.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_COMMIT\_EXP\_BACKOFF\_INITIAL\_INTERVAL**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Initial interval for the exponential backoff policy to be applied to the Kafka commit retries.
 
-  <Accordion title="PGSTREAM_KAFKA_COMMIT_EXP_BACKOFF_MAX_INTERVAL">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Max interval for the exponential backoff policy to be applied to the Kafka commit retries.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_COMMIT\_EXP\_BACKOFF\_MAX\_INTERVAL**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Max interval for the exponential backoff policy to be applied to the Kafka commit retries.
 
-  <Accordion title="PGSTREAM_KAFKA_COMMIT_EXP_BACKOFF_MAX_RETRIES">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Max retries for the exponential backoff policy to be applied to the Kafka commit retries.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_COMMIT\_EXP\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Max retries for the exponential backoff policy to be applied to the Kafka commit retries.
 
-  <Accordion title="PGSTREAM_KAFKA_COMMIT_BACKOFF_INTERVAL">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Constant interval for the backoff policy to be applied to the Kafka commit retries.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_COMMIT\_BACKOFF\_INTERVAL**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Constant interval for the backoff policy to be applied to the Kafka commit retries.
 
-  <Accordion title="PGSTREAM_KAFKA_COMMIT_BACKOFF_MAX_RETRIES">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Max retries for the backoff policy to be applied to the Kafka commit retries.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_COMMIT\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Max retries for the backoff policy to be applied to the Kafka commit retries.
 
-  <Accordion title="PGSTREAM_KAFKA_COMMIT_DISABLE_RETRIES">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Disable any retry policy.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_KAFKA\_COMMIT\_DISABLE\_RETRIES**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Disable any retry policy.
 
 One of exponential/constant backoff policies can be provided for the Kafka committing retry strategy. If none is provided, no retries apply.
 
@@ -584,121 +580,119 @@ One of exponential/constant backoff policies can be provided for the Kafka commi
 
 #### Kafka Batch Writer
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_KAFKA_WRITER_SERVERS">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: URLs for the Kafka servers to connect to.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_WRITER\_SERVERS**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: URLs for the Kafka servers to connect to.
 
-  <Accordion title="PGSTREAM_KAFKA_TOPIC_NAME">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: Name of the Kafka topic to write to.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TOPIC\_NAME**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: Name of the Kafka topic to write to.
 
-  <Accordion title="PGSTREAM_KAFKA_TOPIC_PARTITIONS">
-    **Default**: 1\
-    **Required**: Optional\
-    **Description**: Number of partitions created for the Kafka topic if auto create is enabled.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TOPIC\_PARTITIONS**
+>
+> **Default**: 1\
+> **Required**: Optional\
+> **Description**: Number of partitions created for the Kafka topic if auto create is enabled.
 
-  <Accordion title="PGSTREAM_KAFKA_TOPIC_PARTITION_KEY">
-    **Default**: schema\
-    **Required**: Optional\
-    **Description**: Message key strategy for DML events, one of `schema`, `table` or `primary_key`. See the ordering trade-offs below.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TOPIC\_PARTITION\_KEY**
+>
+> **Default**: schema\
+> **Required**: Optional\
+> **Description**: Message key strategy for DML events, one of `schema`, `table` or `primary_key`. See the ordering trade-offs below.
 
-  <Accordion title="PGSTREAM_KAFKA_TOPIC_REPLICATION_FACTOR">
-    **Default**: 1\
-    **Required**: Optional\
-    **Description**: Replication factor used when creating the Kafka topic if auto create is enabled.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TOPIC\_REPLICATION\_FACTOR**
+>
+> **Default**: 1\
+> **Required**: Optional\
+> **Description**: Replication factor used when creating the Kafka topic if auto create is enabled.
 
-  <Accordion title="PGSTREAM_KAFKA_TOPIC_AUTO_CREATE">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Auto creation of configured Kafka topic if it doesn't exist.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TOPIC\_AUTO\_CREATE**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Auto creation of configured Kafka topic if it doesn't exist.
 
-  <Accordion title="PGSTREAM_KAFKA_TLS_ENABLED">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Enable TLS connection to the Kafka servers.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TLS\_ENABLED**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Enable TLS connection to the Kafka servers.
 
-  <Accordion title="PGSTREAM_KAFKA_TLS_CA_CERT_FILE">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Path to the CA PEM certificate to use for Kafka TLS authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TLS\_CA\_CERT\_FILE**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Path to the CA PEM certificate to use for Kafka TLS authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_TLS_CLIENT_CERT_FILE">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Path to the client PEM certificate to use for Kafka TLS client authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TLS\_CLIENT\_CERT\_FILE**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Path to the client PEM certificate to use for Kafka TLS client authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_TLS_CLIENT_KEY_FILE">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Path to the client PEM private key to use for Kafka TLS client authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_TLS\_CLIENT\_KEY\_FILE**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Path to the client PEM private key to use for Kafka TLS client authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_SASL_ENABLED">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Enable SASL authentication to the Kafka servers.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_SASL\_ENABLED**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Enable SASL authentication to the Kafka servers.
 
-  <Accordion title="PGSTREAM_KAFKA_SASL_MECHANISM">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: SASL mechanism to use, one of `plain`, `scram-sha-256` or `scram-sha-512`.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_SASL\_MECHANISM**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: SASL mechanism to use, one of `plain`, `scram-sha-256` or `scram-sha-512`.
 
-  <Accordion title="PGSTREAM_KAFKA_SASL_USER">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: User for the Kafka SASL authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_SASL\_USER**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: User for the Kafka SASL authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_SASL_PASSWORD">
-    **Default**: ""\
-    **Required**: Optional\
-    **Description**: Password for the Kafka SASL authentication.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_SASL\_PASSWORD**
+>
+> **Default**: ""\
+> **Required**: Optional\
+> **Description**: Password for the Kafka SASL authentication.
 
-  <Accordion title="PGSTREAM_KAFKA_WRITER_BATCH_TIMEOUT">
-    **Default**: 1s\
-    **Required**: Optional\
-    **Description**: Max time interval at which the batch sending to Kafka is triggered.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_WRITER\_BATCH\_TIMEOUT**
+>
+> **Default**: 1s\
+> **Required**: Optional\
+> **Description**: Max time interval at which the batch sending to Kafka is triggered.
 
-  <Accordion title="PGSTREAM_KAFKA_WRITER_BATCH_BYTES">
-    **Default**: 1572864\
-    **Required**: Optional\
-    **Description**: Max size in bytes for a given batch. When this size is reached, the batch is sent to Kafka.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_WRITER\_BATCH\_BYTES**
+>
+> **Default**: 1572864\
+> **Required**: Optional\
+> **Description**: Max size in bytes for a given batch. When this size is reached, the batch is sent to Kafka.
 
-  <Accordion title="PGSTREAM_KAFKA_WRITER_BATCH_SIZE">
-    **Default**: 100\
-    **Required**: Optional\
-    **Description**: Max number of messages to be sent per batch. When this size is reached, the batch is sent to Kafka.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_WRITER\_BATCH\_SIZE**
+>
+> **Default**: 100\
+> **Required**: Optional\
+> **Description**: Max number of messages to be sent per batch. When this size is reached, the batch is sent to Kafka.
 
-  <Accordion title="PGSTREAM_KAFKA_WRITER_BATCH_IGNORE_SEND_ERRORS">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Whether to ignore errors encountered while sending batches to the target.
-  </Accordion>
+> **PGSTREAM\_KAFKA\_WRITER\_BATCH\_IGNORE\_SEND\_ERRORS**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Whether to ignore errors encountered while sending batches to the target.
 
-  <Accordion title="PGSTREAM_KAFKA_WRITER_MAX_QUEUE_BYTES">
-    **Default**: 104857600 (100MiB)\
-    **Required**: Optional\
-    **Description**: Max memory used by the Kafka batch writer for inflight batches.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_KAFKA\_WRITER\_MAX\_QUEUE\_BYTES**
+>
+> **Default**: 104857600 (100MiB)\
+> **Required**: Optional\
+> **Description**: Max memory used by the Kafka batch writer for inflight batches.
 
 The partition key determines which partition an event is routed to, and therefore which events are consumed in order relative to each other:
 
@@ -708,85 +702,83 @@ The partition key determines which partition an event is routed to, and therefor
 
 #### Search Batch Indexer
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_OPENSEARCH_STORE_URL">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: URL for the opensearch store to connect to (at least one of the URLs must be provided).
-  </Accordion>
+> **PGSTREAM\_OPENSEARCH\_STORE\_URL**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: URL for the opensearch store to connect to (at least one of the URLs must be provided).
 
-  <Accordion title="PGSTREAM_ELASTICSEARCH_STORE_URL">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: URL for the elasticsearch store to connect to (at least one of the URLs must be provided).
-  </Accordion>
+> **PGSTREAM\_ELASTICSEARCH\_STORE\_URL**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: URL for the elasticsearch store to connect to (at least one of the URLs must be provided).
 
-  <Accordion title="PGSTREAM_SEARCH_INDEXER_HASH_DOC_IDS">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: If true, hash document IDs using SHA256 to avoid exceeding the Elasticsearch 512 byte limit.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_INDEXER\_HASH\_DOC\_IDS**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: If true, hash document IDs using SHA256 to avoid exceeding the Elasticsearch 512 byte limit.
 
-  <Accordion title="PGSTREAM_SEARCH_INDEXER_BATCH_TIMEOUT">
-    **Default**: 1s\
-    **Required**: Optional\
-    **Description**: Max time interval at which the batch sending to the search store is triggered.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_INDEXER\_BATCH\_TIMEOUT**
+>
+> **Default**: 1s\
+> **Required**: Optional\
+> **Description**: Max time interval at which the batch sending to the search store is triggered.
 
-  <Accordion title="PGSTREAM_SEARCH_INDEXER_BATCH_SIZE">
-    **Default**: 100\
-    **Required**: Optional\
-    **Description**: Max number of messages to be sent per batch. When this size is reached, the batch is sent to the search store.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_INDEXER\_BATCH\_SIZE**
+>
+> **Default**: 100\
+> **Required**: Optional\
+> **Description**: Max number of messages to be sent per batch. When this size is reached, the batch is sent to the search store.
 
-  <Accordion title="PGSTREAM_SEARCH_INDEXER_BATCH_IGNORE_SEND_ERRORS">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Whether to ignore errors encountered while sending batches to the target.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_INDEXER\_BATCH\_IGNORE\_SEND\_ERRORS**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Whether to ignore errors encountered while sending batches to the target.
 
-  <Accordion title="PGSTREAM_SEARCH_INDEXER_MAX_QUEUE_BYTES">
-    **Default**: 104857600 (100MiB)\
-    **Required**: Optional\
-    **Description**: Max memory used by the search batch indexer for inflight batches.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_INDEXER\_MAX\_QUEUE\_BYTES**
+>
+> **Default**: 104857600 (100MiB)\
+> **Required**: Optional\
+> **Description**: Max memory used by the search batch indexer for inflight batches.
 
-  <Accordion title="PGSTREAM_SEARCH_STORE_EXP_BACKOFF_INITIAL_INTERVAL">
-    **Default**: 1s\
-    **Required**: Optional\
-    **Description**: Initial interval for the exponential backoff policy to be applied to the search store operation retries.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_STORE\_EXP\_BACKOFF\_INITIAL\_INTERVAL**
+>
+> **Default**: 1s\
+> **Required**: Optional\
+> **Description**: Initial interval for the exponential backoff policy to be applied to the search store operation retries.
 
-  <Accordion title="PGSTREAM_SEARCH_STORE_EXP_BACKOFF_MAX_INTERVAL">
-    **Default**: 1min\
-    **Required**: Optional\
-    **Description**: Max interval for the exponential backoff policy to be applied to the search store operation retries.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_STORE\_EXP\_BACKOFF\_MAX\_INTERVAL**
+>
+> **Default**: 1min\
+> **Required**: Optional\
+> **Description**: Max interval for the exponential backoff policy to be applied to the search store operation retries.
 
-  <Accordion title="PGSTREAM_SEARCH_STORE_EXP_BACKOFF_MAX_RETRIES">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Max retries for the exponential backoff policy to be applied to the search store operation retries.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_STORE\_EXP\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Max retries for the exponential backoff policy to be applied to the search store operation retries.
 
-  <Accordion title="PGSTREAM_SEARCH_STORE_BACKOFF_INTERVAL">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Constant interval for the backoff policy to be applied to the search store operation retries.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_STORE\_BACKOFF\_INTERVAL**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Constant interval for the backoff policy to be applied to the search store operation retries.
 
-  <Accordion title="PGSTREAM_SEARCH_STORE_BACKOFF_MAX_RETRIES">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Max retries for the backoff policy to be applied to the search store operation retries.
-  </Accordion>
+> **PGSTREAM\_SEARCH\_STORE\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Max retries for the backoff policy to be applied to the search store operation retries.
 
-  <Accordion title="PGSTREAM_SEARCH_STORE_DISABLE_RETRIES">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Disable any retry policy.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_SEARCH\_STORE\_DISABLE\_RETRIES**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Disable any retry policy.
 
 One of exponential/constant backoff policies can be provided for the search indexer cleanup retry strategy. If none is provided, no retries apply.
 
@@ -794,269 +786,263 @@ One of exponential/constant/disable retries backoff policies can be provided for
 
 #### Stdout Writer
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_STDOUT_WRITER_ENABLED">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Set to true to enable the stdout writer target. WAL events are written as NDJSON (one JSON object per line) to stdout.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_STDOUT\_WRITER\_ENABLED**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Set to true to enable the stdout writer target. WAL events are written as NDJSON (one JSON object per line) to stdout.
 
 #### Webhook Notifier
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_WEBHOOK_SUBSCRIPTION_STORE_URL">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: URL for the webhook subscription store to connect to.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_SUBSCRIPTION\_STORE\_URL**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: URL for the webhook subscription store to connect to.
 
-  <Accordion title="PGSTREAM_WEBHOOK_SUBSCRIPTION_STORE_CACHE_ENABLED">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Caching applied to the subscription store retrieval queries.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_SUBSCRIPTION\_STORE\_CACHE\_ENABLED**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Caching applied to the subscription store retrieval queries.
 
-  <Accordion title="PGSTREAM_WEBHOOK_SUBSCRIPTION_STORE_CACHE_REFRESH_INTERVAL">
-    **Default**: 60s\
-    **Required**: Optional\
-    **Description**: Interval at which the subscription store cache will be refreshed. Indicates max cache staleness.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_SUBSCRIPTION\_STORE\_CACHE\_REFRESH\_INTERVAL**
+>
+> **Default**: 60s\
+> **Required**: Optional\
+> **Description**: Interval at which the subscription store cache will be refreshed. Indicates max cache staleness.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_MAX_QUEUE_BYTES">
-    **Default**: 104857600 (100MiB)\
-    **Required**: Optional\
-    **Description**: Max memory used by the webhook notifier for inflight notifications.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_MAX\_QUEUE\_BYTES**
+>
+> **Default**: 104857600 (100MiB)\
+> **Required**: Optional\
+> **Description**: Max memory used by the webhook notifier for inflight notifications.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_WORKER_COUNT">
-    **Default**: 10\
-    **Required**: Optional\
-    **Description**: Max number of concurrent workers that will send webhook notifications for a given WAL event.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_WORKER\_COUNT**
+>
+> **Default**: 10\
+> **Required**: Optional\
+> **Description**: Max number of concurrent workers that will send webhook notifications for a given WAL event.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_CLIENT_TIMEOUT">
-    **Default**: 10s\
-    **Required**: Optional\
-    **Description**: Max time the notifier will wait for a response from a webhook URL before timing out.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_CLIENT\_TIMEOUT**
+>
+> **Default**: 10s\
+> **Required**: Optional\
+> **Description**: Max time the notifier will wait for a response from a webhook URL before timing out.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_EXP_BACKOFF_INITIAL_INTERVAL">
-    **Default**: 1s\
-    **Required**: Optional\
-    **Description**: Initial interval for the exponential backoff policy to be applied to failed webhook deliveries.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_EXP\_BACKOFF\_INITIAL\_INTERVAL**
+>
+> **Default**: 1s\
+> **Required**: Optional\
+> **Description**: Initial interval for the exponential backoff policy to be applied to failed webhook deliveries.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_EXP_BACKOFF_MAX_INTERVAL">
-    **Default**: 30s\
-    **Required**: Optional\
-    **Description**: Max interval for the exponential backoff policy to be applied to failed webhook deliveries.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_EXP\_BACKOFF\_MAX\_INTERVAL**
+>
+> **Default**: 30s\
+> **Required**: Optional\
+> **Description**: Max interval for the exponential backoff policy to be applied to failed webhook deliveries.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_EXP_BACKOFF_MAX_RETRIES">
-    **Default**: 3\
-    **Required**: Optional\
-    **Description**: Max retries for the exponential backoff policy to be applied to failed webhook deliveries.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_EXP\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 3\
+> **Required**: Optional\
+> **Description**: Max retries for the exponential backoff policy to be applied to failed webhook deliveries.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_BACKOFF_INTERVAL">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Constant interval for the backoff policy to be applied to failed webhook deliveries.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_BACKOFF\_INTERVAL**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Constant interval for the backoff policy to be applied to failed webhook deliveries.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_BACKOFF_MAX_RETRIES">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Max retries for the backoff policy to be applied to failed webhook deliveries.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Max retries for the backoff policy to be applied to failed webhook deliveries.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_DISABLE_RETRIES">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Disable any retry policy for failed webhook deliveries.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_DISABLE\_RETRIES**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Disable any retry policy for failed webhook deliveries.
 
-  <Accordion title="PGSTREAM_WEBHOOK_NOTIFIER_STRICT_MODE">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Whether to stop the pipeline on a permanently failing webhook delivery instead of dropping it and continuing. It defaults to false.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_NOTIFIER\_STRICT\_MODE**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Whether to stop the pipeline on a permanently failing webhook delivery instead of dropping it and continuing. It defaults to false.
 
-  <Accordion title="PGSTREAM_WEBHOOK_SUBSCRIPTION_SERVER_ADDRESS">
-    **Default**: ":9900"\
-    **Required**: Optional\
-    **Description**: Address for the subscription server to listen on.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_SUBSCRIPTION\_SERVER\_ADDRESS**
+>
+> **Default**: ":9900"\
+> **Required**: Optional\
+> **Description**: Address for the subscription server to listen on.
 
-  <Accordion title="PGSTREAM_WEBHOOK_SUBSCRIPTION_SERVER_READ_TIMEOUT">
-    **Default**: 5s\
-    **Required**: Optional\
-    **Description**: Max duration for reading an entire server request, including the body before timing out.
-  </Accordion>
+> **PGSTREAM\_WEBHOOK\_SUBSCRIPTION\_SERVER\_READ\_TIMEOUT**
+>
+> **Default**: 5s\
+> **Required**: Optional\
+> **Description**: Max duration for reading an entire server request, including the body before timing out.
 
-  <Accordion title="PGSTREAM_WEBHOOK_SUBSCRIPTION_SERVER_WRITE_TIMEOUT">
-    **Default**: 10s\
-    **Required**: Optional\
-    **Description**: Max duration before timing out writes of the response. It is reset whenever a new request's header is read.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_WEBHOOK\_SUBSCRIPTION\_SERVER\_WRITE\_TIMEOUT**
+>
+> **Default**: 10s\
+> **Required**: Optional\
+> **Description**: Max duration before timing out writes of the response. It is reset whenever a new request's header is read.
 
 One of exponential/constant/disable retries backoff policies can be provided for the webhook notifier retry strategy. If none is provided, a default exponential backoff policy applies (1s initial interval, 30s max interval, 3 max retries). A 2xx response is treated as success; a 429 or 5xx response is retried; any other response (e.g. 4xx) is treated as a permanent failure and is not retried. A delivery that keeps failing with a retryable error after exhausting retries is not checkpointed, so it will be retried again after a restart. A delivery that permanently fails is logged and dropped instead by default, so a single misconfigured subscriber does not block delivery to other subscribers; set `strict_mode` to stop the pipeline on permanent failures instead, matching the at-least-once guarantee at the cost of availability.
 
 #### Postgres Batch Writer
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_TARGET_URL">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: URL for the PostgreSQL store to connect to
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_TARGET\_URL**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: URL for the PostgreSQL store to connect to
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_MAX_CONNECTIONS">
-    **Default**: 50\
-    **Required**: Optional\
-    **Description**: Maximum number of connections in the writer pool to the target PostgreSQL database. Overrides `pool_max_conns` in the target URL when set. The schema observer keeps its own pool, capped at 16 and never larger than this value, so the process opens at most this many plus 16.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_MAX\_CONNECTIONS**
+>
+> **Default**: 50\
+> **Required**: Optional\
+> **Description**: Maximum number of connections in the writer pool to the target PostgreSQL database. Overrides `pool_max_conns` in the target URL when set. The schema observer keeps its own pool, capped at 16 and never larger than this value, so the process opens at most this many plus 16.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BATCH_TIMEOUT">
-    **Default**: 30s\
-    **Required**: Optional\
-    **Description**: Max time interval at which the batch sending to PostgreSQL is triggered.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BATCH\_TIMEOUT**
+>
+> **Default**: 30s\
+> **Required**: Optional\
+> **Description**: Max time interval at which the batch sending to PostgreSQL is triggered.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BATCH_SIZE">
-    **Default**: 20000\
-    **Required**: Optional\
-    **Description**: Max number of messages to be sent per batch. When this size is reached, the batch is sent to PostgreSQL.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BATCH\_SIZE**
+>
+> **Default**: 20000\
+> **Required**: Optional\
+> **Description**: Max number of messages to be sent per batch. When this size is reached, the batch is sent to PostgreSQL.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_MAX_QUEUE_BYTES">
-    **Default**: 104857600 (100MiB)\
-    **Required**: Optional\
-    **Description**: Max memory used by the postgres batch writer for inflight batches.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_MAX\_QUEUE\_BYTES**
+>
+> **Default**: 104857600 (100MiB)\
+> **Required**: Optional\
+> **Description**: Max memory used by the postgres batch writer for inflight batches.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BATCH_BYTES">
-    **Default**: 1572864 (1.5MiB), 83886080 (80MiB) with bulk enabled\
-    **Required**: Optional\
-    **Description**: Max size in bytes for a given batch. When this size is reached, the batch is sent to PostgreSQL.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BATCH\_BYTES**
+>
+> **Default**: 1572864 (1.5MiB), 83886080 (80MiB) with bulk enabled\
+> **Required**: Optional\
+> **Description**: Max size in bytes for a given batch. When this size is reached, the batch is sent to PostgreSQL.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BATCH_IGNORE_SEND_ERRORS">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Whether to ignore errors encountered while sending events to the target.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BATCH\_IGNORE\_SEND\_ERRORS**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Whether to ignore errors encountered while sending events to the target.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_DISABLE_TRIGGERS">
-    **Default**: False(run), True(snapshot)\
-    **Required**: Optional\
-    **Description**: Option to disable triggers on the target PostgreSQL database while performing the snaphot/replication streaming. It defaults to false when using the run command, and to true when using the snapshot command.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_DISABLE\_TRIGGERS**
+>
+> **Default**: False(run), True(snapshot)\
+> **Required**: Optional\
+> **Description**: Option to disable triggers on the target PostgreSQL database while performing the snaphot/replication streaming. It defaults to false when using the run command, and to true when using the snapshot command.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_ON_CONFLICT_ACTION">
-    **Default**: error\
-    **Required**: Optional\
-    **Description**: Action to apply to inserts on conflict. Options are `nothing`, `update` or `error`.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_ON\_CONFLICT\_ACTION**
+>
+> **Default**: error\
+> **Required**: Optional\
+> **Description**: Action to apply to inserts on conflict. Options are `nothing`, `update` or `error`.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_STRICT_MODE">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Whether to stop on non-internal query failures instead of dropping them and continuing. It defaults to false.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_STRICT\_MODE**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Whether to stop on non-internal query failures instead of dropping them and continuing. It defaults to false.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BULK_INGEST_ENABLED">
-    **Default**: False(run), True(snapshot)\
-    **Required**: Optional\
-    **Description**: Whether to use COPY FROM on insert only workloads. It defaults to false when using the run command, and to true when using the snapshot command.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BULK\_INGEST\_ENABLED**
+>
+> **Default**: False(run), True(snapshot)\
+> **Required**: Optional\
+> **Description**: Whether to use COPY FROM on insert only workloads. It defaults to false when using the run command, and to true when using the snapshot command.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BULK_INGEST_COPY_WORKERS">
-    **Default**: 8\
-    **Required**: Optional\
-    **Description**: Number of concurrent COPY streams per table when bulk ingesting. Only applies when bulk ingest is enabled.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BULK\_INGEST\_COPY\_WORKERS**
+>
+> **Default**: 8\
+> **Required**: Optional\
+> **Description**: Number of concurrent COPY streams per table when bulk ingesting. Only applies when bulk ingest is enabled.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_EXP_BACKOFF_INITIAL_INTERVAL">
-    **Default**: 500ms\
-    **Required**: Optional\
-    **Description**: Initial interval for the exponential backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_EXP\_BACKOFF\_INITIAL\_INTERVAL**
+>
+> **Default**: 500ms\
+> **Required**: Optional\
+> **Description**: Initial interval for the exponential backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_EXP_BACKOFF_MAX_INTERVAL">
-    **Default**: 10s\
-    **Required**: Optional\
-    **Description**: Max interval for the exponential backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_EXP\_BACKOFF\_MAX\_INTERVAL**
+>
+> **Default**: 10s\
+> **Required**: Optional\
+> **Description**: Max interval for the exponential backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_EXP_BACKOFF_MAX_RETRIES">
-    **Default**: 20\
-    **Required**: Optional\
-    **Description**: Max retries for the exponential backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_EXP\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 20\
+> **Required**: Optional\
+> **Description**: Max retries for the exponential backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BACKOFF_INTERVAL">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Constant interval for the backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BACKOFF\_INTERVAL**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Constant interval for the backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BACKOFF_MAX_RETRIES">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Max retries for the backoff policy to be applied to the Postgres connection retries.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BACKOFF\_MAX\_RETRIES**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Max retries for the backoff policy to be applied to the Postgres connection retries.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_DISABLE_RETRIES">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Disable any retry policy.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_DISABLE\_RETRIES**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Disable any retry policy.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_IGNORE_DDL">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Disable processing of DDL events on the target Postgres database. Consider enabling if source and target roles have different trust levels (see [privileges](/docs/opensource/pgstream/docs/privileges)).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_IGNORE\_DDL**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Disable processing of DDL events on the target Postgres database. Consider enabling if source and target roles have different trust levels (see [privileges](/docs/opensource/pgstream/docs/privileges)).
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_INCLUDE_DDL_OBJECT_TYPES">
-    **Default**: \[]\
-    **Required**: Optional\
-    **Description**: List of object type categories for which DDL is replicated. DDL for everything else is skipped. Mutually exclusive with `PGSTREAM_POSTGRES_WRITER_EXCLUDE_DDL_OBJECT_TYPES`, and ignored when `PGSTREAM_POSTGRES_WRITER_IGNORE_DDL` is true. See [object type filtering](#object-type-filtering).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_INCLUDE\_DDL\_OBJECT\_TYPES**
+>
+> **Default**: \[]\
+> **Required**: Optional\
+> **Description**: List of object type categories for which DDL is replicated. DDL for everything else is skipped. Mutually exclusive with `PGSTREAM_POSTGRES_WRITER_EXCLUDE_DDL_OBJECT_TYPES`, and ignored when `PGSTREAM_POSTGRES_WRITER_IGNORE_DDL` is true. See [object type filtering](#object-type-filtering).
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_EXCLUDE_DDL_OBJECT_TYPES">
-    **Default**: \[]\
-    **Required**: Optional\
-    **Description**: List of object type categories for which DDL replication is skipped. Mutually exclusive with `PGSTREAM_POSTGRES_WRITER_INCLUDE_DDL_OBJECT_TYPES`, and ignored when `PGSTREAM_POSTGRES_WRITER_IGNORE_DDL` is true. See [object type filtering](#object-type-filtering).
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_EXCLUDE\_DDL\_OBJECT\_TYPES**
+>
+> **Default**: \[]\
+> **Required**: Optional\
+> **Description**: List of object type categories for which DDL replication is skipped. Mutually exclusive with `PGSTREAM_POSTGRES_WRITER_INCLUDE_DDL_OBJECT_TYPES`, and ignored when `PGSTREAM_POSTGRES_WRITER_IGNORE_DDL` is true. See [object type filtering](#object-type-filtering).
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BATCH_AUTO_TUNE_ENABLE">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Whether to enable auto tuning of batch bytes.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BATCH\_AUTO\_TUNE\_ENABLE**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Whether to enable auto tuning of batch bytes.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BATCH_AUTO_TUNE_MIN_BYTES">
-    **Default**: 1048576 (1MB)\
-    **Required**: Optional\
-    **Description**: Minimum batch size in bytes used by the auto tune process.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BATCH\_AUTO\_TUNE\_MIN\_BYTES**
+>
+> **Default**: 1048576 (1MB)\
+> **Required**: Optional\
+> **Description**: Minimum batch size in bytes used by the auto tune process.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BATCH_AUTO_TUNE_MAX_BYTES">
-    **Default**: 52428800 (50MB)\
-    **Required**: Optional\
-    **Description**: Maximum batch size in bytes used by the auto tune process.
-  </Accordion>
+> **PGSTREAM\_POSTGRES\_WRITER\_BATCH\_AUTO\_TUNE\_MAX\_BYTES**
+>
+> **Default**: 52428800 (50MB)\
+> **Required**: Optional\
+> **Description**: Maximum batch size in bytes used by the auto tune process.
 
-  <Accordion title="PGSTREAM_POSTGRES_WRITER_BATCH_AUTO_TUNE_CONVERGENCE_THRESHOLD">
-    **Default**: 0.01 (1%)\
-    **Required**: Optional\
-    **Description**: Minimum search space width (as a fraction of the max batch bytes) at which the auto tune process stops searching for a better batch size.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_POSTGRES\_WRITER\_BATCH\_AUTO\_TUNE\_CONVERGENCE\_THRESHOLD**
+>
+> **Default**: 0.01 (1%)\
+> **Required**: Optional\
+> **Description**: Minimum search space width (as a fraction of the max batch bytes) at which the auto tune process stops searching for a better batch size.
 
 One of exponential/constant/disable retries retry policies can be provided for the Postgres connection retry strategy. If none is provided, the exponential defaults apply.
 
@@ -1064,101 +1050,89 @@ One of exponential/constant/disable retries retry policies can be provided for t
 
 #### Injector
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_INJECTOR_STORE_POSTGRES_URL">
-    **Default**: N/A\
-    **Required**: ✓ Required\
-    **Description**: PostgreSQL URL for DDL replication.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_INJECTOR\_STORE\_POSTGRES\_URL**
+>
+> **Default**: N/A\
+> **Required**: ✓ Required\
+> **Description**: PostgreSQL URL for DDL replication.
 
 #### Transformer
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_TRANSFORMER_RULES_FILE">
-    **Default**: N/A\
-    **Required**: Optional\
-    **Description**: Filepath pointing to the yaml file containing the transformer rules.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_TRANSFORMER\_RULES\_FILE**
+>
+> **Default**: N/A\
+> **Required**: Optional\
+> **Description**: Filepath pointing to the yaml file containing the transformer rules.
 
 #### Filter
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_FILTER_INCLUDE_TABLES">
-    **Default**: N/A\
-    **Required**: Optional\
-    **Description**: List of schema qualified tables for which the WAL events should be processed. If no schema is provided, `public` schema will be assumed. Wildcards are supported.
-  </Accordion>
+> **PGSTREAM\_FILTER\_INCLUDE\_TABLES**
+>
+> **Default**: N/A\
+> **Required**: Optional\
+> **Description**: List of schema qualified tables for which the WAL events should be processed. If no schema is provided, `public` schema will be assumed. Wildcards are supported.
 
-  <Accordion title="PGSTREAM_FILTER_EXCLUDE_TABLES">
-    **Default**: N/A\
-    **Required**: Optional\
-    **Description**: List of schema qualified tables for which the WAL events should be skipped. If no schema is provided, `public` schema will be assumed. Wildcards are supported.
-  </Accordion>
+> **PGSTREAM\_FILTER\_EXCLUDE\_TABLES**
+>
+> **Default**: N/A\
+> **Required**: Optional\
+> **Description**: List of schema qualified tables for which the WAL events should be skipped. If no schema is provided, `public` schema will be assumed. Wildcards are supported.
 
-  <Accordion title="PGSTREAM_FILTER_SCHEMA_ONLY_TABLES">
-    **Default**: N/A\
-    **Required**: Optional\
-    **Description**: List of schema qualified tables for which DDL (schema change) events are processed but data (DML) events are skipped. If no schema is provided, `public` schema will be assumed. Wildcards are supported. Can be combined with either the include or the exclude list.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_FILTER\_SCHEMA\_ONLY\_TABLES**
+>
+> **Default**: N/A\
+> **Required**: Optional\
+> **Description**: List of schema qualified tables for which DDL (schema change) events are processed but data (DML) events are skipped. If no schema is provided, `public` schema will be assumed. Wildcards are supported. Can be combined with either the include or the exclude list.
 
 #### Sanitizer
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_PROCESSOR_SANITIZE_STRIP_NULL_CHAR_BYTES">
-    **Default**: false\
-    **Required**: Optional\
-    **Description**: Strip null bytes (0x00) from string column values. Useful when the source database contains null bytes that are not allowed by the target.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_PROCESSOR\_SANITIZE\_STRIP\_NULL\_CHAR\_BYTES**
+>
+> **Default**: false\
+> **Required**: Optional\
+> **Description**: Strip null bytes (0x00) from string column values. Useful when the source database contains null bytes that are not allowed by the target.
 
 ### Instrumentation
 
 #### Metrics
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_METRICS_ENDPOINT">
-    **Default**: N/A\
-    **Required**: Optional\
-    **Description**: Endpoint where the pgstream metrics will be pushed to via OTLP. Not required to use Prometheus.
-  </Accordion>
+> **PGSTREAM\_METRICS\_ENDPOINT**
+>
+> **Default**: N/A\
+> **Required**: Optional\
+> **Description**: Endpoint where the pgstream metrics will be pushed to via OTLP. Not required to use Prometheus.
 
-  <Accordion title="PGSTREAM_METRICS_COLLECTION_INTERVAL">
-    **Default**: 60s\
-    **Required**: Optional\
-    **Description**: Interval at which the pgstream metrics will be collected and exported via OTLP.
-  </Accordion>
+> **PGSTREAM\_METRICS\_COLLECTION\_INTERVAL**
+>
+> **Default**: 60s\
+> **Required**: Optional\
+> **Description**: Interval at which the pgstream metrics will be collected and exported via OTLP.
 
-  <Accordion title="PGSTREAM_METRICS_PROMETHEUS_ENABLED">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Exposes a Prometheus scrape endpoint on the health server. Requires the health endpoint enabled.
-  </Accordion>
+> **PGSTREAM\_METRICS\_PROMETHEUS\_ENABLED**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Exposes a Prometheus scrape endpoint on the health server. Requires the health endpoint enabled.
 
-  <Accordion title="PGSTREAM_METRICS_PROMETHEUS_ENDPOINT">
-    **Default**: /metrics\
-    **Required**: Optional\
-    **Description**: Path the Prometheus endpoint is served on.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_METRICS\_PROMETHEUS\_ENDPOINT**
+>
+> **Default**: /metrics\
+> **Required**: Optional\
+> **Description**: Path the Prometheus endpoint is served on.
 
 #### Traces
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_TRACES_ENDPOINT">
-    **Default**: N/A\
-    **Required**: Optional\
-    **Description**: Endpoint where the pgstream traces will be exported to.
-  </Accordion>
+> **PGSTREAM\_TRACES\_ENDPOINT**
+>
+> **Default**: N/A\
+> **Required**: Optional\
+> **Description**: Endpoint where the pgstream traces will be exported to.
 
-  <Accordion title="PGSTREAM_TRACES_SAMPLE_RATIO">
-    **Default**: 0\
-    **Required**: Optional\
-    **Description**: Ratio for the trace sampling. Value must be between 0.0 and 1.0, where 0.0 is no traces sampled, and 1.0 is all traces sampled.
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_TRACES\_SAMPLE\_RATIO**
+>
+> **Default**: 0\
+> **Required**: Optional\
+> **Description**: Ratio for the trace sampling. Value must be between 0.0 and 1.0, where 0.0 is no traces sampled, and 1.0 is all traces sampled.
 
 #### Health endpoint
 
@@ -1166,19 +1140,17 @@ Exposes `/health` (liveness, always 200), `/ready` (readiness, pings the source 
 
 When `instrumentation.metrics.prometheus.enabled` (`PGSTREAM_METRICS_PROMETHEUS_ENABLED`) is true, the server also exposes a Prometheus scrape endpoint (default path `/metrics`, configurable via `instrumentation.metrics.prometheus.endpoint` / `PGSTREAM_METRICS_PROMETHEUS_ENDPOINT`). The endpoint returns `404` when Prometheus is disabled. This lets you scrape pgstream's metrics directly, without deploying an OTel collector.
 
-<AccordionGroup>
-  <Accordion title="PGSTREAM_HEALTH_CHECK_ENABLED">
-    **Default**: False\
-    **Required**: Optional\
-    **Description**: Enable the health endpoint server.
-  </Accordion>
+> **PGSTREAM\_HEALTH\_CHECK\_ENABLED**
+>
+> **Default**: False\
+> **Required**: Optional\
+> **Description**: Enable the health endpoint server.
 
-  <Accordion title="PGSTREAM_HEALTH_CHECK_ADDRESS">
-    **Default**: localhost:9910\
-    **Required**: Optional\
-    **Description**: Address the health server listens on. Use `:9910` or `0.0.0.0:9910` to expose externally (e.g. in k8s pods).
-  </Accordion>
-</AccordionGroup>
+> **PGSTREAM\_HEALTH\_CHECK\_ADDRESS**
+>
+> **Default**: localhost:9910\
+> **Required**: Optional\
+> **Description**: Address the health server listens on. Use `:9910` or `0.0.0.0:9910` to expose externally (e.g. in k8s pods).
 
 ## Object type filtering
 
@@ -1186,87 +1158,85 @@ Both the schema snapshot and DDL replication can be restricted to a subset of da
 
 The available categories are:
 
-<AccordionGroup>
-  <Accordion title="tables">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **tables**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="sequences">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **sequences**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="types">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **types**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="indexes">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **indexes**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="constraints">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **constraints**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="functions">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **functions**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="views">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **views**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="materialized_views">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **materialized\_views**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="triggers">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **triggers**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="event_triggers">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **event\_triggers**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="policies">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **policies**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="rules">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **rules**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="extensions">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **extensions**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="collations">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **collations**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="text_search">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ✅
-  </Accordion>
+> **text\_search**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ✅
 
-  <Accordion title="comments">
-    **Schema snapshot**: ✅\
-    **DDL replication**: ❌
-  </Accordion>
-</AccordionGroup>
+> **comments**
+>
+> **Schema snapshot**: ✅\
+> **DDL replication**: ❌
 
 Schemas themselves are never filtered out, since the remaining objects need their namespaces to exist.
 

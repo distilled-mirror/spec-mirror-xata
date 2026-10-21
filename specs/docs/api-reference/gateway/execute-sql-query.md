@@ -19,6 +19,12 @@ See the `Connection-String` security scheme for the host format.
 **Batch:** provide `queries` as an array of query objects, or send the request body
 as a JSON array. Batch queries execute within a single transaction.
 
+**Errors:** PostgreSQL errors return 400 with their SQLSTATE in `code` and their
+diagnostic fields. A 503 means the gateway could not reach the database: `08001`
+when a connection cannot be established and `08006` when an established connection
+fails. A 503 does not guarantee that replaying a write is safe: a connection failure
+can leave its outcome unknown.
+
 
 
 
@@ -139,6 +145,21 @@ paths:
         request body
 
         as a JSON array. Batch queries execute within a single transaction.
+
+
+        **Errors:** PostgreSQL errors return 400 with their SQLSTATE in `code`
+        and their
+
+        diagnostic fields. A 503 means the gateway could not reach the database:
+        `08001`
+
+        when a connection cannot be established and `08006` when an established
+        connection
+
+        fails. A 503 does not guarantee that replaying a write is safe: a
+        connection failure
+
+        can leave its outcome unknown.
       operationId: query
       parameters:
         - name: Array-Mode
@@ -305,6 +326,12 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Gateway connection to the database failed
           content:
             application/json:
               schema:

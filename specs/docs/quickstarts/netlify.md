@@ -37,9 +37,9 @@ Without this, commands such as `xata branch url` fail with
 xata branch url main --type pooler
 ```
 
-<Tip>
-  Use the `pooler` connection type for Netlify Functions. Serverless invocations create many short-lived connections, and the pooler keeps the number of PostgreSQL connections low under concurrency. See [Serverless Proxy](/docs/core-concepts/serverless-proxy) for the full list of connection types.
-</Tip>
+> [!TIP]
+>
+> Use the `pooler` connection type for Netlify Functions. Serverless invocations create many short-lived connections, and the pooler keeps the number of PostgreSQL connections low under concurrency. See [Serverless Proxy](/docs/core-concepts/serverless-proxy) for the full list of connection types.
 
 3. In Netlify, go to **Project configuration > Environment variables** and add a variable named `DATABASE_URL` with the connection string as its value. Leave the scopes at their default so the variable is available to builds and functions on every Netlify plan.
 4. Install the driver in your project:
@@ -48,9 +48,9 @@ xata branch url main --type pooler
 npm install @neondatabase/serverless
 ```
 
-<Info>
-  Xata implements the [Neon serverless driver protocol](https://github.com/neondatabase/serverless), so the `@neondatabase/serverless` package connects to Xata over HTTP and WebSocket without changes. If you are moving a Netlify site off Neon, your data access code stays as it is.
-</Info>
+> [!NOTE]
+>
+> Xata implements the [Neon serverless driver protocol](https://github.com/neondatabase/serverless), so the `@neondatabase/serverless` package connects to Xata over HTTP and WebSocket without changes. If you are moving a Netlify site off Neon, your data access code stays as it is.
 
 5. On the branch's **Queries** page in Xata, create the table used by this example:
 
@@ -143,12 +143,12 @@ jobs:
 
 Netlify applies a branch-scoped value to that branch's Deploy Previews, branch deploys, and deploy permalinks, so the preview build and its functions both pick up the branch connection string. Production keeps whatever `DATABASE_URL` you set on the site.
 
-<Warning>
-  The CLI reads `XATA_API_KEY` from the environment, but not the organization or project.
-  Outside a folder linked with `xata init`, pass `--organization` and `--project` on every
-  command, as the workflow above does. Without them each command fails with
-  `Missing required path parameter: projectID`.
-</Warning>
+> [!WARNING]
+>
+> The CLI reads `XATA_API_KEY` from the environment, but not the organization or project.
+> Outside a folder linked with `xata init`, pass `--organization` and `--project` on every
+> command, as the workflow above does. Without them each command fails with
+> `Missing required path parameter: projectID`.
 
 ### Clean up when the pull request closes
 
@@ -187,9 +187,9 @@ jobs:
             --context branch:${{ github.head_ref }}
 ```
 
-<Note>
-  `XATA_API_KEY` should be an organization API key. Create one with `xata keys organization create`. The other IDs come from `xata organization get id`, `xata project get id`, and `xata branch get id`. Set `XATA_PREVIEW_PARENT_BRANCH_ID` to the ID of the branch that previews should copy. Run these commands from a folder you have linked with `xata init`, on CLI 1.7.0 or later.
-</Note>
+> [!NOTE]
+>
+> `XATA_API_KEY` should be an organization API key. Create one with `xata keys organization create`. The other IDs come from `xata organization get id`, `xata project get id`, and `xata branch get id`. Set `XATA_PREVIEW_PARENT_BRANCH_ID` to the ID of the branch that previews should copy. Run these commands from a folder you have linked with `xata init`, on CLI 1.7.0 or later.
 
 For the full set of Xata GitHub Actions, including schema migration checks on pull requests, see [Automations](/docs/automations/ga-pr).
 

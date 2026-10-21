@@ -8,7 +8,7 @@
 
 This guide shows you how to create a realistic production clone in Xata by cloning your production database, optionally anonymizing sensitive data.
 
-<img src="https://mintcdn.com/xata/zunLvnbMMVhTIsZq/images/deployment-models/xata-deployment-staging.png?fit=max&auto=format&n=zunLvnbMMVhTIsZq&q=85&s=19ef06a16fb3d83a6d6bff838395b5b1" alt="Creating a production clone of your database" className="rounded-lg" width="1084" height="1270" data-path="images/deployment-models/xata-deployment-staging.png" />
+![Creating a production clone of your database](https://mintcdn.com/xata/zunLvnbMMVhTIsZq/images/deployment-models/xata-deployment-staging.png?fit=max\&auto=format\&n=zunLvnbMMVhTIsZq\&q=85\&s=19ef06a16fb3d83a6d6bff838395b5b1)
 
 ## 1. Prerequisites
 
@@ -23,14 +23,14 @@ This guide shows you how to create a realistic production clone in Xata by cloni
 
 In the Console, create a new project and then click the **Create main branch** button to create the PostgreSQL instance that will hold the production clone.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/create-new-branch.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=cbb47662022af582812118fea4057b47" alt="Create new branch" className="rounded-lg" width="3010" height="2050" data-path="images/create-new-branch.png" />
+![Create new branch](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/create-new-branch.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=cbb47662022af582812118fea4057b47)
 
 Since this is a non-production setup, you can typically select 0 replicas. It is a good idea to start with a similar
 instance size as you use for production, but you can also use a smaller instance size if the production clone traffic will be much smaller. You can adjust the size later.
 
-<Tip>
-  If you're using Xata for production, we recommend creating a separate organization for your production clone. This allows you to control access to production data more effectively by only granting production access to team members who need it. Within an organization, [roles](/docs/platform/organization-roles) control who can manage members, billing and API keys, but every member can access all of its projects and branches.
-</Tip>
+> [!TIP]
+>
+> If you're using Xata for production, we recommend creating a separate organization for your production clone. This allows you to control access to production data more effectively by only granting production access to team members who need it. Within an organization, [roles](/docs/platform/organization-roles) control who can manage members, billing and API keys, but every member can access all of its projects and branches.
 
 ## 3. Configure the Xata CLI
 
@@ -68,9 +68,9 @@ xata clone config --source-url $CONN_STRING --mode=prompt
 
 Where the `CONN_STRING` variable is set to the production connection string from the previous step.
 
-<Tip>
-  if your Postgres hosting provider uses self-signed certificates, you can disable the strict certificate verification like this:
-</Tip>
+> [!TIP]
+>
+> if your Postgres hosting provider uses self-signed certificates, you can disable the strict certificate verification like this:
 
 ```bash theme={null}
 NODE_TLS_REJECT_UNAUTHORIZED=0 xata clone config --source-url $CONN_STRING --mode=prompt
@@ -78,9 +78,9 @@ NODE_TLS_REJECT_UNAUTHORIZED=0 xata clone config --source-url $CONN_STRING --mod
 
 Follow the prompts to specify whether you want anonymization enabled, which tables and columns to anonymize, and which transformers to use. For more details about transformers, see the [anonymization](/docs/core-concepts/anonymization) page.
 
-<Tip>
-  To simplify the process, the interactive prompt suggests which columns require anonymization. This is based on simple heuristics (name, email, etc.)
-</Tip>
+> [!TIP]
+>
+> To simplify the process, the interactive prompt suggests which columns require anonymization. This is based on simple heuristics (name, email, etc.)
 
 The result is a YAML configuration file written in `.xata/clone.yaml`. You can edit this file to further configure your anonymization process.
 

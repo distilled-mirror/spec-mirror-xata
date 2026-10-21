@@ -2233,7 +2233,7 @@
       "post": {
         "operationId": "query",
         "summary": "Execute SQL query",
-        "description": "Execute a single SQL query or a batch of queries against a PostgreSQL branch.\n\n**Authentication:** send the branch's PostgreSQL connection string in the\n`Connection-String` header. The control-plane API key (Bearer token) is\n**not** accepted on the gateway host.\n\n**Routing:** the target branch, region, and endpoint type are taken from the\nhostname embedded in the connection string, which must match the request host.\nSee the `Connection-String` security scheme for the host format.\n\n**Single query:** provide `query` (and optional `params`) at the top level.\n\n**Batch:** provide `queries` as an array of query objects, or send the request body\nas a JSON array. Batch queries execute within a single transaction.\n",
+        "description": "Execute a single SQL query or a batch of queries against a PostgreSQL branch.\n\n**Authentication:** send the branch's PostgreSQL connection string in the\n`Connection-String` header. The control-plane API key (Bearer token) is\n**not** accepted on the gateway host.\n\n**Routing:** the target branch, region, and endpoint type are taken from the\nhostname embedded in the connection string, which must match the request host.\nSee the `Connection-String` security scheme for the host format.\n\n**Single query:** provide `query` (and optional `params`) at the top level.\n\n**Batch:** provide `queries` as an array of query objects, or send the request body\nas a JSON array. Batch queries execute within a single transaction.\n\n**Errors:** PostgreSQL errors return 400 with their SQLSTATE in `code` and their\ndiagnostic fields. A 503 means the gateway could not reach the database: `08001`\nwhen a connection cannot be established and `08006` when an established connection\nfails. A 503 does not guarantee that replaying a write is safe: a connection failure\ncan leave its outcome unknown.\n",
         "parameters": [
           {
             "name": "Array-Mode",
@@ -2491,6 +2491,16 @@
           },
           "500": {
             "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Gateway connection to the database failed",
             "content": {
               "application/json": {
                 "schema": {
@@ -8898,7 +8908,7 @@
         "x-internal": true
       },
       "Resource": {
-        "description": "A provisioned Vercel Marketplace resource. Matches Vercel's Partner API\n\"Get Resource\" response. Secrets/connection info are returned by Provision\nResource, not here. The optional billingPlan, protocolSettings, and\nnotification fields are not yet populated.\n",
+        "description": "A provisioned Vercel Marketplace resource. Matches Vercel's Partner API\n\"Get Resource\" response. Secrets/connection info are returned by Provision\nResource, not here.\n",
         "type": "object",
         "properties": {
           "id": {
@@ -9312,12 +9322,7 @@
     {
       "name": "Vercel Marketplace API",
       "tags": [
-        "Vercel"
-      ]
-    },
-    {
-      "name": "Vercel Marketplace Resources API",
-      "tags": [
+        "Vercel",
         "Vercel Resources"
       ]
     }

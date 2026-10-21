@@ -24,81 +24,81 @@ Copies the source database into the branch once. The anonymization rules in `.xa
 xata clone start [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color] [--debug-profile] [--dump-file value] (--source-url value) [--organization value] [--project value] [--branch value] [--database value] [--filter-tables value] [--validation-mode strict|relaxed|prompt] [--role value] [--copy-roles] [--tune-target] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--config" type="string">
-  .env or .yaml config file to use with pgstream if any
-</ParamField>
+**--config** `string`
 
-<ParamField path="--log-format" type="string">
-  Log output format. One of console, json
-</ParamField>
+.env or .yaml config file to use with pgstream if any
 
-<ParamField path="--log-level" type="trace | debug | info | warn | error | fatal | panic" default="info">
-  Log level for pgstream
-</ParamField>
+**--log-format** `string`
 
-<ParamField path="--no-color" type="boolean">
-  Disable ANSI color codes in console log output (ignored when --log-format=json)
-</ParamField>
+Log output format. One of console, json
 
-<ParamField path="--debug-profile" type="boolean">
-  Whether to produce CPU and memory profile files, as well as exposing a /debug/pprof endpoint on localhost:6060
-</ParamField>
+**--log-level** `trace | debug | info | warn | error | fatal | panic` (default: info)
 
-<ParamField path="--dump-file" type="string">
-  File where the pg\_dump output will be written
-</ParamField>
+Log level for pgstream
 
-<ParamField path="--source-url" type="string" required>
-  The source URL of the database to clone
-</ParamField>
+**--no-color** `boolean`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Disable ANSI color codes in console log output (ignored when --log-format=json)
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--debug-profile** `boolean`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Whether to produce CPU and memory profile files, as well as exposing a /debug/pprof endpoint on localhost:6060
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--dump-file** `string`
 
-<ParamField path="--filter-tables" type="string" default="*.*">
-  Tables to filter
-</ParamField>
+File where the pg\_dump output will be written
 
-<ParamField path="--validation-mode" type="strict | relaxed | prompt" default="prompt">
-  Anonymization validation mode, strict implies that all tables and columns should be specified
-</ParamField>
+**--source-url** `string` *required*
 
-<ParamField path="--role" type="string">
-  Postgres role to use for the clone
-</ParamField>
+The source URL of the database to clone
 
-<ParamField path="--copy-roles" type="boolean" default="false">
-  Copy roles, owners, and privileges to the target
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--tune-target" type="boolean" default="false">
-  Temporarily tune the target branch for bulk loading, reverting the change when the clone stops. Raises max\_wal\_size on the branch and the maintenance settings on the index rebuild.
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--project** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Project ID
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--filter-tables** `string` (default: *.*)
+
+Tables to filter
+
+**--validation-mode** `strict | relaxed | prompt` (default: prompt)
+
+Anonymization validation mode, strict implies that all tables and columns should be specified
+
+**--role** `string`
+
+Postgres role to use for the clone
+
+**--copy-roles** `boolean` (default: false)
+
+Copy roles, owners, and privileges to the target
+
+**--tune-target** `boolean` (default: false)
+
+Temporarily tune the target branch for bulk loading, reverting the change when the clone stops. Raises max\_wal\_size on the branch and the maintenance settings on the index rebuild.
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## config
 
@@ -110,49 +110,49 @@ Inspects the source database and writes `.xata/clone.yaml`, interactively or wit
 xata clone config (--source-url value) [--mode auto|prompt|web|ai] [--validation-mode strict|relaxed|prompt] [--organization value] [--project value] [--branch value] [--prompt value] [--model gemini-2.5-flash|claude-sonnet-4-6|claude-haiku-4-5-20251001] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--source-url" type="string" required>
-  The source URL of the database to clone
-</ParamField>
+**--source-url** `string` *required*
 
-<ParamField path="--mode" type="auto | prompt | web | ai" default="prompt">
-  The assisting mode to help with the configuration generation
-</ParamField>
+The source URL of the database to clone
 
-<ParamField path="--validation-mode" type="strict | relaxed | prompt" default="prompt">
-  Anonymization validation mode, strict implies that all tables and columns should be specified
-</ParamField>
+**--mode** `auto | prompt | web | ai` (default: prompt)
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+The assisting mode to help with the configuration generation
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--validation-mode** `strict | relaxed | prompt` (default: prompt)
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Anonymization validation mode, strict implies that all tables and columns should be specified
 
-<ParamField path="--prompt" type="string">
-  Instructions for AI mode (e.g., which columns to anonymize, specific transformers to use)
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--model" type="gemini-2.5-flash | claude-sonnet-4-6 | claude-haiku-4-5-20251001">
-  AI model, gemini-2.5-flash by default
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--project** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Project ID
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--branch** `string`
+
+Branch ID or name
+
+**--prompt** `string`
+
+Instructions for AI mode (e.g., which columns to anonymize, specific transformers to use)
+
+**--model** `gemini-2.5-flash | claude-sonnet-4-6 | claude-haiku-4-5-20251001`
+
+AI model, gemini-2.5-flash by default
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## stream
 
@@ -164,85 +164,85 @@ Copies the tables `--filter-tables` selects first, then follows the source throu
 xata clone stream [--config value] [--log-format value] [--log-level trace|debug|info|warn|error|fatal|panic] [--no-color] [--debug-profile] [--dump-file value] (--source-url value) [--organization value] [--project value] [--branch value] [--database value] [--filter-tables value] [--validation-mode strict|relaxed|prompt] [--role value] [--copy-roles] [--skip-ddl-tracking] [--replication-slot value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--config" type="string">
-  .env or .yaml config file to use with pgstream if any
-</ParamField>
+**--config** `string`
 
-<ParamField path="--log-format" type="string">
-  Log output format. One of console, json
-</ParamField>
+.env or .yaml config file to use with pgstream if any
 
-<ParamField path="--log-level" type="trace | debug | info | warn | error | fatal | panic" default="info">
-  Log level for pgstream
-</ParamField>
+**--log-format** `string`
 
-<ParamField path="--no-color" type="boolean">
-  Disable ANSI color codes in console log output (ignored when --log-format=json)
-</ParamField>
+Log output format. One of console, json
 
-<ParamField path="--debug-profile" type="boolean">
-  Whether to expose a /debug/pprof endpoint on localhost:6060
-</ParamField>
+**--log-level** `trace | debug | info | warn | error | fatal | panic` (default: info)
 
-<ParamField path="--dump-file" type="string">
-  File where the pg\_dump output will be written if initial snapshot is enabled
-</ParamField>
+Log level for pgstream
 
-<ParamField path="--source-url" type="string" required>
-  The source URL of the database to stream from
-</ParamField>
+**--no-color** `boolean`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Disable ANSI color codes in console log output (ignored when --log-format=json)
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--debug-profile** `boolean`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Whether to expose a /debug/pprof endpoint on localhost:6060
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--dump-file** `string`
 
-<ParamField path="--filter-tables" type="string" default="*.*">
-  Tables to filter
-</ParamField>
+File where the pg\_dump output will be written if initial snapshot is enabled
 
-<ParamField path="--validation-mode" type="strict | relaxed | prompt" default="prompt">
-  Anonymization validation mode, strict implies that all tables and columns should be specified
-</ParamField>
+**--source-url** `string` *required*
 
-<ParamField path="--role" type="string">
-  Postgres role to use for streaming (it should have at least REPLICATION privilege)
-</ParamField>
+The source URL of the database to stream from
 
-<ParamField path="--copy-roles" type="boolean" default="false">
-  Copy roles, owners, and privileges to the target
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--skip-ddl-tracking" type="boolean" default="false">
-  Skip DDL tracking during streaming. Useful for managed PostgreSQL services that do not support superuser access required for event triggers. Requires --replication-slot flag to be set with a pre-created replication slot on the source database.
-</ParamField>
+Organization ID
 
-<ParamField path="--replication-slot" type="string">
-  Name of the replication slot on the source database. Overrides the default slot name
-</ParamField>
+**--project** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Project ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--branch** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--filter-tables** `string` (default: *.*)
+
+Tables to filter
+
+**--validation-mode** `strict | relaxed | prompt` (default: prompt)
+
+Anonymization validation mode, strict implies that all tables and columns should be specified
+
+**--role** `string`
+
+Postgres role to use for streaming (it should have at least REPLICATION privilege)
+
+**--copy-roles** `boolean` (default: false)
+
+Copy roles, owners, and privileges to the target
+
+**--skip-ddl-tracking** `boolean` (default: false)
+
+Skip DDL tracking during streaming. Useful for managed PostgreSQL services that do not support superuser access required for event triggers. Requires --replication-slot flag to be set with a pre-created replication slot on the source database.
+
+**--replication-slot** `string`
+
+Name of the replication slot on the source database. Overrides the default slot name
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

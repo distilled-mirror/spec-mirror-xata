@@ -6,9 +6,9 @@
 
 > Run pgroll to manage PostgreSQL schema migrations
 
-<Note>
-  The pgroll binary version is pinned by the CLI and can be overridden with the `XATA_PGROLL_BINARY_VERSION` environment variable.
-</Note>
+> [!NOTE]
+>
+> The pgroll binary version is pinned by the CLI and can be overridden with the `XATA_PGROLL_BINARY_VERSION` environment variable.
 
 Every command below also takes `-h, --help`.
 
@@ -34,73 +34,73 @@ Create a baseline migration for an existing database schema
 xata roll baseline [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--json] [--yes] [--profile value] [--debug] [<version>] [<folder>]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format instead of YAML
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--yes" type="boolean">
-  Skip confirmation prompt
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Enable verbose logging
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--organization** `string`
 
-<ParamField path="version" type="string">
-  Version name for the baseline, for example 01\_initial\_schema
-</ParamField>
+Organization ID
 
-<ParamField path="folder" type="string">
-  The directory that contains the migrations
-</ParamField>
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--json** `boolean`
+
+Output in JSON format instead of YAML
+
+**--yes** `boolean`
+
+Skip confirmation prompt
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**version** `string`
+
+Version name for the baseline, for example 01\_initial\_schema
+
+**folder** `string`
+
+The directory that contains the migrations
 
 ## complete
 
@@ -110,61 +110,61 @@ Complete an ongoing migration with the operations present in the given file
 xata roll complete [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Enable verbose logging
+
+**--organization** `string`
+
+Organization ID
+
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## init
 
@@ -174,61 +174,61 @@ Initialize pgroll in the target database
 xata roll init [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Enable verbose logging
+
+**--organization** `string`
+
+Organization ID
+
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## latest
 
@@ -242,65 +242,65 @@ Print the latest migration name
 xata roll latest migration [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--local" type="string">
-  Retrieve the latest migration from a local migration directory
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Enable verbose logging
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--organization** `string`
+
+Organization ID
+
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--local** `string`
+
+Retrieve the latest migration from a local migration directory
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ### latest schema
 
@@ -310,65 +310,65 @@ Print the latest version schema name
 xata roll latest schema [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--local value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--local" type="string">
-  Retrieve the latest version from a local migration directory
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Enable verbose logging
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--organization** `string`
+
+Organization ID
+
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--local** `string`
+
+Retrieve the latest version from a local migration directory
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## migrate
 
@@ -378,81 +378,81 @@ Apply outstanding migrations from a directory to a database
 xata roll migrate [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete] [--expect-one] [--profile value] [--debug] [--json] [<folder>]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--backfill-batch-delay" type="string">
-  Duration of delay between batch backfills (eg. 1s, 1000ms)
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--backfill-batch-size" type="string">
-  Number of rows backfilled in each batch
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--complete" type="boolean">
-  Complete the final migration rather than leaving it active
-</ParamField>
+Enable verbose logging
 
-<ParamField path="--expect-one" type="boolean">
-  Abort if there is more than one migration to be applied
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--project** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Project ID
 
-<ParamField path="folder" type="string">
-  The directory that contains the migrations
-</ParamField>
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--backfill-batch-delay** `string`
+
+Duration of delay between batch backfills (eg. 1s, 1000ms)
+
+**--backfill-batch-size** `string`
+
+Number of rows backfilled in each batch
+
+**--complete** `boolean`
+
+Complete the final migration rather than leaving it active
+
+**--expect-one** `boolean`
+
+Abort if there is more than one migration to be applied
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**folder** `string`
+
+The directory that contains the migrations
 
 ## update
 
@@ -462,65 +462,65 @@ Update outdated migrations in a directory
 xata roll update [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug] [<folder>]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--json" type="boolean">
-  Output migration file in JSON format instead of YAML
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Enable verbose logging
 
-<ParamField path="folder" type="string">
-  The directory that contains the migrations
-</ParamField>
+**--organization** `string`
+
+Organization ID
+
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--json** `boolean`
+
+Output migration file in JSON format instead of YAML
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**folder** `string`
+
+The directory that contains the migrations
 
 ## pull
 
@@ -530,65 +530,65 @@ Pull migration history from the target database and write it to disk
 xata roll pull [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug] [<folder>]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--json" type="boolean">
-  Output each migration in JSON format instead of YAML
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Enable verbose logging
 
-<ParamField path="folder" type="string">
-  The target directory to pull migrations into
-</ParamField>
+**--organization** `string`
+
+Organization ID
+
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--json** `boolean`
+
+Output each migration in JSON format instead of YAML
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**folder** `string`
+
+The target directory to pull migrations into
 
 ## rollback
 
@@ -598,61 +598,61 @@ Roll back an ongoing migration
 xata roll rollback [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Enable verbose logging
+
+**--organization** `string`
+
+Organization ID
+
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## start
 
@@ -662,81 +662,81 @@ Start a migration for the operations present in the given file
 xata roll start [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--backfill-batch-delay value] [--backfill-batch-size value] [--complete] [--skip-validation] [--profile value] [--debug] [--json] <file>
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--backfill-batch-delay" type="string">
-  Duration of delay between batch backfills (eg. 1s, 1000ms)
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--backfill-batch-size" type="string">
-  Number of rows backfilled in each batch
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--complete" type="boolean">
-  Mark the migration as complete
-</ParamField>
+Enable verbose logging
 
-<ParamField path="--skip-validation" type="boolean">
-  Skip migration validation
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--project** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Project ID
 
-<ParamField path="file" type="string" required>
-  The migration file to start
-</ParamField>
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--backfill-batch-delay** `string`
+
+Duration of delay between batch backfills (eg. 1s, 1000ms)
+
+**--backfill-batch-size** `string`
+
+Number of rows backfilled in each batch
+
+**--complete** `boolean`
+
+Mark the migration as complete
+
+**--skip-validation** `boolean`
+
+Skip migration validation
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**file** `string` *required*
+
+The migration file to start
 
 ## status
 
@@ -746,61 +746,61 @@ Show pgroll status
 xata roll status [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Enable verbose logging
+
+**--organization** `string`
+
+Organization ID
+
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## convert
 
@@ -810,65 +810,65 @@ Convert SQL statements to a pgroll migration
 xata roll convert [--lock-timeout value] [--pgroll-schema value] [--postgres-url value] [--role value] [--schema value] [--use-version-schema] [--verbose] [--organization value] [--project value] [--branch value] [--database value] [--json] [--profile value] [--debug] <file>
 ```
 
-<ParamField path="--lock-timeout" type="string">
-  Postgres lock timeout in milliseconds for pgroll DDL operations
-</ParamField>
+**--lock-timeout** `string`
 
-<ParamField path="--pgroll-schema" type="string">
-  Postgres schema to use for pgroll internal state
-</ParamField>
+Postgres lock timeout in milliseconds for pgroll DDL operations
 
-<ParamField path="--postgres-url" type="string">
-  Postgres URL
-</ParamField>
+**--pgroll-schema** `string`
 
-<ParamField path="--role" type="string">
-  Optional postgres role to set when executing migrations
-</ParamField>
+Postgres schema to use for pgroll internal state
 
-<ParamField path="--schema" type="string">
-  Postgres schema to use for the migration
-</ParamField>
+**--postgres-url** `string`
 
-<ParamField path="--use-version-schema" type="boolean">
-  Create version schemas for each migration
-</ParamField>
+Postgres URL
 
-<ParamField path="--verbose" type="boolean">
-  Enable verbose logging
-</ParamField>
+**--role** `string`
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+Optional postgres role to set when executing migrations
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+**--schema** `string`
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+Postgres schema to use for the migration
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+**--use-version-schema** `boolean`
 
-<ParamField path="--json" type="boolean">
-  Output migration file in JSON format instead of YAML
-</ParamField>
+Create version schemas for each migration
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--verbose** `boolean`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Enable verbose logging
 
-<ParamField path="file" type="string" required>
-  The migration file to convert
-</ParamField>
+**--organization** `string`
+
+Organization ID
+
+**--project** `string`
+
+Project ID
+
+**--branch** `string`
+
+Branch ID or name
+
+**--database** `string`
+
+Database name on the branch
+
+**--json** `boolean`
+
+Output migration file in JSON format instead of YAML
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**file** `string` *required*
+
+The migration file to convert
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

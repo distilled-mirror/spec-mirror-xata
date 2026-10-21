@@ -6,7 +6,7 @@
 
 > Monitor your database performance across instances with real-time metrics
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/metrics.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=78f87f8de9dfa303b23c72d1544e23aa" alt="Metrics dashboard showing database performance monitoring with CPU, memory, and disk usage charts" className="rounded-lg" width="2870" height="1550" data-path="images/platform/metrics.png" />
+![Metrics dashboard showing database performance monitoring with CPU, memory, and disk usage charts](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/metrics.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=78f87f8de9dfa303b23c72d1544e23aa)
 
 Monitor your database performance across instances with real-time metrics including CPU, memory, disk usage, and more. You can view trends as far back as 30 days with minute level granularity.
 

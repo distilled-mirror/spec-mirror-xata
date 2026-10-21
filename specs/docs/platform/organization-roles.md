@@ -10,9 +10,9 @@ Every member of an [organization](/docs/platform/organization) is either an **Ad
 
 The person who creates an organization is its first Admin.
 
-<Note>
-  Members who joined before roles were introduced are Admins. Change anyone who does not need to manage the organization to Editor.
-</Note>
+> [!NOTE]
+>
+> Members who joined before roles were introduced are Admins. Change anyone who does not need to manage the organization to Editor.
 
 ## Permissions
 

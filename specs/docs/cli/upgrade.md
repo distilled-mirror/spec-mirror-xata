@@ -16,25 +16,25 @@ Upgrade the Xata CLI
 xata upgrade [--channel dev|next|latest] [--version value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--channel" type="dev | next | latest" default="latest">
-  The channel to upgrade from
-</ParamField>
+**--channel** `dev | next | latest` (default: latest)
 
-<ParamField path="--version" type="string">
-  The version to upgrade to
-</ParamField>
+The channel to upgrade from
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--version** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The version to upgrade to
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Examples:**
 

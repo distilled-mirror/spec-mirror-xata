@@ -84,9 +84,9 @@ The toolbar exposes two actions:
 * **Refresh** — re-runs the underlying query against `pg_stat_statements` to pull the latest counters.
 * **Reset** — calls `pg_stat_statements_reset()` to clear all captured statistics. Statistics begin rebuilding as new queries are executed. Resetting requires superuser privileges; if the action is denied, ask an administrator to run it for you.
 
-<Warning>
-  Resetting statistics is branch-wide and cannot be undone. All historical query counters are discarded.
-</Warning>
+> [!WARNING]
+>
+> Resetting statistics is branch-wide and cannot be undone. All historical query counters are discarded.
 
 ## From the command line
 

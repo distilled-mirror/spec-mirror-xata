@@ -18,7 +18,7 @@ This tutorial will showcase the use of pgstream to replicate data from a Postgre
 
 ### Demo
 
-<iframe className="w-full aspect-video rounded-xl" src="https://www.youtube.com/embed/fewe85P5ktk" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+[YouTube video player](https://www.youtube.com/embed/fewe85P5ktk)
 
 ## Environment setup
 

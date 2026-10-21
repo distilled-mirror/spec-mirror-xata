@@ -32,21 +32,21 @@ List all projects
 xata project list [--organization value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata project ls`
 
@@ -58,25 +58,25 @@ Describe a project
 xata project describe [--organization value] [--project value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--project** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Project ID
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata project view`, `xata project show`
 
@@ -88,69 +88,69 @@ Create a new project
 xata project create [--organization value] (--name value) [--branch-name value] [--description value] [--instance-type value] [--replicas value] [--region value] [--storage value] [--postgres-version value] [--scale-to-zero-base true|false] [--scale-to-zero-child true|false] [--inactivity-period-base value] [--inactivity-period-child value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--name" type="string" required>
-  Project Name
-</ParamField>
+Organization ID
 
-<ParamField path="--branch-name" type="string">
-  Branch Name
-</ParamField>
+**--name** `string` *required*
 
-<ParamField path="--description" type="string">
-  Short description of what the first branch is for
-</ParamField>
+Project Name
 
-<ParamField path="--instance-type" type="string">
-  Instance type for the first branch
-</ParamField>
+**--branch-name** `string`
 
-<ParamField path="--replicas" type="string">
-  Number of read replicas for the first branch
-</ParamField>
+Branch Name
 
-<ParamField path="--region" type="string">
-  Region to create the project in
-</ParamField>
+**--description** `string`
 
-<ParamField path="--storage" type="string">
-  Storage in GB for the first branch
-</ParamField>
+Short description of what the first branch is for
 
-<ParamField path="--postgres-version" type="string">
-  Please select the PostgreSQL version for this branch
-</ParamField>
+**--instance-type** `string`
 
-<ParamField path="--scale-to-zero-base" type="true | false">
-  Default scale to zero status for base branches
-</ParamField>
+Instance type for the first branch
 
-<ParamField path="--scale-to-zero-child" type="true | false">
-  Default scale to zero status for child branches
-</ParamField>
+**--replicas** `string`
 
-<ParamField path="--inactivity-period-base" type="string">
-  Default inactivity period for base branches in whole minutes (1–1440)
-</ParamField>
+Number of read replicas for the first branch
 
-<ParamField path="--inactivity-period-child" type="string">
-  Default inactivity period for child branches in whole minutes (1–1440)
-</ParamField>
+**--region** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Region to create the project in
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--storage** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Storage in GB for the first branch
+
+**--postgres-version** `string`
+
+Please select the PostgreSQL version for this branch
+
+**--scale-to-zero-base** `true | false`
+
+Default scale to zero status for base branches
+
+**--scale-to-zero-child** `true | false`
+
+Default scale to zero status for child branches
+
+**--inactivity-period-base** `string`
+
+Default inactivity period for base branches in whole minutes (1–1440)
+
+**--inactivity-period-child** `string`
+
+Default inactivity period for child branches in whole minutes (1–1440)
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## delete
 
@@ -160,29 +160,29 @@ Delete a project
 xata project delete [--organization value] [--project value] [--yes] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--yes" type="boolean" default="false">
-  Do not ask for confirmation, assume yes.
-</ParamField>
+**--project** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Project ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--yes** `boolean` (default: false)
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Do not ask for confirmation, assume yes.
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## init
 
@@ -194,33 +194,33 @@ Writes the organization, project, branch and database to `.xata/` in this folder
 xata project init [--organization value] [--project value] [--branch value] [--database value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--branch" type="string">
-  Branch ID or name
-</ParamField>
+**--project** `string`
 
-<ParamField path="--database" type="string">
-  Database name on the branch
-</ParamField>
+Project ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--branch** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Branch ID or name
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--database** `string`
+
+Database name on the branch
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Examples:**
 
@@ -239,29 +239,29 @@ Get a field from a project description
 xata project get [--organization value] [--project value] [--profile value] [--debug] [--json] <[project] field>...
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--project** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Project ID
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
 
-<ParamField path="[project] field" type="string">
-  Project name and/or field to get
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**\[project] field** `string`
+
+Project name and/or field to get
 
 ## set
 
@@ -273,33 +273,33 @@ The fields are name, scale-to-zero-base, scale-to-zero-child, inactivity-period-
 xata project set [--organization value] [--project value] [--profile value] [--debug] [--json] [<field>] [<value>]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--project** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Project ID
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
 
-<ParamField path="field" type="string">
-  The field to set
-</ParamField>
+The profile to use
 
-<ParamField path="value" type="string">
-  The value to set
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**field** `string`
+
+The field to set
+
+**value** `string`
+
+The value to set
 
 **Examples:**
 
@@ -320,25 +320,25 @@ Show IP filtering status and configured CIDR entries
 xata project ip-filter list [--organization value] [--project value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--project** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Project ID
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ### ip-filter enable
 
@@ -348,25 +348,25 @@ Enable IP filtering for a project
 xata project ip-filter enable [--organization value] [--project value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--project** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Project ID
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ### ip-filter disable
 
@@ -376,25 +376,25 @@ Disable IP filtering for a project
 xata project ip-filter disable [--organization value] [--project value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--project** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Project ID
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ### ip-filter add
 
@@ -404,33 +404,33 @@ Add a CIDR entry to the IP filter allow list
 xata project ip-filter add [--organization value] [--project value] [--label value] [--profile value] [--debug] [--json] [<cidr>]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--label" type="string">
-  Label for the CIDR entry
-</ParamField>
+**--project** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Project ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--label** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Label for the CIDR entry
 
-<ParamField path="cidr" type="string">
-  IP address or CIDR block to add (e.g. 192.168.0.0/24 or 10.0.0.1)
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**cidr** `string`
+
+IP address or CIDR block to add (e.g. 192.168.0.0/24 or 10.0.0.1)
 
 **Examples:**
 
@@ -449,33 +449,33 @@ Remove a CIDR entry from the IP filter allow list
 xata project ip-filter remove [--organization value] [--project value] [--force] [--profile value] [--debug] [--json] [<cidr>]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--force" type="boolean" default="false">
-  Skip confirmation prompts
-</ParamField>
+**--project** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Project ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--force** `boolean` (default: false)
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Skip confirmation prompts
 
-<ParamField path="cidr" type="string">
-  CIDR block to remove
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**cidr** `string`
+
+CIDR block to remove
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

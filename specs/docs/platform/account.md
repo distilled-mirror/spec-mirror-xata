@@ -6,7 +6,7 @@
 
 > Manage your account settings, profile, and authentication preferences
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/account-settings-nav.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=3942a919dda0edbeff5d702c19391e99" alt="Account settings navigation overview" className="rounded-lg" width="2880" height="1556" data-path="images/platform/account-settings-nav.png" />
+![Account settings navigation overview](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/account-settings-nav.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=3942a919dda0edbeff5d702c19391e99)
 
 ## Overview
 
@@ -16,7 +16,7 @@ Your Xata account is the foundation of your database management experience. From
 
 Update your personal information and contact details in the profile section of your account settings.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/account-settings-profile.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=9227ab254407059bdf0653489711201f" alt="Account profile settings interface" className="rounded-lg" width="1984" height="684" data-path="images/platform/account-settings-profile.png" />
+![Account profile settings interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/account-settings-profile.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=9227ab254407059bdf0653489711201f)
 
 * **User ID**: Your unique user ID for the platform
 * **Email**: Primary contact email
@@ -27,7 +27,7 @@ Update your personal information and contact details in the profile section of y
 
 Configure authentication and security preferences for access.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/account-settings-auth.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=6977f8bb5c29593268f11c904b8c6b13" alt="Authentication settings interface" className="rounded-lg" width="1984" height="862" data-path="images/platform/account-settings-auth.png" />
+![Authentication settings interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/account-settings-auth.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=6977f8bb5c29593268f11c904b8c6b13)
 
 * **Password**: Set and change your account password
 * **Google**: Log in with Google SSO
@@ -38,7 +38,7 @@ Configure authentication and security preferences for access.
 
 View and manage your active sessions across different devices and locations.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/account-settings-active-sessions.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=613b2b8f863b74c20748141a42dfebdd" alt="Active sessions management interface" className="rounded-lg" width="1984" height="648" data-path="images/platform/account-settings-active-sessions.png" />
+![Active sessions management interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/account-settings-active-sessions.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=613b2b8f863b74c20748141a42dfebdd)
 
 * **Current Sessions**: View all active login sessions
 * **Metadata**: View IP, browser, session start, last access and expiration time

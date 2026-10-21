@@ -10,13 +10,13 @@
 
 A project is part of an organization that has a base branch and child branches. Projects serve as containers for your database environments, allowing you to organize and manage multiple development and production environments under a single project umbrella.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/project.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=5966fe09b0f11da19e97e7e3530cc008" alt="Project overview interface" className="rounded-lg" width="2880" height="1556" data-path="images/platform/project.png" />
+![Project overview interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/project.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=5966fe09b0f11da19e97e7e3530cc008)
 
 ## Create Project
 
 Create a new project to start managing your database environments and branches.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/project-create.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=542f2c3a6f723bcf86e4d0120c87c40f" alt="Create project interface" className="rounded-lg" width="2880" height="686" data-path="images/platform/project-create.png" />
+![Create project interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/project-create.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=542f2c3a6f723bcf86e4d0120c87c40f)
 
 ### From the CLI
 
@@ -39,7 +39,7 @@ For detailed information about compute configuration, scaling, and resource mana
 
 Set a default database for your project to streamline access and operations. This feature allows you to select which database should be automatically selected within each branch. If the database does not exist in the branch, it will default to `xata`.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/default-database.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=1370fc7f8afca2f46fe8800cbee65a36" alt="Default database selection interface" className="rounded-lg" width="1288" height="472" data-path="images/platform/default-database.png" />
+![Default database selection interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/default-database.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=1370fc7f8afca2f46fe8800cbee65a36)
 
 ## GitHub Repository
 

@@ -17,21 +17,19 @@
 
 Install Drizzle ORM and the PostgreSQL driver:
 
-<Tabs>
-  <Tab title="Standard (TCP)">
-    ```bash theme={null}
-    npm install drizzle-orm postgres
-    npm install -D drizzle-kit
-    ```
-  </Tab>
+**Standard (TCP)**
 
-  <Tab title="Serverless (HTTP/WebSocket)">
-    ```bash theme={null}
-    npm install drizzle-orm @neondatabase/serverless
-    npm install -D drizzle-kit
-    ```
-  </Tab>
-</Tabs>
+```bash theme={null}
+npm install drizzle-orm postgres
+npm install -D drizzle-kit
+```
+
+**Serverless (HTTP/WebSocket)**
+
+```bash theme={null}
+npm install drizzle-orm @neondatabase/serverless
+npm install -D drizzle-kit
+```
 
 ## Get your connection string
 
@@ -47,43 +45,41 @@ DATABASE_URL=postgresql://user:password@host:port/database
 
 ## Connect to Xata
 
-<Tabs>
-  <Tab title="Standard (TCP)">
-    Use this for traditional servers and long-running applications:
+**Standard (TCP)**
 
-    ```typescript theme={null}
-    import { drizzle } from 'drizzle-orm/postgres-js';
-    import postgres from 'postgres';
+Use this for traditional servers and long-running applications:
 
-    const client = postgres(process.env.DATABASE_URL!);
-    export const db = drizzle(client);
-    ```
-  </Tab>
+```typescript theme={null}
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 
-  <Tab title="Serverless (HTTP)">
-    Use this for serverless functions with single queries:
+const client = postgres(process.env.DATABASE_URL!);
+export const db = drizzle(client);
+```
 
-    ```typescript theme={null}
-    import { drizzle } from 'drizzle-orm/neon-http';
-    import { neon } from '@neondatabase/serverless';
+**Serverless (HTTP)**
 
-    const client = neon(process.env.DATABASE_URL!);
-    export const db = drizzle(client);
-    ```
-  </Tab>
+Use this for serverless functions with single queries:
 
-  <Tab title="Serverless (WebSocket)">
-    Use this for serverless functions that need transactions:
+```typescript theme={null}
+import { drizzle } from 'drizzle-orm/neon-http';
+import { neon } from '@neondatabase/serverless';
 
-    ```typescript theme={null}
-    import { drizzle } from 'drizzle-orm/neon-serverless';
-    import { Pool } from '@neondatabase/serverless';
+const client = neon(process.env.DATABASE_URL!);
+export const db = drizzle(client);
+```
 
-    const pool = new Pool({ connectionString: process.env.DATABASE_URL! });
-    export const db = drizzle(pool);
-    ```
-  </Tab>
-</Tabs>
+**Serverless (WebSocket)**
+
+Use this for serverless functions that need transactions:
+
+```typescript theme={null}
+import { drizzle } from 'drizzle-orm/neon-serverless';
+import { Pool } from '@neondatabase/serverless';
+
+const pool = new Pool({ connectionString: process.env.DATABASE_URL! });
+export const db = drizzle(pool);
+```
 
 ## Define your schema
 
@@ -152,9 +148,9 @@ npx drizzle-kit generate
 npx drizzle-kit migrate
 ```
 
-<Tip>
-  For serverless environments, consider using the [Serverless Proxy](/docs/core-concepts/serverless-proxy) to connect over HTTP or WebSocket instead of TCP.
-</Tip>
+> [!TIP]
+>
+> For serverless environments, consider using the [Serverless Proxy](/docs/core-concepts/serverless-proxy) to connect over HTTP or WebSocket instead of TCP.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

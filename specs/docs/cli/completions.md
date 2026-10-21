@@ -21,17 +21,17 @@ Installs bash autocomplete support for xata
 xata completions install [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## uninstall
 
@@ -41,17 +41,17 @@ Uninstalls bash autocomplete support for xata
 xata completions uninstall [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

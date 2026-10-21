@@ -15,9 +15,9 @@ The Xata CLI is a powerful tool for managing your Xata databases, projects, and 
 curl -fsSL https://xata.io/install.sh | bash
 ```
 
-<Tip>
-  The CLI binary will be installed to `~/.config/xata/bin/`. Make sure this directory is in your PATH.
-</Tip>
+> [!TIP]
+>
+> The CLI binary will be installed to `~/.config/xata/bin/`. Make sure this directory is in your PATH.
 
 ## Installation (Docker)
 
@@ -26,9 +26,9 @@ curl -fsSL https://xata.io/install.sh | bash
 docker pull ghcr.io/xataio/xata:latest-pg18
 ```
 
-<Tip>
-  The container image supports the last 3 PostgreSQL major releases: 16, 17 and 18. To select one, edit the image suffix `-pg{majorversion}`.
-</Tip>
+> [!TIP]
+>
+> The container image supports the last 3 PostgreSQL major releases: 16, 17 and 18. To select one, edit the image suffix `-pg{majorversion}`.
 
 ## Installation (Windows)
 
@@ -37,9 +37,9 @@ docker pull ghcr.io/xataio/xata:latest-pg18
 powershell -c "irm https://xata.io/install.ps1 | iex"
 ```
 
-<Tip>
-  `xata clone` currently doesn't work with the native Windows installation. We currently recommend using WSL with the Linux binaries if you need the clone functionality on Windows. Track progress [here](https://github.com/xataio/pgstream/issues/409).
-</Tip>
+> [!TIP]
+>
+> `xata clone` currently doesn't work with the native Windows installation. We currently recommend using WSL with the Linux binaries if you need the clone functionality on Windows. Track progress [here](https://github.com/xataio/pgstream/issues/409).
 
 ## Basic Usage
 
@@ -172,17 +172,17 @@ Every command page opens with an index of the commands on it.
 
 ## Global Flags
 
-<ParamField path="-h, --help" type="boolean">
-  Print help information and exit
-</ParamField>
+**-h, --help** `boolean`
 
-<ParamField path="-v, --version" type="boolean">
-  Print version information and exit
-</ParamField>
+Print help information and exit
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format (where applicable)
-</ParamField>
+**-v, --version** `boolean`
+
+Print version information and exit
+
+**--json** `boolean`
+
+Output in JSON format (where applicable)
 
 ## Required scopes
 
@@ -210,69 +210,69 @@ The Xata CLI can be configured using environment variables. These are useful for
 
 These variables apply globally to all CLI commands.
 
-<ParamField path="XATA_API_KEY" type="string">
-  API key used to authenticate with Xata. In CI/CD environments, set this as a secret. Applies to all commands that require authentication.
-</ParamField>
+**XATA\_API\_KEY** `string`
 
-<ParamField path="XATA_API_ENVIRONMENT" type="string">
-  Select the Xata API environment. Typically not needed unless instructed by Xata support. Applies to all commands.
-</ParamField>
+API key used to authenticate with Xata. In CI/CD environments, set this as a secret. Applies to all commands that require authentication.
 
-<ParamField path="XATA_CONFIG_DIR" type="string">
-  Override the directory where the CLI stores its configuration files. Applies to all commands.
-</ParamField>
+**XATA\_API\_ENVIRONMENT** `string`
+
+Select the Xata API environment. Typically not needed unless instructed by Xata support. Applies to all commands.
+
+**XATA\_CONFIG\_DIR** `string`
+
+Override the directory where the CLI stores its configuration files. Applies to all commands.
 
 ### Project & Branch Configuration
 
 These environment variables override the project and branch configuration normally stored in local config files. They apply to all commands that require project or branch context and are especially useful in CI/CD workflows where the CLI is not initialized interactively.
 
-<Note>
-  Earlier CLI versions used names without an underscore between words (for example `XATA_ORGANIZATIONID`, `XATA_PROJECTID`, `XATA_BRANCHID`, `XATA_BRANCHNAME`, `XATA_DATABASENAME`). These legacy names are still supported, but the snake\_case names below are preferred and take precedence when both are set.
-</Note>
+> [!NOTE]
+>
+> Earlier CLI versions used names without an underscore between words (for example `XATA_ORGANIZATIONID`, `XATA_PROJECTID`, `XATA_BRANCHID`, `XATA_BRANCHNAME`, `XATA_DATABASENAME`). These legacy names are still supported, but the snake\_case names below are preferred and take precedence when both are set.
 
-<ParamField path="XATA_ORGANIZATION_ID" type="string">
-  Your Xata organization ID.
-</ParamField>
+**XATA\_ORGANIZATION\_ID** `string`
 
-<ParamField path="XATA_PROJECT_ID" type="string">
-  Your Xata project ID.
-</ParamField>
+Your Xata organization ID.
 
-<ParamField path="XATA_BRANCH_ID" type="string">
-  The ID of the target branch.
-</ParamField>
+**XATA\_PROJECT\_ID** `string`
 
-<ParamField path="XATA_BRANCH_NAME" type="string">
-  The name of the target branch.
-</ParamField>
+Your Xata project ID.
 
-<ParamField path="XATA_DATABASE_NAME" type="string">
-  The database name (default: `xata`).
-</ParamField>
+**XATA\_BRANCH\_ID** `string`
+
+The ID of the target branch.
+
+**XATA\_BRANCH\_NAME** `string`
+
+The name of the target branch.
+
+**XATA\_DATABASE\_NAME** `string`
+
+The database name (default: `xata`).
 
 ### Binary Version Overrides
 
 The CLI ships with pinned versions of the `pgroll` and `pgstream` binaries. These environment variables allow you to override the pinned version, for example to test a newer release or to pin a specific version in your CI/CD pipeline. The CLI will automatically download the specified version if it is not already present locally.
 
-<ParamField path="XATA_PGROLL_BINARY_VERSION" type="string">
-  Override the pinned `pgroll` binary version used by the CLI. If not set, the CLI uses its built-in default. Applies to all `xata roll` subcommands, `xata version`, and `xata upgrade`.
-</ParamField>
+**XATA\_PGROLL\_BINARY\_VERSION** `string`
 
-<ParamField path="XATA_PGSTREAM_BINARY_VERSION" type="string">
-  Override the pinned `pgstream` binary version used by the CLI. If not set, the CLI uses its built-in default. Applies to all `xata stream` subcommands, all `xata clone` subcommands, `xata version`, and `xata upgrade`.
-</ParamField>
+Override the pinned `pgroll` binary version used by the CLI. If not set, the CLI uses its built-in default. Applies to all `xata roll` subcommands, `xata version`, and `xata upgrade`.
+
+**XATA\_PGSTREAM\_BINARY\_VERSION** `string`
+
+Override the pinned `pgstream` binary version used by the CLI. If not set, the CLI uses its built-in default. Applies to all `xata stream` subcommands, all `xata clone` subcommands, `xata version`, and `xata upgrade`.
 
 ### Clone & Stream
 
-<ParamField path="XATA_CLI_SOURCE_POSTGRES_URL" type="string">
-  Source PostgreSQL URL. Can be used instead of the `--source-url` flag. Applies to `xata clone start`, `xata clone stream`, and `xata stream destroy`.
-</ParamField>
+**XATA\_CLI\_SOURCE\_POSTGRES\_URL** `string`
+
+Source PostgreSQL URL. Can be used instead of the `--source-url` flag. Applies to `xata clone start`, `xata clone stream`, and `xata stream destroy`.
 
 ### Networking
 
-<ParamField path="XATA_PRIVATE_BRANCH_TIMEOUT" type="string">
-  Timeout in milliseconds for the private branch reachability check (default: `1000`). Set to `0` to disable the check entirely. Applies to all `xata roll` and `xata clone` subcommands.
-</ParamField>
+**XATA\_PRIVATE\_BRANCH\_TIMEOUT** `string`
+
+Timeout in milliseconds for the private branch reachability check (default: `1000`). Set to `0` to disable the check entirely. Applies to all `xata roll` and `xata clone` subcommands.
 
 ### Examples
 

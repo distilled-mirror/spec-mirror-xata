@@ -47,13 +47,11 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### WAL Replication
 
-<AccordionGroup>
-  <Accordion title="pgstream.replication.lag">
-    **Type**: ObservableGauge\
-    **Unit**: bytes\
-    **Description**: Replication lag in bytes accrued by the pgstream WAL consumer
-  </Accordion>
-</AccordionGroup>
+> **pgstream.replication.lag**
+>
+> **Type**: ObservableGauge\
+> **Unit**: bytes\
+> **Description**: Replication lag in bytes accrued by the pgstream WAL consumer
 
 **Attributes:** None
 
@@ -63,13 +61,11 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### Pipeline Phase
 
-<AccordionGroup>
-  <Accordion title="pgstream.pipeline.phase">
-    **Type**: ObservableGauge\
-    **Unit**: 1\
-    **Description**: Reports `1` for the active pipeline phase and `0` for the others (\`phase=snapshot\\
-  </Accordion>
-</AccordionGroup>
+> **pgstream.pipeline.phase**
+>
+> **Type**: ObservableGauge\
+> **Unit**: 1\
+> **Description**: Reports `1` for the active pipeline phase and `0` for the others (\`phase=snapshot\\
 
 **Attributes:**
 
@@ -79,19 +75,17 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### WAL Event Processing
 
-<AccordionGroup>
-  <Accordion title="pgstream.target.processing.lag">
-    **Type**: Histogram\
-    **Unit**: ns\
-    **Description**: Time between WAL event creation and processing
-  </Accordion>
+> **pgstream.target.processing.lag**
+>
+> **Type**: Histogram\
+> **Unit**: ns\
+> **Description**: Time between WAL event creation and processing
 
-  <Accordion title="pgstream.target.processing.latency">
-    **Type**: Histogram\
-    **Unit**: ns\
-    **Description**: Time taken to process a WAL event
-  </Accordion>
-</AccordionGroup>
+> **pgstream.target.processing.latency**
+>
+> **Type**: Histogram\
+> **Unit**: ns\
+> **Description**: Time taken to process a WAL event
 
 **Attributes:**
 
@@ -101,13 +95,11 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### Snapshot Operations
 
-<AccordionGroup>
-  <Accordion title="pgstream.snapshot.generator.latency">
-    **Type**: Histogram\
-    **Unit**: ms\
-    **Description**: Time taken to snapshot a source PostgreSQL database
-  </Accordion>
-</AccordionGroup>
+> **pgstream.snapshot.generator.latency**
+>
+> **Type**: Histogram\
+> **Unit**: ms\
+> **Description**: Time taken to snapshot a source PostgreSQL database
 
 **Attributes:**
 
@@ -120,53 +112,49 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 #### Writer Metrics
 
-<AccordionGroup>
-  <Accordion title="pgstream.kafka.writer.batch.size">
-    **Type**: Histogram\
-    **Unit**: messages\
-    **Description**: Distribution of message batch sizes
-  </Accordion>
+> **pgstream.kafka.writer.batch.size**
+>
+> **Type**: Histogram\
+> **Unit**: messages\
+> **Description**: Distribution of message batch sizes
 
-  <Accordion title="pgstream.kafka.writer.batch.bytes">
-    **Type**: Histogram\
-    **Unit**: bytes\
-    **Description**: Distribution of message batch sizes in bytes
-  </Accordion>
+> **pgstream.kafka.writer.batch.bytes**
+>
+> **Type**: Histogram\
+> **Unit**: bytes\
+> **Description**: Distribution of message batch sizes in bytes
 
-  <Accordion title="pgstream.kafka.writer.latency">
-    **Type**: Histogram\
-    **Unit**: ms\
-    **Description**: Time taken to send messages to Kafka
-  </Accordion>
-</AccordionGroup>
+> **pgstream.kafka.writer.latency**
+>
+> **Type**: Histogram\
+> **Unit**: ms\
+> **Description**: Time taken to send messages to Kafka
 
 #### Reader Metrics
 
-<AccordionGroup>
-  <Accordion title="pgstream.kafka.reader.msg.bytes">
-    **Type**: Histogram\
-    **Unit**: bytes\
-    **Description**: Distribution of message sizes read from Kafka
-  </Accordion>
+> **pgstream.kafka.reader.msg.bytes**
+>
+> **Type**: Histogram\
+> **Unit**: bytes\
+> **Description**: Distribution of message sizes read from Kafka
 
-  <Accordion title="pgstream.kafka.reader.fetch.latency">
-    **Type**: Histogram\
-    **Unit**: ms\
-    **Description**: Time taken to fetch messages from Kafka
-  </Accordion>
+> **pgstream.kafka.reader.fetch.latency**
+>
+> **Type**: Histogram\
+> **Unit**: ms\
+> **Description**: Time taken to fetch messages from Kafka
 
-  <Accordion title="pgstream.kafka.reader.commit.latency">
-    **Type**: Histogram\
-    **Unit**: ms\
-    **Description**: Time taken to commit offsets to Kafka
-  </Accordion>
+> **pgstream.kafka.reader.commit.latency**
+>
+> **Type**: Histogram\
+> **Unit**: ms\
+> **Description**: Time taken to commit offsets to Kafka
 
-  <Accordion title="pgstream.kafka.reader.commit.batch.size">
-    **Type**: Histogram\
-    **Unit**: offsets\
-    **Description**: Distribution of offset batch sizes committed
-  </Accordion>
-</AccordionGroup>
+> **pgstream.kafka.reader.commit.batch.size**
+>
+> **Type**: Histogram\
+> **Unit**: offsets\
+> **Description**: Distribution of offset batch sizes committed
 
 **Attributes:** None
 
@@ -174,13 +162,11 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### PostgreSQL Operations
 
-<AccordionGroup>
-  <Accordion title="pgstream.postgres.querier.latency">
-    **Type**: Histogram\
-    **Unit**: ms\
-    **Description**: Time taken to perform PostgreSQL queries
-  </Accordion>
-</AccordionGroup>
+> **pgstream.postgres.querier.latency**
+>
+> **Type**: Histogram\
+> **Unit**: ms\
+> **Description**: Time taken to perform PostgreSQL queries
 
 **Attributes:**
 
@@ -191,13 +177,11 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 #### Writer Metrics
 
-<AccordionGroup>
-  <Accordion title="pgstream.postgres.writer.dropped_queries">
-    **Type**: ObservableCounter\
-    **Unit**: queries\
-    **Description**: Number of queries silently dropped due to non-internal (DATALOSS) failures in drop-and-continue mode
-  </Accordion>
-</AccordionGroup>
+> **pgstream.postgres.writer.dropped\_queries**
+>
+> **Type**: ObservableCounter\
+> **Unit**: queries\
+> **Description**: Number of queries silently dropped due to non-internal (DATALOSS) failures in drop-and-continue mode
 
 **Attributes:**
 
@@ -207,13 +191,11 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### Search Operations
 
-<AccordionGroup>
-  <Accordion title="pgstream.search.store.doc.errors">
-    **Type**: Counter\
-    **Unit**: errors\
-    **Description**: Count of failed document indexing operations
-  </Accordion>
-</AccordionGroup>
+> **pgstream.search.store.doc.errors**
+>
+> **Type**: Counter\
+> **Unit**: errors\
+> **Description**: Count of failed document indexing operations
 
 **Attributes:**
 
@@ -223,13 +205,11 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### Data Transformations
 
-<AccordionGroup>
-  <Accordion title="pgstream.transformer.latency">
-    **Type**: Histogram\
-    **Unit**: ms\
-    **Description**: Time taken to transform data values
-  </Accordion>
-</AccordionGroup>
+> **pgstream.transformer.latency**
+>
+> **Type**: Histogram\
+> **Unit**: ms\
+> **Description**: Time taken to transform data values
 
 **Attributes:**
 
@@ -241,73 +221,71 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 pgstream automatically collects Go runtime metrics using the [OpenTelemetry Go runtime instrumentation](https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/runtime). These metrics are essential for monitoring application health and performance:
 
-<AccordionGroup>
-  <Accordion title="runtime.go.mem.heap_alloc">
-    **Type**: Gauge\
-    **Unit**: bytes\
-    **Description**: Bytes of allocated heap objects
-  </Accordion>
+> **runtime.go.mem.heap\_alloc**
+>
+> **Type**: Gauge\
+> **Unit**: bytes\
+> **Description**: Bytes of allocated heap objects
 
-  <Accordion title="runtime.go.mem.heap_idle">
-    **Type**: Gauge\
-    **Unit**: bytes\
-    **Description**: Bytes in idle (unused) heap spans
-  </Accordion>
+> **runtime.go.mem.heap\_idle**
+>
+> **Type**: Gauge\
+> **Unit**: bytes\
+> **Description**: Bytes in idle (unused) heap spans
 
-  <Accordion title="runtime.go.mem.heap_inuse">
-    **Type**: Gauge\
-    **Unit**: bytes\
-    **Description**: Bytes in in-use heap spans
-  </Accordion>
+> **runtime.go.mem.heap\_inuse**
+>
+> **Type**: Gauge\
+> **Unit**: bytes\
+> **Description**: Bytes in in-use heap spans
 
-  <Accordion title="runtime.go.mem.heap_objects">
-    **Type**: Gauge\
-    **Unit**: objects\
-    **Description**: Number of allocated heap objects
-  </Accordion>
+> **runtime.go.mem.heap\_objects**
+>
+> **Type**: Gauge\
+> **Unit**: objects\
+> **Description**: Number of allocated heap objects
 
-  <Accordion title="runtime.go.mem.heap_released">
-    **Type**: Gauge\
-    **Unit**: bytes\
-    **Description**: Bytes of physical memory returned to the OS
-  </Accordion>
+> **runtime.go.mem.heap\_released**
+>
+> **Type**: Gauge\
+> **Unit**: bytes\
+> **Description**: Bytes of physical memory returned to the OS
 
-  <Accordion title="runtime.go.mem.heap_sys">
-    **Type**: Gauge\
-    **Unit**: bytes\
-    **Description**: Bytes of heap memory obtained from the OS
-  </Accordion>
+> **runtime.go.mem.heap\_sys**
+>
+> **Type**: Gauge\
+> **Unit**: bytes\
+> **Description**: Bytes of heap memory obtained from the OS
 
-  <Accordion title="runtime.go.gc.count">
-    **Type**: Counter\
-    **Unit**: collections\
-    **Description**: Number of completed GC cycles
-  </Accordion>
+> **runtime.go.gc.count**
+>
+> **Type**: Counter\
+> **Unit**: collections\
+> **Description**: Number of completed GC cycles
 
-  <Accordion title="runtime.go.gc.pause_ns">
-    **Type**: Histogram\
-    **Unit**: ns\
-    **Description**: Amount of nanoseconds in GC stop-the-world pauses
-  </Accordion>
+> **runtime.go.gc.pause\_ns**
+>
+> **Type**: Histogram\
+> **Unit**: ns\
+> **Description**: Amount of nanoseconds in GC stop-the-world pauses
 
-  <Accordion title="runtime.go.goroutines">
-    **Type**: Gauge\
-    **Unit**: goroutines\
-    **Description**: Number of goroutines that currently exist
-  </Accordion>
+> **runtime.go.goroutines**
+>
+> **Type**: Gauge\
+> **Unit**: goroutines\
+> **Description**: Number of goroutines that currently exist
 
-  <Accordion title="runtime.go.lookups">
-    **Type**: Counter\
-    **Unit**: lookups\
-    **Description**: Number of pointer lookups performed by the runtime
-  </Accordion>
+> **runtime.go.lookups**
+>
+> **Type**: Counter\
+> **Unit**: lookups\
+> **Description**: Number of pointer lookups performed by the runtime
 
-  <Accordion title="runtime.go.mem.gc_sys">
-    **Type**: Gauge\
-    **Unit**: bytes\
-    **Description**: Bytes of memory in garbage collection metadata
-  </Accordion>
-</AccordionGroup>
+> **runtime.go.mem.gc\_sys**
+>
+> **Type**: Gauge\
+> **Unit**: bytes\
+> **Description**: Bytes of memory in garbage collection metadata
 
 **Usage:** Monitor application resource usage, detect memory leaks, track GC performance, and identify goroutine leaks.
 
@@ -375,7 +353,7 @@ The included SigNoz dashboard provides:
 * **Resource Utilization**: Memory, CPU, and network usage
 * **Go Runtime Health**: Memory usage, GC performance, and goroutine tracking
 
-<img width="1656" height="1251" alt="pgstream_signoz_dashboard" src="https://github.com/user-attachments/assets/c08e5029-494d-4dc6-94e1-6ce467d3abce" />
+![pgstream\_signoz\_dashboard](https://github.com/user-attachments/assets/c08e5029-494d-4dc6-94e1-6ce467d3abce)
 
 ### Key Performance Indicators (KPIs)
 
@@ -439,7 +417,7 @@ pgstream automatically creates traces for all major operations. Traces include:
 
 Use the included SigNoz setup or tools like Jaeger/Zipkin to visualize and analyze trace data for debugging and performance optimization.
 
-<img width="1454" height="1022" alt="pgstream_signoz_tracing" src="https://github.com/user-attachments/assets/595cfff7-d1a2-419c-afd0-739e851e1fa7" />
+![pgstream\_signoz\_tracing](https://github.com/user-attachments/assets/595cfff7-d1a2-419c-afd0-739e851e1fa7)
 
 ## Profiling
 
@@ -463,39 +441,37 @@ pgstream run --profile --config config.yaml
 
 When `--profile` is enabled, pgstream exposes a profiling HTTP server at `localhost:6060` with the following endpoints:
 
-<AccordionGroup>
-  <Accordion title="http://localhost:6060/debug/pprof/">
-    **Description**: Profile index page
-  </Accordion>
+> **[http://localhost:6060/debug/pprof/](http://localhost:6060/debug/pprof/)**
+>
+> **Description**: Profile index page
 
-  <Accordion title="http://localhost:6060/debug/pprof/profile">
-    **Description**: CPU profile (30-second sample)
-  </Accordion>
+> **[http://localhost:6060/debug/pprof/profile](http://localhost:6060/debug/pprof/profile)**
+>
+> **Description**: CPU profile (30-second sample)
 
-  <Accordion title="http://localhost:6060/debug/pprof/heap">
-    **Description**: Memory heap profile
-  </Accordion>
+> **[http://localhost:6060/debug/pprof/heap](http://localhost:6060/debug/pprof/heap)**
+>
+> **Description**: Memory heap profile
 
-  <Accordion title="http://localhost:6060/debug/pprof/goroutine">
-    **Description**: Goroutine profile
-  </Accordion>
+> **[http://localhost:6060/debug/pprof/goroutine](http://localhost:6060/debug/pprof/goroutine)**
+>
+> **Description**: Goroutine profile
 
-  <Accordion title="http://localhost:6060/debug/pprof/allocs">
-    **Description**: Memory allocation profile
-  </Accordion>
+> **[http://localhost:6060/debug/pprof/allocs](http://localhost:6060/debug/pprof/allocs)**
+>
+> **Description**: Memory allocation profile
 
-  <Accordion title="http://localhost:6060/debug/pprof/block">
-    **Description**: Block profile
-  </Accordion>
+> **[http://localhost:6060/debug/pprof/block](http://localhost:6060/debug/pprof/block)**
+>
+> **Description**: Block profile
 
-  <Accordion title="http://localhost:6060/debug/pprof/mutex">
-    **Description**: Mutex profile
-  </Accordion>
+> **[http://localhost:6060/debug/pprof/mutex](http://localhost:6060/debug/pprof/mutex)**
+>
+> **Description**: Mutex profile
 
-  <Accordion title="http://localhost:6060/debug/pprof/trace">
-    **Description**: Execution trace
-  </Accordion>
-</AccordionGroup>
+> **[http://localhost:6060/debug/pprof/trace](http://localhost:6060/debug/pprof/trace)**
+>
+> **Description**: Execution trace
 
 #### 2. File Output (Snapshot Command Only)
 

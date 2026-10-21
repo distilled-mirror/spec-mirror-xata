@@ -20,21 +20,21 @@ Prints the NOTICE bundled with the CLI, which identifies the statically linked L
 xata licenses [--full] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--full" type="boolean" default="false">
-  Also print the full texts of the GNU LGPL-2.0, LGPL-2.1 and GPL-2.0 licenses
-</ParamField>
+**--full** `boolean` (default: false)
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Also print the full texts of the GNU LGPL-2.0, LGPL-2.1 and GPL-2.0 licenses
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

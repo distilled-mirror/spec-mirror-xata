@@ -25,7 +25,7 @@ To better understand the use case and our novel approach to the challenge of sch
 
 In the Console, create a new project and then click the **Create main branch** button to create the PostgreSQL instance.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/create-new-branch.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=cbb47662022af582812118fea4057b47" alt="Create new branch" className="rounded-lg" width="3010" height="2050" data-path="images/create-new-branch.png" />
+![Create new branch](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/create-new-branch.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=cbb47662022af582812118fea4057b47)
 
 Since this is a production setup, we recommend using at least 1 replica. It's a good idea to start with a similar instance size as you are running in your current PostgreSQL provider. You will be able to adjust it later.
 

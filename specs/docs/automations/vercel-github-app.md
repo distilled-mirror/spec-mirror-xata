@@ -27,9 +27,9 @@ This guide uses Next.js as an example. If you use another framework or package m
 * Connect the same GitHub repository to a Vercel project.
 * Configure your application to read its PostgreSQL connection string from `DATABASE_URL`.
 
-<Note>
-  This guide uses the Xata GitHub App to manage the branch lifecycle. You can use the [GitHub Actions pull request workflow](/docs/automations/ga-pr) instead, but its example names branches `<source-branch>_<pull-request-number>`. Adjust the branch name in the Vercel script to match your workflow.
-</Note>
+> [!NOTE]
+>
+> This guide uses the Xata GitHub App to manage the branch lifecycle. You can use the [GitHub Actions pull request workflow](/docs/automations/ga-pr) instead, but its example names branches `<source-branch>_<pull-request-number>`. Adjust the branch name in the Vercel script to match your workflow.
 
 ## Create an API key for Vercel
 
@@ -42,13 +42,13 @@ The Vercel build uses the Xata CLI to find the preview branch and retrieve its c
 5. Enable **Access control** and select the **CI/CD deploy bot** preset.
 6. Create the key and copy it. The full value is shown only once.
 
-<img src="https://mintcdn.com/xata/39VoIPEG0avOsZrO/images/automations/vercel-api-key.png?fit=max&auto=format&n=39VoIPEG0avOsZrO&q=85&s=e3a76b822f2cf055c092d030edfe693c" alt="Xata user API key form scoped to one project with the CI/CD deploy bot preset selected" className="rounded-lg" width="2456" height="1732" data-path="images/automations/vercel-api-key.png" />
+![Xata user API key form scoped to one project with the CI/CD deploy bot preset selected](https://mintcdn.com/xata/39VoIPEG0avOsZrO/images/automations/vercel-api-key.png?fit=max\&auto=format\&n=39VoIPEG0avOsZrO\&q=85\&s=e3a76b822f2cf055c092d030edfe693c)
 
 See [API keys](/docs/platform/api-key) for more information about project restrictions, scopes, and expiration.
 
-<Warning>
-  Treat the API key like a password. Do not commit it to the repository or print it in build logs.
-</Warning>
+> [!WARNING]
+>
+> Treat the API key like a password. Do not commit it to the repository or print it in build logs.
 
 ## Configure Vercel environment variables
 
@@ -62,9 +62,9 @@ In the Vercel project, open **Settings** > **Environment Variables** and add the
 
 The Xata CLI automatically uses these standard environment variables for authentication and project selection. You do not need to install the CLI locally if you copy the organization and project IDs from a Console URL such as `https://console.xata.io/organizations/<organization-id>/projects/<project-id>`.
 
-<Note>
-  Add `XATA_API_KEY` to Vercel because the connection-string lookup runs in the Vercel build. If you use GitHub Actions to manage the branch lifecycle, also add the key as a [GitHub Actions secret](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets) named `XATA_API_KEY` for that workflow.
-</Note>
+> [!NOTE]
+>
+> Add `XATA_API_KEY` to Vercel because the connection-string lookup runs in the Vercel build. If you use GitHub Actions to manage the branch lifecycle, also add the key as a [GitHub Actions secret](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets) named `XATA_API_KEY` for that workflow.
 
 For production, configure `DATABASE_URL` separately in Vercel's **Production** environment. For example, get the primary connection string for the Xata production branch with:
 
@@ -128,9 +128,9 @@ The GitHub App does not recreate the Xata branch on every push. Keeping the bran
 
 The lookup fails if the matching Xata branch cannot be found. Do not add a fallback to the production connection string: a failed preview build is safer than a preview deployment that writes to production.
 
-<Note>
-  The `.env.production` line is specific to Next.js. If you use another framework, use its supported build-time mechanism to include `DATABASE_URL` in server-side deployment output. Never expose the connection string through a public or client-prefixed environment variable.
-</Note>
+> [!NOTE]
+>
+> The `.env.production` line is specific to Next.js. If you use another framework, use its supported build-time mechanism to include `DATABASE_URL` in server-side deployment output. Never expose the connection string through a public or client-prefixed environment variable.
 
 Add a script entry to `package.json` while keeping the existing `build` script unchanged:
 
@@ -154,11 +154,11 @@ In Vercel:
 
 If your project uses npm, use `npm run vercel-build` instead.
 
-<Note>
-  Vercel may detect a `vercel-build` script automatically for some frameworks, but this behavior is not documented and may change. Set the Build Command explicitly in the Vercel project settings.
-</Note>
+> [!NOTE]
+>
+> Vercel may detect a `vercel-build` script automatically for some frameworks, but this behavior is not documented and may change. Set the Build Command explicitly in the Vercel project settings.
 
-<img src="https://mintcdn.com/xata/39VoIPEG0avOsZrO/images/automations/vercel-build-command.png?fit=max&auto=format&n=39VoIPEG0avOsZrO&q=85&s=ebe25a3b6d2f8169f0729f016d72a90f" alt="Vercel Framework Settings with the Build Command override set to pnpm vercel-build" className="rounded-lg" width="2568" height="1204" data-path="images/automations/vercel-build-command.png" />
+![Vercel Framework Settings with the Build Command override set to pnpm vercel-build](https://mintcdn.com/xata/39VoIPEG0avOsZrO/images/automations/vercel-build-command.png?fit=max\&auto=format\&n=39VoIPEG0avOsZrO\&q=85\&s=ebe25a3b6d2f8169f0729f016d72a90f)
 
 ## Verify the integration
 

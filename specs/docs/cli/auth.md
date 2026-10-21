@@ -29,45 +29,45 @@ Prints a URL and a code to authorize this machine, or stores an API key with `--
 xata auth login [--force] [--api-key value] [--issuer value] [--api-url value] [--client-id value] [--client-secret value] [--console-url value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="-f, --force" type="boolean" default="false">
-  Force login even if already logged in, revoking the previous session
-</ParamField>
+**-f, --force** `boolean` (default: false)
 
-<ParamField path="--api-key" type="string">
-  Log in non-interactively with an API key instead of the browser OAuth flow
-</ParamField>
+Force login even if already logged in, revoking the previous session
 
-<ParamField path="--issuer" type="string">
-  Issuer URL for custom environment
-</ParamField>
+**--api-key** `string`
 
-<ParamField path="--api-url" type="string">
-  API base URL for custom environment
-</ParamField>
+Log in non-interactively with an API key instead of the browser OAuth flow
 
-<ParamField path="--client-id" type="string">
-  Client ID for custom environment (defaults to "cli")
-</ParamField>
+**--issuer** `string`
 
-<ParamField path="--client-secret" type="string">
-  Client secret for custom environment
-</ParamField>
+Issuer URL for custom environment
 
-<ParamField path="--console-url" type="string">
-  Console URL for custom environment, used by AI features
-</ParamField>
+**--api-url** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+API base URL for custom environment
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--client-id** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Client ID for custom environment (defaults to "cli")
+
+**--client-secret** `string`
+
+Client secret for custom environment
+
+**--console-url** `string`
+
+Console URL for custom environment, used by AI features
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Examples:**
 
@@ -90,25 +90,25 @@ Revokes the session of the profile with the identity provider and removes the st
 xata auth logout [--yes] [--local] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--yes" type="boolean" default="false">
-  Do not ask for confirmation, assume yes.
-</ParamField>
+**--yes** `boolean` (default: false)
 
-<ParamField path="--local" type="boolean" default="false">
-  Only remove the stored credentials, do not revoke the session with the identity provider
-</ParamField>
+Do not ask for confirmation, assume yes.
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--local** `boolean` (default: false)
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Only remove the stored credentials, do not revoke the session with the identity provider
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## status
 
@@ -120,17 +120,17 @@ Reads the stored session without contacting the server, so it stays fast and wor
 xata auth status [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## switch
 
@@ -140,21 +140,21 @@ Switch to a different Xata account profile
 xata auth switch [--profile value] [--debug] [--json] [<arg1>]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
 
-<ParamField path="value" type="string">
-  The profile to switch to
-</ParamField>
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**value** `string`
+
+The profile to switch to
 
 ## list
 
@@ -164,17 +164,17 @@ List all available Xata account profiles
 xata auth list [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata auth ls`
 
@@ -188,17 +188,17 @@ Refreshes the session even when the current access token is still valid, and sto
 xata auth refresh [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## access-token
 
@@ -208,17 +208,17 @@ Print the current access token
 xata auth access-token [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## refresh-token
 
@@ -228,17 +228,17 @@ Print the stored refresh token, without refreshing the session
 xata auth refresh-token [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

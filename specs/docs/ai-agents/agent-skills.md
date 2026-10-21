@@ -41,9 +41,9 @@ The agent calls `list_skills` and returns the skill catalog. To load a skill:
 
 The agent calls `get_skill` with the skill name and follows the instructions.
 
-<Tip>
-  Skills are served by the hosted MCP server. There is nothing to install locally. Connect once in your agent client and the skills are available automatically.
-</Tip>
+> [!TIP]
+>
+> Skills are served by the hosted MCP server. There is nothing to install locally. Connect once in your agent client and the skills are available automatically.
 
 ## Related docs
 

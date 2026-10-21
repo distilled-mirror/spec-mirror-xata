@@ -207,22 +207,20 @@ ALTER SCHEMA <schema> OWNER TO pgstreamtarget;
 
 ## Troubleshooting
 
-<AccordionGroup>
-  <Accordion title="permission denied for table pg_authid">
-    **Cause**: Roles with passwords require pg\_authid access.\
-    **Fix**: Enable `cloudsql.pg_authid_select_role` flag.
-  </Accordion>
+> **permission denied for table pg\_authid**
+>
+> **Cause**: Roles with passwords require pg\_authid access.\
+> **Fix**: Enable `cloudsql.pg_authid_select_role` flag.
 
-  <Accordion title="permission denied to set parameter &#x22;session_replication_role&#x22;">
-    **Cause**: CloudSQL roles can’t set replication role.\
-    **Fix**: Disable `disable_triggers`.
-  </Accordion>
+> **permission denied to set parameter "session\_replication\_role"**
+>
+> **Cause**: CloudSQL roles can’t set replication role.\
+> **Fix**: Disable `disable_triggers`.
 
-  <Accordion title="Role creation fails">
-    **Cause**: `pgstreamtarget` lacks privileges it tries to assign.\
-    **Fix**: Use `postgres` or grant required privileges first.
-  </Accordion>
-</AccordionGroup>
+> **Role creation fails**
+>
+> **Cause**: `pgstreamtarget` lacks privileges it tries to assign.\
+> **Fix**: Use `postgres` or grant required privileges first.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

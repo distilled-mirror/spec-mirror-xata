@@ -46,17 +46,17 @@ List all organizations
 xata organization list [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+The profile to use
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization ls`
 
@@ -68,21 +68,21 @@ Describe an organization
 xata organization describe [--organization value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization view`, `xata organization show`
 
@@ -94,21 +94,21 @@ Create a new organization
 xata organization create (--name value) [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--name" type="string" required>
-  Organization Name
-</ParamField>
+**--name** `string` *required*
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization Name
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## delete
 
@@ -118,25 +118,25 @@ Delete an organization
 xata organization delete [--organization value] [--yes] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--yes" type="boolean" default="false">
-  Do not ask for confirmation, assume yes.
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--yes** `boolean` (default: false)
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Do not ask for confirmation, assume yes.
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## get
 
@@ -146,25 +146,25 @@ Get a field from an organization description
 xata organization get [--organization value] [--profile value] [--debug] [--json] <[organization] field>...
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
 
-<ParamField path="[organization] field" type="string">
-  Organization name and/or field to get
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**\[organization] field** `string`
+
+Organization name and/or field to get
 
 ## members
 
@@ -178,21 +178,21 @@ List all members of an organization
 xata organization members list [--organization value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization members ls`
 
@@ -204,29 +204,29 @@ Send an invitation to join an organization
 xata organization members invite [--organization value] [--email value] [--role admin|editor] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--email" type="string">
-  Email address to invite
-</ParamField>
+Organization ID
 
-<ParamField path="--role" type="admin | editor">
-  Role the new member holds once they accept
-</ParamField>
+**--email** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Email address to invite
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--role** `admin | editor`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Role the new member holds once they accept
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization members add`
 
@@ -238,29 +238,29 @@ Remove a member from an organization
 xata organization members remove [--organization value] [--user-id value] [--force] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--user-id" type="string">
-  ID of the user to remove
-</ParamField>
+Organization ID
 
-<ParamField path="--force" type="boolean" default="false">
-  Skip confirmation prompt
-</ParamField>
+**--user-id** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+ID of the user to remove
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--force** `boolean` (default: false)
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Skip confirmation prompt
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization members delete`, `xata organization members rm`
 
@@ -272,29 +272,29 @@ Set the role of an organization member
 xata organization members set-role [--organization value] [--user-id value] [--role admin|editor] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--user-id" type="string">
-  ID of the member
-</ParamField>
+Organization ID
 
-<ParamField path="--role" type="admin | editor">
-  Role to grant
-</ParamField>
+**--user-id** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+ID of the member
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--role** `admin | editor`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Role to grant
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## invitations
 
@@ -308,33 +308,33 @@ List all invitations for an organization
 xata organization invitations list [--organization value] [--status value] [--email value] [--search value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--status" type="string">
-  Filter by invitation status (pending or expired)
-</ParamField>
+Organization ID
 
-<ParamField path="--email" type="string">
-  Filter by email address
-</ParamField>
+**--status** `string`
 
-<ParamField path="--search" type="string">
-  Search invitations by email or name
-</ParamField>
+Filter by invitation status (pending or expired)
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--email** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Filter by email address
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--search** `string`
+
+Search invitations by email or name
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization invitations ls`
 
@@ -346,25 +346,25 @@ Get details of a specific invitation
 xata organization invitations get [--organization value] [--invitation-id value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--invitation-id" type="string">
-  ID of the invitation to view
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--invitation-id** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+ID of the invitation to view
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization invitations show`
 
@@ -376,29 +376,29 @@ Create and send an invitation to join an organization
 xata organization invitations create [--organization value] [--email value] [--role admin|editor] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--email" type="string">
-  Email address to invite
-</ParamField>
+Organization ID
 
-<ParamField path="--role" type="admin | editor">
-  Role the new member holds once they accept
-</ParamField>
+**--email** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Email address to invite
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--role** `admin | editor`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Role the new member holds once they accept
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization invitations add`, `xata organization invitations invite`
 
@@ -410,29 +410,29 @@ Delete an invitation
 xata organization invitations delete [--organization value] [--invitation-id value] [--force] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--invitation-id" type="string">
-  ID of the invitation to delete
-</ParamField>
+Organization ID
 
-<ParamField path="--force" type="boolean" default="false">
-  Skip confirmation prompt
-</ParamField>
+**--invitation-id** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+ID of the invitation to delete
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--force** `boolean` (default: false)
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Skip confirmation prompt
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization invitations rm`, `xata organization invitations remove`
 
@@ -444,25 +444,25 @@ Resend an invitation
 xata organization invitations resend [--organization value] [--invitation-id value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--invitation-id" type="string">
-  ID of the invitation to resend
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--invitation-id** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+ID of the invitation to resend
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 ## sso
 
@@ -478,21 +478,21 @@ Show the domains and identity providers configured for an organization
 xata organization sso show [--organization value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization sso get`
 
@@ -508,25 +508,25 @@ Claim an email domain and print the DNS record that proves you own it
 xata organization sso domains add [--organization value] [--profile value] [--debug] [--json] [<domain>]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
 
-<ParamField path="domain" type="string">
-  Domain to claim, such as acme.com
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**domain** `string`
+
+Domain to claim, such as acme.com
 
 **Aliases:** `xata organization sso domains claim`
 
@@ -538,25 +538,25 @@ Check the DNS record for a claimed domain and mark it verified
 xata organization sso domains verify [--organization value] [--profile value] [--debug] [--json] [<domain>]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
 
-<ParamField path="domain" type="string">
-  Domain to verify, such as acme.com
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**domain** `string`
+
+Domain to verify, such as acme.com
 
 #### sso domains remove
 
@@ -566,29 +566,29 @@ Remove a claimed domain from an organization
 xata organization sso domains remove [--organization value] [--yes] [--profile value] [--debug] [--json] [<domain>]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--yes" type="boolean" default="false">
-  Do not ask for confirmation, assume yes.
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--yes** `boolean` (default: false)
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Do not ask for confirmation, assume yes.
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
 
-<ParamField path="domain" type="string">
-  Domain to remove, such as acme.com
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**domain** `string`
+
+Domain to remove, such as acme.com
 
 **Aliases:** `xata organization sso domains delete`
 
@@ -606,41 +606,41 @@ Reads the client secret from --client-secret, the XATA\_SSO\_CLIENT\_SECRET envi
 xata organization sso providers add [--organization value] [--type google|microsoft|oidc] [--domain value] [--issuer-url value] [--client-id value] [--client-secret value] [--profile value] [--debug] [--json]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--type" type="google | microsoft | oidc">
-  Provider type
-</ParamField>
+Organization ID
 
-<ParamField path="--domain" type="string">
-  Verified domain this provider signs in
-</ParamField>
+**--type** `google | microsoft | oidc`
 
-<ParamField path="--issuer-url" type="string">
-  Issuer URL, required for every type except google
-</ParamField>
+Provider type
 
-<ParamField path="--client-id" type="string">
-  Client ID issued by the identity provider
-</ParamField>
+**--domain** `string`
 
-<ParamField path="--client-secret" type="string">
-  Client secret issued by the identity provider
-</ParamField>
+Verified domain this provider signs in
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--issuer-url** `string`
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Issuer URL, required for every type except google
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--client-id** `string`
+
+Client ID issued by the identity provider
+
+**--client-secret** `string`
+
+Client secret issued by the identity provider
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
 
 **Aliases:** `xata organization sso providers connect`
 
@@ -652,29 +652,29 @@ Disconnect an identity provider from an organization
 xata organization sso providers remove [--organization value] [--yes] [--profile value] [--debug] [--json] [<alias>]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--yes" type="boolean" default="false">
-  Do not ask for confirmation, assume yes.
-</ParamField>
+Organization ID
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+**--yes** `boolean` (default: false)
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+Do not ask for confirmation, assume yes.
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+**--profile** `string`
 
-<ParamField path="alias" type="string">
-  Provider alias, as shown by xata organization sso show
-</ParamField>
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**alias** `string`
+
+Provider alias, as shown by xata organization sso show
 
 **Aliases:** `xata organization sso providers delete`
 
@@ -688,33 +688,33 @@ Members on the domain lose the password form and the shared Google and GitHub bu
 xata organization sso providers enforce [--organization value] [--disable] [--yes] [--profile value] [--debug] [--json] [<alias>]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--disable" type="boolean" default="false">
-  Stop requiring SSO instead of requiring it
-</ParamField>
+Organization ID
 
-<ParamField path="--yes" type="boolean" default="false">
-  Do not ask for confirmation, assume yes.
-</ParamField>
+**--disable** `boolean` (default: false)
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Stop requiring SSO instead of requiring it
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--yes** `boolean` (default: false)
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Do not ask for confirmation, assume yes.
 
-<ParamField path="alias" type="string">
-  Provider alias, as shown by xata organization sso show
-</ParamField>
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**alias** `string`
+
+Provider alias, as shown by xata organization sso show
 
 #### sso providers test
 
@@ -726,25 +726,25 @@ Members are only sent to a provider once SSO is required on its domain. The link
 xata organization sso providers test [--organization value] [--profile value] [--debug] [--json] [<alias>]
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Organization ID
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--profile** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+The profile to use
 
-<ParamField path="alias" type="string">
-  Provider alias, as shown by xata organization sso show
-</ParamField>
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**alias** `string`
+
+Provider alias, as shown by xata organization sso show
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

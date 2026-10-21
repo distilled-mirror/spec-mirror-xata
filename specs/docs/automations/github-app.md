@@ -12,7 +12,7 @@ Use the GitHub App when you want Xata to manage the preview branch lifecycle for
 
 ## Demo
 
-<iframe className="w-full aspect-video rounded-xl" src="https://www.youtube.com/embed/xoR9WdzvTYQ" title="Xata GitHub App demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+[Xata GitHub App demo](https://www.youtube.com/embed/xoR9WdzvTYQ)
 
 ## How it works
 
@@ -30,9 +30,9 @@ Xata posts or updates a pull request comment when it creates, finds, or deletes 
 * Permission to install or request GitHub Apps for the GitHub account or organization that owns the repository.
 * The Xata GitHub App must be granted access to the repository you want to link.
 
-<Note>
-  If you are not a GitHub organization owner, GitHub may submit an installation request instead of installing the app immediately. A GitHub organization owner must approve the request before you can link a repository in Xata.
-</Note>
+> [!NOTE]
+>
+> If you are not a GitHub organization owner, GitHub may submit an installation request instead of installing the app immediately. A GitHub organization owner must approve the request before you can link a repository in Xata.
 
 ## Install the GitHub App
 
@@ -44,11 +44,11 @@ Xata posts or updates a pull request comment when it creates, finds, or deletes 
 6. Choose whether Xata can access all repositories or only selected repositories.
 7. Complete the GitHub installation flow.
 
-<img src="https://mintcdn.com/xata/fA73syCjCLsHzvxD/images/automations/github-app-install-button.png?fit=max&auto=format&n=fA73syCjCLsHzvxD&q=85&s=6fa0ddac1b07d30facc16c04f9311a37" alt="Project settings page showing the GitHub Repository section and Install GitHub App button" className="rounded-lg" width="2778" height="1674" data-path="images/automations/github-app-install-button.png" />
+![Project settings page showing the GitHub Repository section and Install GitHub App button](https://mintcdn.com/xata/fA73syCjCLsHzvxD/images/automations/github-app-install-button.png?fit=max\&auto=format\&n=fA73syCjCLsHzvxD\&q=85\&s=6fa0ddac1b07d30facc16c04f9311a37)
 
 GitHub lets you grant access to all repositories or only selected repositories. Select only the repositories that should be able to create Xata preview branches.
 
-<img src="https://mintcdn.com/xata/fA73syCjCLsHzvxD/images/automations/github-app-install-page.png?fit=max&auto=format&n=fA73syCjCLsHzvxD&q=85&s=7b2b3a76b0cc7f99a1da42a369532e61" alt="GitHub App installation page showing repository selection and requested permissions" className="rounded-lg" width="1192" height="1684" data-path="images/automations/github-app-install-page.png" />
+![GitHub App installation page showing repository selection and requested permissions](https://mintcdn.com/xata/fA73syCjCLsHzvxD/images/automations/github-app-install-page.png?fit=max\&auto=format\&n=fA73syCjCLsHzvxD\&q=85\&s=7b2b3a76b0cc7f99a1da42a369532e61)
 
 After installation, Xata links the GitHub App installation to your Xata organization and returns you to the project settings page. If you installed the app directly from GitHub, Xata asks which Xata organization should own the installation before you continue.
 
@@ -61,13 +61,13 @@ After the GitHub App is installed, configure the repository mapping from the pro
 3. Choose the **Root branch**.
 4. Click **Save settings**.
 
-<img src="https://mintcdn.com/xata/fA73syCjCLsHzvxD/images/automations/github-app-repository-mapping.png?fit=max&auto=format&n=fA73syCjCLsHzvxD&q=85&s=68ff047e3e3e71206a2d83cbb437b7c3" alt="GitHub Repository settings showing repository and root branch selectors" className="rounded-lg" width="2284" height="726" data-path="images/automations/github-app-repository-mapping.png" />
+![GitHub Repository settings showing repository and root branch selectors](https://mintcdn.com/xata/fA73syCjCLsHzvxD/images/automations/github-app-repository-mapping.png?fit=max\&auto=format\&n=fA73syCjCLsHzvxD\&q=85\&s=68ff047e3e3e71206a2d83cbb437b7c3)
 
 The root branch is the base Xata branch from which GitHub App preview branches are created. For example, if you choose `main`, each preview branch starts as a child of `main` and contains the schema and data from `main` at the moment Xata creates the branch.
 
-<Note>
-  A Xata project can have one linked GitHub repository. A GitHub repository can be linked to one Xata project at a time.
-</Note>
+> [!NOTE]
+>
+> A Xata project can have one linked GitHub repository. A GitHub repository can be linked to one Xata project at a time.
 
 ## Pull request behavior
 

@@ -22,7 +22,7 @@ While Railway offers built-in PostgreSQL templates, this page shows you how to u
 1. Create a project and branch in the [Xata console](https://console.xata.io).
 2. In the **Overview** tab of the branch, copy the connection string.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/guides/railway-branch-overview.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=c871b185aca450dd92f0f81713563924" alt="Branch overview showing connection string and database details" className="rounded-lg" width="2116" height="1928" data-path="images/guides/railway-branch-overview.png" />
+![Branch overview showing connection string and database details](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/guides/railway-branch-overview.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=c871b185aca450dd92f0f81713563924)
 
 3. In the Railway Marketplace you can find the following Xata specific templates:
 
@@ -32,15 +32,15 @@ While Railway offers built-in PostgreSQL templates, this page shows you how to u
 4. Click **Deploy Now** in the template page.
 5. In the creation modal, use the connection string from step 2 as the `DATABASE_URL` setting.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/guides/railway-template-install.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=60e926d3297218142dd497e5f8b67bb4" alt="Railway template installation modal showing database URL configuration" className="rounded-lg" width="2428" height="2146" data-path="images/guides/railway-template-install.png" />
+![Railway template installation modal showing database URL configuration](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/guides/railway-template-install.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=60e926d3297218142dd497e5f8b67bb4)
 
 6. Click **Deploy**. Once the deployment is done, visit the resulting page at the assign domain. On success, it should show the PostgreSQL version.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/guides/railway-template-success.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=4178f3de20371646120d873104ae1788" alt="Railway template success page showing PostgreSQL version and deployment confirmation" className="rounded-lg" width="2228" height="880" data-path="images/guides/railway-template-success.png" />
+![Railway template success page showing PostgreSQL version and deployment confirmation](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/guides/railway-template-success.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=4178f3de20371646120d873104ae1788)
 
-<Tip>
-  The above screenshot is from the Node.js template. The other templates have a different success screen.
-</Tip>
+> [!TIP]
+>
+> The above screenshot is from the Node.js template. The other templates have a different success screen.
 
 ## Add Xata PostgreSQL to your existing Railway project
 

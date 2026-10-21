@@ -24,7 +24,7 @@ There are two aspects that characterize `pgroll`'s approach to migrations.
 
 Making a schema change with `pgroll` results in two versions of the schema; the one before the change and the one after the change - this allows applications to select which version of the schema they want to work with and allows side-by-side rollout of applications that require the new schema changes with old applications that may be incompatible with it.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/schema-changes-flow.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=0fef866af4697da52e5b38f83f96f8d4" alt="Schema changes flow" className="rounded-lg" width="2024" height="1320" data-path="images/schema-changes-flow.png" />
+![Schema changes flow](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/schema-changes-flow.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=0fef866af4697da52e5b38f83f96f8d4)
 
 ### Lock-safe migrations
 

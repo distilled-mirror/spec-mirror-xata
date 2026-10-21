@@ -37,9 +37,9 @@ postgresql://your_username:your_password@rds-endpoint:5432/dbname
 
 You can find the rds-endpoint in the AWS RDS Console under "Connectivity & security".
 
-<Tip>
-  Don't have a live connection, or prefer to export a snapshot to Amazon S3? You can also migrate from [Parquet files](/docs/migrations/parquet) exported to S3.
-</Tip>
+> [!TIP]
+>
+> Don't have a live connection, or prefer to export a snapshot to Amazon S3? You can also migrate from [Parquet files](/docs/migrations/parquet) exported to S3.
 
 ## Initialize Xata project
 

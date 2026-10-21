@@ -83,9 +83,9 @@ A branch that has been automatically scaled to zero can be reactivated:
 * By opening a connection to the branch (ex. connecting to the branch via psql)
 * Manually, by clicking on the "Wake up branch" icon that appears on the branch overview or any other branch tabs that allow it.
 
-<Note>
-  When attempting to connect to a hibernated branch via the Serverless Proxy (HTTP or WebSocket), you'll receive a `409 Conflict` error with code `BRANCH_HIBERNATED` and the message "branch is hibernated, reactivate it to continue". The branch will need to be manually reactivated before connections can be established.
-</Note>
+> [!NOTE]
+>
+> When attempting to connect to a hibernated branch via the Serverless Proxy (HTTP or WebSocket), you'll receive a `409 Conflict` error with code `BRANCH_HIBERNATED` and the message "branch is hibernated, reactivate it to continue". The branch will need to be manually reactivated before connections can be established.
 
 ## Branching off a Hibernated Branch
 

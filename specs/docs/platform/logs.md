@@ -10,9 +10,9 @@ Branch logs let you inspect PostgreSQL server output across the primary and repl
 
 Branch logs are generally available on every branch — no opt-in or feature flag is required.
 
-<Note>
-  Logs are retained for 30 days. Entries older than that are no longer available from the dashboard, the CLI, or the API.
-</Note>
+> [!NOTE]
+>
+> Logs are retained for 30 days. Entries older than that are no longer available from the dashboard, the CLI, or the API.
 
 ## Viewing logs in the dashboard
 

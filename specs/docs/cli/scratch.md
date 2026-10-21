@@ -20,41 +20,41 @@ Creates a branch from the parent given, runs what it is asked to, and deletes th
 xata scratch [--organization value] [--project value] [--parent-branch value] [--database value] [--execute value] [--profile value] [--debug] [--json] <command>...
 ```
 
-<ParamField path="--organization" type="string">
-  Organization ID
-</ParamField>
+**--organization** `string`
 
-<ParamField path="--project" type="string">
-  Project ID
-</ParamField>
+Organization ID
 
-<ParamField path="--parent-branch" type="string">
-  Source branch ID or name for the scratch branch
-</ParamField>
+**--project** `string`
 
-<ParamField path="--database" type="string">
-  Database name
-</ParamField>
+Project ID
 
-<ParamField path="-x, --execute" type="string">
-  SQL query to execute in the scratch branch
-</ParamField>
+**--parent-branch** `string`
 
-<ParamField path="--profile" type="string">
-  The profile to use
-</ParamField>
+Source branch ID or name for the scratch branch
 
-<ParamField path="--debug" type="boolean">
-  Print where each resolved value came from
-</ParamField>
+**--database** `string`
 
-<ParamField path="--json" type="boolean">
-  Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
-</ParamField>
+Database name
 
-<ParamField path="command" type="string">
-  Binary command to run with scratch database environment variables; pass arguments to the binary after --
-</ParamField>
+**-x, --execute** `string`
+
+SQL query to execute in the scratch branch
+
+**--profile** `string`
+
+The profile to use
+
+**--debug** `boolean`
+
+Print where each resolved value came from
+
+**--json** `boolean`
+
+Output in JSON format when the command supports it. Defaults to on when an AI agent runs the command.
+
+**command** `string`
+
+Binary command to run with scratch database environment variables; pass arguments to the binary after --
 
 **Examples:**
 

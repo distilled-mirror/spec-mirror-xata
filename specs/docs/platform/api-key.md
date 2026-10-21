@@ -6,19 +6,19 @@
 
 > Generate and manage API keys for secure access to your Xata database
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/api-keys-nav.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=1879cbe2786539ab73a2d10a8385e684" alt="API Keys navigation overview" className="rounded-lg" width="2880" height="1556" data-path="images/platform/api-keys-nav.png" />
+![API Keys navigation overview](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/api-keys-nav.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=1879cbe2786539ab73a2d10a8385e684)
 
 ## Overview
 
 API keys provide programmatic access to your Xata database without requiring user authentication. They're essential for integrating Xata with your applications and automating database operations.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/api-keys-overview.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=a00b47903349d93ce17199850bf6ee31" alt="API Keys overview interface" className="rounded-lg" width="2032" height="630" data-path="images/platform/api-keys-overview.png" />
+![API Keys overview interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/api-keys-overview.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=a00b47903349d93ce17199850bf6ee31)
 
 ## Scoping
 
 Control what each key can access with granular permissions and restrictions.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/api-keys-scope.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=f62e1888cfc2cab30ab5fd4706aec250" alt="API Keys scoping interface" className="rounded-lg" width="2032" height="1934" data-path="images/platform/api-keys-scope.png" />
+![API Keys scoping interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/api-keys-scope.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=f62e1888cfc2cab30ab5fd4706aec250)
 
 ### Project and Branch Access
 

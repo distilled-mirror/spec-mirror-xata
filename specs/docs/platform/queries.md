@@ -6,7 +6,7 @@
 
 > Execute and manage database queries across your branches
 
-<img src="https://mintcdn.com/xata/pwZgANRwCfo4oBhA/images/platform/query-view.png?fit=max&auto=format&n=pwZgANRwCfo4oBhA&q=85&s=baf38a34998ae2a310abf6c2ab5d8549" alt="Query view showing the database query interface with SQL editor and results" className="rounded-lg" width="3826" height="1872" data-path="images/platform/query-view.png" />
+![Query view showing the database query interface with SQL editor and results](https://mintcdn.com/xata/pwZgANRwCfo4oBhA/images/platform/query-view.png?fit=max\&auto=format\&n=pwZgANRwCfo4oBhA\&q=85\&s=baf38a34998ae2a310abf6c2ab5d8549)
 
 Xata's built-in query interface provides a comprehensive environment to explore your data. Run SQL statements, generate SQL with natural language, view and export your results, and save your queries for later use.
 
@@ -37,7 +37,7 @@ Execute SQL queries directly in the browser with syntax highlighting and auto-co
 
 Use AI-powered SQL generation to create queries from natural language descriptions. Ask AI opens as an anchored popover in the editor so you can iterate on prompts without leaving your current statement.
 
-<img src="https://mintcdn.com/xata/pwZgANRwCfo4oBhA/images/platform/query-generate-sql.png?fit=max&auto=format&n=pwZgANRwCfo4oBhA&q=85&s=51539c37cf457694285cb30c7cb8e02a" alt="SQL generation interface showing natural language to SQL conversion" className="rounded-lg" width="1708" height="1138" data-path="images/platform/query-generate-sql.png" />
+![SQL generation interface showing natural language to SQL conversion](https://mintcdn.com/xata/pwZgANRwCfo4oBhA/images/platform/query-generate-sql.png?fit=max\&auto=format\&n=pwZgANRwCfo4oBhA\&q=85\&s=51539c37cf457694285cb30c7cb8e02a)
 
 Open Ask AI from the editor toolbar or with `⌘K`, describe what you want in plain English, and insert the generated SQL into the editor.
 
@@ -47,7 +47,7 @@ Every query can be saved for later use. The saved queries sidebar supports searc
 
 ### Draft and save-as
 
-<img src="https://mintcdn.com/xata/pwZgANRwCfo4oBhA/images/platform/query-save.png?fit=max&auto=format&n=pwZgANRwCfo4oBhA&q=85&s=e60ef30815b3cbafd426eff6aaf65114" alt="Save query button" className="rounded-lg" width="1220" height="222" data-path="images/platform/query-save.png" />
+![Save query button](https://mintcdn.com/xata/pwZgANRwCfo4oBhA/images/platform/query-save.png?fit=max\&auto=format\&n=pwZgANRwCfo4oBhA\&q=85\&s=e60ef30815b3cbafd426eff6aaf65114)
 
 When you click **New Query**, the editor opens in a draft state labeled with a **Draft** badge. Drafts are not persisted until you save them.
 
@@ -62,7 +62,7 @@ The query toolbar includes quick actions for save, rename, delete, and Ask AI, a
 
 ## View results
 
-<img src="https://mintcdn.com/xata/pwZgANRwCfo4oBhA/images/platform/query-results.png?fit=max&auto=format&n=pwZgANRwCfo4oBhA&q=85&s=443fdfe1afd34cfa8a1566a18648f15f" alt="Query results panel" className="rounded-lg" width="3498" height="1226" data-path="images/platform/query-results.png" />
+![Query results panel](https://mintcdn.com/xata/pwZgANRwCfo4oBhA/images/platform/query-results.png?fit=max\&auto=format\&n=pwZgANRwCfo4oBhA\&q=85\&s=443fdfe1afd34cfa8a1566a18648f15f)
 
 The results panel sits below the editor and supports multiple result types in tabbed views.
 

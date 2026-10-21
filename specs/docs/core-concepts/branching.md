@@ -23,13 +23,13 @@ Every branch in a project is either a base branch or a child branch:
 
 When you create your first branch in a project, the console suggests the name `main`. This is a naming convention only — `main` is not a special or default branch, and any branch can be the parent of a child branch. Branches can be nested: a child branch can itself have children, forming a branch tree.
 
-<Note>
-  Each branch runs on its own compute instance, billed by instance type for the time it runs. [Scale-to-zero](/docs/core-concepts/scale-to-zero) pauses compute on idle branches, which makes development branches cheap to keep around. See [Costs and limits](#costs-and-limits).
-</Note>
+> [!NOTE]
+>
+> Each branch runs on its own compute instance, billed by instance type for the time it runs. [Scale-to-zero](/docs/core-concepts/scale-to-zero) pauses compute on idle branches, which makes development branches cheap to keep around. See [Costs and limits](#costs-and-limits).
 
-<Warning>
-  **A branch's region is fixed at creation.** Child branches always run in the same region as their parent. To move to a different region, create a new base branch in the target region and copy your data over with [`xata clone`](/docs/cli/clone).
-</Warning>
+> [!WARNING]
+>
+> **A branch's region is fixed at creation.** Child branches always run in the same region as their parent. To move to a different region, create a new base branch in the target region and copy your data over with [`xata clone`](/docs/cli/clone).
 
 ## Create a branch
 
@@ -37,41 +37,54 @@ When you create your first branch in a project, the console suggests the name `m
 
 Creating a child branch copies the parent's schema and data using a Copy-on-Write storage snapshot, so it completes in seconds even for terabyte-scale databases.
 
-<Tabs>
-  <Tab title="Console">
-    <Steps>
-      <Step>Navigate to the **Branches** page in your project</Step>
-      <Step>Click **New branch**</Step>
-      <Step>Select the source (parent) branch</Step>
-      <Step>Give the branch a name</Step>
-      <Step>Optionally adjust the [scale-to-zero](/docs/core-concepts/scale-to-zero) settings</Step>
-      <Step>Click **Create branch**</Step>
-    </Steps>
-  </Tab>
+**Console**
 
-  <Tab title="CLI">
-    ```bash theme={null}
-    xata branch create --name "my-dev-branch" --parent-branch "main"
-    ```
+**Step 1**
 
-    See the [`xata branch create`](/docs/cli/branch#create) reference for all options.
-  </Tab>
+Navigate to the **Branches** page in your project
 
-  <Tab title="API">
-    ```bash theme={null}
-    curl -X POST "https://api.xata.tech/organizations/{organizationId}/projects/{projectId}/branches" \
-      -H "Authorization: Bearer YOUR_API_KEY" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "name": "my-dev-branch",
-        "mode": "inherit",
-        "parentID": "PARENT_BRANCH_ID"
-      }'
-    ```
+**Step 2**
 
-    With `mode: "inherit"`, the new branch inherits the parent branch's configuration and data. See the API Reference for the full request schema.
-  </Tab>
-</Tabs>
+Click **New branch**
+
+**Step 3**
+
+Select the source (parent) branch
+
+**Step 4**
+
+Give the branch a name
+
+**Step 5**
+
+Optionally adjust the [scale-to-zero](/docs/core-concepts/scale-to-zero) settings
+
+**Step 6**
+
+Click **Create branch**
+
+**CLI**
+
+```bash theme={null}
+xata branch create --name "my-dev-branch" --parent-branch "main"
+```
+
+See the [`xata branch create`](/docs/cli/branch#create) reference for all options.
+
+**API**
+
+```bash theme={null}
+curl -X POST "https://api.xata.tech/organizations/{organizationId}/projects/{projectId}/branches" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my-dev-branch",
+    "mode": "inherit",
+    "parentID": "PARENT_BRANCH_ID"
+  }'
+```
+
+With `mode: "inherit"`, the new branch inherits the parent branch's configuration and data. See the API Reference for the full request schema.
 
 A few things to know about child branches:
 
@@ -83,29 +96,42 @@ A few things to know about child branches:
 
 A base branch has no parent and starts empty — no schema, no data. Use it for a new production database, a staging environment in a specific region, or as the root of a new branch tree.
 
-<Tabs>
-  <Tab title="Console">
-    <Steps>
-      <Step>Navigate to the **Branches** page and click **New branch**</Step>
-      <Step>Give the branch a name</Step>
-      <Step>Select a region</Step>
-      <Step>Choose the PostgreSQL image, instance type, and number of replicas</Step>
-      <Step>Optionally adjust the [scale-to-zero](/docs/core-concepts/scale-to-zero) settings</Step>
-      <Step>Click **Create branch**</Step>
-    </Steps>
-  </Tab>
+**Console**
 
-  <Tab title="CLI">
-    ```bash theme={null}
-    xata branch create --name "staging" --no-parent \
-      --region "us-east-1" --instance-type "xata.small" --replicas 0
-    ```
-  </Tab>
-</Tabs>
+**Step 1**
 
-<Warning>
-  **A branch with 0 replicas is not suitable for production workloads.** It has no automatic failover target. Configure at least 1 replica for production. Learn more in [High availability and replicas](/docs/core-concepts/deployment#high-availability-and-replicas).
-</Warning>
+Navigate to the **Branches** page and click **New branch**
+
+**Step 2**
+
+Give the branch a name
+
+**Step 3**
+
+Select a region
+
+**Step 4**
+
+Choose the PostgreSQL image, instance type, and number of replicas
+
+**Step 5**
+
+Optionally adjust the [scale-to-zero](/docs/core-concepts/scale-to-zero) settings
+
+**Step 6**
+
+Click **Create branch**
+
+**CLI**
+
+```bash theme={null}
+xata branch create --name "staging" --no-parent \
+  --region "us-east-1" --instance-type "xata.small" --replicas 0
+```
+
+> [!WARNING]
+>
+> **A branch with 0 replicas is not suitable for production workloads.** It has no automatic failover target. Configure at least 1 replica for production. Learn more in [High availability and replicas](/docs/core-concepts/deployment#high-availability-and-replicas).
 
 ## Connect to a branch
 
@@ -161,44 +187,49 @@ Scale-to-zero is configured per branch, and your project defines separate defaul
 
 Deleting a branch permanently removes the branch and its data. This cannot be undone.
 
-<Tabs>
-  <Tab title="Console">
-    <Steps>
-      <Step>Navigate to the **Branches** page</Step>
-      <Step>Open the actions menu ("...") next to the branch</Step>
-      <Step>Select **Delete**</Step>
-      <Step>Type the branch name to confirm the deletion</Step>
-    </Steps>
-  </Tab>
+**Console**
 
-  <Tab title="CLI">
-    ```bash theme={null}
-    xata branch delete my-dev-branch
-    ```
-  </Tab>
-</Tabs>
+**Step 1**
+
+Navigate to the **Branches** page
+
+**Step 2**
+
+Open the actions menu ("...") next to the branch
+
+**Step 3**
+
+Select **Delete**
+
+**Step 4**
+
+Type the branch name to confirm the deletion
+
+**CLI**
+
+```bash theme={null}
+xata branch delete my-dev-branch
+```
 
 Development branches are billed for the time they run, so delete branches you no longer need — or let [scale-to-zero](/docs/core-concepts/scale-to-zero) pause them automatically.
 
 ## Branching workflows
 
-<Columns cols={2}>
-  <Card title="Dev branches for pull requests" icon="code-pull-request" iconType="solid" href="/docs/automations/github-app">
-    Connect the Xata GitHub App to create a dedicated dev branch for every pull request, and clean it up when the PR closes.
-  </Card>
+> **[Dev branches for pull requests](/docs/automations/github-app)**
+>
+> Connect the Xata GitHub App to create a dedicated dev branch for every pull request, and clean it up when the PR closes.
 
-  <Card title="Branch automation in CI" icon="gears" iconType="solid" href="/docs/automations/ga-pr">
-    Use GitHub Actions to create branches, apply migrations, and wire preview environments to a branch connection string.
-  </Card>
+> **[Branch automation in CI](/docs/automations/ga-pr)**
+>
+> Use GitHub Actions to create branches, apply migrations, and wire preview environments to a branch connection string.
 
-  <Card title="Anonymized production clones" icon="user-shield" iconType="solid" href="/docs/tutorials/create-production-clone">
-    Clone production into a staging branch with PII anonymized on the fly, then create instant dev branches from it.
-  </Card>
+> **[Anonymized production clones](/docs/tutorials/create-production-clone)**
+>
+> Clone production into a staging branch with PII anonymized on the fly, then create instant dev branches from it.
 
-  <Card title="Test schema changes safely" icon="code-merge" iconType="solid" href="/docs/core-concepts/schema-changes">
-    Try a migration on a child branch first, then apply the same migration to production with zero downtime using pgroll.
-  </Card>
-</Columns>
+> **[Test schema changes safely](/docs/core-concepts/schema-changes)**
+>
+> Try a migration on a child branch first, then apply the same migration to production with zero downtime using pgroll.
 
 Branches do not merge or synchronize schema changes with each other. The workflow is: test the migration on a child branch, then apply the same migration separately to the target branch — manually or through CI. See [schema changes](/docs/core-concepts/schema-changes).
 
@@ -212,15 +243,15 @@ In generic terms, [Copy-on-Write](https://en.wikipedia.org/wiki/Copy-on-write) i
 
 When stored on disk, the database volume is split into *blocks*. In the illustration below, the blocks are numbered from 1 to 8. Because we're using a distributed storage system, the blocks can be on different disks and nodes. A metadata index is used to keep track of where the data blocks are stored.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/core-concepts/copy-on-write-diagram-1.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=76e697227752a113273067e3b5adf840" alt="Copy-on-Write branching — initial state" className="rounded-lg" width="882" height="450" data-path="images/core-concepts/copy-on-write-diagram-1.png" />
+![Copy-on-Write branching — initial state](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/core-concepts/copy-on-write-diagram-1.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=76e697227752a113273067e3b5adf840)
 
 When the Copy-on-Write volume snapshot is created, and the child database branch started from this snapshot, a new index is created. However, no data blocks are copied at this point; the index simply points to the original data blocks. This makes the snapshot instant, regardless of how large the database is.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/core-concepts/copy-on-write-branching-2.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=d8f94c67678a2a38fd5cde505220a85c" alt="Copy-on-Write branching — new branch created" className="rounded-lg" width="880" height="446" data-path="images/core-concepts/copy-on-write-branching-2.png" />
+![Copy-on-Write branching — new branch created](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/core-concepts/copy-on-write-branching-2.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=d8f94c67678a2a38fd5cde505220a85c)
 
 After the branch is created, whenever writes are received by a data block — either by the child or the parent branch — that particular block is first copied. In the illustration below, this has happened for blocks 3 and 6. When a block diverges like this, the index from each branch references its own private copy of it.
 
-<img src="https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/core-concepts/copy-on-write-branching-3.png?fit=max&auto=format&n=PDDxPY9xptrEGBCP&q=85&s=6a4052b79ef9c9fdf3a63496721b1a30" alt="Copy-on-Write branching — blocks diverging after writes" className="rounded-lg" width="868" height="448" data-path="images/core-concepts/copy-on-write-branching-3.png" />
+![Copy-on-Write branching — blocks diverging after writes](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/core-concepts/copy-on-write-branching-3.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=6a4052b79ef9c9fdf3a63496721b1a30)
 
 Only the blocks that are modified need to be copied, which results in significant I/O and storage savings compared to a full copy.
 

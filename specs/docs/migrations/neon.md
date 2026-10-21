@@ -108,9 +108,9 @@ const sql = neon(process.env.DATABASE_URL);
 const users = await sql`SELECT * FROM users`;
 ```
 
-<Tip>
-  For more details on using the serverless driver with Xata, see the [Serverless Proxy](/docs/core-concepts/serverless-proxy) documentation.
-</Tip>
+> [!TIP]
+>
+> For more details on using the serverless driver with Xata, see the [Serverless Proxy](/docs/core-concepts/serverless-proxy) documentation.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.
