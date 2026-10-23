@@ -23,7 +23,7 @@ In both cases the export lands in S3 as Parquet files that preserve your table s
 
 > [!TIP]
 >
-> If you have a live PostgreSQL connection to your source database, you can migrate directly with `xata clone` instead. See the [AWS Aurora](/docs/migrations/aws-aurora) and [AWS RDS](/docs/migrations/aws-rds) guides.
+> If you have a live PostgreSQL connection to your source database, you can migrate directly with `xata clone` instead. See the [AWS Aurora](/docs/migrations/aws-aurora.md) and [AWS RDS](/docs/migrations/aws-rds.md) guides.
 
 ## Import Parquet files into Xata
 

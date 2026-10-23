@@ -198,9 +198,9 @@ Most commands work with a key scoped to `branch:read`. These need more:
 | [`project init`](/docs/cli/project) | `credentials:read` | Reads connection details from the credentials endpoint |
 | [`clone start`](/docs/cli/clone), [`stream`](/docs/cli/stream) | `credentials:read` | Connects to the source and target branches |
 
-A key that only has `branch:read` returns a 401 on the commands above. Scopes are set when you create the key, so a key created before a scope existed does not have it. See [API keys](/docs/platform/api-key) for how to create and scope one.
+A key that only has `branch:read` returns a 401 on the commands above. Scopes are set when you create the key, so a key created before a scope existed does not have it. See [API keys](/docs/platform/api-key.md) for how to create and scope one.
 
-Commands that manage members, invitations, roles, organization API keys or single sign-on also need an Admin of the organization. See [Organization roles](/docs/platform/organization-roles).
+Commands that manage members, invitations, roles, organization API keys or single sign-on also need an Admin of the organization. See [Organization roles](/docs/platform/organization-roles.md).
 
 ## Environment Variables
 

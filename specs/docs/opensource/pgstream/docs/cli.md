@@ -140,7 +140,7 @@ The `run` command is the main operation mode for pgstream. It:
 * `--target-url` - Target URL
 * `--replication-slot` - Name of the postgres replication slot for pgstream to connect to
 * `--snapshot-tables` - List of tables to snapshot if initial snapshot is required, in the format `<schema>.<table>`. If not specified, the schema `public` will be assumed. Wildcards are supported
-* `--reset` - Whether to reset the target before snapshotting (only for postgres target). ⚠️ Destructive: the target objects are dropped before the table data is copied, so a snapshot that fails afterwards leaves the target partially rebuilt with the previous contents gone. See [resetting the target](/docs/opensource/pgstream/docs/snapshots#️-resetting-the-target-destroys-it-before-the-new-data-lands)
+* `--reset` - Whether to reset the target before snapshotting (only for postgres target). ⚠️ Destructive: the target objects are dropped before the table data is copied, so a snapshot that fails afterwards leaves the target partially rebuilt with the previous contents gone. See [resetting the target](/docs/opensource/pgstream/docs/snapshots.md#️-resetting-the-target-destroys-it-before-the-new-data-lands)
 * `--profile` - Whether to expose a /debug/pprof endpoint on localhost:6060
 * `--init` - Whether to initialize pgstream before starting replication
 * `--dump-file` - File where the pg\_dump output will be written if initial snapshot is enabled when using pgdump/restore
@@ -192,7 +192,7 @@ The `snapshot` command creates a point-in-time copy of database tables. It:
 * `--target` - Target type. One of postgres, opensearch, elasticsearch, kafka
 * `--target-url` - Target URL
 * `--tables` - List of tables to snapshot, in the format `<schema>.<table>`. If not specified, the schema `public` will be assumed. Wildcards are supported
-* `--reset` - Whether to reset the target before snapshotting (only for postgres target). ⚠️ Destructive: the target objects are dropped before the table data is copied, so a snapshot that fails afterwards leaves the target partially rebuilt with the previous contents gone. See [resetting the target](/docs/opensource/pgstream/docs/snapshots#️-resetting-the-target-destroys-it-before-the-new-data-lands)
+* `--reset` - Whether to reset the target before snapshotting (only for postgres target). ⚠️ Destructive: the target objects are dropped before the table data is copied, so a snapshot that fails afterwards leaves the target partially rebuilt with the previous contents gone. See [resetting the target](/docs/opensource/pgstream/docs/snapshots.md#️-resetting-the-target-destroys-it-before-the-new-data-lands)
 * `--profile` - Whether to produce CPU and memory profile files, as well as exposing a /debug/pprof endpoint on localhost:6060
 * `--dump-file` - File where the pg\_dump output will be written
 
@@ -417,7 +417,7 @@ pgstream uses YAML or .env configuration files. The configuration can be specifi
 1. **Command-line flag:** `--config /path/to/config.yaml` or `-c /path/to/config.env`
 2. **Environment variable:** `PGSTREAM_CONFIG=/path/to/config.yaml`
 
-For more information about the configuration options, check out the [configuration documentation](/docs/opensource/pgstream/docs/configuration).
+For more information about the configuration options, check out the [configuration documentation](/docs/opensource/pgstream/docs/configuration.md).
 
 ## Examples
 

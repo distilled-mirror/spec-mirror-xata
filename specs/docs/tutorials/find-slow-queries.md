@@ -12,12 +12,12 @@ This guide walks the loop end to end: find the expensive statements, read one qu
 
 ## 1. Prerequisites
 
-* A Xata branch with a workload on it. A [production clone](/docs/tutorials/create-production-clone) is a good place to do this without touching production.
-* The [Xata CLI](/docs/cli) installed, if you want to follow the terminal steps:
+* A Xata branch with a workload on it. A [production clone](/docs/tutorials/create-production-clone.md) is a good place to do this without touching production.
+* The [Xata CLI](/docs/cli.md) installed, if you want to follow the terminal steps:
   ```bash theme={null}
   curl -fsSL https://xata.io/install.sh | bash
   ```
-* An API key with the `credentials:read` and `logs:read` scopes. `credentials:read` is what lets the CLI open a database connection for query insights. See [Required scopes](/docs/cli#required-scopes).
+* An API key with the `credentials:read` and `logs:read` scopes. `credentials:read` is what lets the CLI open a database connection for query insights. See [Required scopes](/docs/cli.md#required-scopes).
 
 ## 2. Enable pg\_stat\_statements
 
@@ -166,10 +166,10 @@ Two behaviors worth knowing if a coding agent is the one running these. The CLI 
 
 ## Next steps
 
-* [Query insights](/docs/platform/query-insights) for the console reference
-* [Logs](/docs/platform/logs) and [Metrics](/docs/platform/metrics) for what each surface collects
+* [Query insights](/docs/platform/query-insights.md) for the console reference
+* [Logs](/docs/platform/logs.md) and [Metrics](/docs/platform/metrics.md) for what each surface collects
 * [`xata branch` CLI reference](/docs/cli/branch#query-insights) for the full flag surface
-* [Create a production clone](/docs/tutorials/create-production-clone) to do this work against realistic data without touching production
+* [Create a production clone](/docs/tutorials/create-production-clone.md) to do this work against realistic data without touching production
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

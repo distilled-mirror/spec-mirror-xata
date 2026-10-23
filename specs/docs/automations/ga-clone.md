@@ -111,8 +111,8 @@ This step verifies that your Xata CLI is properly configured and can connect to 
 
 For more details, see:
 
-* [status command documentation](../cli/status)
-* [branch describe command documentation](../cli/branch#describe)
+* [status command documentation](/docs/cli/status.md)
+* [branch describe command documentation](/docs/cli/branch.md#describe)
 
 ### 4. Checkout clone branch
 
@@ -138,7 +138,7 @@ This step:
 
 This step initiates the cloning process from your source PostgreSQL database.
 
-For more details, see the [clone start command documentation](../cli/clone#start).
+For more details, see the [clone start command documentation](/docs/cli/clone.md#start).
 
 ## Triggering the workflow
 
@@ -193,8 +193,8 @@ This ensures that:
 
 ## Related workflows
 
-* [Check workflow](./ga-check) - For validating main branch status
-* [PR workflow](./ga-pr) - For managing pull request environments
+* [Check workflow](/docs/automations/ga-check.md) - For validating main branch status
+* [PR workflow](/docs/automations/ga-pr.md) - For managing pull request environments
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

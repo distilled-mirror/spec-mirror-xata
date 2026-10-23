@@ -8,7 +8,7 @@
 
 ## Overview
 
-With scale to zero, branches automatically hibernate after periods of inactivity. You can also manually hibernate branches that won't be used for extended periods. Learn more about the [benefits of scale to zero](/docs/core-concepts/scale-to-zero).
+With scale to zero, branches automatically hibernate after periods of inactivity. You can also manually hibernate branches that won't be used for extended periods. Learn more about the [benefits of scale to zero](/docs/core-concepts/scale-to-zero.md).
 
 ## Project-Level Settings
 

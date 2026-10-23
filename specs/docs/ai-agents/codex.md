@@ -79,7 +79,7 @@ Use a branch per Codex task. For risky changes, start from anonymized production
 * Put database boundaries in the first prompt.
 * Prefer branch-scoped API keys for automation work.
 * Ask Codex to show exact commands before destructive database operations.
-* Use [branch cleanup automation](/docs/automations/ga-cleanup) for repeated team workflows.
+* Use [branch cleanup automation](/docs/automations/ga-cleanup.md) for repeated team workflows.
 
 ## Troubleshooting
 
@@ -91,11 +91,11 @@ Use a branch per Codex task. For risky changes, start from anonymized production
 
 ## Related Xata docs
 
-* [Quickstart](/docs/quickstart)
-* [CLI Reference](/docs/cli)
-* [Branch commands](/docs/cli/branch)
-* [Data Anonymization](/docs/core-concepts/anonymization)
-* [Create Branch automation](/docs/automations/ga-pr)
+* [Quickstart](/docs/quickstart.md)
+* [CLI Reference](/docs/cli.md)
+* [Branch commands](/docs/cli/branch.md)
+* [Data Anonymization](/docs/core-concepts/anonymization.md)
+* [Create Branch automation](/docs/automations/ga-pr.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

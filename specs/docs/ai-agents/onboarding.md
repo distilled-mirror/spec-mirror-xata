@@ -6,7 +6,7 @@
 
 > A guide for coding agents to help users get started with Xata, from installing the CLI to a working Postgres branch connected to their app.
 
-This page contains instructions for how to help a user get started with Xata. It is written for coding agents; if you are a human, paste the prompt from the [Quickstart](/docs/quickstart) into your agent and it will follow this guide for you.
+This page contains instructions for how to help a user get started with Xata. It is written for coding agents; if you are a human, paste the prompt from the [Quickstart](/docs/quickstart.md) into your agent and it will follow this guide for you.
 
 Walk through it interactively with the user, answer any questions, and make sure they understand what Xata is and what it can do. The end goal is a working Postgres branch connected to their project, plus hands-on experience with the branching workflow that makes Xata different. If they want to migrate an existing database, help them with that as well (see the migration appendix below).
 
@@ -23,7 +23,7 @@ Ground rules for this onboarding:
 
 ## What is Xata?
 
-Xata is a PostgreSQL platform built around instant, copy-on-write branching. It is standard PostgreSQL, not a fork: existing drivers, ORMs, and Postgres tools work normally, and there is no SDK to install. (Available extensions are listed at [https://xata.io/docs/platform/extensions](https://xata.io/docs/platform/extensions).)
+Xata is a PostgreSQL platform built around instant, copy-on-write branching. It is standard PostgreSQL, not a fork: existing drivers, ORMs, and Postgres tools work normally, and there is no SDK to install. (Available extensions are listed at [https://xata.io/docs/platform/extensions](https://xata.io/docs/platform/extensions.md).)
 
 Key capabilities to explain to the user:
 
@@ -51,7 +51,7 @@ The binary installs to `~/.config/xata/bin`. Make sure that directory is on the 
 
 Xata skills teach coding agents how to use the CLI and follow Xata-specific workflows. Offer to install the CLI skill in the user's project so future sessions can discover it. This does not require Xata authentication or MCP setup.
 
-Once the user has chosen a project directory, identify the coding agent running this session and its supported `--agent` value, such as `claude-code`, `codex`, `cursor`, or `amp`. Ask if uncertain; do not infer the agent from its model name or another client's configuration files. See [the skills command reference](/docs/cli/skill) for all supported agents. If the user is only exploring and has no project directory yet, defer installation.
+Once the user has chosen a project directory, identify the coding agent running this session and its supported `--agent` value, such as `claude-code`, `codex`, `cursor`, or `amp`. Ask if uncertain; do not infer the agent from its model name or another client's configuration files. See [the skills command reference](/docs/cli/skill.md) for all supported agents. If the user is only exploring and has no project directory yet, defer installation.
 
 Explain that this adds project-local instruction files and get approval, then check availability:
 
@@ -60,7 +60,7 @@ xata skill install --help
 xata skill list --json
 ```
 
-If the installed CLI does not support these commands, offer to upgrade it with permission, or use [skills through MCP](/docs/ai-agents/agent-skills#access-skills-through-mcp). Do not report a local installation as complete if it was skipped or failed.
+If the installed CLI does not support these commands, offer to upgrade it with permission, or use [skills through MCP](/docs/ai-agents/agent-skills.md#access-skills-through-mcp). Do not report a local installation as complete if it was skipped or failed.
 
 Install `using-xata-cli`, replacing both placeholders with the verified values:
 
@@ -207,9 +207,9 @@ Tell the user about [https://console.xata.io](https://console.xata.io), where th
 
 Set the user up so their coding agents keep working well with Xata after onboarding:
 
-* **MCP server** — Xata hosts an MCP server at `https://api.xata.tech/mcp` (Streamable HTTP, OAuth or API-key auth). Offer to configure it in the user's client now, for example `claude mcp add --transport http xata https://api.xata.tech/mcp` for Claude Code, or an entry in `.cursor/mcp.json` for Cursor. Per-client instructions: [https://xata.io/docs/platform/mcp](https://xata.io/docs/platform/mcp).
+* **MCP server** — Xata hosts an MCP server at `https://api.xata.tech/mcp` (Streamable HTTP, OAuth or API-key auth). Offer to configure it in the user's client now, for example `claude mcp add --transport http xata https://api.xata.tech/mcp` for Claude Code, or an entry in `.cursor/mcp.json` for Cursor. Per-client instructions: [https://xata.io/docs/platform/mcp](https://xata.io/docs/platform/mcp.md).
 * **Agent authentication** — a machine-readable guide to obtaining Xata API credentials as an agent: [https://xata.io/auth.md](https://xata.io/auth.md).
-* **Per-agent branches** — recommend giving every agent task its own branch created from `main` (or an anonymized clone of production) and reviewing changes before they reach `main`. Details: [https://xata.io/docs/ai-agents/overview](https://xata.io/docs/ai-agents/overview).
+* **Per-agent branches** — recommend giving every agent task its own branch created from `main` (or an anonymized clone of production) and reviewing changes before they reach `main`. Details: [https://xata.io/docs/ai-agents/overview](https://xata.io/docs/ai-agents/overview.md).
 
 ### Prepare future database tasks
 
@@ -249,7 +249,7 @@ xata clone start --validation-mode strict
 
 Strict validation requires every table and column to be covered by the rules in `.xata/clone.yaml`; it does **not** guarantee anonymization. Auto-generated `noop` rules copy values unchanged. Identify sensitive columns and replace their `noop` rules with appropriate masking transformations before copying any data. Only use `--validation-mode relaxed` if the user explicitly confirms the data contains nothing sensitive — relaxed mode copies uncovered columns unchanged. Double-check which branch is checked out before starting, so the clone lands where intended.
 
-Provider-specific guides start at [https://xata.io/docs/migrations/aws-rds](https://xata.io/docs/migrations/aws-rds) (sibling pages cover Aurora, Cloud SQL, Azure, Neon, Supabase, and self-hosted). For continuous replication instead of a one-time snapshot, see `xata clone stream`.
+Provider-specific guides start at [https://xata.io/docs/migrations/aws-rds](https://xata.io/docs/migrations/aws-rds.md) (sibling pages cover Aurora, Cloud SQL, Azure, Neon, Supabase, and self-hosted). For continuous replication instead of a one-time snapshot, see `xata clone stream`.
 
 ## Notes
 

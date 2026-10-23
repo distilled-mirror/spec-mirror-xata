@@ -68,7 +68,7 @@ Keep a separate branch for each Cursor task or background agent. If Cursor needs
 * Keep `.env.local` out of commits.
 * Prefer branch names that match the issue or pull request.
 * Ask Cursor to explain generated SQL in plain language.
-* Link Cursor to [Instant Branching](/docs/core-concepts/branching) when prompting for database safety.
+* Link Cursor to [Instant Branching](/docs/core-concepts/branching.md) when prompting for database safety.
 
 ## Troubleshooting
 
@@ -80,10 +80,10 @@ Keep a separate branch for each Cursor task or background agent. If Cursor needs
 
 ## Related Xata docs
 
-* [Drizzle quickstart](/docs/quickstarts/drizzle)
-* [Instant Branching](/docs/core-concepts/branching)
-* [Schema Changes](/docs/core-concepts/schema-changes)
-* [Branch commands](/docs/cli/branch)
+* [Drizzle quickstart](/docs/quickstarts/drizzle.md)
+* [Instant Branching](/docs/core-concepts/branching.md)
+* [Schema Changes](/docs/core-concepts/schema-changes.md)
+* [Branch commands](/docs/cli/branch.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

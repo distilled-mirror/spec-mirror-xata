@@ -8,14 +8,14 @@
 
 You'll use the `xata roll` commands to manage migrations, and an example with changing column types.
 
-To better understand the use case and our novel approach to the challenge of schema changes, see the [schema changes core concept](/docs/core-concepts/schema-changes) page for more details.
+To better understand the use case and our novel approach to the challenge of schema changes, see the [schema changes core concept](/docs/core-concepts/schema-changes.md) page for more details.
 
 `xata roll` is embedding [pgroll](https://pgroll.com) behind the scenes and additional details around schema changes can be found in the [pgroll documentation](https://pgroll.com/docs/latest).
 
 ## 1. Prerequisites
 
 * A Xata account ([sign up here](https://console.xata.io))
-* The [Xata CLI](/docs/cli) installed:
+* The [Xata CLI](/docs/cli.md) installed:
   ```bash theme={null}
   curl -fsSL https://xata.io/install.sh | bash
   ```
@@ -230,7 +230,7 @@ In a production scenario, you would only complete the migration when the applica
 
 To automate schema changes in your CI/CD pipeline, you can use our GitHub Actions workflow. This workflow creates a dedicated Xata branch for each pull request, allowing you to test database changes in isolation.
 
-For details about setting up the workflow and available configuration options, see our [GitHub Actions PR workflow documentation](/docs/automations/ga-pr).
+For details about setting up the workflow and available configuration options, see our [GitHub Actions PR workflow documentation](/docs/automations/ga-pr.md).
 
 ## 14. Summary
 
@@ -239,7 +239,7 @@ For details about setting up the workflow and available configuration options, s
 * Use `xata roll rollback` to undo migrations if needed
 * Use `xata roll complete` to finalize migrations when your application is ready
 * For more details on up/down migrations, see the [pgroll documentation](https://pgroll.com/docs/latest).
-* See the [CLI reference](/docs/cli/roll) for all available `xata roll` commands.
+* See the [CLI reference](/docs/cli/roll.md) for all available `xata roll` commands.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

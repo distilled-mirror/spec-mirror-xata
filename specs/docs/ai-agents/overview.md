@@ -12,11 +12,11 @@ Xata exposes a CLI, a hosted MCP server, and agent skills. AI coding agents can 
 
 ## Get set up
 
-New to Xata? Hand the setup to your agent: the [agent onboarding guide](/docs/ai-agents/onboarding) walks it through installing the CLI, creating a project, connecting your app, and trying branching. The [Quickstart](/docs/quickstart) has a ready-made prompt.
+New to Xata? Hand the setup to your agent: the [agent onboarding guide](/docs/ai-agents/onboarding.md) walks it through installing the CLI, creating a project, connecting your app, and trying branching. The [Quickstart](/docs/quickstart.md) has a ready-made prompt.
 
 ### Or set up manually
 
-If you do not have a Xata account yet, [sign up and create a project](/docs/quickstart) first.
+If you do not have a Xata account yet, [sign up and create a project](/docs/quickstart.md) first.
 
 Install the Xata CLI, authenticate, and link your local repository:
 
@@ -40,23 +40,23 @@ Example for Claude Code:
 claude mcp add --transport http xata https://api.xata.tech/mcp
 ```
 
-See [MCP Server](/docs/platform/mcp) for setup instructions for Cursor, VS Code, Codex, OpenCode, Windsurf, Cline, and other clients.
+See [MCP Server](/docs/platform/mcp.md) for setup instructions for Cursor, VS Code, Codex, OpenCode, Windsurf, Cline, and other clients.
 
 ## Choose your integration
 
-> **[Xata CLI](/docs/cli)**
+> **[Xata CLI](/docs/cli.md)**
 >
 > Branches, auth, migrations, clone, stream, and project linking from the terminal.
 
-> **[Xata MCP](/docs/platform/mcp)**
+> **[Xata MCP](/docs/platform/mcp.md)**
 >
 > Connect through OAuth or an API key. Works with Cursor, Claude Code, VS Code, Codex, OpenCode, Windsurf, Cline, and more.
 
-> **[Agent Skills](/docs/ai-agents/agent-skills)**
+> **[Agent Skills](/docs/ai-agents/agent-skills.md)**
 >
 > Guided workflows for the CLI, HTTP API, and PostgreSQL operations. Available through the MCP server.
 
-> **[Agent guides](/docs/ai-agents/claude-code)**
+> **[Agent guides](/docs/ai-agents/claude-code.md)**
 >
 > Step-by-step setup for Claude Code, Cursor, Codex, Copilot, and other coding agents with isolated branches.
 
@@ -69,7 +69,7 @@ See [MCP Server](/docs/platform/mcp) for setup instructions for Cursor, VS Code,
 
 ## Working with sensitive data
 
-> **[Anonymized production clones](/docs/core-concepts/anonymization)**
+> **[Anonymized production clones](/docs/core-concepts/anonymization.md)**
 >
 > Give agents realistic schema and data for testing without exposing PII or other sensitive values. Create an anonymized clone as the parent branch before spinning up agent task branches.
 
@@ -77,43 +77,43 @@ See [MCP Server](/docs/platform/mcp) for setup instructions for Cursor, VS Code,
 
 Use the guide for your coding agent to create an isolated branch, pass the branch connection string to the agent, and keep schema or data changes scoped to that branch until you review them.
 
-> **[Claude Code](/docs/ai-agents/claude-code)**
+> **[Claude Code](/docs/ai-agents/claude-code.md)**
 >
 > Terminal-first workflows for branch-scoped migrations, tests, and database inspection.
 
-> **[Codex](/docs/ai-agents/codex)**
+> **[Codex](/docs/ai-agents/codex.md)**
 >
 > Sandbox-friendly workflows for running tests and edits against a dedicated Xata branch.
 
-> **[Cursor](/docs/ai-agents/cursor)**
+> **[Cursor](/docs/ai-agents/cursor.md)**
 >
 > IDE and background-agent setup with `.env.local` connection strings and reviewable schema changes.
 
-> **[OpenCode](/docs/ai-agents/opencode)**
+> **[OpenCode](/docs/ai-agents/opencode.md)**
 >
 > Provider-agnostic terminal agent workflows using standard Postgres and the Xata CLI.
 
-> **[GitHub Copilot](/docs/ai-agents/github-copilot)**
+> **[GitHub Copilot](/docs/ai-agents/github-copilot.md)**
 >
 > VS Code and GitHub workflows for per-PR branches and CI-backed database checks.
 
-> **[Windsurf](/docs/ai-agents/windsurf)**
+> **[Windsurf](/docs/ai-agents/windsurf.md)**
 >
 > Cascade and Flow patterns for repeatable branch creation, migration testing, and cleanup.
 
-> **[Cline](/docs/ai-agents/cline)**
+> **[Cline](/docs/ai-agents/cline.md)**
 >
 > Approval-based VS Code workflows with safe terminal commands and branch-scoped credentials.
 
-> **[Devin](/docs/ai-agents/devin)**
+> **[Devin](/docs/ai-agents/devin.md)**
 >
 > Long-running cloud-agent tasks with isolated branches, scoped credentials, and explicit cleanup.
 
 ## Recommended baseline
 
-1. Create or choose a parent branch with the schema and data the agent should use. For sensitive data, start from an [anonymized production clone](/docs/core-concepts/anonymization).
+1. Create or choose a parent branch with the schema and data the agent should use. For sensitive data, start from an [anonymized production clone](/docs/core-concepts/anonymization.md).
 2. Create a dedicated branch for the agent task.
-3. Give the agent only the branch connection string or a [branch-scoped API key](/docs/platform/api-key).
+3. Give the agent only the branch connection string or a [branch-scoped API key](/docs/platform/api-key.md).
 4. Ask the agent to run migrations, tests, and data changes only against that branch.
 5. Review code, SQL, schema diffs, and Xata branch state before merging.
 6. Delete the temporary branch when the task is done.
@@ -125,9 +125,9 @@ xata branch url agent-task
 
 ## See also
 
-* [Data Anonymization](/docs/core-concepts/anonymization)
-* [API Keys](/docs/platform/api-key)
-* [Create a branch per pull request](/docs/automations/ga-pr)
+* [Data Anonymization](/docs/core-concepts/anonymization.md)
+* [API Keys](/docs/platform/api-key.md)
+* [Create a branch per pull request](/docs/automations/ga-pr.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

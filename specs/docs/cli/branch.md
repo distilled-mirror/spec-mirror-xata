@@ -252,7 +252,7 @@ xata branch delete my-branch --yes
 
 Retrieve the PostgreSQL logs of a branch
 
-Reads the logs of every instance of the branch, the primary and any replicas, which is where slow queries, connection issues and replication problems show up. Requires the `logs:read` scope on the API key. Of the output formats, `raw` prints `<timestamp> [<level> <instanceID> <process>] <message>` per line, `json` a single array, `ndjson` one object per line for streaming into another process, and `csv` the columns `timestamp,level,instanceID,process,message`. Follow mode polls every 2 seconds with a 5 second overlap and de-duplicates entries. Logs can contain connection strings and other credentials, see [https://xata.io/docs/platform/logs](https://xata.io/docs/platform/logs) for what is redacted.
+Reads the logs of every instance of the branch, the primary and any replicas, which is where slow queries, connection issues and replication problems show up. Requires the `logs:read` scope on the API key. Of the output formats, `raw` prints `<timestamp> [<level> <instanceID> <process>] <message>` per line, `json` a single array, `ndjson` one object per line for streaming into another process, and `csv` the columns `timestamp,level,instanceID,process,message`. Follow mode polls every 2 seconds with a 5 second overlap and de-duplicates entries. Logs can contain connection strings and other credentials, see [https://xata.io/docs/platform/logs](https://xata.io/docs/platform/logs.md) for what is redacted.
 
 ```bash theme={null}
 xata branch logs [--organization value] [--project value] [--branch value] [--level debug|info|warning|error] [--instance value]... [--process value]... [--search value] [--start value] [--end value] [--limit value] [--follow] [--output raw|json|ndjson|csv] [--profile value] [--debug] [--json] [<branch>]
@@ -339,7 +339,7 @@ xata branch logs my-branch --process postgres --instance <replica-id> --output c
 
 Print URL (connection string) for a branch
 
-Reads the connection details from the credentials endpoint, so an API key needs the `credentials:read` scope, see [https://xata.io/docs/cli#required-scopes](https://xata.io/docs/cli#required-scopes).
+Reads the connection details from the credentials endpoint, so an API key needs the `credentials:read` scope, see [https://xata.io/docs/cli#required-scopes](https://xata.io/docs/cli.md#required-scopes).
 
 ```bash theme={null}
 xata branch url [--organization value] [--project value] [--branch value] [--database value] [--type primary|primary-or-replica|replica|pooler] [--profile value] [--debug] [--json] [<branch>]
@@ -623,7 +623,7 @@ xata branch metrics my-branch -w --refresh 5s --instances primary --output ndjso
 
 Set a field value for a branch
 
-The `postgres-version` field upgrades PostgreSQL, and only accepts compatible upgrades within the same major version and offering type, see [https://xata.io/docs/platform/branch#upgrading-postgresql-versions](https://xata.io/docs/platform/branch#upgrading-postgresql-versions).
+The `postgres-version` field upgrades PostgreSQL, and only accepts compatible upgrades within the same major version and offering type, see [https://xata.io/docs/platform/branch#upgrading-postgresql-versions](https://xata.io/docs/platform/branch.md#upgrading-postgresql-versions).
 
 ```bash theme={null}
 xata branch set [--organization value] [--project value] [--branch value] [--profile value] [--debug] [--json] [<field>] [<value>]
@@ -680,7 +680,7 @@ xata branch set postgres-version postgres:17.7
 
 Rotate the database password for a branch
 
-Reads the current username from the credentials endpoint, so an API key needs the `credentials:read` scope, see [https://xata.io/docs/cli#required-scopes](https://xata.io/docs/cli#required-scopes).
+Reads the current username from the credentials endpoint, so an API key needs the `credentials:read` scope, see [https://xata.io/docs/cli#required-scopes](https://xata.io/docs/cli.md#required-scopes).
 
 ```bash theme={null}
 xata branch rotate-password [--organization value] [--project value] [--branch value] [--yes] [--profile value] [--debug] [--json] [<branch>]
@@ -773,7 +773,7 @@ xata branch wait-ready my-branch --wake
 
 Inspect query statistics and active queries for a branch
 
-Which statements are slow, which are expensive, and what is running right now. Historical statistics come from `pg_stat_statements`, and the queries running at this moment from `pg_stat_activity`. Running `xata branch qi` without a subcommand is the same as `xata branch qi list`. Except for `active`, which reads `pg_stat_activity`, these commands need `pg_stat_statements` loaded: run `xata branch query-insights enable <branch>` and then wait for the restart with `xata branch wait-ready <branch> --wake`. Unlike `logs` and `metrics`, which go through the API, these commands open a direct PostgreSQL connection: they cannot run against a branch that is hibernated or still provisioning, and an API key needs the `credentials:read` scope. The console reads the same `pg_stat_statements` data, see [https://xata.io/docs/platform/query-insights](https://xata.io/docs/platform/query-insights).
+Which statements are slow, which are expensive, and what is running right now. Historical statistics come from `pg_stat_statements`, and the queries running at this moment from `pg_stat_activity`. Running `xata branch qi` without a subcommand is the same as `xata branch qi list`. Except for `active`, which reads `pg_stat_activity`, these commands need `pg_stat_statements` loaded: run `xata branch query-insights enable <branch>` and then wait for the restart with `xata branch wait-ready <branch> --wake`. Unlike `logs` and `metrics`, which go through the API, these commands open a direct PostgreSQL connection: they cannot run against a branch that is hibernated or still provisioning, and an API key needs the `credentials:read` scope. The console reads the same `pg_stat_statements` data, see [https://xata.io/docs/platform/query-insights](https://xata.io/docs/platform/query-insights.md).
 
 **Aliases:** `xata branch qi`
 
@@ -982,7 +982,7 @@ xata branch query-insights active my-branch --watch 5
 
 Enable pg\_stat\_statements for query insights on a branch
 
-Adds `pg_stat_statements` to the preloaded libraries, which restarts the branch, and creates the extension. Run it, wait for the branch with `xata branch wait-ready <branch> --wake`, then run it again to create the extension. Operations that rebuild a branch, such as a migration into it, can drop the extension, so run this again if query insights stop returning rows. The same can be done from the console, by adding it to the preloaded libraries in the branch settings, see [https://xata.io/docs/platform/extensions](https://xata.io/docs/platform/extensions).
+Adds `pg_stat_statements` to the preloaded libraries, which restarts the branch, and creates the extension. Run it, wait for the branch with `xata branch wait-ready <branch> --wake`, then run it again to create the extension. Operations that rebuild a branch, such as a migration into it, can drop the extension, so run this again if query insights stop returning rows. The same can be done from the console, by adding it to the preloaded libraries in the branch settings, see [https://xata.io/docs/platform/extensions](https://xata.io/docs/platform/extensions.md).
 
 ```bash theme={null}
 xata branch query-insights enable [--organization value] [--project value] [--branch value] [--profile value] [--debug] [--json] [<branch>]

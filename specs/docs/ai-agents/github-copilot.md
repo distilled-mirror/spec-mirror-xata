@@ -21,7 +21,7 @@ GitHub Copilot can help write application code, migrations, and CI configuration
 
 1. Create a Xata API key for automation.
 2. Add the key to GitHub repository secrets as `XATA_API_KEY`.
-3. Use the [Create Branch workflow](/docs/automations/ga-pr) as the starting point for per-PR branches.
+3. Use the [Create Branch workflow](/docs/automations/ga-pr.md) as the starting point for per-PR branches.
 4. Ask Copilot to adapt the workflow to your repository's package manager, test command, and migration command.
 
 ## Recommended Xata setup
@@ -58,7 +58,7 @@ Use branch-per-PR automation for team workflows. Copilot can update the workflow
 * Ask Copilot to cite the exact Xata docs section it followed.
 * Keep GitHub secrets out of generated files.
 * Review generated workflow permissions carefully.
-* Use [branch cleanup](/docs/automations/ga-cleanup) for repositories with many agent-created pull requests.
+* Use [branch cleanup](/docs/automations/ga-cleanup.md) for repositories with many agent-created pull requests.
 
 ## Troubleshooting
 
@@ -70,10 +70,10 @@ Use branch-per-PR automation for team workflows. Copilot can update the workflow
 
 ## Related Xata docs
 
-* [Create Branch workflow](/docs/automations/ga-pr)
-* [Branch cleanup](/docs/automations/ga-cleanup)
-* [API Keys](/docs/platform/api-key)
-* [CLI environment variables](/docs/cli)
+* [Create Branch workflow](/docs/automations/ga-pr.md)
+* [Branch cleanup](/docs/automations/ga-cleanup.md)
+* [API Keys](/docs/platform/api-key.md)
+* [CLI environment variables](/docs/cli.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

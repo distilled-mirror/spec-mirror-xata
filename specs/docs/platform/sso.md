@@ -34,7 +34,7 @@ SSO is configured per email domain. Each domain goes through three steps:
 
 Nothing changes for anyone until you complete the third step. You can add more than one domain, and each domain has its own identity provider.
 
-Only organization [Admins](/docs/platform/organization-roles) can view and change single sign-on settings. To open them, select **Organization Settings** in the sidebar, then **Single sign-on**.
+Only organization [Admins](/docs/platform/organization-roles.md) can view and change single sign-on settings. To open them, select **Organization Settings** in the sidebar, then **Single sign-on**.
 
 ## Step 1: Verify your domain
 
@@ -162,7 +162,7 @@ xata organization sso providers test <alias>    # prints the Test sign-in link
 xata organization sso providers enforce <alias>
 ```
 
-`providers add` prompts for the client secret, or reads it from `XATA_SSO_CLIENT_SECRET`, so it stays out of your shell history. See the [CLI reference](/docs/cli/organization#sso) for every command and flag.
+`providers add` prompts for the client secret, or reads it from `XATA_SSO_CLIENT_SECRET`, so it stays out of your shell history. See the [CLI reference](/docs/cli/organization.md#sso) for every command and flag.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

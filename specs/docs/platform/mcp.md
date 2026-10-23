@@ -37,7 +37,7 @@ With OAuth-capable clients, you only need the server URL. When your client conne
 
 ### API key
 
-Clients that support custom headers can authenticate with a [Xata API key](/docs/platform/api-key) instead:
+Clients that support custom headers can authenticate with a [Xata API key](/docs/platform/api-key.md) instead:
 
 ```
 Authorization: Bearer YOUR_XATA_API_KEY
@@ -313,7 +313,7 @@ The Xata MCP server exposes the following tools:
 ## Security
 
 * Prefer OAuth for interactive clients; tokens are short-lived and can be revoked by disconnecting the server in your client.
-* For automation, use a dedicated [API key](/docs/platform/api-key) and rotate it regularly.
+* For automation, use a dedicated [API key](/docs/platform/api-key.md) and rotate it regularly.
 * Some tools can modify your data: `call_write_operation` and `call_destructive_operation` can change or delete resources (the latter requires `confirm=true`), and `run_sql` can mutate data when called with both `write=true` and `confirm=true`. Review the actions your assistant proposes before approving them, and keep a human in the loop for any write or delete.
 
 ## Troubleshooting

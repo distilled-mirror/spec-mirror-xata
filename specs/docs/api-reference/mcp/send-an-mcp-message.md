@@ -173,9 +173,8 @@ paths:
                   id: 3
                   method: tools/call
                   params:
-                    name: search_operations
-                    arguments:
-                      query: list branches
+                    name: get_organizations_list
+                    arguments: {}
       responses:
         '200':
           description: JSON-RPC response to the request
@@ -192,8 +191,7 @@ paths:
                     result:
                       content:
                         - text: >-
-                            {"operations":[{"operationID":"listBranches","method":"GET","path":"/organizations/{organizationID}/projects/{projectID}/branches","summary":"List
-                            all branches","callTool":"call_read_operation"}]}
+                            {"operationID":"getOrganizationsList","status":200,"data":{"organizations":[{"id":"org_123","name":"Acme"}]}}
                           type: text
                       isError: false
             text/event-stream:
@@ -206,9 +204,7 @@ paths:
                 event: message
 
                 data:
-                {"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"{\"operations\":[{\"operationID\":\"listBranches\",\"method\":\"GET\",\"path\":\"/organizations/{organizationID}/projects/{projectID}/branches\",\"summary\":\"List
-                all
-                branches\",\"callTool\":\"call_read_operation\"}]}"}],"isError":false}}
+                {"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"{\"operationID\":\"getOrganizationsList\",\"status\":200,\"data\":{\"organizations\":[{\"id\":\"org_123\",\"name\":\"Acme\"}]}}"}],"isError":false}}
         '202':
           description: Notification or response accepted; no body is returned
         '400':

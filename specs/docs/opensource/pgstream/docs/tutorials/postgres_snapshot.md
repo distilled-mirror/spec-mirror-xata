@@ -14,7 +14,7 @@ This tutorial will showcase the use of pgstream to snapshot data from a PostgreS
 
 * A source PostgreSQL database
 * A target PostgreSQL database
-* pgstream (see [installation](/docs/opensource/pgstream/docs/cli#installation) instructions for more details)
+* pgstream (see [installation](/docs/opensource/pgstream/docs/cli.md#installation) instructions for more details)
 
 ## Environment setup
 
@@ -289,7 +289,7 @@ Here are some common issues you might encounter while following this tutorial an
 * **Cause:** The configuration file contains invalid or missing values.
 * **Solution:**
   * Double-check the `snapshot2pg_tutorial.env` file for typos or missing variables.
-  * Refer to the [pgstream configuration documentation](/docs/opensource/pgstream/docs/configuration) for details on required variables.
+  * Refer to the [pgstream configuration documentation](/docs/opensource/pgstream/docs/configuration.md) for details on required variables.
   * Run the `pgstream status` command to validate the configuration is correct.
 
 ### 5. **Error: `Permission denied`**
@@ -302,7 +302,7 @@ Here are some common issues you might encounter while following this tutorial an
     GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;
     ```
 
-If you encounter issues not listed here, consult the [pgstream documentation](/docs/opensource/pgstream/overview) or open an issue on the project's GitHub repository.
+If you encounter issues not listed here, consult the [pgstream documentation](/docs/opensource/pgstream/overview.md) or open an issue on the project's GitHub repository.
 
 ## Summary
 
@@ -314,7 +314,7 @@ In this tutorial, we successfully configured `pgstream` to snapshot data from a 
 4. Ran `pgstream` to perform the snapshot.
 5. Verified that the data was successfully replicated to the target database.
 
-This process demonstrates how `pgstream` can be used to efficiently snapshot data between PostgreSQL databases. For more advanced use cases, such as continuous replication or applying transformations, refer to the other [pgstream tutorials](/docs/opensource/pgstream/overview#tutorials).
+This process demonstrates how `pgstream` can be used to efficiently snapshot data between PostgreSQL databases. For more advanced use cases, such as continuous replication or applying transformations, refer to the other [pgstream tutorials](/docs/opensource/pgstream/overview.md#tutorials).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

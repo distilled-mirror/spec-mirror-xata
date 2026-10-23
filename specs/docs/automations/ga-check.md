@@ -135,8 +135,8 @@ This ensures that:
 
 ## Related workflows
 
-* [Clone workflow](./ga-clone) - For cloning databases in CI/CD
-* [PR workflow](./ga-pr) - For managing pull request environments
+* [Clone workflow](/docs/automations/ga-clone.md) - For cloning databases in CI/CD
+* [PR workflow](/docs/automations/ga-pr.md) - For managing pull request environments
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

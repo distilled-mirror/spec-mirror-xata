@@ -28,7 +28,7 @@
 - [Compute](https://xata.io/docs/platform/compute.md): Configure scale-to-zero and hibernation options for projects and branches
 - [Schemas](https://xata.io/docs/platform/schemas.md): Design, manage, and optimize your database schema structure and relationships
 - [Migrations](https://xata.io/docs/platform/migrations.md): Zero-downtime schema migrations with automatic rollback support
-- [Queries](https://xata.io/docs/platform/queries.md): Execute and manage database queries across your branches
+- [SQL Editor](https://xata.io/docs/platform/sql-editor.md): Execute and manage database queries across your branches
 - [Query insights](https://xata.io/docs/platform/query-insights.md): Identify slow and expensive queries on your branch with statistics from pg_stat_statements
 - [Metrics](https://xata.io/docs/platform/metrics.md): Monitor your database performance across instances with real-time metrics
 - [Extensions](https://xata.io/docs/platform/extensions.md): All extensions listed below are currently available for PostgreSQL 14, 15, 16, 17, and 18. These extensions provide additional functionality to enhance your database, from spatial data processing to text search and monitoring tools.

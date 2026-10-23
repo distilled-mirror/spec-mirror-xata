@@ -63,7 +63,7 @@ To keep a good copy, snapshot into a **new, empty database** (`create_target_db:
 URL naming it) and repoint consumers only once the run has succeeded. An empty target has
 nothing to drop, so `clean_target_db` isn't needed there.
 
-For more details into the snapshot implementation and performance benchmarking, check out this [blogpost](https://xata.io/blog/behind-the-scenes-speeding-up-pgstream-snapshots-for-postgresql). For details on how to use and configure the snapshot mode, check the [snapshot tutorial](/docs/opensource/pgstream/docs/tutorials/postgres_snapshot).
+For more details into the snapshot implementation and performance benchmarking, check out this [blogpost](https://xata.io/blog/behind-the-scenes-speeding-up-pgstream-snapshots-for-postgresql). For details on how to use and configure the snapshot mode, check the [snapshot tutorial](/docs/opensource/pgstream/docs/tutorials/postgres_snapshot.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

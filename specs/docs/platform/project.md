@@ -27,13 +27,13 @@ Create a project using the Xata CLI:
 xata project create --name "my-app" --organization "org-id"
 ```
 
-For more CLI commands, see the [CLI Reference](/docs/cli/project).
+For more CLI commands, see the [CLI Reference](/docs/cli/project.md).
 
 ## Configure Compute
 
 Configure compute resources for your project including scale-to-zero capabilities and manual hibernation options.
 
-For detailed information about compute configuration, scaling, and resource management, see [Compute Resources](/docs/platform/compute).
+For detailed information about compute configuration, scaling, and resource management, see [Compute Resources](/docs/platform/compute.md).
 
 ## Default Database
 
@@ -45,7 +45,7 @@ Set a default database for your project to streamline access and operations. Thi
 
 Link a GitHub repository to a project to create Xata preview branches from pull requests. The Xata GitHub App creates child branches from the root branch you choose and cleans them up when pull requests close.
 
-For setup instructions and behavior details, see the [GitHub App guide](/docs/automations/github-app).
+For setup instructions and behavior details, see the [GitHub App guide](/docs/automations/github-app.md).
 
 ## Delete Project
 
@@ -60,7 +60,7 @@ Delete a project using the Xata CLI:
 xata project delete --project "project-id"
 ```
 
-For more CLI commands, see the [CLI Reference](/docs/cli/project).
+For more CLI commands, see the [CLI Reference](/docs/cli/project.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

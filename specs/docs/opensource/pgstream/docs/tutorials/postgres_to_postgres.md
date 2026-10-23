@@ -14,7 +14,7 @@ This tutorial demonstrates how to use pgstream to replicate data from one Postgr
 
 * A source PostgreSQL database
 * A target PostgreSQL database
-* pgstream (see [installation](/docs/opensource/pgstream/docs/cli#installation) instructions for more details)
+* pgstream (see [installation](/docs/opensource/pgstream/docs/cli.md#installation) instructions for more details)
 
 ### Demo
 
@@ -37,7 +37,7 @@ This will start two PostgreSQL databases:
 
 ## Database initialisation
 
-Once both PostgreSQL servers are up and running, initialise pgstream on the source database. This step will create the `pgstream` schema in the configured Postgres database, along with the tables/functions/triggers required to keep track of the schema changes. See [Tracking schema changes](/docs/opensource/pgstream/docs/architecture#tracking-schema-changes) section for more details. It will also create a replication slot on the source database which will be used by the pgstream service.
+Once both PostgreSQL servers are up and running, initialise pgstream on the source database. This step will create the `pgstream` schema in the configured Postgres database, along with the tables/functions/triggers required to keep track of the schema changes. See [Tracking schema changes](/docs/opensource/pgstream/docs/architecture.md#tracking-schema-changes) section for more details. It will also create a replication slot on the source database which will be used by the pgstream service.
 
 The initialisation step allows to provide both the URL of the PostgreSQL database and the name of the replication slot to be created. The PostgreSQL URL is required, but the replication slot name is optional. If not provided, it will default to `pgstream_<dbname>_slot`, where `<dbname>` is the name of the PostgreSQL database. The configuration can be provided either via CLI parameters or environment variables.
 
@@ -94,7 +94,7 @@ PGSTREAM_POSTGRES_SNAPSHOT_STORE_URL="postgres://postgres:postgres@localhost:543
 PGSTREAM_POSTGRES_SNAPSHOT_TABLES="test_schema.* test"
 ```
 
-Further configuration can be provided to optimize the performance of the snapshot process. For more information, check the [snapshot tutorial](/docs/opensource/pgstream/docs/tutorials/postgres_snapshot).
+Further configuration can be provided to optimize the performance of the snapshot process. For more information, check the [snapshot tutorial](/docs/opensource/pgstream/docs/tutorials/postgres_snapshot.md).
 
 ### Processor
 
@@ -339,7 +339,7 @@ In this tutorial, we successfully configured `pgstream` to replicate data from a
 4. Configured the processor to replicate changes to the target database.
 5. Verified that both DML (data manipulation) and DDL (schema changes) were replicated correctly.
 
-This tutorial demonstrates how `pgstream` can be used for real-time replication between PostgreSQL databases. For more advanced use cases, such as transformations or webhook integration, refer to the [pgstream tutorials](/docs/opensource/pgstream/overview#tutorials).
+This tutorial demonstrates how `pgstream` can be used for real-time replication between PostgreSQL databases. For more advanced use cases, such as transformations or webhook integration, refer to the [pgstream tutorials](/docs/opensource/pgstream/overview.md#tutorials).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -18,7 +18,7 @@ When you ask an agent to create a branch, run a migration, or diagnose a slow qu
 
 ### Supported tools
 
-Any MCP client connected to the [Xata MCP server](/docs/platform/mcp) can list and read skills through the `list_skills` and `get_skill` tools, including Claude Code, Cursor, Codex, and any other client documented on the MCP setup page.
+Any MCP client connected to the [Xata MCP server](/docs/platform/mcp.md) can list and read skills through the `list_skills` and `get_skill` tools, including Claude Code, Cursor, Codex, and any other client documented on the MCP setup page.
 
 ## Available skills
 
@@ -47,9 +47,9 @@ The agent calls `get_skill` with the skill name and follows the instructions.
 
 ## Related docs
 
-* [Xata for Agents](/docs/ai-agents/overview)
-* [MCP Server](/docs/platform/mcp)
-* [CLI Reference](/docs/cli)
+* [Xata for Agents](/docs/ai-agents/overview.md)
+* [MCP Server](/docs/platform/mcp.md)
+* [CLI Reference](/docs/cli.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

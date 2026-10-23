@@ -79,10 +79,10 @@ Create a Flow for the database setup you repeat often: create branch, print bran
 
 ## Related Xata docs
 
-* [Instant Branching](/docs/core-concepts/branching)
-* [Data Anonymization](/docs/core-concepts/anonymization)
-* [Schema Changes](/docs/core-concepts/schema-changes)
-* [Branch commands](/docs/cli/branch)
+* [Instant Branching](/docs/core-concepts/branching.md)
+* [Data Anonymization](/docs/core-concepts/anonymization.md)
+* [Schema Changes](/docs/core-concepts/schema-changes.md)
+* [Branch commands](/docs/cli/branch.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -26,7 +26,7 @@ Query insights requires the `pg_stat_statements` extension, which must be added 
 2. If the extension is not yet enabled, an **Enable pg\_stat\_statements** prompt is shown — click it to add `pg_stat_statements` to the preloaded libraries and create the extension. A branch restart is required to load the library.
 3. Once the branch finishes restarting, return to the Query insights page to start exploring statistics.
 
-You can also enable the extension manually from the [Extensions](/docs/platform/extensions) settings of your branch.
+You can also enable the extension manually from the [Extensions](/docs/platform/extensions.md) settings of your branch.
 
 ## Queries table
 

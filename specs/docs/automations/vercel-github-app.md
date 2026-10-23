@@ -23,13 +23,13 @@ This guide uses Next.js as an example. If you use another framework or package m
 
 ## Prerequisites
 
-* [Install the Xata GitHub App and link the repository to a Xata project](/docs/automations/github-app).
+* [Install the Xata GitHub App and link the repository to a Xata project](/docs/automations/github-app.md).
 * Connect the same GitHub repository to a Vercel project.
 * Configure your application to read its PostgreSQL connection string from `DATABASE_URL`.
 
 > [!NOTE]
 >
-> This guide uses the Xata GitHub App to manage the branch lifecycle. You can use the [GitHub Actions pull request workflow](/docs/automations/ga-pr) instead, but its example names branches `<source-branch>_<pull-request-number>`. Adjust the branch name in the Vercel script to match your workflow.
+> This guide uses the Xata GitHub App to manage the branch lifecycle. You can use the [GitHub Actions pull request workflow](/docs/automations/ga-pr.md) instead, but its example names branches `<source-branch>_<pull-request-number>`. Adjust the branch name in the Vercel script to match your workflow.
 
 ## Create an API key for Vercel
 
@@ -44,7 +44,7 @@ The Vercel build uses the Xata CLI to find the preview branch and retrieve its c
 
 ![Xata user API key form scoped to one project with the CI/CD deploy bot preset selected](https://mintcdn.com/xata/39VoIPEG0avOsZrO/images/automations/vercel-api-key.png?fit=max\&auto=format\&n=39VoIPEG0avOsZrO\&q=85\&s=e3a76b822f2cf055c092d030edfe693c)
 
-See [API keys](/docs/platform/api-key) for more information about project restrictions, scopes, and expiration.
+See [API keys](/docs/platform/api-key.md) for more information about project restrictions, scopes, and expiration.
 
 > [!WARNING]
 >

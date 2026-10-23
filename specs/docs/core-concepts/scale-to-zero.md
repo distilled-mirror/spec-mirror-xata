@@ -50,7 +50,7 @@ To reactivate a hibernated branch:
 3. Click "Save compute settings"
 4. The branch will immediately start accepting connections
 
-Alternatively you can click the "Wake up branch" button in the branch overview to wake up a Hibernated Branch. You can also use the "Wake up branch" button available in the Queries, Extensions and Schemas tabs.
+Alternatively you can click the "Wake up branch" button in the branch overview to wake up a Hibernated Branch. You can also use the "Wake up branch" button available in the SQL Editor, Extensions and Schemas tabs.
 
 ## Automatic Scale to Zero
 

@@ -63,7 +63,7 @@ Choose an endpoint based on where each connection should go:
 * **Replica only (`ro`)**: Connects only to read-only replicas and requires at least 1 replica.
 * **Pooler (`pooled_rw`)**: Provides pooled connections to the primary.
 
-For connection string options, see [Branch Endpoint Types](/docs/platform/branch#endpoint-types).
+For connection string options, see [Branch Endpoint Types](/docs/platform/branch.md#endpoint-types).
 
 #### Configuring replicas
 

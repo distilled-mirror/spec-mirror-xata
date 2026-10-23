@@ -468,7 +468,7 @@ Output in JSON format when the command supports it. Defaults to on when an AI ag
 
 Configure single sign-on for an organization
 
-Claim an email domain, prove you own it with a DNS record, connect the identity provider its members sign in through, and then require it. Each verified domain has its own provider, so an organization can have several. See [https://xata.io/docs/platform/sso](https://xata.io/docs/platform/sso).
+Claim an email domain, prove you own it with a DNS record, connect the identity provider its members sign in through, and then require it. Each verified domain has its own provider, so an organization can have several. See [https://xata.io/docs/platform/sso](https://xata.io/docs/platform/sso.md).
 
 ### sso show
 

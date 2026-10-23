@@ -16,7 +16,7 @@ Xata gives a Netlify site a managed PostgreSQL database, and gives each Deploy P
 
 * A Xata account and a project with at least one branch
 * A Netlify site
-* The [Xata CLI](/docs/cli) installed, if you want to use the CLI commands below or per-preview branches
+* The [Xata CLI](/docs/cli.md) installed, if you want to use the CLI commands below or per-preview branches
 
 The CLI commands in this guide read the organization, project, and branch from the folder
 they run in. Run [`xata init`](/docs/cli/init) once in your project folder to link it:
@@ -39,7 +39,7 @@ xata branch url main --type pooler
 
 > [!TIP]
 >
-> Use the `pooler` connection type for Netlify Functions. Serverless invocations create many short-lived connections, and the pooler keeps the number of PostgreSQL connections low under concurrency. See [Serverless Proxy](/docs/core-concepts/serverless-proxy) for the full list of connection types.
+> Use the `pooler` connection type for Netlify Functions. Serverless invocations create many short-lived connections, and the pooler keeps the number of PostgreSQL connections low under concurrency. See [Serverless Proxy](/docs/core-concepts/serverless-proxy.md) for the full list of connection types.
 
 3. In Netlify, go to **Project configuration > Environment variables** and add a variable named `DATABASE_URL` with the connection string as its value. Leave the scopes at their default so the variable is available to builds and functions on every Netlify plan.
 4. Install the driver in your project:
@@ -52,7 +52,7 @@ npm install @neondatabase/serverless
 >
 > Xata implements the [Neon serverless driver protocol](https://github.com/neondatabase/serverless), so the `@neondatabase/serverless` package connects to Xata over HTTP and WebSocket without changes. If you are moving a Netlify site off Neon, your data access code stays as it is.
 
-5. On the branch's **Queries** page in Xata, create the table used by this example:
+5. On the branch's **SQL Editor** page in Xata, create the table used by this example:
 
 ```sql theme={null}
 CREATE TABLE users (
@@ -191,7 +191,7 @@ jobs:
 >
 > `XATA_API_KEY` should be an organization API key. Create one with `xata keys organization create`. The other IDs come from `xata organization get id`, `xata project get id`, and `xata branch get id`. Set `XATA_PREVIEW_PARENT_BRANCH_ID` to the ID of the branch that previews should copy. Run these commands from a folder you have linked with `xata init`, on CLI 1.7.0 or later.
 
-For the full set of Xata GitHub Actions, including schema migration checks on pull requests, see [Automations](/docs/automations/ga-pr).
+For the full set of Xata GitHub Actions, including schema migration checks on pull requests, see [Automations](/docs/automations/ga-pr.md).
 
 ## Anonymize preview data
 
@@ -201,9 +201,9 @@ Branch creation copies its parent's data without anonymizing it. Use [`xata clon
 
 ## Next steps
 
-* [Branching](/docs/core-concepts/branching): how copy-on-write branches work
-* [Scale to Zero](/docs/core-concepts/scale-to-zero): how idle branches hibernate and wake
-* [Serverless Proxy](/docs/core-concepts/serverless-proxy): HTTP and WebSocket connections for functions and edge runtimes
+* [Branching](/docs/core-concepts/branching.md): how copy-on-write branches work
+* [Scale to Zero](/docs/core-concepts/scale-to-zero.md): how idle branches hibernate and wake
+* [Serverless Proxy](/docs/core-concepts/serverless-proxy.md): HTTP and WebSocket connections for functions and edge runtimes
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

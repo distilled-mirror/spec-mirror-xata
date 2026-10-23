@@ -9,10 +9,10 @@ It is **service-agnostic**, focusing only on what pgstream itself requires.
 
 For cloud-provider-specific instructions and constraints, please see:
 
-* [Xata Onboarding Guide](/docs/opensource/pgstream/docs/xata)
-* [AWS Onboarding Guide](/docs/opensource/pgstream/docs/aws)
-* [Google Cloud (CloudSQL) Onboarding Guide](/docs/opensource/pgstream/docs/gcp_cloudsql)
-* [Neon Onboarding Guide](/docs/opensource/pgstream/docs/neon)
+* [Xata Onboarding Guide](/docs/opensource/pgstream/docs/xata.md)
+* [AWS Onboarding Guide](/docs/opensource/pgstream/docs/aws.md)
+* [Google Cloud (CloudSQL) Onboarding Guide](/docs/opensource/pgstream/docs/gcp_cloudsql.md)
+* [Neon Onboarding Guide](/docs/opensource/pgstream/docs/neon.md)
 
 ***
 

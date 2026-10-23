@@ -8,7 +8,7 @@
 
 ![Branch list view showing all available branches in the project](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/branch-list-view.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=a46b0050ccd85553fbbb11d73a7f9e4e)
 
-Xata's branching system uses Copy-on-Write (CoW) at the storage layer to create instant database branches. Each branch contains the exact schema and data of the parent branch at the moment of creation, but after creation, branches are independent PostgreSQL instances. Learn more about [how branching works](/docs/core-concepts/branching).
+Xata's branching system uses Copy-on-Write (CoW) at the storage layer to create instant database branches. Each branch contains the exact schema and data of the parent branch at the moment of creation, but after creation, branches are independent PostgreSQL instances. Learn more about [how branching works](/docs/core-concepts/branching.md).
 
 ## Overview
 
@@ -27,27 +27,27 @@ The overview page provides a single pane of glass to understand the details of y
 
 ## Branch Features
 
-> **[Queries](/docs/platform/queries)**
+> **[SQL Editor](/docs/platform/sql-editor.md)**
 >
 > Execute and manage database queries across your branches.
 
-> **[Metrics](/docs/platform/metrics)**
+> **[Metrics](/docs/platform/metrics.md)**
 >
 > Monitor branch performance and usage across your instances within a branch.
 
-> **[Logs](/docs/platform/logs)**
+> **[Logs](/docs/platform/logs.md)**
 >
 > Inspect PostgreSQL logs from the primary and replicas of your branch.
 
-> **[Extensions](/docs/platform/extensions)**
+> **[Extensions](/docs/platform/extensions.md)**
 >
 > Extend your database functionality with extensions.
 
-> **[Schemas](/docs/platform/schemas)**
+> **[Schemas](/docs/platform/schemas.md)**
 >
 > Manage your database structure and schema.
 
-> **[Migrations](/docs/platform/migrations)**
+> **[Migrations](/docs/platform/migrations.md)**
 >
 > Apply schema changes to your database without downtime.
 
@@ -69,11 +69,11 @@ Configure the fundamental properties and settings for your branch instance.
 
 > [!WARNING]
 >
-> **A branch with 0 replicas is not suitable for production workloads.** It has no standby promotion target and cannot automatically fail over. A primary failure, or an update that requires the primary to restart or be replaced, makes the database unavailable until the primary is available again. Configure at least 1 replica for production. See [High availability and replicas](/docs/core-concepts/deployment#high-availability-and-replicas).
+> **A branch with 0 replicas is not suitable for production workloads.** It has no standby promotion target and cannot automatically fail over. A primary failure, or an update that requires the primary to restart or be replaced, makes the database unavailable until the primary is available again. Configure at least 1 replica for production. See [High availability and replicas](/docs/core-concepts/deployment.md#high-availability-and-replicas).
 
 ### Compute
 
-Configure scale-to-zero settings for cost optimization. [Learn more about compute settings →](/docs/platform/compute)
+Configure scale-to-zero settings for cost optimization. [Learn more about compute settings →](/docs/platform/compute.md)
 
 ### Rotate Password
 
@@ -276,7 +276,7 @@ xata branch list
 xata branch describe staging
 ```
 
-For more CLI commands, see the [CLI Reference](/docs/cli/branch).
+For more CLI commands, see the [CLI Reference](/docs/cli/branch.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.
