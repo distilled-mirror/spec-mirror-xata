@@ -25,11 +25,11 @@ When you create your first branch in a project, the console suggests the name `m
 
 > [!NOTE]
 >
-> Each branch runs on its own compute instance, billed by instance type for the time it runs. [Scale-to-zero](/docs/core-concepts/scale-to-zero.md) pauses compute on idle branches, which makes development branches cheap to keep around. See [Costs and limits](#costs-and-limits).
+> Each branch runs on its own compute instance, billed by instance type for the time it runs. [Scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) pauses compute on idle branches, which makes development branches cheap to keep around. See [Costs and limits](#costs-and-limits).
 
 > [!WARNING]
 >
-> **A branch's region is fixed at creation.** Child branches always run in the same region as their parent. To move to a different region, create a new base branch in the target region and copy your data over with [`xata clone`](/docs/cli/clone).
+> **A branch's region is fixed at creation.** Child branches always run in the same region as their parent. To move to a different region, create a new base branch in the target region and copy your data over with [`xata clone`](https://xata.io/docs/cli/clone).
 
 ## Create a branch
 
@@ -57,7 +57,7 @@ Give the branch a name
 
 **Step 5**
 
-Optionally adjust the [scale-to-zero](/docs/core-concepts/scale-to-zero.md) settings
+Optionally adjust the [scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) settings
 
 **Step 6**
 
@@ -69,7 +69,7 @@ Click **Create branch**
 xata branch create --name "my-dev-branch" --parent-branch "main"
 ```
 
-See the [`xata branch create`](/docs/cli/branch#create) reference for all options.
+See the [`xata branch create`](https://xata.io/docs/cli/branch#create) reference for all options.
 
 **API**
 
@@ -90,7 +90,7 @@ A few things to know about child branches:
 
 * The branch starts with a single primary instance and no read replicas, regardless of how many replicas the parent has. You can add replicas later in the branch settings.
 * The branch is a point-in-time copy. Changes made to the parent after creation do not appear in the child, and vice versa.
-* If the parent contains sensitive production data, so does the child. For development environments, consider branching from an [anonymized staging replica](/docs/tutorials/create-production-clone.md) instead of production.
+* If the parent contains sensitive production data, so does the child. For development environments, consider branching from an [anonymized staging replica](https://xata.io/docs/tutorials/create-production-clone.md) instead of production.
 
 ### Create a base branch
 
@@ -116,7 +116,7 @@ Choose the PostgreSQL image, instance type, and number of replicas
 
 **Step 5**
 
-Optionally adjust the [scale-to-zero](/docs/core-concepts/scale-to-zero.md) settings
+Optionally adjust the [scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) settings
 
 **Step 6**
 
@@ -131,7 +131,7 @@ xata branch create --name "staging" --no-parent \
 
 > [!WARNING]
 >
-> **A branch with 0 replicas is not suitable for production workloads.** It has no automatic failover target. Configure at least 1 replica for production. Learn more in [High availability and replicas](/docs/core-concepts/deployment.md#high-availability-and-replicas).
+> **A branch with 0 replicas is not suitable for production workloads.** It has no automatic failover target. Configure at least 1 replica for production. Learn more in [High availability and replicas](https://xata.io/docs/core-concepts/deployment.md#high-availability-and-replicas).
 
 ## Connect to a branch
 
@@ -154,7 +154,7 @@ xata branch url my-dev-branch
 xata branch url my-dev-branch --type pooler
 ```
 
-Store connection strings as secrets — each one contains the branch's credentials. For endpoint details and connection examples for `psql`, Prisma, Drizzle, and other clients, see the [branch reference](/docs/platform/branch.md#endpoint-types).
+Store connection strings as secrets — each one contains the branch's credentials. For endpoint details and connection examples for `psql`, Prisma, Drizzle, and other clients, see the [branch reference](https://xata.io/docs/platform/branch.md#endpoint-types).
 
 ## View branches
 
@@ -175,11 +175,11 @@ xata checkout my-dev-branch
 
 ## Manage a branch
 
-Each branch has its own **Settings** page where you can rename the branch, change the instance type, add or remove read replicas, increase storage, upgrade the PostgreSQL minor version, tune PostgreSQL parameters, and rotate credentials. See the [branch reference](/docs/platform/branch.md) for details on each setting.
+Each branch has its own **Settings** page where you can rename the branch, change the instance type, add or remove read replicas, increase storage, upgrade the PostgreSQL minor version, tune PostgreSQL parameters, and rotate credentials. See the [branch reference](https://xata.io/docs/platform/branch.md) for details on each setting.
 
 ### Scale development branches to zero
 
-Branches that only see occasional use — dev branches, PR previews, staging — don't need to run around the clock. With [scale-to-zero](/docs/core-concepts/scale-to-zero.md), a branch automatically hibernates after a configurable inactivity period (15 minutes to 3 hours) and wakes automatically when a new connection arrives. While hibernated, the branch's data is retained but no compute is billed.
+Branches that only see occasional use — dev branches, PR previews, staging — don't need to run around the clock. With [scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md), a branch automatically hibernates after a configurable inactivity period (15 minutes to 3 hours) and wakes automatically when a new connection arrives. While hibernated, the branch's data is retained but no compute is billed.
 
 Scale-to-zero is configured per branch, and your project defines separate defaults for base branches and child branches, so development branches can default to aggressive hibernation while production stays always-on.
 
@@ -211,27 +211,27 @@ Type the branch name to confirm the deletion
 xata branch delete my-dev-branch
 ```
 
-Development branches are billed for the time they run, so delete branches you no longer need — or let [scale-to-zero](/docs/core-concepts/scale-to-zero.md) pause them automatically.
+Development branches are billed for the time they run, so delete branches you no longer need — or let [scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) pause them automatically.
 
 ## Branching workflows
 
-> **[Dev branches for pull requests](/docs/automations/github-app.md)**
+> **[Dev branches for pull requests](https://xata.io/docs/automations/github-app.md)**
 >
 > Connect the Xata GitHub App to create a dedicated dev branch for every pull request, and clean it up when the PR closes.
 
-> **[Branch automation in CI](/docs/automations/ga-pr.md)**
+> **[Branch automation in CI](https://xata.io/docs/automations/ga-pr.md)**
 >
 > Use GitHub Actions to create branches, apply migrations, and wire preview environments to a branch connection string.
 
-> **[Anonymized production clones](/docs/tutorials/create-production-clone.md)**
+> **[Anonymized production clones](https://xata.io/docs/tutorials/create-production-clone.md)**
 >
 > Clone production into a staging branch with PII anonymized on the fly, then create instant dev branches from it.
 
-> **[Test schema changes safely](/docs/core-concepts/schema-changes.md)**
+> **[Test schema changes safely](https://xata.io/docs/core-concepts/schema-changes.md)**
 >
 > Try a migration on a child branch first, then apply the same migration to production with zero downtime using pgroll.
 
-Branches do not merge or synchronize schema changes with each other. The workflow is: test the migration on a child branch, then apply the same migration separately to the target branch — manually or through CI. See [schema changes](/docs/core-concepts/schema-changes.md).
+Branches do not merge or synchronize schema changes with each other. The workflow is: test the migration on a child branch, then apply the same migration separately to the target branch — manually or through CI. See [schema changes](https://xata.io/docs/core-concepts/schema-changes.md).
 
 ## How Copy-on-Write branching works
 
@@ -257,17 +257,17 @@ Only the blocks that are modified need to be copied, which results in significan
 
 ## Costs and limits
 
-* Each running branch has its own compute instance, billed hourly by instance type. [Scale-to-zero](/docs/core-concepts/scale-to-zero.md) eliminates compute costs while a branch is idle.
+* Each running branch has its own compute instance, billed hourly by instance type. [Scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) eliminates compute costs while a branch is idle.
 * Copy-on-Write shares unchanged storage blocks between a parent and its children, so creating a branch does not duplicate the parent's storage.
 * The number of branches per project and the branch creation rate depend on your plan. If you hit a limit, [contact support](https://xata.io/contact-support).
 
 ## Behavior and limitations
 
 * **Do changes in the parent appear in a child branch?** No. A child is a point-in-time copy; there is no replication between branches after creation.
-* **Can I merge branches?** No. Schema changes are promoted by applying the same [migration](/docs/core-concepts/schema-changes.md) to each branch, manually or via CI.
+* **Can I merge branches?** No. Schema changes are promoted by applying the same [migration](https://xata.io/docs/core-concepts/schema-changes.md) to each branch, manually or via CI.
 * **Can I reset a child branch from its parent?** Not in place. Delete the branch and create a fresh one from the parent to get a new point-in-time copy.
 * **Is `main` special?** No. It's the conventional name for the first branch, but Xata has no default-branch or promotion concept — any branch can be a parent.
-* **Can I change a branch's region?** No. Region is fixed at creation, and child branches always live in the parent's region. Create a new base branch and [clone](/docs/cli/clone.md) your data to move regions.
+* **Can I change a branch's region?** No. Region is fixed at creation, and child branches always live in the parent's region. Create a new base branch and [clone](https://xata.io/docs/cli/clone.md) your data to move regions.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

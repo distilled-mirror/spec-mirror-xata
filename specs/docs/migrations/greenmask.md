@@ -10,7 +10,7 @@
 
 Use Greenmask when you want to import a **representative slice** of your production database into a Xata branch. For example to evaluate Xata against your real schema and workload without copying 100% of your data. Greenmask follows your foreign-key graph from a chosen "entrypoint" table and exports only the rows that hang off it (and their dependencies), preserving referential integrity.
 
-If you want a **full copy** of your database into Xata, use `xata clone` instead — see the provider-specific guides for [AWS RDS](/docs/migrations/aws-rds.md), [AWS Aurora](/docs/migrations/aws-aurora.md), [Azure](/docs/migrations/azure.md), [GCP Cloud SQL](/docs/migrations/gcp-cloudsql.md), [Neon](/docs/migrations/neon.md), [Supabase](/docs/migrations/supabase.md), and [self-hosted PostgreSQL](/docs/migrations/self-hosted.md). Greenmask is for the subset case.
+If you want a **full copy** of your database into Xata, use `xata clone` instead — see the provider-specific guides for [AWS RDS](https://xata.io/docs/migrations/aws-rds.md), [AWS Aurora](https://xata.io/docs/migrations/aws-aurora.md), [Azure](https://xata.io/docs/migrations/azure.md), [GCP Cloud SQL](https://xata.io/docs/migrations/gcp-cloudsql.md), [Neon](https://xata.io/docs/migrations/neon.md), [Supabase](https://xata.io/docs/migrations/supabase.md), and [self-hosted PostgreSQL](https://xata.io/docs/migrations/self-hosted.md). Greenmask is for the subset case.
 
 ## Prerequisites
 

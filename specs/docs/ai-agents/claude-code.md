@@ -80,8 +80,8 @@ For schema work, ask Claude Code to run migrations against the branch and report
 
 * Keep production credentials out of files the agent can edit.
 * Prefer one Xata branch per task so failures are easy to reset.
-* Use [scale to zero](/docs/core-concepts/scale-to-zero.md) for idle agent branches.
-* Link Claude Code to existing docs by mentioning [branch commands](/docs/cli/branch.md) and [schema changes](/docs/core-concepts/schema-changes.md) in prompts.
+* Use [scale to zero](https://xata.io/docs/core-concepts/scale-to-zero.md) for idle agent branches.
+* Link Claude Code to existing docs by mentioning [branch commands](https://xata.io/docs/cli/branch.md) and [schema changes](https://xata.io/docs/core-concepts/schema-changes.md) in prompts.
 
 ## Troubleshooting
 
@@ -93,11 +93,11 @@ For schema work, ask Claude Code to run migrations against the branch and report
 
 ## Related Xata docs
 
-* [Quickstart](/docs/quickstart.md)
-* [CLI branch commands](/docs/cli/branch.md)
-* [Instant Branching](/docs/core-concepts/branching.md)
-* [Schema Changes](/docs/core-concepts/schema-changes.md)
-* [API Keys](/docs/platform/api-key.md)
+* [Quickstart](https://xata.io/docs/quickstart.md)
+* [CLI branch commands](https://xata.io/docs/cli/branch.md)
+* [Instant Branching](https://xata.io/docs/core-concepts/branching.md)
+* [Schema Changes](https://xata.io/docs/core-concepts/schema-changes.md)
+* [API Keys](https://xata.io/docs/platform/api-key.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

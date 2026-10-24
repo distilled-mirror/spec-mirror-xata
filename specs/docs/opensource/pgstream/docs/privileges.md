@@ -9,10 +9,10 @@ It is **service-agnostic**, focusing only on what pgstream itself requires.
 
 For cloud-provider-specific instructions and constraints, please see:
 
-* [Xata Onboarding Guide](/docs/opensource/pgstream/docs/xata.md)
-* [AWS Onboarding Guide](/docs/opensource/pgstream/docs/aws.md)
-* [Google Cloud (CloudSQL) Onboarding Guide](/docs/opensource/pgstream/docs/gcp_cloudsql.md)
-* [Neon Onboarding Guide](/docs/opensource/pgstream/docs/neon.md)
+* [Xata Onboarding Guide](https://xata.io/docs/opensource/pgstream/docs/xata.md)
+* [AWS Onboarding Guide](https://xata.io/docs/opensource/pgstream/docs/aws.md)
+* [Google Cloud (CloudSQL) Onboarding Guide](https://xata.io/docs/opensource/pgstream/docs/gcp_cloudsql.md)
+* [Neon Onboarding Guide](https://xata.io/docs/opensource/pgstream/docs/neon.md)
 
 ***
 
@@ -40,7 +40,7 @@ When DDL replication is enabled, DDL statements captured on the source are repla
 If roles that can run DDL on the source are **less trusted** than `pgstreamtarget`, they can cause SQL to run on the target with the target role's privileges. To limit the impact:
 
 * Grant `pgstreamtarget` only the privileges it needs to apply schema and data changes. Avoid `SUPERUSER`, `CREATEROLE`, and `CREATEDB` unless a feature explicitly requires them.
-* If your source and target roles have different trust levels, disable DDL replication (see [`ignore_ddl`](/docs/opensource/pgstream/docs/configuration)).
+* If your source and target roles have different trust levels, disable DDL replication (see [`ignore_ddl`](https://xata.io/docs/opensource/pgstream/docs/configuration)).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

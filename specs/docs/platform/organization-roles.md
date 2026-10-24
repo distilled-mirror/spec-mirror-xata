@@ -6,7 +6,7 @@
 
 > Choose who can manage your organization's members, billing and API keys
 
-Every member of an [organization](/docs/platform/organization.md) is either an **Admin** or an **Editor**. Admins manage the organization itself. Editors work with its projects and branches.
+Every member of an [organization](https://xata.io/docs/platform/organization.md) is either an **Admin** or an **Editor**. Admins manage the organization itself. Editors work with its projects and branches.
 
 The person who creates an organization is its first Admin.
 
@@ -25,7 +25,7 @@ The person who creates an organization is its first Admin.
 | Change a member's role | Yes | No |
 | Manage organization API keys | Yes | No |
 | View and change billing | Yes | No |
-| Configure [single sign-on](/docs/platform/sso.md) | Yes | No |
+| Configure [single sign-on](https://xata.io/docs/platform/sso.md) | Yes | No |
 | Rename or delete the organization | Yes | No |
 
 An Editor who attempts an Admin-only action through the API or CLI gets a `403 Forbidden` response.
@@ -65,7 +65,7 @@ curl -X PUT https://api.xata.tech/organizations/{organizationID}/members/{userID
 
 ## API keys
 
-A user API key acts with the current role of the member who created it, so an Editor's key cannot perform Admin-only actions whatever its scopes. Organization API keys act with Admin access, limited by their scopes. See [API Keys](/docs/platform/api-key.md).
+A user API key acts with the current role of the member who created it, so an Editor's key cannot perform Admin-only actions whatever its scopes. Organization API keys act with Admin access, limited by their scopes. See [API Keys](https://xata.io/docs/platform/api-key.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -14,7 +14,7 @@ This tutorial will showcase the use of pgstream to replicate data from PostgreSQ
 
 * A source PostgreSQL database
 * A target PostgreSQL database
-* pgstream (see [installation](/docs/opensource/pgstream/docs/cli.md#installation) instructions for more details)
+* pgstream (see [installation](https://xata.io/docs/opensource/pgstream/docs/cli.md#installation) instructions for more details)
 
 ### Demo
 
@@ -36,7 +36,7 @@ This will start two PostgreSQL databases on ports `5432` and `7654`.
 
 ## Database initialisation
 
-Once both PostgreSQL servers are up and running, the next step is to initialise pgstream on the source database. This will create the `pgstream` schema in the configured Postgres database, along with the tables/functions/triggers required to keep track of the schema changes. See [Tracking schema changes](/docs/opensource/pgstream/docs/architecture.md#tracking-schema-changes) section for more details. This step will also create a replication slot on the source database which will be used by the pgstream service.
+Once both PostgreSQL servers are up and running, the next step is to initialise pgstream on the source database. This will create the `pgstream` schema in the configured Postgres database, along with the tables/functions/triggers required to keep track of the schema changes. See [Tracking schema changes](https://xata.io/docs/opensource/pgstream/docs/architecture.md#tracking-schema-changes) section for more details. This step will also create a replication slot on the source database which will be used by the pgstream service.
 
 The initialisation step allows to provide both the URL of the PostgreSQL database and the name of the replication slot to be created. The PostgreSQL URL is required, but the replication slot name is optional. If not provided, it will default to `pgstream_<dbname>_slot`, where `<dbname>` is the name of the PostgreSQL database. The configuration can be provided either by using the CLI supported parameters, or using the environment variables.
 
@@ -72,7 +72,7 @@ pgstream destroy --postgres-url "postgres://postgres:postgres@localhost:5432?ssl
 
 ### Listener
 
-The listener configuration will be the same as the one in the PostgreSQL to PostgreSQL replication tutorial. Check the details [here](/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md#listener).
+The listener configuration will be the same as the one in the PostgreSQL to PostgreSQL replication tutorial. Check the details [here](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md#listener).
 
 * Without initial snapshot
 
@@ -95,7 +95,7 @@ PGSTREAM_POSTGRES_SNAPSHOT_TABLES="*"
 
 ### Processor
 
-The processor configuration will be the same as the one in the PostgreSQL to PostgreSQL replication tutorial. Check the details [here](/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md#processor).
+The processor configuration will be the same as the one in the PostgreSQL to PostgreSQL replication tutorial. Check the details [here](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md#processor).
 
 ```sh theme={null}
 PGSTREAM_POSTGRES_WRITER_TARGET_URL="postgres://postgres:postgres@localhost:7654?sslmode=disable"
@@ -109,7 +109,7 @@ In addition to the processor configuration above, we will add the transformer pr
 PGSTREAM_TRANSFORMER_RULES_FILE="tutorial_transformer_rules.yaml"
 ```
 
-The transformer rules follow the pattern defined in the [transfomer section](/docs/opensource/pgstream/docs/transformers.md#transformation-rules) of the documentation. To see all the transformers currently supported, check out the [transformers section](/docs/opensource/pgstream/docs/transformers.md#supported-transformers). For this tutorial we'll be using the following transformations:
+The transformer rules follow the pattern defined in the [transfomer section](https://xata.io/docs/opensource/pgstream/docs/transformers.md#transformation-rules) of the documentation. To see all the transformers currently supported, check out the [transformers section](https://xata.io/docs/opensource/pgstream/docs/transformers.md#supported-transformers). For this tutorial we'll be using the following transformations:
 
 ```yaml theme={null}
 transformations:
@@ -372,7 +372,7 @@ SELECT * FROM test;
 +----+---------+------------------+
 ```
 
-To see all the transformers currently supported, check out the [transformers section](/docs/opensource/pgstream/docs/transformers.md#supported-transformers).
+To see all the transformers currently supported, check out the [transformers section](https://xata.io/docs/opensource/pgstream/docs/transformers.md#supported-transformers).
 
 ## Troubleshooting
 
@@ -392,7 +392,7 @@ To see all the transformers currently supported, check out the [transformers sec
 
 * **Error:** `Transformation rules not applied`
   * Ensure the `PGSTREAM_TRANSFORMER_RULES_FILE` points to the correct YAML file.
-  * Validate the syntax of the transformer rules using the [pgstream documentation](/docs/opensource/pgstream/docs/transformers.md#transformation-rules).
+  * Validate the syntax of the transformer rules using the [pgstream documentation](https://xata.io/docs/opensource/pgstream/docs/transformers.md#transformation-rules).
   * Run the `pgstream status` command to validate the transformation rules are correct.
 
 ## Summary

@@ -16,7 +16,7 @@ This tutorial will showcase the use of pgstream to replicate data from a Postgre
 * A target PostgreSQL database
 * A target OpenSearch cluster
 * A Kafka cluster
-* pgstream (see [installation](/docs/opensource/pgstream/docs/cli.md#installation) instructions for more details)
+* pgstream (see [installation](https://xata.io/docs/opensource/pgstream/docs/cli.md#installation) instructions for more details)
 
 ## Environment setup
 
@@ -32,7 +32,7 @@ This will start two PostgreSQL databases on ports `5432` and `7654`, an OpenSear
 
 ## Database initialisation
 
-Once all the resources are up and running, the next step is to initialise pgstream on the source database. This will create the `pgstream` schema in the configured Postgres database, along with the tables/functions/triggers required to keep track of the schema changes. See [Tracking schema changes](/docs/opensource/pgstream/docs/architecture.md#tracking-schema-changes) section for more details. This step will also create a replication slot on the source database which will be used by the pgstream service.
+Once all the resources are up and running, the next step is to initialise pgstream on the source database. This will create the `pgstream` schema in the configured Postgres database, along with the tables/functions/triggers required to keep track of the schema changes. See [Tracking schema changes](https://xata.io/docs/opensource/pgstream/docs/architecture.md#tracking-schema-changes) section for more details. This step will also create a replication slot on the source database which will be used by the pgstream service.
 
 The initialisation step allows to provide both the URL of the PostgreSQL database and the name of the replication slot to be created. The PostgreSQL URL is required, but the replication slot name is optional. If not provided, it will default to `pgstream_<dbname>_slot`, where `<dbname>` is the name of the PostgreSQL database. The configuration can be provided either by using the CLI supported parameters, or using the environment variables.
 
@@ -97,7 +97,7 @@ PGSTREAM_POSTGRES_SNAPSHOT_STORE_URL="postgres://postgres:postgres@localhost:543
 PGSTREAM_POSTGRES_SNAPSHOT_TABLES="test_schema.* test"
 ```
 
-Further configuration can be provided to optimize the performance of the snapshot process. For more information, check the [snapshot tutorial](/docs/opensource/pgstream/docs/tutorials/postgres_snapshot.md).
+Further configuration can be provided to optimize the performance of the snapshot process. For more information, check the [snapshot tutorial](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_snapshot.md).
 
 #### Processor
 
@@ -148,7 +148,7 @@ PGSTREAM_KAFKA_WRITER_BATCH_TIMEOUT=5s
 PGSTREAM_KAFKA_WRITER_BATCH_BYTE=1572864
 ```
 
-Since we'll be replicating data to OpenSearch, we need to add the injector processor in order to inject pgstream metadata into the WAL events. This helps identify the id and version of the event. By enabling the injector for the kafka processor, we make the metadata available to all processors downstream of Kafka. If we only wanted to apply it to the OpenSearch processor we could add it to its configuration instead. More details about the injector can be found in the [architecture](/docs/opensource/pgstream/docs/architecture.md) section.
+Since we'll be replicating data to OpenSearch, we need to add the injector processor in order to inject pgstream metadata into the WAL events. This helps identify the id and version of the event. By enabling the injector for the kafka processor, we make the metadata available to all processors downstream of Kafka. If we only wanted to apply it to the OpenSearch processor we could add it to its configuration instead. More details about the injector can be found in the [architecture](https://xata.io/docs/opensource/pgstream/docs/architecture.md) section.
 
 The full configuration for the pg2kafka step can be put into a `pg2kafka_tutorial.env` file to be used later on. An equivalent `pg2kafka_tutorial.yaml` configuration can be found below the environment one, and can be used interchangeably.
 
@@ -272,7 +272,7 @@ PGSTREAM_KAFKA_COMMIT_BACKOFF_MAX_RETRIES=0
 
 #### Processor
 
-This configuration is the same as the one from the tutorial for PostgreSQL to PostgreSQL replication. More details [here](/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md#processor).
+This configuration is the same as the one from the tutorial for PostgreSQL to PostgreSQL replication. More details [here](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md#processor).
 
 The full configuration for the kafka2pg step can be put into a `kafka2pg_tutorial.env` file to be used later on. An equivalent `kafka2pg_tutorial.yaml` configuration can be found below the environment one, and can be used interchangeably.
 
@@ -321,7 +321,7 @@ PGSTREAM_KAFKA_READER_CONSUMER_GROUP_ID=pgstream-opensearch-consumer-group
 
 #### Processor
 
-This configuration is the same as the one from the tutorial for PostgreSQL to OpenSearch replication. More details [here](/docs/opensource/pgstream/docs/tutorials/postgres_to_opensearch.md#processor).
+This configuration is the same as the one from the tutorial for PostgreSQL to OpenSearch replication. More details [here](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_opensearch.md#processor).
 
 The full configuration for the kafka2opensearch step can be put into a `kafka2os_tutorial.env` file to be used later on. An equivalent `kafka2os_tutorial.yaml` configuration can be found below the environment one, and can be used interchangeably.
 
@@ -599,7 +599,7 @@ curl -X GET -u admin:admin http://localhost:9200/public/_search | jq .
 }
 ```
 
-All other operations will be cascaded to both targets accordingly. For more details on each individual target, check out the [PostgreSQL to PostgreSQL replication](/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md) and the [PostgreSQL to OpenSearch replication](/docs/opensource/pgstream/docs/tutorials/postgres_to_opensearch.md) tutorials.
+All other operations will be cascaded to both targets accordingly. For more details on each individual target, check out the [PostgreSQL to PostgreSQL replication](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md) and the [PostgreSQL to OpenSearch replication](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_opensearch.md) tutorials.
 
 ## Troubleshooting
 
@@ -708,7 +708,7 @@ In this tutorial, we successfully configured `pgstream` to replicate data from a
    * Kafka to OpenSearch
 4. Verified that schema changes and data changes were replicated correctly across all targets.
 
-This tutorial demonstrates how `pgstream` can leverage Kafka for scalable, real-time replication to multiple targets. For more advanced use cases, refer to the [pgstream tutorials](/docs/opensource/pgstream/overview.md#tutorials).
+This tutorial demonstrates how `pgstream` can leverage Kafka for scalable, real-time replication to multiple targets. For more advanced use cases, refer to the [pgstream tutorials](https://xata.io/docs/opensource/pgstream/overview.md#tutorials).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

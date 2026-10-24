@@ -36,7 +36,7 @@ Transformers can use **templating** to implement conditional logic (e.g. don't a
 
 `xata clone` uses [pgstream](https://github.com/xataio/pgstream) under the hood, a project for PostgreSQL CDC and replication. `pgstream` implements it's own transformers library, but it can also import transformers from other open source projects, in particular: [Greenmask](https://www.greenmask.io/), [NeoSync](https://github.com/nucleuscloud/neosync) and [go-masker](https://github.com/ggwhite/go-masker).
 
-The supported transformers are documented [here](/docs/opensource/pgstream/docs/transformers.md#supported-transformers).
+The supported transformers are documented [here](https://xata.io/docs/opensource/pgstream/docs/transformers.md#supported-transformers).
 
 It is also possible to write your own **custom transformers** in the Go programming language.
 

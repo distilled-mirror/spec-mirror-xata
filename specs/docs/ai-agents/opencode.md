@@ -79,7 +79,7 @@ Keep OpenCode pointed at a single temporary branch. Use the branch connection st
 * Keep the session scoped to a single branch.
 * Use `xata branch list` and `xata branch describe` when you need branch state.
 * Prefer pooled URLs for high-concurrency local test runners.
-* Use [API keys](/docs/platform/api-key.md) only when the agent needs Xata API access.
+* Use [API keys](https://xata.io/docs/platform/api-key.md) only when the agent needs Xata API access.
 
 ## Troubleshooting
 
@@ -91,10 +91,10 @@ Keep OpenCode pointed at a single temporary branch. Use the branch connection st
 
 ## Related Xata docs
 
-* [CLI Reference](/docs/cli.md)
-* [Branch commands](/docs/cli/branch.md)
-* [Postgres extensions](/docs/platform/extensions.md)
-* [Scale to Zero](/docs/core-concepts/scale-to-zero.md)
+* [CLI Reference](https://xata.io/docs/cli.md)
+* [Branch commands](https://xata.io/docs/cli/branch.md)
+* [Postgres extensions](https://xata.io/docs/platform/extensions.md)
+* [Scale to Zero](https://xata.io/docs/core-concepts/scale-to-zero.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -280,8 +280,8 @@ Use this workflow when you want to:
 
 ## Related Workflows
 
-* [Check Workflow](/docs/automations/ga-check.md) - For validating main branch status
-* [Clone Workflow](/docs/automations/ga-clone.md) - For cloning databases in CI/CD
+* [Check Workflow](https://xata.io/docs/automations/ga-check.md) - For validating main branch status
+* [Clone Workflow](https://xata.io/docs/automations/ga-clone.md) - For cloning databases in CI/CD
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

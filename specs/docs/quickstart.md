@@ -133,9 +133,9 @@ This command will automatically checkout the new branch for you, with the data f
 
 Now that you have a base branch and development branch to try out, explore what the rest of the platform has to offer.
 
-* **[Set up a production clone](/docs/tutorials/create-production-clone.md):** Learn how to use Xata for production clones, feature branches, and collaborative development.
-* **[Schema changes](/docs/tutorials/schema-change.md):** Learn how to safely apply and roll back schema changes with zero downtime.
-* **[Migrate to Xata](/docs/migrations/overview.md):** Get set up for production by migrating your existing PostgreSQL database to Xata.
+* **[Set up a production clone](https://xata.io/docs/tutorials/create-production-clone.md):** Learn how to use Xata for production clones, feature branches, and collaborative development.
+* **[Schema changes](https://xata.io/docs/tutorials/schema-change.md):** Learn how to safely apply and roll back schema changes with zero downtime.
+* **[Migrate to Xata](https://xata.io/docs/migrations/overview.md):** Get set up for production by migrating your existing PostgreSQL database to Xata.
 
 ***
 

@@ -63,11 +63,11 @@ Choose an endpoint based on where each connection should go:
 * **Replica only (`ro`)**: Connects only to read-only replicas and requires at least 1 replica.
 * **Pooler (`pooled_rw`)**: Provides pooled connections to the primary.
 
-For connection string options, see [Branch Endpoint Types](/docs/platform/branch.md#endpoint-types).
+For connection string options, see [Branch Endpoint Types](https://xata.io/docs/platform/branch.md#endpoint-types).
 
 #### Configuring replicas
 
-* **During branch creation**: Select the replica count when creating a base branch in the Xata console, or pass `--replicas` to [`xata branch create`](/docs/cli/branch#create).
+* **During branch creation**: Select the replica count when creating a base branch in the Xata console, or pass `--replicas` to [`xata branch create`](https://xata.io/docs/cli/branch#create).
 * **On existing branches**: Open **Settings** → **Instance Details** and adjust **Replicas**.
 
 ## Bring Your Own Cloud (BYOC)

@@ -38,7 +38,7 @@ Control access to specific platform features:
 * **Credentials**: Read and rotate database credentials for branches
 * **Metrics**: View and manage your API usage metrics
 
-Several CLI commands need more than branch access. See [Required scopes](/docs/cli.md#required-scopes) for which command needs which scope.
+Several CLI commands need more than branch access. See [Required scopes](https://xata.io/docs/cli.md#required-scopes) for which command needs which scope.
 
 ## Access Control
 
@@ -48,7 +48,7 @@ Several CLI commands need more than branch access. See [Required scopes](/docs/c
 
 ## Keys and Organization Roles
 
-A user API key acts with the [organization role](/docs/platform/organization-roles.md) of the member who created it, so an Editor's key cannot perform Admin-only actions whatever its scopes. Organization API keys act with Admin access, limited by their scopes.
+A user API key acts with the [organization role](https://xata.io/docs/platform/organization-roles.md) of the member who created it, so an Editor's key cannot perform Admin-only actions whatever its scopes. Organization API keys act with Admin access, limited by their scopes.
 
 ### From the CLI
 
@@ -68,7 +68,7 @@ xata keys user list
 xata keys organization list
 ```
 
-For more CLI commands, see the [CLI Reference](/docs/cli/keys.md).
+For more CLI commands, see the [CLI Reference](https://xata.io/docs/cli/keys.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

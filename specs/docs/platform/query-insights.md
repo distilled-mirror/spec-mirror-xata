@@ -8,7 +8,7 @@
 
 Query insights surfaces aggregated execution statistics for the queries running on a branch so you can spot slow statements, hot paths, and resource-heavy workloads at a glance. The page reads from PostgreSQL's [`pg_stat_statements`](https://www.postgresql.org/docs/current/pgstatstatements.html) extension and groups statements by their normalized form, regardless of literal values.
 
-The same statistics are available from a terminal or a script with [`xata branch query-insights`](/docs/cli/branch#query-insights). See [From the command line](#from-the-command-line) below.
+The same statistics are available from a terminal or a script with [`xata branch query-insights`](https://xata.io/docs/cli/branch#query-insights). See [From the command line](#from-the-command-line) below.
 
 ## Find slow queries
 
@@ -26,7 +26,7 @@ Query insights requires the `pg_stat_statements` extension, which must be added 
 2. If the extension is not yet enabled, an **Enable pg\_stat\_statements** prompt is shown — click it to add `pg_stat_statements` to the preloaded libraries and create the extension. A branch restart is required to load the library.
 3. Once the branch finishes restarting, return to the Query insights page to start exploring statistics.
 
-You can also enable the extension manually from the [Extensions](/docs/platform/extensions.md) settings of your branch.
+You can also enable the extension manually from the [Extensions](https://xata.io/docs/platform/extensions.md) settings of your branch.
 
 ## Queries table
 
@@ -90,7 +90,7 @@ The toolbar exposes two actions:
 
 ## From the command line
 
-[`xata branch query-insights`](/docs/cli/branch#query-insights) (alias `qi`) exposes the same `pg_stat_statements` data outside the dashboard, with `--output json` and `--output ndjson` for scripts and other tools. `list` covers the queries table, `show` covers the detail view, and `enable` and `reset` match the toolbar actions.
+[`xata branch query-insights`](https://xata.io/docs/cli/branch#query-insights) (alias `qi`) exposes the same `pg_stat_statements` data outside the dashboard, with `--output json` and `--output ndjson` for scripts and other tools. `list` covers the queries table, `show` covers the detail view, and `enable` and `reset` match the toolbar actions.
 
 The CLI also has one capability the dashboard does not: `xata branch query-insights active` lists the queries executing at this moment, with their age, state, and wait event, read from `pg_stat_activity`. There is no page for this in the dashboard.
 

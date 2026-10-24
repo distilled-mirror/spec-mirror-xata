@@ -328,7 +328,7 @@ Here's a list of all the environment variables that can be used to configure the
 >
 > **Default**: False\
 > **Required**: Optional\
-> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, option to issue commands to DROP all the objects that will be restored. Destructive: the DROPs are applied before the table data is copied, so a snapshot that fails afterwards leaves the target partially rebuilt with the previous contents already gone. See [resetting the target](/docs/opensource/pgstream/docs/snapshots.md#️-resetting-the-target-destroys-it-before-the-new-data-lands).
+> **Description**: When using `pg_dump`/`pg_restore` to snapshot schema for Postgres targets, option to issue commands to DROP all the objects that will be restored. Destructive: the DROPs are applied before the table data is copied, so a snapshot that fails afterwards leaves the target partially rebuilt with the previous contents already gone. See [resetting the target](https://xata.io/docs/opensource/pgstream/docs/snapshots.md#️-resetting-the-target-destroys-it-before-the-new-data-lands).
 
 > **PGSTREAM\_POSTGRES\_SNAPSHOT\_INCLUDE\_GLOBAL\_DB\_OBJECTS**
 >
@@ -1006,7 +1006,7 @@ One of exponential/constant/disable retries backoff policies can be provided for
 >
 > **Default**: False\
 > **Required**: Optional\
-> **Description**: Disable processing of DDL events on the target Postgres database. Consider enabling if source and target roles have different trust levels (see [privileges](/docs/opensource/pgstream/docs/privileges.md)).
+> **Description**: Disable processing of DDL events on the target Postgres database. Consider enabling if source and target roles have different trust levels (see [privileges](https://xata.io/docs/opensource/pgstream/docs/privileges.md)).
 
 > **PGSTREAM\_POSTGRES\_WRITER\_INCLUDE\_DDL\_OBJECT\_TYPES**
 >

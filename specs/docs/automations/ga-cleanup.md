@@ -186,9 +186,9 @@ For more advanced cleanup rules, you can extend this pattern by fetching externa
 
 ## Related workflows
 
-* [Merge Readiness](/docs/automations/ga-check.md) — For validating main branch status.
-* [Create Branch](/docs/automations/ga-pr.md) — For managing pull request branches.
-* [Branch CLI reference](/docs/cli/branch.md) — Full reference for `xata branch list` and `xata branch delete`.
+* [Merge Readiness](https://xata.io/docs/automations/ga-check.md) — For validating main branch status.
+* [Create Branch](https://xata.io/docs/automations/ga-pr.md) — For managing pull request branches.
+* [Branch CLI reference](https://xata.io/docs/cli/branch.md) — Full reference for `xata branch list` and `xata branch delete`.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

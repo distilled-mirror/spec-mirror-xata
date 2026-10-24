@@ -26,7 +26,7 @@ From the Logs page you can:
 * Click any entry to open a details panel with the full message and metadata.
 * Use **Refresh** to fetch the latest entries for the current time range.
 
-To read logs from a terminal or a script, use [`xata branch logs`](/docs/cli/branch#logs), which offers the same filters plus follow mode and `raw`, `json`, `ndjson`, and `csv` output. For anything else programmatic, such as shipping logs to an external observability tool, use the API described below.
+To read logs from a terminal or a script, use [`xata branch logs`](https://xata.io/docs/cli/branch#logs), which offers the same filters plus follow mode and `raw`, `json`, `ndjson`, and `csv` output. For anything else programmatic, such as shipping logs to an external observability tool, use the API described below.
 
 ## Retrieving logs
 
@@ -68,7 +68,7 @@ The response contains a `logs` array of entries and a `nextCursor` that you can 
 | - | - | - |
 | `start` | `string` (RFC 3339) | Start of the time range. Required. Logs are retained for 30 days, so ranges older than that return no entries. |
 | `end` | `string` (RFC 3339) | End of the time range. Required. |
-| `limit` | `integer` | Maximum number of entries to return per request. Default `100`, maximum `200`. To retrieve more, page with `cursor` as described below, or use [`xata branch logs --limit`](/docs/cli/branch#logs), which pages for you up to 1000 entries. |
+| `limit` | `integer` | Maximum number of entries to return per request. Default `100`, maximum `200`. To retrieve more, page with `cursor` as described below, or use [`xata branch logs --limit`](https://xata.io/docs/cli/branch#logs), which pages for you up to 1000 entries. |
 | `cursor` | `string` | Pagination cursor returned by a previous response. |
 | `filters` | `array` | Optional filters. Multiple filters are combined with `AND`. |
 

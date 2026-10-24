@@ -118,7 +118,7 @@ HTTP queries have a 30-second timeout limit. If your query exceeds this limit, y
 
 #### Hibernated branches
 
-If you attempt to connect to a hibernated branch, you'll receive a `409 Conflict` error with the code `BRANCH_HIBERNATED` and the message "branch is hibernated, reactivate it to continue". You'll need to manually reactivate the branch before connections can be established. Learn more about [Scale to Zero](/docs/core-concepts/scale-to-zero.md).
+If you attempt to connect to a hibernated branch, you'll receive a `409 Conflict` error with the code `BRANCH_HIBERNATED` and the message "branch is hibernated, reactivate it to continue". You'll need to manually reactivate the branch before connections can be established. Learn more about [Scale to Zero](https://xata.io/docs/core-concepts/scale-to-zero.md).
 
 ## WebSocket connections
 

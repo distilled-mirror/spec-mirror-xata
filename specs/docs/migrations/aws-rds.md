@@ -39,7 +39,7 @@ You can find the rds-endpoint in the AWS RDS Console under "Connectivity & secur
 
 > [!TIP]
 >
-> Don't have a live connection, or prefer to export a snapshot to Amazon S3? You can also migrate from [Parquet files](/docs/migrations/parquet.md) exported to S3.
+> Don't have a live connection, or prefer to export a snapshot to Amazon S3? You can also migrate from [Parquet files](https://xata.io/docs/migrations/parquet.md) exported to S3.
 
 ## Initialize Xata project
 

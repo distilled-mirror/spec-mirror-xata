@@ -27,7 +27,7 @@ This guide explains how to use **pgstream** with **AWS RDS/Aurora databases**, c
 > load-balance across multiple instances, and the parallel data snapshot relies on an
 > instance-local exported transaction snapshot. Worker connections that land on a different
 > reader fail nondeterministically with `snapshot "…" does not exist`. Use the
-> **writer/cluster endpoint** (a single instance). See [Snapshots](/docs/opensource/pgstream/docs/snapshots.md#️-the-data-snapshot-source-must-be-a-single-instance) for details; `pgstream check` flags this before a snapshot runs.
+> **writer/cluster endpoint** (a single instance). See [Snapshots](https://xata.io/docs/opensource/pgstream/docs/snapshots.md#️-the-data-snapshot-source-must-be-a-single-instance) for details; `pgstream check` flags this before a snapshot runs.
 
 #### Steps
 

@@ -75,10 +75,10 @@ Use a fresh branch for every Devin task. For production-like tasks, start from a
 
 ## Related Xata docs
 
-* [Data Anonymization](/docs/core-concepts/anonymization.md)
-* [API Keys](/docs/platform/api-key.md)
-* [Instant Branching](/docs/core-concepts/branching.md)
-* [Branch commands](/docs/cli/branch.md)
+* [Data Anonymization](https://xata.io/docs/core-concepts/anonymization.md)
+* [API Keys](https://xata.io/docs/platform/api-key.md)
+* [Instant Branching](https://xata.io/docs/core-concepts/branching.md)
+* [Branch commands](https://xata.io/docs/cli/branch.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

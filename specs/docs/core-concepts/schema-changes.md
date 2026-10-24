@@ -12,7 +12,7 @@ However, schema changes in PostgreSQL come with significant challenges. Applying
 
 Orchestrating application and schema changes in PostgreSQL is tricky because both need to evolve together without breaking functionality. For example, renaming a column is a simple operation from the Postgres point of view, however it is difficult to accomplish in a backwards compatible way for the application.
 
-You can use any schema changes or schema migrations tool with Xata, however we integrate `pgroll` to solve these challenges. It is accessible directly in the CLI with the [`xata roll`](/docs/cli/roll) command.
+You can use any schema changes or schema migrations tool with Xata, however we integrate `pgroll` to solve these challenges. It is accessible directly in the CLI with the [`xata roll`](https://xata.io/docs/cli/roll) command.
 
 ## pgroll - Zero downtime, reversible, schema changes for PostgreSQL
 

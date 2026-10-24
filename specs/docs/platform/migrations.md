@@ -8,7 +8,7 @@
 
 ![Migrations interface showing version history, recent activity, and database migration management](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/migrations.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=17b84c63929ab3f378828506c211af09)
 
-Apply schema changes safely with zero-downtime migrations using `xata roll`. Xata provides comprehensive migration management with automatic rollback support, multi-version schema handling, and lock-safe operations. Track recent migration activity in the console and manage multiple schemas simultaneously. Learn more about [how schema changes work](/docs/core-concepts/schema-changes.md).
+Apply schema changes safely with zero-downtime migrations using `xata roll`. Xata provides comprehensive migration management with automatic rollback support, multi-version schema handling, and lock-safe operations. Track recent migration activity in the console and manage multiple schemas simultaneously. Learn more about [how schema changes work](https://xata.io/docs/core-concepts/schema-changes.md).
 
 ## Making Schema Changes
 
@@ -30,7 +30,7 @@ Xata uses [pgroll](https://github.com/xataio/pgroll) behind the scenes to enable
 4. **Complete migration**: Finalize changes when ready with `xata roll complete`
 5. **Rollback if needed**: Use `xata roll rollback` to revert changes instantly
 
-For detailed step-by-step instructions, see our [schema change tutorial](/docs/tutorials/schema-change.md).
+For detailed step-by-step instructions, see our [schema change tutorial](https://xata.io/docs/tutorials/schema-change.md).
 
 ## From the CLI
 
@@ -53,7 +53,7 @@ xata roll rollback
 xata roll complete
 ```
 
-For more CLI commands, see the [CLI Reference](/docs/cli/roll.md).
+For more CLI commands, see the [CLI Reference](https://xata.io/docs/cli/roll.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

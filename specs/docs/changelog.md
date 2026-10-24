@@ -21,7 +21,7 @@ The editor now opens queries in tabs:
 * New queries open as drafts, listed under **Drafts** in the sidebar until they are saved.
 * Open tabs are restored after a reload, and you are asked before closing tabs or leaving the page with unsaved changes.
 
-Learn more in the [SQL Editor](/docs/platform/sql-editor.md) documentation.
+Learn more in the [SQL Editor](https://xata.io/docs/platform/sql-editor.md) documentation.
 
 **Sep 29, 2026**
 
@@ -31,7 +31,7 @@ Organizations now have Admin and Editor roles, so you can decide who manages mem
 
 Every organization member is now an **Admin** or an **Editor**. Admins manage members, billing, API keys and single sign-on; Editors work with projects and branches.
 
-Existing members are Admins, so nobody lost access. New invitations default to Editor. Admins change roles from the **Members** page, with `xata organization members set-role`, or through the API. See [Organization roles](/docs/platform/organization-roles.md).
+Existing members are Admins, so nobody lost access. New invitations default to Editor. Admins change roles from the **Members** page, with `xata organization members set-role`, or through the API. See [Organization roles](https://xata.io/docs/platform/organization-roles.md).
 
 **Aug 25, 2026**
 
@@ -41,7 +41,7 @@ A hosted MCP server at api.xata.tech/mcp gives coding agents the Xata API, SQL a
 
 A hosted MCP server that lets AI assistants and coding agents work with your Xata organizations, projects, and branches.
 
-There is nothing to install. Point an MCP client at `https://api.xata.tech/mcp` over Streamable HTTP and sign in with OAuth, or send a [Xata API key](/docs/platform/api-key.md) in an `Authorization` header for CI and headless agents.
+There is nothing to install. Point an MCP client at `https://api.xata.tech/mcp` over Streamable HTTP and sign in with OAuth, or send a [Xata API key](https://xata.io/docs/platform/api-key.md) in an `Authorization` header for CI and headless agents.
 
 The server exposes 11 tools:
 
@@ -51,7 +51,7 @@ The server exposes 11 tools:
 
 Credentials stay server-side. `run_sql` takes organization, project, and branch ids and resolves the branch gateway and its password itself, and connection strings and passwords are stripped out of responses before the model sees them.
 
-Xata is listed in the MCP registry as `io.github.xataio/mcp`. Setup steps for Cursor, Claude Code, VS Code, Claude, ChatGPT, Codex CLI, Antigravity, OpenCode, Amp, Windsurf, Zed, and Cline are in the [MCP server](/docs/platform/mcp.md) documentation.
+Xata is listed in the MCP registry as `io.github.xataio/mcp`. Setup steps for Cursor, Claude Code, VS Code, Claude, ChatGPT, Codex CLI, Antigravity, OpenCode, Amp, Windsurf, Zed, and Cline are in the [MCP server](https://xata.io/docs/platform/mcp.md) documentation.
 
 **Jul 30, 2026**
 
@@ -72,7 +72,7 @@ Two commands join `xata branch logs` in the CLI:
 
 One upgrade note: as of CLI 1.5.0, `xata branch query-insights` needs the `credentials:read` scope on your API key, because it opens a direct Postgres connection to the branch. `xata branch logs` needs `logs:read`. Add the scope if your key predates 1.5.0.
 
-See the [CLI branch reference](/docs/cli/branch.md), [Query Insights](/docs/platform/query-insights.md), [Logs](/docs/platform/logs.md), and [Metrics](/docs/platform/metrics.md), or follow the [Find slow queries](/docs/tutorials/find-slow-queries.md) tutorial.
+See the [CLI branch reference](https://xata.io/docs/cli/branch.md), [Query Insights](https://xata.io/docs/platform/query-insights.md), [Logs](https://xata.io/docs/platform/logs.md), and [Metrics](https://xata.io/docs/platform/metrics.md), or follow the [Find slow queries](https://xata.io/docs/tutorials/find-slow-queries.md) tutorial.
 
 **Jul 8, 2026**
 
@@ -87,7 +87,7 @@ The Xata GitHub App links a GitHub repository to a Xata project and manages prev
 * **Status in the pull request:** Xata posts and updates a comment on the PR when it creates, finds, or deletes the preview branch.
 * **Install from project settings:** open **Project Settings > GitHub Repository**, install the app, then pick the repository and root branch. One repository links to one project.
 
-For custom migrations, tests, deploy steps, or comments in CI, use the [GitHub Actions pull request workflow](/docs/automations/ga-pr.md) instead, or run it alongside the app: let the app create the branch, then use your own workflow with that branch's connection string. See the [GitHub App](/docs/automations/github-app.md) documentation.
+For custom migrations, tests, deploy steps, or comments in CI, use the [GitHub Actions pull request workflow](https://xata.io/docs/automations/ga-pr.md) instead, or run it alongside the app: let the app create the branch, then use your own workflow with that branch's connection string. See the [GitHub App](https://xata.io/docs/automations/github-app.md) documentation.
 
 **Jun 30, 2026**
 
@@ -134,7 +134,7 @@ The **Logs** tab on every branch is now available to all users without an opt-in
 * New Logs page in the branch sidebar with a searchable, paginated viewer.
 * Level, instance, and process filters plus free-text search on the log body.
 * Custom and preset time ranges, with details panel per entry.
-* The `branchLogs` API remains available for programmatic access — see the [Logs](/docs/platform/logs.md) documentation.
+* The `branchLogs` API remains available for programmatic access — see the [Logs](https://xata.io/docs/platform/logs.md) documentation.
 
 **May 28, 2026**
 
@@ -153,7 +153,7 @@ The queries page has been reworked for a faster, more flexible SQL workflow.
 * Performance warnings are now less intrusive and dismissible, with dismissal remembered locally.
 * Editor preferences (auto-save, performance warnings, striped rows, compact mode, row limit) persist across sessions.
 
-Learn more in the [SQL Editor](/docs/platform/sql-editor.md) documentation.
+Learn more in the [SQL Editor](https://xata.io/docs/platform/sql-editor.md) documentation.
 
 **Apr 27, 2026**
 
@@ -167,7 +167,7 @@ Serverless connections (HTTP and WebSocket) now route through the PgBouncer conn
 * Explicit endpoint suffixes (`-rw`, `-ro`, `-r`, `-pooler`) continue to take precedence
 * To bypass the pooler and connect directly to the primary, use the `-rw` suffix
 
-Learn more about [connection endpoints](/docs/core-concepts/serverless-proxy.md#connection-endpoints).
+Learn more about [connection endpoints](https://xata.io/docs/core-concepts/serverless-proxy.md#connection-endpoints).
 
 **Apr 24, 2026**
 
@@ -183,7 +183,7 @@ Select **Pooler** when building a connection string from the branch overview pag
 xata branch url main --type pooler
 ```
 
-The `xata branch url` command adds a new `--type` flag that accepts `primary`, `primary-or-replica`, `replica`, or `pooler`. Learn more about [endpoint types](/docs/platform/branch.md#endpoint-types).
+The `xata branch url` command adds a new `--type` flag that accepts `primary`, `primary-or-replica`, `replica`, or `pooler`. Learn more about [endpoint types](https://xata.io/docs/platform/branch.md#endpoint-types).
 
 **Apr 22, 2026**
 
@@ -200,7 +200,7 @@ Key features:
 * Existing database connections remain active during rotation
 * PgBouncer automatically picks up the new password for connection pooling
 
-Learn more about [rotating database credentials](/docs/platform/branch.md#rotate-password).
+Learn more about [rotating database credentials](https://xata.io/docs/platform/branch.md#rotate-password).
 
 **Apr 17, 2026**
 
@@ -217,7 +217,7 @@ When upgrading:
 * Downgrades and major version changes are not permitted
 * Upgrades trigger a rolling update of your branch instances
 
-Learn more about [upgrading PostgreSQL versions](/docs/platform/branch.md#upgrading-postgresql-versions).
+Learn more about [upgrading PostgreSQL versions](https://xata.io/docs/platform/branch.md#upgrading-postgresql-versions).
 
 **Apr 7, 2026**
 
@@ -229,7 +229,7 @@ You can now connect to your Xata database through a connection pooler endpoint u
 
 When enabled, you can connect to your branch using the `-pooler` suffix in your connection string (e.g., `{branch-id}-pooler`). This routes your connections through PgBouncer for efficient connection pooling.
 
-Learn more about [connection endpoints](/docs/core-concepts/serverless-proxy.md#connection-endpoints).
+Learn more about [connection endpoints](https://xata.io/docs/core-concepts/serverless-proxy.md#connection-endpoints).
 
 **Mar 12, 2026**
 
@@ -299,7 +299,7 @@ Scale to zero, a new region and much more.
 
 ## Scale to Zero
 
-You can now configure a branch to scale to zero after a duration of inactivity. Set project defaults or branch specific settings for the duration of inactivity.  You can also manually hibernate a branch. Learn more about scale to zero [here](/docs/platform/compute.md).
+You can now configure a branch to scale to zero after a duration of inactivity. Set project defaults or branch specific settings for the duration of inactivity.  You can also manually hibernate a branch. Learn more about scale to zero [here](https://xata.io/docs/platform/compute.md).
 
 ![Configure compute and scale to zero for your branch](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/changelog/2025-09-10/scale-to-zero.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=176ecf915818bf38f6cd635a4734b816)
 
@@ -329,13 +329,13 @@ Generate SQL queries through natural language and explore your data simply by as
 
 ## Extensions View
 
-You can now view all supported and enabled extensions directly from console. You can see what extensions are currently available [here](/docs/platform/extensions.md).
+You can now view all supported and enabled extensions directly from console. You can see what extensions are currently available [here](https://xata.io/docs/platform/extensions.md).
 
 ![View available extensions in console](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/changelog/2025-09-10/extensions.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=e8366c154d7a3511465b3aa28549e91b)
 
 ## Revamped Metrics View
 
-We keep adding metrics for improved visibility. Rather than scrolling forever, we've introduced a nice two column view to consolidate our charts. You can see what metrics are currently available [here](/docs/platform/metrics.md).
+We keep adding metrics for improved visibility. Rather than scrolling forever, we've introduced a nice two column view to consolidate our charts. You can see what metrics are currently available [here](https://xata.io/docs/platform/metrics.md).
 
 ![View available metrics in console](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/changelog/2025-09-10/metrics.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=b9719e86e4a767eec9daecf6be152cc0)
 

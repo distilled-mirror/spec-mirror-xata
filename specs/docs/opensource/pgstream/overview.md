@@ -27,7 +27,7 @@
 
 ## Usage
 
-`pgstream` can be used via the readily available CLI or as a library. For detailed information about the CLI usage, check out the dedicated [CLI documentation section](/docs/opensource/pgstream/docs/cli.md).
+`pgstream` can be used via the readily available CLI or as a library. For detailed information about the CLI usage, check out the dedicated [CLI documentation section](https://xata.io/docs/opensource/pgstream/docs/cli.md).
 
 ### CLI Installation
 
@@ -87,9 +87,9 @@ Pgstream source and target need to be configured appropriately before the comman
 * Using a yaml configuration file
 * Using environment variables (.env file supported)
 
-Check the [configuration documentation](/docs/opensource/pgstream/docs/configuration.md) for more information about the configuration options, or check the [CLI documentation](/docs/opensource/pgstream/docs/cli.md) for details on the available flags. Additionally, you can find sample files for both .env and .yaml [here](https://github.com/xataio/pgstream/tree/main/docs/examples).
+Check the [configuration documentation](https://xata.io/docs/opensource/pgstream/docs/configuration.md) for more information about the configuration options, or check the [CLI documentation](https://xata.io/docs/opensource/pgstream/docs/cli.md) for details on the available flags. Additionally, you can find sample files for both .env and .yaml [here](https://github.com/xataio/pgstream/tree/main/docs/examples).
 
-If you want to configure column transformations, leveraging [greenmask](https://github.com/GreenmaskIO/greenmask), [neosync](https://github.com/nucleuscloud/neosync) and [go-masker](https://github.com/ggwhite/go-masker) open source integrations, as well as custom transformers, check the [transformation rules](/docs/opensource/pgstream/docs/transformers.md#transformation-rules) configuration for more details, along with the list of [available transformers](/docs/opensource/pgstream/docs/transformers.md#supported-transformers).
+If you want to configure column transformations, leveraging [greenmask](https://github.com/GreenmaskIO/greenmask), [neosync](https://github.com/nucleuscloud/neosync) and [go-masker](https://github.com/ggwhite/go-masker) open source integrations, as well as custom transformers, check the [transformation rules](https://xata.io/docs/opensource/pgstream/docs/transformers.md#transformation-rules) configuration for more details, along with the list of [available transformers](https://xata.io/docs/opensource/pgstream/docs/transformers.md#supported-transformers).
 
 ### Run `pgstream`
 
@@ -98,10 +98,10 @@ If you want to configure column transformations, leveraging [greenmask](https://
 Run will start streaming data from the configured source into the configured target. By passing the `--init` flag to the run command, pgstream will initialise the pgstream state in the source Postgres database before starting replication. It will:
 
 * Create a `pgstream` schema
-* Create tables/functions/triggers to keep track of schema changes for DDL replication (see [Tracking schema changes](/docs/opensource/pgstream/docs/architecture.md#tracking-schema-changes) for more details)
+* Create tables/functions/triggers to keep track of schema changes for DDL replication (see [Tracking schema changes](https://xata.io/docs/opensource/pgstream/docs/architecture.md#tracking-schema-changes) for more details)
 * Create a replication slot
 
-Initialisation is required for pgstream replication. It can alternatively be performed by running the `pgstream init` command separately before `pgstream run`. Check out the [CLI documentation](/docs/opensource/pgstream/docs/cli.md#init) for more details.
+Initialisation is required for pgstream replication. It can alternatively be performed by running the `pgstream init` command separately before `pgstream run`. Check out the [CLI documentation](https://xata.io/docs/opensource/pgstream/docs/cli.md#init) for more details.
 
 Example running pgstream replication from Postgres -> OpenSearch:
 
@@ -134,7 +134,7 @@ pgstream run -c docs/examples/kafka2os.yaml --init --log-level info
 pgstream run --source kafka --source-url "localhost:9092" --target opensearch --target-url "http://admin:admin@localhost:9200" --init
 ```
 
-An initial snapshot can be performed before starting replication by providing `--snapshot-tables` flag or by setting the relevant configuration fields (check the [configuration documentation](/docs/opensource/pgstream/docs/configuration.md) for more details on advanced configuration options).
+An initial snapshot can be performed before starting replication by providing `--snapshot-tables` flag or by setting the relevant configuration fields (check the [configuration documentation](https://xata.io/docs/opensource/pgstream/docs/configuration.md) for more details on advanced configuration options).
 
 Example running pgstream with PostgreSQL -> PostgreSQL with initial snapshot enabled:
 
@@ -162,36 +162,36 @@ pgstream snapshot --postgres-url="postgres://postgres:postgres@localhost:5432?ss
 
 ## Tutorials
 
-* [PostgreSQL replication to PostgreSQL](/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md)
-* [PostgreSQL replication to OpenSearch](/docs/opensource/pgstream/docs/tutorials/postgres_to_opensearch.md)
-* [PostgreSQL replication to webhooks](/docs/opensource/pgstream/docs/tutorials/postgres_to_webhooks.md)
-* [PostgreSQL replication using Kafka](/docs/opensource/pgstream/docs/tutorials/postgres_kafka.md)
-* [PostgreSQL snapshots](/docs/opensource/pgstream/docs/tutorials/postgres_snapshot.md)
-* [PostgreSQL column transformations](/docs/opensource/pgstream/docs/tutorials/postgres_transformer.md)
+* [PostgreSQL replication to PostgreSQL](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_postgres.md)
+* [PostgreSQL replication to OpenSearch](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_opensearch.md)
+* [PostgreSQL replication to webhooks](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_to_webhooks.md)
+* [PostgreSQL replication using Kafka](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_kafka.md)
+* [PostgreSQL snapshots](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_snapshot.md)
+* [PostgreSQL column transformations](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_transformer.md)
 
 ## Documentation
 
 For more advanced usage, implementation details, and detailed configuration settings, please refer to the full documentation below.
 
-1. [Architecture](/docs/opensource/pgstream/docs/architecture.md)
-2. [Configuration](/docs/opensource/pgstream/docs/configuration.md)
-   * [Yaml](/docs/opensource/pgstream/docs/configuration.md#yaml)
-   * [Environment Variables](/docs/opensource/pgstream/docs/configuration.md#environment-variables)
+1. [Architecture](https://xata.io/docs/opensource/pgstream/docs/architecture.md)
+2. [Configuration](https://xata.io/docs/opensource/pgstream/docs/configuration.md)
+   * [Yaml](https://xata.io/docs/opensource/pgstream/docs/configuration.md#yaml)
+   * [Environment Variables](https://xata.io/docs/opensource/pgstream/docs/configuration.md#environment-variables)
    * [Examples](https://github.com/xataio/pgstream/tree/main/docs/examples)
-3. [Snapshots](/docs/opensource/pgstream/docs/snapshots.md)
-   * [Running from a read replica](/docs/opensource/pgstream/docs/replicas)
-4. [Transformers](/docs/opensource/pgstream/docs/transformers.md)
-   * [Supported Transformers](/docs/opensource/pgstream/docs/transformers.md#supported-transformers)
-   * [Transformation Rules](/docs/opensource/pgstream/docs/transformers.md#transformation-rules)
-5. [Observability](/docs/opensource/pgstream/docs/Observability.md)
-6. [CLI](/docs/opensource/pgstream/docs/cli.md)
-7. [Privileges](/docs/opensource/pgstream/docs/privileges.md)
-   * [Xata](/docs/opensource/pgstream/docs/xata.md)
-   * [AWS](/docs/opensource/pgstream/docs/aws.md)
-   * [GCP CloudSQL](/docs/opensource/pgstream/docs/gcp_cloudsql.md)
-   * [Neon](/docs/opensource/pgstream/docs/neon.md)
-8. [Container image](/docs/opensource/pgstream/docs/container_image)
-9. [Glossary](/docs/opensource/pgstream/docs/glossary.md)
+3. [Snapshots](https://xata.io/docs/opensource/pgstream/docs/snapshots.md)
+   * [Running from a read replica](https://xata.io/docs/opensource/pgstream/docs/replicas)
+4. [Transformers](https://xata.io/docs/opensource/pgstream/docs/transformers.md)
+   * [Supported Transformers](https://xata.io/docs/opensource/pgstream/docs/transformers.md#supported-transformers)
+   * [Transformation Rules](https://xata.io/docs/opensource/pgstream/docs/transformers.md#transformation-rules)
+5. [Observability](https://xata.io/docs/opensource/pgstream/docs/Observability.md)
+6. [CLI](https://xata.io/docs/opensource/pgstream/docs/cli.md)
+7. [Privileges](https://xata.io/docs/opensource/pgstream/docs/privileges.md)
+   * [Xata](https://xata.io/docs/opensource/pgstream/docs/xata.md)
+   * [AWS](https://xata.io/docs/opensource/pgstream/docs/aws.md)
+   * [GCP CloudSQL](https://xata.io/docs/opensource/pgstream/docs/gcp_cloudsql.md)
+   * [Neon](https://xata.io/docs/opensource/pgstream/docs/neon.md)
+8. [Container image](https://xata.io/docs/opensource/pgstream/docs/container_image)
+9. [Glossary](https://xata.io/docs/opensource/pgstream/docs/glossary.md)
 
 ## Benchmarks
 
@@ -219,7 +219,7 @@ Some of the limitations of the initial release include:
 
 You can find below the release notes for major pgstream versions, along with migration guides whenever relevant:
 
-* [v1.0.0](/docs/opensource/pgstream/docs/releases/v1.0.0.md)
+* [v1.0.0](https://xata.io/docs/opensource/pgstream/docs/releases/v1.0.0.md)
 
 ## Contributing
 

@@ -8,7 +8,7 @@
 
 The Xata GitHub App links a GitHub repository to a Xata project. After it is linked, pull requests in that repository can create Xata preview branches automatically, without storing a Xata API key in GitHub Actions.
 
-Use the GitHub App when you want Xata to manage the preview branch lifecycle for a repository. If you need a fully custom CI workflow, use the [GitHub Actions pull request workflow](/docs/automations/ga-pr.md) instead.
+Use the GitHub App when you want Xata to manage the preview branch lifecycle for a repository. If you need a fully custom CI workflow, use the [GitHub Actions pull request workflow](https://xata.io/docs/automations/ga-pr.md) instead.
 
 ## Demo
 
@@ -124,12 +124,12 @@ The GitHub App and the GitHub Actions workflows solve related but different prob
 | Use case | Recommended approach |
 | - | - |
 | Automatically create and clean up one preview branch per pull request | Xata GitHub App |
-| Run custom commands, migrations, tests, deployment steps, or comments in CI | [GitHub Actions workflow](/docs/automations/ga-pr.md) |
-| Bulk cleanup of branches by naming convention or age | [Bulk delete workflow](/docs/automations/ga-cleanup.md) |
+| Run custom commands, migrations, tests, deployment steps, or comments in CI | [GitHub Actions workflow](https://xata.io/docs/automations/ga-pr.md) |
+| Bulk cleanup of branches by naming convention or age | [Bulk delete workflow](https://xata.io/docs/automations/ga-cleanup.md) |
 
 You can still run GitHub Actions alongside the GitHub App. For example, let the GitHub App create the Xata preview branch, then use your own CI workflow to run tests or deploy a preview environment with that branch's connection string.
 
-To connect each Vercel preview deployment to its matching Xata branch, see [Vercel preview deployments](/docs/automations/vercel-github-app.md).
+To connect each Vercel preview deployment to its matching Xata branch, see [Vercel preview deployments](https://xata.io/docs/automations/vercel-github-app.md).
 
 ## Troubleshooting
 

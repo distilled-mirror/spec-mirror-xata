@@ -37,7 +37,7 @@ With OAuth-capable clients, you only need the server URL. When your client conne
 
 ### API key
 
-Clients that support custom headers can authenticate with a [Xata API key](/docs/platform/api-key.md) instead:
+Clients that support custom headers can authenticate with a [Xata API key](https://xata.io/docs/platform/api-key.md) instead:
 
 ```
 Authorization: Bearer YOUR_XATA_API_KEY
@@ -313,12 +313,21 @@ The Xata MCP server exposes the following tools:
 ## Security
 
 * Prefer OAuth for interactive clients; tokens are short-lived and can be revoked by disconnecting the server in your client.
-* For automation, use a dedicated [API key](/docs/platform/api-key.md) and rotate it regularly.
+* For automation, use a dedicated [API key](https://xata.io/docs/platform/api-key.md) and rotate it regularly.
 * Some tools can modify your data: `call_write_operation` and `call_destructive_operation` can change or delete resources (the latter requires `confirm=true`), and `run_sql` can mutate data when called with both `write=true` and `confirm=true`. Review the actions your assistant proposes before approving them, and keep a human in the loop for any write or delete.
 
 ## Troubleshooting
 
 **Authentication keeps failing or loops.** Remove the Xata server from your client, restart the client, and add the server again to trigger a fresh OAuth flow.
+
+**Authentication shows "Client not found" in the browser.** Your MCP client may have a saved OAuth registration that is no longer available on Xata's authentication server. Depending on the client, removing and re-adding the MCP server may leave this registration intact. Clear the saved OAuth registration for Xata in your client, then restart the Xata MCP server and authenticate again to allow a fresh registration.
+
+For example, in **VS Code**:
+
+1. Open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
+2. Run **Authentication: Remove Dynamic Authentication Providers**.
+3. Select the provider associated with Xata, leaving unrelated providers unchanged.
+4. Restart the Xata MCP server and complete authentication again.
 
 **The server connects but no tools show up.** Make sure you completed the authentication step — most tools require a valid session before they appear. Re-run your client's authentication flow, then refresh its tool list. See [Available tools](#available-tools) for the full set.
 

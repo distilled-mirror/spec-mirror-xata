@@ -14,7 +14,7 @@ This tutorial will showcase the use of pgstream to replicate data from a Postgre
 
 * A source PostgreSQL database
 * A target webhook server
-* pgstream (see [installation](/docs/opensource/pgstream/docs/cli.md#installation) instructions for more details)
+* pgstream (see [installation](https://xata.io/docs/opensource/pgstream/docs/cli.md#installation) instructions for more details)
 
 ### Demo
 
@@ -34,7 +34,7 @@ This will start a PostgreSQL databases on port `5432`.
 
 ## Database initialisation
 
-Once the PostgreSQL server is up and running, the next step is to initialise pgstream. This will create the `pgstream` schema in the configured Postgres database, along with the tables/functions/triggers required to keep track of the schema changes. See [Tracking schema changes](/docs/opensource/pgstream/docs/architecture.md#tracking-schema-changes) section for more details. This step will also create a replication slot on the source database which will be used by the pgstream service.
+Once the PostgreSQL server is up and running, the next step is to initialise pgstream. This will create the `pgstream` schema in the configured Postgres database, along with the tables/functions/triggers required to keep track of the schema changes. See [Tracking schema changes](https://xata.io/docs/opensource/pgstream/docs/architecture.md#tracking-schema-changes) section for more details. This step will also create a replication slot on the source database which will be used by the pgstream service.
 
 The initialisation step allows to provide both the URL of the PostgreSQL database and the name of the replication slot to be created. The PostgreSQL URL is required, but the replication slot name is optional. If not provided, it will default to `pgstream_<dbname>_slot`, where `<dbname>` is the name of the PostgreSQL database. The configuration can be provided either by using the CLI supported parameters, or using the environment variables.
 
@@ -97,7 +97,7 @@ PGSTREAM_POSTGRES_SNAPSHOT_STORE_URL="postgres://postgres:postgres@localhost:543
 PGSTREAM_POSTGRES_SNAPSHOT_TABLES="test_schema.* test"
 ```
 
-Further configuration can be provided to optimize the performance of the snapshot process. For more information, check the [snapshot tutorial](/docs/opensource/pgstream/docs/tutorials/postgres_snapshot.md#listener).
+Further configuration can be provided to optimize the performance of the snapshot process. For more information, check the [snapshot tutorial](https://xata.io/docs/opensource/pgstream/docs/tutorials/postgres_snapshot.md#listener).
 
 ### Processor
 
@@ -577,7 +577,7 @@ With a full replica identity the update event will now contain the old values fo
 
 ## Populate event metadata
 
-In this tutorial we haven't enabled the injector to populate the metadata event information, which is why it appears empty in the events. If the webhook notifier requires that metadata information, the modifiers configuration can be updated to enable the injector. The injector adds pgstream IDs and metadata to the events, which can be useful for tracking and versioning (more details can be found in the [architecture section](/docs/opensource/pgstream/docs/architecture.md)).
+In this tutorial we haven't enabled the injector to populate the metadata event information, which is why it appears empty in the events. If the webhook notifier requires that metadata information, the modifiers configuration can be updated to enable the injector. The injector adds pgstream IDs and metadata to the events, which can be useful for tracking and versioning (more details can be found in the [architecture section](https://xata.io/docs/opensource/pgstream/docs/architecture.md)).
 
 To enable the injector for webhooks, add to the configuration:
 
@@ -719,7 +719,7 @@ In this tutorial, we successfully configured `pgstream` to replicate data from a
 4. Verified that database changes triggered webhook events.
 5. Explored how to update webhook subscriptions and use the injector for metadata enrichment.
 
-This tutorial demonstrates how `pgstream` can be used to integrate PostgreSQL with webhook-based systems, enabling real-time event-driven architectures. For more advanced use cases, refer to the other [pgstream tutorials](/docs/opensource/pgstream/overview.md#tutorials).
+This tutorial demonstrates how `pgstream` can be used to integrate PostgreSQL with webhook-based systems, enabling real-time event-driven architectures. For more advanced use cases, refer to the other [pgstream tutorials](https://xata.io/docs/opensource/pgstream/overview.md#tutorials).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

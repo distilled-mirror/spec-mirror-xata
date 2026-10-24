@@ -6,7 +6,7 @@
 
 > A guide for coding agents to help users get started with Xata, from installing the CLI to a working Postgres branch connected to their app.
 
-This page contains instructions for how to help a user get started with Xata. It is written for coding agents; if you are a human, paste the prompt from the [Quickstart](/docs/quickstart.md) into your agent and it will follow this guide for you.
+This page contains instructions for how to help a user get started with Xata. It is written for coding agents; if you are a human, paste the prompt from the [Quickstart](https://xata.io/docs/quickstart.md) into your agent and it will follow this guide for you.
 
 Walk through it interactively with the user, answer any questions, and make sure they understand what Xata is and what it can do. The end goal is a working Postgres branch connected to their project, plus hands-on experience with the branching workflow that makes Xata different. If they want to migrate an existing database, help them with that as well (see the migration appendix below).
 
@@ -51,7 +51,7 @@ The binary installs to `~/.config/xata/bin`. Make sure that directory is on the 
 
 Xata skills teach coding agents how to use the CLI and follow Xata-specific workflows. Offer to install the CLI skill in the user's project so future sessions can discover it. This does not require Xata authentication or MCP setup.
 
-Once the user has chosen a project directory, identify the coding agent running this session and its supported `--agent` value, such as `claude-code`, `codex`, `cursor`, or `amp`. Ask if uncertain; do not infer the agent from its model name or another client's configuration files. See [the skills command reference](/docs/cli/skill.md) for all supported agents. If the user is only exploring and has no project directory yet, defer installation.
+Once the user has chosen a project directory, identify the coding agent running this session and its supported `--agent` value, such as `claude-code`, `codex`, `cursor`, or `amp`. Ask if uncertain; do not infer the agent from its model name or another client's configuration files. See [the skills command reference](https://xata.io/docs/cli/skill.md) for all supported agents. If the user is only exploring and has no project directory yet, defer installation.
 
 Explain that this adds project-local instruction files and get approval, then check availability:
 
@@ -60,7 +60,7 @@ xata skill install --help
 xata skill list --json
 ```
 
-If the installed CLI does not support these commands, offer to upgrade it with permission, or use [skills through MCP](/docs/ai-agents/agent-skills.md#access-skills-through-mcp). Do not report a local installation as complete if it was skipped or failed.
+If the installed CLI does not support these commands, offer to upgrade it with permission, or use [skills through MCP](https://xata.io/docs/ai-agents/agent-skills.md#access-skills-through-mcp). Do not report a local installation as complete if it was skipped or failed.
 
 Install `using-xata-cli`, replacing both placeholders with the verified values:
 

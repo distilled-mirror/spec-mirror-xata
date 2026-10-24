@@ -13,7 +13,7 @@ This guide shows you how to create a realistic production clone in Xata by cloni
 ## 1. Prerequisites
 
 * A Xata account ([sign up here](https://console.xata.io))
-* The [Xata CLI](/docs/cli.md) installed:
+* The [Xata CLI](https://xata.io/docs/cli.md) installed:
   ```bash theme={null}
   curl -fsSL https://xata.io/install.sh | bash
   ```
@@ -30,7 +30,7 @@ instance size as you use for production, but you can also use a smaller instance
 
 > [!TIP]
 >
-> If you're using Xata for production, we recommend creating a separate organization for your production clone. This allows you to control access to production data more effectively by only granting production access to team members who need it. Within an organization, [roles](/docs/platform/organization-roles.md) control who can manage members, billing and API keys, but every member can access all of its projects and branches.
+> If you're using Xata for production, we recommend creating a separate organization for your production clone. This allows you to control access to production data more effectively by only granting production access to team members who need it. Within an organization, [roles](https://xata.io/docs/platform/organization-roles.md) control who can manage members, billing and API keys, but every member can access all of its projects and branches.
 
 ## 3. Configure the Xata CLI
 
@@ -76,7 +76,7 @@ Where the `CONN_STRING` variable is set to the production connection string from
 NODE_TLS_REJECT_UNAUTHORIZED=0 xata clone config --source-url $CONN_STRING --mode=prompt
 ```
 
-Follow the prompts to specify whether you want anonymization enabled, which tables and columns to anonymize, and which transformers to use. For more details about transformers, see the [anonymization](/docs/core-concepts/anonymization.md) page.
+Follow the prompts to specify whether you want anonymization enabled, which tables and columns to anonymize, and which transformers to use. For more details about transformers, see the [anonymization](https://xata.io/docs/core-concepts/anonymization.md) page.
 
 > [!TIP]
 >
@@ -129,9 +129,9 @@ psql `xata branch url`
 * You now have a realistic, anonymized production clone in Xata.
 * You can safely test schema migrations, new indexes, or any other database changes using instant Copy-on-Write branches.
 
-For more details on how to set up an advanced schema changes workflow, see the [schema changes](/docs/core-concepts/schema-changes.md) section.
+For more details on how to set up an advanced schema changes workflow, see the [schema changes](https://xata.io/docs/core-concepts/schema-changes.md) section.
 
-To automate this process and keep your production clone up-to-date, see the [scheduled clone](/docs/automations/kubernetes-clone.md) documentation.
+To automate this process and keep your production clone up-to-date, see the [scheduled clone](https://xata.io/docs/automations/kubernetes-clone.md) documentation.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

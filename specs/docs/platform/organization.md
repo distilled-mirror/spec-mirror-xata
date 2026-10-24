@@ -10,7 +10,7 @@
 
 An organization is a hierarchical structure that supports multiple projects, each with their own database and branches. You can invite members to an organization and projects, and this is the entity you are billed on.
 
-Each member is either an Admin or an Editor. Admins manage the organization, including its members, billing and API keys; Editors work with its projects and branches. See [Organization roles](/docs/platform/organization-roles.md) for what each role can do.
+Each member is either an Admin or an Editor. Admins manage the organization, including its members, billing and API keys; Editors work with its projects and branches. See [Organization roles](https://xata.io/docs/platform/organization-roles.md) for what each role can do.
 
 ![Organization overview interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=8c6dc3416156fde7d5f3a46466b4114c)
 
@@ -29,11 +29,11 @@ Use the Xata CLI to create organizations programmatically:
 xata organization create --name "My Company"
 ```
 
-For more CLI commands, see the [CLI Reference](/docs/cli/organization.md).
+For more CLI commands, see the [CLI Reference](https://xata.io/docs/cli/organization.md).
 
 ## Invite Members
 
-Admins add team members to your organization by sending invitation emails. Each invitation sets the role the new member holds once they accept, **Editor** by default. See [Organization roles](/docs/platform/organization-roles.md) for how to choose or change a role.
+Admins add team members to your organization by sending invitation emails. Each invitation sets the role the new member holds once they accept, **Editor** by default. See [Organization roles](https://xata.io/docs/platform/organization-roles.md) for how to choose or change a role.
 
 ![Invite members interface](https://mintcdn.com/xata/PDDxPY9xptrEGBCP/images/platform/organization-invite-members.png?fit=max\&auto=format\&n=PDDxPY9xptrEGBCP\&q=85\&s=07493f80faece810fe5632dd1163c90b)
 
@@ -57,7 +57,7 @@ Organization API keys provide centralized access control across all projects and
 
 Only Admins can create, list and delete organization API keys. An organization API key acts with Admin access, limited by its scopes.
 
-For more detailed information about API key management, see [Account API Keys](/docs/platform/api-key.md).
+For more detailed information about API key management, see [Account API Keys](https://xata.io/docs/platform/api-key.md).
 
 ## Billing
 
@@ -82,7 +82,7 @@ A successful request returns `202 Accepted`.
 >
 > The request is rejected with `409 Conflict` if the organization still has active projects or outstanding invoices. Delete or transfer all projects and settle outstanding invoices before requesting deletion.
 
-This endpoint requires an API key with the `org:delete` scope. See [API Keys](/docs/platform/api-key.md) for details on scoping.
+This endpoint requires an API key with the `org:delete` scope. See [API Keys](https://xata.io/docs/platform/api-key.md) for details on scoping.
 
 For the immediate destructive variant, use the `DELETE /organizations/{organizationID}` endpoint, or the CLI:
 

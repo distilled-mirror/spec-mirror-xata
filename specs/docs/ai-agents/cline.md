@@ -67,7 +67,7 @@ Use Cline's approval step for every database command. Give it a branch URL, not 
 
 * Approve reads freely, but review writes carefully.
 * Keep production secrets out of VS Code workspace files.
-* Ask Cline to use [branch commands](/docs/cli/branch.md) for branch state.
+* Ask Cline to use [branch commands](https://xata.io/docs/cli/branch.md) for branch state.
 * Delete the task branch after the pull request is merged.
 
 ## Troubleshooting
@@ -80,10 +80,10 @@ Use Cline's approval step for every database command. Give it a branch URL, not 
 
 ## Related Xata docs
 
-* [Quickstart](/docs/quickstart.md)
-* [Branch commands](/docs/cli/branch.md)
-* [Schema Changes](/docs/core-concepts/schema-changes.md)
-* [API Keys](/docs/platform/api-key.md)
+* [Quickstart](https://xata.io/docs/quickstart.md)
+* [Branch commands](https://xata.io/docs/cli/branch.md)
+* [Schema Changes](https://xata.io/docs/core-concepts/schema-changes.md)
+* [API Keys](https://xata.io/docs/platform/api-key.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

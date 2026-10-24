@@ -10,7 +10,7 @@
 
 Monitor your database performance across instances with real-time metrics including CPU, memory, disk usage, and more. You can view trends as far back as 30 days with minute level granularity.
 
-The same metrics are available from a terminal with [`xata branch metrics`](/docs/cli/branch#metrics), including a live view via `-w` that renders a dashboard in an interactive terminal and streams NDJSON when piped into another process.
+The same metrics are available from a terminal with [`xata branch metrics`](https://xata.io/docs/cli/branch#metrics), including a live view via `-w` that renders a dashboard in an interactive terminal and streams NDJSON when piped into another process.
 
 ## Aggregations
 

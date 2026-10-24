@@ -11,7 +11,7 @@ This guide shows you how to set up continuous logical streaming replication from
 ## 1. Prerequisites
 
 * A Xata account ([sign up here](https://console.xata.io))
-* The [Xata CLI](/docs/cli.md) installed:
+* The [Xata CLI](https://xata.io/docs/cli.md) installed:
   ```bash theme={null}
   curl -fsSL https://xata.io/install.sh | bash
   ```
@@ -125,7 +125,7 @@ transforms:
 
 ### Streaming without DDL tracking
 
-DDL tracking via event triggers requires elevated privileges (e.g., `rds_superuser` on AWS RDS/Aurora, or the `postgres` role on Google Cloud SQL). Most managed PostgreSQL services support this — see the [pgstream setup guides](/docs/opensource/pgstream/docs/aws.md) for provider-specific instructions on configuring the right roles.
+DDL tracking via event triggers requires elevated privileges (e.g., `rds_superuser` on AWS RDS/Aurora, or the `postgres` role on Google Cloud SQL). Most managed PostgreSQL services support this — see the [pgstream setup guides](https://xata.io/docs/opensource/pgstream/docs/aws.md) for provider-specific instructions on configuring the right roles.
 
 However, if your database user does not have the required privileges to create event triggers, you can use the `--skip-ddl-tracking` flag:
 
@@ -169,7 +169,7 @@ to keep the max WAL size in check.
 * Your data can be anonymized in transit using configurable transformers
 * The replication slot ensures no data loss during network interruptions
 
-For more details on advanced streaming configurations and monitoring, see the [clone command documentation](/docs/cli/clone.md).
+For more details on advanced streaming configurations and monitoring, see the [clone command documentation](https://xata.io/docs/cli/clone.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

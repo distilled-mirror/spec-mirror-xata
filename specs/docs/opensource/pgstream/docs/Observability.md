@@ -316,7 +316,7 @@ PGSTREAM_TRACES_SAMPLE_RATIO=0.5
 
 ### Prometheus Scraping (Pull-based)
 
-If you'd rather scrape metrics directly than deploy an OTel collector, enable the Prometheus exporter. It's served from the existing [health endpoint](/docs/opensource/pgstream/docs/configuration.md#instrumentation) server, so no separate port or process is needed:
+If you'd rather scrape metrics directly than deploy an OTel collector, enable the Prometheus exporter. It's served from the existing [health endpoint](https://xata.io/docs/opensource/pgstream/docs/configuration.md#instrumentation) server, so no separate port or process is needed:
 
 ```yaml theme={null}
 instrumentation:
