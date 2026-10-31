@@ -207,17 +207,17 @@ ALTER SCHEMA <schema> OWNER TO pgstreamtarget;
 
 ## Troubleshooting
 
-> **permission denied for table pg\_authid**
+> [accordion] permission denied for table pg\_authid
 >
 > **Cause**: Roles with passwords require pg\_authid access.\
 > **Fix**: Enable `cloudsql.pg_authid_select_role` flag.
 
-> **permission denied to set parameter "session\_replication\_role"**
+> [accordion] permission denied to set parameter "session\_replication\_role"
 >
 > **Cause**: CloudSQL roles can’t set replication role.\
 > **Fix**: Disable `disable_triggers`.
 
-> **Role creation fails**
+> [accordion] Role creation fails
 >
 > **Cause**: `pgstreamtarget` lacks privileges it tries to assign.\
 > **Fix**: Use `postgres` or grant required privileges first.

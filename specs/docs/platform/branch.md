@@ -27,27 +27,27 @@ The overview page provides a single pane of glass to understand the details of y
 
 ## Branch Features
 
-> **[SQL Editor](https://xata.io/docs/platform/sql-editor.md)**
+> [card] [SQL Editor](https://xata.io/docs/platform/sql-editor.md)
 >
 > Execute and manage database queries across your branches.
 
-> **[Metrics](https://xata.io/docs/platform/metrics.md)**
+> [card] [Metrics](https://xata.io/docs/platform/metrics.md)
 >
 > Monitor branch performance and usage across your instances within a branch.
 
-> **[Logs](https://xata.io/docs/platform/logs.md)**
+> [card] [Logs](https://xata.io/docs/platform/logs.md)
 >
 > Inspect PostgreSQL logs from the primary and replicas of your branch.
 
-> **[Extensions](https://xata.io/docs/platform/extensions.md)**
+> [card] [Extensions](https://xata.io/docs/platform/extensions.md)
 >
 > Extend your database functionality with extensions.
 
-> **[Schemas](https://xata.io/docs/platform/schemas.md)**
+> [card] [Schemas](https://xata.io/docs/platform/schemas.md)
 >
 > Manage your database structure and schema.
 
-> **[Migrations](https://xata.io/docs/platform/migrations.md)**
+> [card] [Migrations](https://xata.io/docs/platform/migrations.md)
 >
 > Apply schema changes to your database without downtime.
 

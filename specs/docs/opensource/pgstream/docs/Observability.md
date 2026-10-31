@@ -47,7 +47,7 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### WAL Replication
 
-> **pgstream.replication.lag**
+> [accordion] pgstream.replication.lag
 >
 > **Type**: ObservableGauge\
 > **Unit**: bytes\
@@ -61,7 +61,7 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### Pipeline Phase
 
-> **pgstream.pipeline.phase**
+> [accordion] pgstream.pipeline.phase
 >
 > **Type**: ObservableGauge\
 > **Unit**: 1\
@@ -75,13 +75,13 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### WAL Event Processing
 
-> **pgstream.target.processing.lag**
+> [accordion] pgstream.target.processing.lag
 >
 > **Type**: Histogram\
 > **Unit**: ns\
 > **Description**: Time between WAL event creation and processing
 
-> **pgstream.target.processing.latency**
+> [accordion] pgstream.target.processing.latency
 >
 > **Type**: Histogram\
 > **Unit**: ns\
@@ -95,7 +95,7 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### Snapshot Operations
 
-> **pgstream.snapshot.generator.latency**
+> [accordion] pgstream.snapshot.generator.latency
 >
 > **Type**: Histogram\
 > **Unit**: ms\
@@ -112,19 +112,19 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 #### Writer Metrics
 
-> **pgstream.kafka.writer.batch.size**
+> [accordion] pgstream.kafka.writer.batch.size
 >
 > **Type**: Histogram\
 > **Unit**: messages\
 > **Description**: Distribution of message batch sizes
 
-> **pgstream.kafka.writer.batch.bytes**
+> [accordion] pgstream.kafka.writer.batch.bytes
 >
 > **Type**: Histogram\
 > **Unit**: bytes\
 > **Description**: Distribution of message batch sizes in bytes
 
-> **pgstream.kafka.writer.latency**
+> [accordion] pgstream.kafka.writer.latency
 >
 > **Type**: Histogram\
 > **Unit**: ms\
@@ -132,25 +132,25 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 #### Reader Metrics
 
-> **pgstream.kafka.reader.msg.bytes**
+> [accordion] pgstream.kafka.reader.msg.bytes
 >
 > **Type**: Histogram\
 > **Unit**: bytes\
 > **Description**: Distribution of message sizes read from Kafka
 
-> **pgstream.kafka.reader.fetch.latency**
+> [accordion] pgstream.kafka.reader.fetch.latency
 >
 > **Type**: Histogram\
 > **Unit**: ms\
 > **Description**: Time taken to fetch messages from Kafka
 
-> **pgstream.kafka.reader.commit.latency**
+> [accordion] pgstream.kafka.reader.commit.latency
 >
 > **Type**: Histogram\
 > **Unit**: ms\
 > **Description**: Time taken to commit offsets to Kafka
 
-> **pgstream.kafka.reader.commit.batch.size**
+> [accordion] pgstream.kafka.reader.commit.batch.size
 >
 > **Type**: Histogram\
 > **Unit**: offsets\
@@ -162,7 +162,7 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### PostgreSQL Operations
 
-> **pgstream.postgres.querier.latency**
+> [accordion] pgstream.postgres.querier.latency
 >
 > **Type**: Histogram\
 > **Unit**: ms\
@@ -177,7 +177,7 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 #### Writer Metrics
 
-> **pgstream.postgres.writer.dropped\_queries**
+> [accordion] pgstream.postgres.writer.dropped\_queries
 >
 > **Type**: ObservableCounter\
 > **Unit**: queries\
@@ -191,7 +191,7 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### Search Operations
 
-> **pgstream.search.store.doc.errors**
+> [accordion] pgstream.search.store.doc.errors
 >
 > **Type**: Counter\
 > **Unit**: errors\
@@ -205,7 +205,7 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 ### Data Transformations
 
-> **pgstream.transformer.latency**
+> [accordion] pgstream.transformer.latency
 >
 > **Type**: Histogram\
 > **Unit**: ms\
@@ -221,67 +221,67 @@ All metrics follow the `pgstream.*` naming convention and include relevant attri
 
 pgstream automatically collects Go runtime metrics using the [OpenTelemetry Go runtime instrumentation](https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/runtime). These metrics are essential for monitoring application health and performance:
 
-> **runtime.go.mem.heap\_alloc**
+> [accordion] runtime.go.mem.heap\_alloc
 >
 > **Type**: Gauge\
 > **Unit**: bytes\
 > **Description**: Bytes of allocated heap objects
 
-> **runtime.go.mem.heap\_idle**
+> [accordion] runtime.go.mem.heap\_idle
 >
 > **Type**: Gauge\
 > **Unit**: bytes\
 > **Description**: Bytes in idle (unused) heap spans
 
-> **runtime.go.mem.heap\_inuse**
+> [accordion] runtime.go.mem.heap\_inuse
 >
 > **Type**: Gauge\
 > **Unit**: bytes\
 > **Description**: Bytes in in-use heap spans
 
-> **runtime.go.mem.heap\_objects**
+> [accordion] runtime.go.mem.heap\_objects
 >
 > **Type**: Gauge\
 > **Unit**: objects\
 > **Description**: Number of allocated heap objects
 
-> **runtime.go.mem.heap\_released**
+> [accordion] runtime.go.mem.heap\_released
 >
 > **Type**: Gauge\
 > **Unit**: bytes\
 > **Description**: Bytes of physical memory returned to the OS
 
-> **runtime.go.mem.heap\_sys**
+> [accordion] runtime.go.mem.heap\_sys
 >
 > **Type**: Gauge\
 > **Unit**: bytes\
 > **Description**: Bytes of heap memory obtained from the OS
 
-> **runtime.go.gc.count**
+> [accordion] runtime.go.gc.count
 >
 > **Type**: Counter\
 > **Unit**: collections\
 > **Description**: Number of completed GC cycles
 
-> **runtime.go.gc.pause\_ns**
+> [accordion] runtime.go.gc.pause\_ns
 >
 > **Type**: Histogram\
 > **Unit**: ns\
 > **Description**: Amount of nanoseconds in GC stop-the-world pauses
 
-> **runtime.go.goroutines**
+> [accordion] runtime.go.goroutines
 >
 > **Type**: Gauge\
 > **Unit**: goroutines\
 > **Description**: Number of goroutines that currently exist
 
-> **runtime.go.lookups**
+> [accordion] runtime.go.lookups
 >
 > **Type**: Counter\
 > **Unit**: lookups\
 > **Description**: Number of pointer lookups performed by the runtime
 
-> **runtime.go.mem.gc\_sys**
+> [accordion] runtime.go.mem.gc\_sys
 >
 > **Type**: Gauge\
 > **Unit**: bytes\
@@ -441,35 +441,35 @@ pgstream run --profile --config config.yaml
 
 When `--profile` is enabled, pgstream exposes a profiling HTTP server at `localhost:6060` with the following endpoints:
 
-> **[http://localhost:6060/debug/pprof/](http://localhost:6060/debug/pprof/)**
+> [accordion] [http://localhost:6060/debug/pprof/](http://localhost:6060/debug/pprof/)
 >
 > **Description**: Profile index page
 
-> **[http://localhost:6060/debug/pprof/profile](http://localhost:6060/debug/pprof/profile)**
+> [accordion] [http://localhost:6060/debug/pprof/profile](http://localhost:6060/debug/pprof/profile)
 >
 > **Description**: CPU profile (30-second sample)
 
-> **[http://localhost:6060/debug/pprof/heap](http://localhost:6060/debug/pprof/heap)**
+> [accordion] [http://localhost:6060/debug/pprof/heap](http://localhost:6060/debug/pprof/heap)
 >
 > **Description**: Memory heap profile
 
-> **[http://localhost:6060/debug/pprof/goroutine](http://localhost:6060/debug/pprof/goroutine)**
+> [accordion] [http://localhost:6060/debug/pprof/goroutine](http://localhost:6060/debug/pprof/goroutine)
 >
 > **Description**: Goroutine profile
 
-> **[http://localhost:6060/debug/pprof/allocs](http://localhost:6060/debug/pprof/allocs)**
+> [accordion] [http://localhost:6060/debug/pprof/allocs](http://localhost:6060/debug/pprof/allocs)
 >
 > **Description**: Memory allocation profile
 
-> **[http://localhost:6060/debug/pprof/block](http://localhost:6060/debug/pprof/block)**
+> [accordion] [http://localhost:6060/debug/pprof/block](http://localhost:6060/debug/pprof/block)
 >
 > **Description**: Block profile
 
-> **[http://localhost:6060/debug/pprof/mutex](http://localhost:6060/debug/pprof/mutex)**
+> [accordion] [http://localhost:6060/debug/pprof/mutex](http://localhost:6060/debug/pprof/mutex)
 >
 > **Description**: Mutex profile
 
-> **[http://localhost:6060/debug/pprof/trace](http://localhost:6060/debug/pprof/trace)**
+> [accordion] [http://localhost:6060/debug/pprof/trace](http://localhost:6060/debug/pprof/trace)
 >
 > **Description**: Execution trace
 

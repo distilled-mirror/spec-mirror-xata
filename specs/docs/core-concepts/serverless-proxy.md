@@ -158,61 +158,61 @@ try {
 
 ## Framework examples
 
-**Vercel**
+> [tab] Vercel
+>
+> ```typescript theme={null}
+> import { neon } from '@neondatabase/serverless';
+>
+> export async function GET() {
+>   const sql = neon(process.env.DATABASE_URL!);
+>   const users = await sql`SELECT * FROM users LIMIT 10`;
+>   return Response.json(users);
+> }
+> ```
 
-```typescript theme={null}
-import { neon } from '@neondatabase/serverless';
+> [tab] Cloudflare Workers
+>
+> ```typescript theme={null}
+> import { neon } from '@neondatabase/serverless';
+>
+> export default {
+>   async fetch(request: Request, env: Env) {
+>     const sql = neon(env.DATABASE_URL);
+>     const users = await sql`SELECT * FROM users LIMIT 10`;
+>     return Response.json(users);
+>   },
+> };
+> ```
 
-export async function GET() {
-  const sql = neon(process.env.DATABASE_URL!);
-  const users = await sql`SELECT * FROM users LIMIT 10`;
-  return Response.json(users);
-}
-```
+> [tab] Netlify
+>
+> ```typescript theme={null}
+> import { neon } from '@neondatabase/serverless';
+> import type { Context } from '@netlify/functions';
+>
+> export default async (request: Request, context: Context) => {
+>   const sql = neon(process.env.DATABASE_URL!);
+>   const users = await sql`SELECT * FROM users LIMIT 10`;
+>   return Response.json(users);
+> };
+>
+> export const config = { path: '/api/users' };
+> ```
 
-**Cloudflare Workers**
-
-```typescript theme={null}
-import { neon } from '@neondatabase/serverless';
-
-export default {
-  async fetch(request: Request, env: Env) {
-    const sql = neon(env.DATABASE_URL);
-    const users = await sql`SELECT * FROM users LIMIT 10`;
-    return Response.json(users);
-  },
-};
-```
-
-**Netlify**
-
-```typescript theme={null}
-import { neon } from '@neondatabase/serverless';
-import type { Context } from '@netlify/functions';
-
-export default async (request: Request, context: Context) => {
-  const sql = neon(process.env.DATABASE_URL!);
-  const users = await sql`SELECT * FROM users LIMIT 10`;
-  return Response.json(users);
-};
-
-export const config = { path: '/api/users' };
-```
-
-**AWS Lambda**
-
-```typescript theme={null}
-import { neon } from '@neondatabase/serverless';
-
-export const handler = async (event) => {
-  const sql = neon(process.env.DATABASE_URL);
-  const users = await sql`SELECT * FROM users LIMIT 10`;
-  return {
-    statusCode: 200,
-    body: JSON.stringify(users),
-  };
-};
-```
+> [tab] AWS Lambda
+>
+> ```typescript theme={null}
+> import { neon } from '@neondatabase/serverless';
+>
+> export const handler = async (event) => {
+>   const sql = neon(process.env.DATABASE_URL);
+>   const users = await sql`SELECT * FROM users LIMIT 10`;
+>   return {
+>     statusCode: 200,
+>     body: JSON.stringify(users),
+>   };
+> };
+> ```
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

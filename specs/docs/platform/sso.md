@@ -73,34 +73,34 @@ Each domain has its own redirect URI, so copy it from the domain you are setting
 
 Once the domain is verified, choose the provider type and enter its details.
 
-**Google Workspace**
+> [tab] Google Workspace
+>
+> 1. In the [Google Cloud console](https://console.cloud.google.com/auth/clients), create an OAuth 2.0 Client ID of type **Web application**.
+> 2. Add the redirect URI from Xata under **Authorized redirect URIs**.
+> 3. In Xata, select **Google Workspace** and paste the **Client ID** and **Client secret**.
 
-1. In the [Google Cloud console](https://console.cloud.google.com/auth/clients), create an OAuth 2.0 Client ID of type **Web application**.
-2. Add the redirect URI from Xata under **Authorized redirect URIs**.
-3. In Xata, select **Google Workspace** and paste the **Client ID** and **Client secret**.
+> [tab] Microsoft Entra ID
+>
+> 1. In the Microsoft Entra admin center, register an application and add the redirect URI from Xata as a **Web** redirect URI.
+> 2. Add a client secret under **Certificates & secrets**.
+> 3. Under **API permissions**, make sure the application has the delegated Microsoft Graph permissions `openid`, `profile`, `email` and `User.Read`. Xata reads each member's profile from Microsoft Graph.
+> 4. In Xata, select **Microsoft Entra ID** and enter:
+>    * **Issuer URL**: `https://login.microsoftonline.com/<tenant-id>/v2.0`, using your tenant ID
+>    * **Client ID**: the application (client) ID
+>    * **Client secret**: the secret value
+>
+> The shared `common`, `organizations` and `consumers` issuers are refused, because they are not limited to your tenant.
+>
+> Xata takes each member's email address from the `mail` attribute of their Entra user, or from their user principal name if `mail` is empty. That address must be on the verified domain, or the sign-in is refused. A Microsoft Entra ID Free tenant is enough.
 
-**Microsoft Entra ID**
-
-1. In the Microsoft Entra admin center, register an application and add the redirect URI from Xata as a **Web** redirect URI.
-2. Add a client secret under **Certificates & secrets**.
-3. Under **API permissions**, make sure the application has the delegated Microsoft Graph permissions `openid`, `profile`, `email` and `User.Read`. Xata reads each member's profile from Microsoft Graph.
-4. In Xata, select **Microsoft Entra ID** and enter:
-   * **Issuer URL**: `https://login.microsoftonline.com/<tenant-id>/v2.0`, using your tenant ID
-   * **Client ID**: the application (client) ID
-   * **Client secret**: the secret value
-
-The shared `common`, `organizations` and `consumers` issuers are refused, because they are not limited to your tenant.
-
-Xata takes each member's email address from the `mail` attribute of their Entra user, or from their user principal name if `mail` is empty. That address must be on the verified domain, or the sign-in is refused. A Microsoft Entra ID Free tenant is enough.
-
-**OpenID Connect**
-
-1. In your provider, for example Okta or Auth0, register a web application and add the redirect URI from Xata as its sign-in redirect URI.
-2. In Xata, select **OpenID Connect** and enter:
-   * **Issuer URL**: your provider's issuer, for example `https://acme.okta.com`. It must use `https://`.
-   * **Client ID** and **Client secret** from the application.
-
-Xata reads the endpoints from the issuer's `/.well-known/openid-configuration` document, so you do not enter them by hand.
+> [tab] OpenID Connect
+>
+> 1. In your provider, for example Okta or Auth0, register a web application and add the redirect URI from Xata as its sign-in redirect URI.
+> 2. In Xata, select **OpenID Connect** and enter:
+>    * **Issuer URL**: your provider's issuer, for example `https://acme.okta.com`. It must use `https://`.
+>    * **Client ID** and **Client secret** from the application.
+>
+> Xata reads the endpoints from the issuer's `/.well-known/openid-configuration` document, so you do not enter them by hand.
 
 Select **Connect** followed by the provider name, for example **Connect Google Workspace**, to save. Xata checks the client ID and secret against your provider before saving, and rejects them if the provider does.
 

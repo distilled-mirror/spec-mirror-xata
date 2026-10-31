@@ -31,27 +31,27 @@ brew install pgstream
 
 These flags are available for all commands:
 
-> **--config, -c**
+> [accordion] --config, -c
 >
 > **Description**: .env or .yaml config file to use with pgstream if any\
 > **Default**: -
 
-> **--log-level**
+> [accordion] --log-level
 >
 > **Description**: Log level for the application. One of trace, debug, info, warn, error, fatal, panic\
 > **Default**: `debug`
 
-> **--log-format**
+> [accordion] --log-format
 >
 > **Description**: Log output format. One of `console` (human-readable) or `json` (structured)\
 > **Default**: `console`
 
-> **--no-color**
+> [accordion] --no-color
 >
 > **Description**: Disable ANSI color codes in console log output (ignored when `--log-format=json`)\
 > **Default**: `false`
 
-> **--help, -h**
+> [accordion] --help, -h
 >
 > **Description**: Show help information\
 > **Default**: -

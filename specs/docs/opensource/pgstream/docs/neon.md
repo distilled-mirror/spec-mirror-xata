@@ -219,22 +219,22 @@ ALTER SCHEMA <schema> OWNER TO pgstreamtarget;
 
 ## Troubleshooting
 
-> **permission denied for table pg\_authid**
+> [accordion] permission denied for table pg\_authid
 >
 > **Cause**: Roles with passwords require pg\_authid access.\
 > **Fix**: Use `neondb_owner` user as source, or disable role passwords (`roles_snapshot_mode: no_passwords`).
 
-> **permission denied to set parameter "session\_replication\_role"**
+> [accordion] permission denied to set parameter "session\_replication\_role"
 >
 > **Cause**: No available Neon users can set this parameter.\
 > **Fix**: Set `disable_triggers: false` in target config.
 
-> **permission denied for schema public when transferring ownership**
+> [accordion] permission denied for schema public when transferring ownership
 >
 > **Cause**: Target role lacks CREATE privilege on schema.\
 > **Fix**: Grant CREATE on schema to the role: `GRANT CREATE ON SCHEMA public TO role_name;`
 
-> **Role creation fails**
+> [accordion] Role creation fails
 >
 > **Cause**: `pgstreamtarget` lacks privileges it tries to assign.\
 > **Fix**: Grant required privileges to `pgstreamtarget` first, or use a user with more privileges.

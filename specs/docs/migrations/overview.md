@@ -8,41 +8,41 @@
 
 ## Migrate with `xata clone`
 
-> **[AWS RDS](https://xata.io/docs/migrations/aws-rds.md)**
+> [card] [AWS RDS](https://xata.io/docs/migrations/aws-rds.md)
 >
 > Migrate an AWS RDS for PostgreSQL instance.
 
-> **[AWS Aurora](https://xata.io/docs/migrations/aws-aurora.md)**
+> [card] [AWS Aurora](https://xata.io/docs/migrations/aws-aurora.md)
 >
 > Migrate an AWS Aurora PostgreSQL cluster.
 
-> **[GCP Cloud SQL](https://xata.io/docs/migrations/gcp-cloudsql.md)**
+> [card] [GCP Cloud SQL](https://xata.io/docs/migrations/gcp-cloudsql.md)
 >
 > Migrate a GCP Cloud SQL for PostgreSQL instance.
 
-> **[Azure Database](https://xata.io/docs/migrations/azure.md)**
+> [card] [Azure Database](https://xata.io/docs/migrations/azure.md)
 >
 > Migrate an Azure Database for PostgreSQL server.
 
-> **[Neon](https://xata.io/docs/migrations/neon.md)**
+> [card] [Neon](https://xata.io/docs/migrations/neon.md)
 >
 > Migrate a Neon PostgreSQL database.
 
-> **[Supabase](https://xata.io/docs/migrations/supabase.md)**
+> [card] [Supabase](https://xata.io/docs/migrations/supabase.md)
 >
 > Migrate a Supabase PostgreSQL database.
 
-> **[Self-Hosted PostgreSQL](https://xata.io/docs/migrations/self-hosted.md)**
+> [card] [Self-Hosted PostgreSQL](https://xata.io/docs/migrations/self-hosted.md)
 >
 > Migrate a PostgreSQL database you run yourself.
 
 ## Other import options
 
-> **[Greenmask (subsets)](https://xata.io/docs/migrations/greenmask.md)**
+> [card] [Greenmask (subsets)](https://xata.io/docs/migrations/greenmask.md)
 >
 > Import a referentially consistent subset of your database instead of a full copy.
 
-> **[Parquet files](https://xata.io/docs/migrations/parquet.md)**
+> [card] [Parquet files](https://xata.io/docs/migrations/parquet.md)
 >
 > Load data from Parquet files in AWS S3, such as RDS or Aurora snapshot exports.
 

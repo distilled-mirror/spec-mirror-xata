@@ -37,54 +37,54 @@ When you create your first branch in a project, the console suggests the name `m
 
 Creating a child branch copies the parent's schema and data using a Copy-on-Write storage snapshot, so it completes in seconds even for terabyte-scale databases.
 
-**Console**
+> [tab] Console
+>
+> **Step 1**
+>
+> Navigate to the **Branches** page in your project
+>
+> **Step 2**
+>
+> Click **New branch**
+>
+> **Step 3**
+>
+> Select the source (parent) branch
+>
+> **Step 4**
+>
+> Give the branch a name
+>
+> **Step 5**
+>
+> Optionally adjust the [scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) settings
+>
+> **Step 6**
+>
+> Click **Create branch**
 
-**Step 1**
+> [tab] CLI
+>
+> ```bash theme={null}
+> xata branch create --name "my-dev-branch" --parent-branch "main"
+> ```
+>
+> See the [`xata branch create`](https://xata.io/docs/cli/branch#create) reference for all options.
 
-Navigate to the **Branches** page in your project
-
-**Step 2**
-
-Click **New branch**
-
-**Step 3**
-
-Select the source (parent) branch
-
-**Step 4**
-
-Give the branch a name
-
-**Step 5**
-
-Optionally adjust the [scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) settings
-
-**Step 6**
-
-Click **Create branch**
-
-**CLI**
-
-```bash theme={null}
-xata branch create --name "my-dev-branch" --parent-branch "main"
-```
-
-See the [`xata branch create`](https://xata.io/docs/cli/branch#create) reference for all options.
-
-**API**
-
-```bash theme={null}
-curl -X POST "https://api.xata.tech/organizations/{organizationId}/projects/{projectId}/branches" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "my-dev-branch",
-    "mode": "inherit",
-    "parentID": "PARENT_BRANCH_ID"
-  }'
-```
-
-With `mode: "inherit"`, the new branch inherits the parent branch's configuration and data. See the API Reference for the full request schema.
+> [tab] API
+>
+> ```bash theme={null}
+> curl -X POST "https://api.xata.tech/organizations/{organizationId}/projects/{projectId}/branches" \
+>   -H "Authorization: Bearer YOUR_API_KEY" \
+>   -H "Content-Type: application/json" \
+>   -d '{
+>     "name": "my-dev-branch",
+>     "mode": "inherit",
+>     "parentID": "PARENT_BRANCH_ID"
+>   }'
+> ```
+>
+> With `mode: "inherit"`, the new branch inherits the parent branch's configuration and data. See the API Reference for the full request schema.
 
 A few things to know about child branches:
 
@@ -96,38 +96,38 @@ A few things to know about child branches:
 
 A base branch has no parent and starts empty — no schema, no data. Use it for a new production database, a staging environment in a specific region, or as the root of a new branch tree.
 
-**Console**
+> [tab] Console
+>
+> **Step 1**
+>
+> Navigate to the **Branches** page and click **New branch**
+>
+> **Step 2**
+>
+> Give the branch a name
+>
+> **Step 3**
+>
+> Select a region
+>
+> **Step 4**
+>
+> Choose the PostgreSQL image, instance type, and number of replicas
+>
+> **Step 5**
+>
+> Optionally adjust the [scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) settings
+>
+> **Step 6**
+>
+> Click **Create branch**
 
-**Step 1**
-
-Navigate to the **Branches** page and click **New branch**
-
-**Step 2**
-
-Give the branch a name
-
-**Step 3**
-
-Select a region
-
-**Step 4**
-
-Choose the PostgreSQL image, instance type, and number of replicas
-
-**Step 5**
-
-Optionally adjust the [scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) settings
-
-**Step 6**
-
-Click **Create branch**
-
-**CLI**
-
-```bash theme={null}
-xata branch create --name "staging" --no-parent \
-  --region "us-east-1" --instance-type "xata.small" --replicas 0
-```
+> [tab] CLI
+>
+> ```bash theme={null}
+> xata branch create --name "staging" --no-parent \
+>   --region "us-east-1" --instance-type "xata.small" --replicas 0
+> ```
 
 > [!WARNING]
 >
@@ -187,47 +187,47 @@ Scale-to-zero is configured per branch, and your project defines separate defaul
 
 Deleting a branch permanently removes the branch and its data. This cannot be undone.
 
-**Console**
+> [tab] Console
+>
+> **Step 1**
+>
+> Navigate to the **Branches** page
+>
+> **Step 2**
+>
+> Open the actions menu ("...") next to the branch
+>
+> **Step 3**
+>
+> Select **Delete**
+>
+> **Step 4**
+>
+> Type the branch name to confirm the deletion
 
-**Step 1**
-
-Navigate to the **Branches** page
-
-**Step 2**
-
-Open the actions menu ("...") next to the branch
-
-**Step 3**
-
-Select **Delete**
-
-**Step 4**
-
-Type the branch name to confirm the deletion
-
-**CLI**
-
-```bash theme={null}
-xata branch delete my-dev-branch
-```
+> [tab] CLI
+>
+> ```bash theme={null}
+> xata branch delete my-dev-branch
+> ```
 
 Development branches are billed for the time they run, so delete branches you no longer need — or let [scale-to-zero](https://xata.io/docs/core-concepts/scale-to-zero.md) pause them automatically.
 
 ## Branching workflows
 
-> **[Dev branches for pull requests](https://xata.io/docs/automations/github-app.md)**
+> [card] [Dev branches for pull requests](https://xata.io/docs/automations/github-app.md)
 >
 > Connect the Xata GitHub App to create a dedicated dev branch for every pull request, and clean it up when the PR closes.
 
-> **[Branch automation in CI](https://xata.io/docs/automations/ga-pr.md)**
+> [card] [Branch automation in CI](https://xata.io/docs/automations/ga-pr.md)
 >
 > Use GitHub Actions to create branches, apply migrations, and wire preview environments to a branch connection string.
 
-> **[Anonymized production clones](https://xata.io/docs/tutorials/create-production-clone.md)**
+> [card] [Anonymized production clones](https://xata.io/docs/tutorials/create-production-clone.md)
 >
 > Clone production into a staging branch with PII anonymized on the fly, then create instant dev branches from it.
 
-> **[Test schema changes safely](https://xata.io/docs/core-concepts/schema-changes.md)**
+> [card] [Test schema changes safely](https://xata.io/docs/core-concepts/schema-changes.md)
 >
 > Try a migration on a child branch first, then apply the same migration to production with zero downtime using pgroll.
 

@@ -44,19 +44,19 @@ See [MCP Server](https://xata.io/docs/platform/mcp.md) for setup instructions fo
 
 ## Choose your integration
 
-> **[Xata CLI](https://xata.io/docs/cli.md)**
+> [card] [Xata CLI](https://xata.io/docs/cli.md)
 >
 > Branches, auth, migrations, clone, stream, and project linking from the terminal.
 
-> **[Xata MCP](https://xata.io/docs/platform/mcp.md)**
+> [card] [Xata MCP](https://xata.io/docs/platform/mcp.md)
 >
 > Connect through OAuth or an API key. Works with Cursor, Claude Code, VS Code, Codex, OpenCode, Windsurf, Cline, and more.
 
-> **[Agent Skills](https://xata.io/docs/ai-agents/agent-skills.md)**
+> [card] [Agent Skills](https://xata.io/docs/ai-agents/agent-skills.md)
 >
 > Guided workflows for the CLI, HTTP API, and PostgreSQL operations. Available through the MCP server.
 
-> **[Agent guides](https://xata.io/docs/ai-agents/claude-code.md)**
+> [card] [Agent guides](https://xata.io/docs/ai-agents/claude-code.md)
 >
 > Step-by-step setup for Claude Code, Cursor, Codex, Copilot, and other coding agents with isolated branches.
 
@@ -69,7 +69,7 @@ See [MCP Server](https://xata.io/docs/platform/mcp.md) for setup instructions fo
 
 ## Working with sensitive data
 
-> **[Anonymized production clones](https://xata.io/docs/core-concepts/anonymization.md)**
+> [card] [Anonymized production clones](https://xata.io/docs/core-concepts/anonymization.md)
 >
 > Give agents realistic schema and data for testing without exposing PII or other sensitive values. Create an anonymized clone as the parent branch before spinning up agent task branches.
 
@@ -77,35 +77,35 @@ See [MCP Server](https://xata.io/docs/platform/mcp.md) for setup instructions fo
 
 Use the guide for your coding agent to create an isolated branch, pass the branch connection string to the agent, and keep schema or data changes scoped to that branch until you review them.
 
-> **[Claude Code](https://xata.io/docs/ai-agents/claude-code.md)**
+> [card] [Claude Code](https://xata.io/docs/ai-agents/claude-code.md)
 >
 > Terminal-first workflows for branch-scoped migrations, tests, and database inspection.
 
-> **[Codex](https://xata.io/docs/ai-agents/codex.md)**
+> [card] [Codex](https://xata.io/docs/ai-agents/codex.md)
 >
 > Sandbox-friendly workflows for running tests and edits against a dedicated Xata branch.
 
-> **[Cursor](https://xata.io/docs/ai-agents/cursor.md)**
+> [card] [Cursor](https://xata.io/docs/ai-agents/cursor.md)
 >
 > IDE and background-agent setup with `.env.local` connection strings and reviewable schema changes.
 
-> **[OpenCode](https://xata.io/docs/ai-agents/opencode.md)**
+> [card] [OpenCode](https://xata.io/docs/ai-agents/opencode.md)
 >
 > Provider-agnostic terminal agent workflows using standard Postgres and the Xata CLI.
 
-> **[GitHub Copilot](https://xata.io/docs/ai-agents/github-copilot.md)**
+> [card] [GitHub Copilot](https://xata.io/docs/ai-agents/github-copilot.md)
 >
 > VS Code and GitHub workflows for per-PR branches and CI-backed database checks.
 
-> **[Windsurf](https://xata.io/docs/ai-agents/windsurf.md)**
+> [card] [Windsurf](https://xata.io/docs/ai-agents/windsurf.md)
 >
 > Cascade and Flow patterns for repeatable branch creation, migration testing, and cleanup.
 
-> **[Cline](https://xata.io/docs/ai-agents/cline.md)**
+> [card] [Cline](https://xata.io/docs/ai-agents/cline.md)
 >
 > Approval-based VS Code workflows with safe terminal commands and branch-scoped credentials.
 
-> **[Devin](https://xata.io/docs/ai-agents/devin.md)**
+> [card] [Devin](https://xata.io/docs/ai-agents/devin.md)
 >
 > Long-running cloud-agent tasks with isolated branches, scoped credentials, and explicit cleanup.
 
