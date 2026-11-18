@@ -10,7 +10,6 @@
 - [Deployment Models](https://xata.io/docs/core-concepts/deployment.md): The various ways you can deploy Xata, whether for staging/dev or production, hosted in our cloud or in your cloud account.
 - [Create Branch](https://xata.io/docs/automations/ga-pr.md): GitHub Actions workflow for creating and managing development branches for pull requests
 - [Create a production clone](https://xata.io/docs/tutorials/create-production-clone.md): Use Xata's clone and branching features to create a safe, anonymized production clone.
-- [Data Anonymization](https://xata.io/docs/core-concepts/anonymization.md): Sensitive data anonymization and masking for PostgreSQL
 - [Create Streaming Replica](https://xata.io/docs/tutorials/streaming-replication.md): Use Xata's streaming replication to keep your database continuously synchronized with real-time changes.
 - [Make Schema Changes](https://xata.io/docs/tutorials/schema-change.md): Learn how to safely apply and roll back schema changes in Xata using the CLI.
 - [Find and fix slow queries on a Xata branch](https://xata.io/docs/tutorials/find-slow-queries.md): Use query insights, branch logs, and instance metrics to find slow PostgreSQL queries, understand why they are slow, and confirm the fix worked.
@@ -47,7 +46,6 @@
 - [Parquet files](https://xata.io/docs/migrations/parquet.md): Learn how to migrate your data to Xata from Parquet files exported to AWS S3
 - [GitHub App](https://xata.io/docs/automations/github-app.md): Create and clean up Xata preview branches from GitHub pull requests
 - [Vercel preview deployments](https://xata.io/docs/automations/vercel-github-app.md): Connect Vercel preview deployments to Xata branches created by the GitHub App
-- [Create Branch](https://xata.io/docs/automations/ga-pr.md): GitHub Actions workflow for creating and managing development branches for pull requests
 - [Scheduled Clone](https://xata.io/docs/automations/ga-clone.md): GitHub Actions workflow for cloning databases on a schedule or on-demand
 - [Merge Readiness](https://xata.io/docs/automations/ga-check.md): GitHub Actions workflow for validating main branch status and migration readiness
 - [Scheduled Clone](https://xata.io/docs/automations/kubernetes-clone.md): Sample Kubernetes cron job to periodically copy the data from production to your production clone.
