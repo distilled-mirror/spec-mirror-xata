@@ -217,6 +217,11 @@ components:
         publicAccess:
           description: Whether the branch allows public access without authentication
           type: boolean
+        backupsEnabled:
+          description: >-
+            Whether backups are enabled for the newly created branch. Only set
+            in responses to branch creation.
+          type: boolean
       required:
         - id
         - name

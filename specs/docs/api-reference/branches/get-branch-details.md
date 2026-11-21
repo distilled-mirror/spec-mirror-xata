@@ -181,7 +181,7 @@ components:
           description: Whether the branch allows public access without authentication
           type: boolean
         backupsEnabled:
-          description: Whether the branch is in a region that supports backups
+          description: Whether backups are enabled for this branch
           type: boolean
         scaleToZero:
           $ref: '#/components/schemas/ScaleToZeroConfiguration'

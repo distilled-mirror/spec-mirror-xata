@@ -172,7 +172,9 @@ components:
           description: Whether the branch allows public access without authentication
           type: boolean
         backupsEnabled:
-          description: Whether the branch is in a region that supports backups
+          description: >-
+            Whether the branch's region supports backups. A branch can still
+            have backups disabled; see the branch details for its actual state.
           type: boolean
       required:
         - id
