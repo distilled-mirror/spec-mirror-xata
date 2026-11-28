@@ -140,7 +140,7 @@ Each branch has its own connection string and credentials. When connecting, you 
 | Endpoint type | Access | Use it for |
 | - | - | - |
 | **Primary** (`rw`) | Read/write on the primary | Default for most applications |
-| **Primary or replica** (`r`) | Routed to primary or a replica | Read-only workloads that can use either; do not use for writes |
+| **Primary or replica** (`r`) | Routed to primary or a replica | Read-only workloads that can use either; do not use for writes; requires at least one replica |
 | **Replica only** (`ro`) | Read-only, replicas only | Keeping read load off the primary; requires at least one replica |
 | **Pooler** (`pooled_rw`) | Pooled access to the primary | Serverless and high-concurrency workloads |
 

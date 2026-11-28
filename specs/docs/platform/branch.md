@@ -148,7 +148,7 @@ When you add an extension to the preload list, its parameters will become visibl
 When building a connection string, you can select how traffic is routed to your branch. The endpoint type is encoded into the connection string's hostname, so a single branch can expose multiple endpoints simultaneously.
 
 * **Primary only** (`rw`): Full read and write access to the primary instance. This is the default.
-* **Primary or Read Replica** (`r`): Connects to either the primary or a replica. Use it only for read-only workloads; writes are unreliable because the connection can land on a read-only replica.
+* **Primary or Read Replica** (`r`): Connects to either the primary or a replica. Use it only for read-only workloads; writes are unreliable because the connection can land on a read-only replica. Requires at least one replica configured on the branch.
 * **Read Replica only** (`ro`): Read-only access guaranteed to use read replicas, keeping load off the primary. Requires at least one replica configured on the branch.
 * **Pooler** (`pooled_rw`): Pooled access to the primary through a connection pooler. Recommended for serverless and high-concurrency workloads where many short-lived connections open and close frequently.
 

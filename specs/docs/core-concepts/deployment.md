@@ -59,7 +59,7 @@ Configure at least 1 replica for production workloads. If the primary becomes un
 Choose an endpoint based on where each connection should go:
 
 * **Primary only (`rw`)**: Connects to the primary for reads and writes.
-* **Primary or replica (`r`)**: Connects to either the primary or a replica. Use it only for read-only workloads; writes are unreliable because the connection can land on a read-only replica.
+* **Primary or replica (`r`)**: Connects to either the primary or a replica. Use it only for read-only workloads; writes are unreliable because the connection can land on a read-only replica. Requires at least 1 replica.
 * **Replica only (`ro`)**: Connects only to read-only replicas and requires at least 1 replica.
 * **Pooler (`pooled_rw`)**: Provides pooled connections to the primary.
 

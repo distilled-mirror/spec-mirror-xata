@@ -40,7 +40,8 @@ When connecting to your Xata database, you can use different endpoints to route 
 | - | - | - |
 | `{branch-id}` (no suffix) | Default endpoint | Routes through PgBouncer for connection pooling |
 | `{branch-id}-rw` | Read-write endpoint | Routes directly to the primary instance for read and write operations |
-| `{branch-id}-ro` or `{branch-id}-r` | Read-only endpoint | Routes to read replicas for read operations only |
+| `{branch-id}-r` | Primary or replica endpoint | Routes to the primary or a read replica for read operations only; requires at least one replica |
+| `{branch-id}-ro` | Read-only endpoint | Routes to read replicas for read operations only; requires at least one replica |
 | `{branch-id}-pooler` | Connection pooler endpoint | Routes through PgBouncer for connection pooling |
 
 > [!NOTE]
